@@ -46,7 +46,7 @@ All Visualia components are prefixed with `v-` and are loaded automatically when
 
 ### Graphics
 
-Visualia offers a set of graphics _primitives_ to draw circles, rectangles etc. You can choose between using different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output.
+Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc. You can choose between using different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output.
 
 To choose the rendering technology you first set a graphics scene element, `<v-scene>` and set an attribute `type` to pick a suitable rendering type:
 
@@ -59,7 +59,7 @@ To choose the rendering technology you first set a graphics scene element, `<v-s
 
 <br>
 
-Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to technology-specific subcomponent.
+Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
 
 When writing the following code:
 
@@ -149,7 +149,7 @@ Another way of adjusting live variables is to `<v-animate>` one value to another
 
 ### Events
 
-In addition to the live variables, Visualia also provides way to send and receive global events.
+In addition to the live variables, Visualia also provides a way to send and receive global events.
 
 #### Sending an event
 
@@ -234,7 +234,7 @@ Then each region and page is looped over and rendered by `<v-compiler>`.
 
 Global CSS resides in `/visualia.css` file and relies heavily on CSS variables.
 
-Component CSS is stored as an `css` attribute on each component:
+Component CSS is stored as a `css` attribute on each component:
 
 ```js
 const VExample = {
@@ -277,9 +277,9 @@ External dependencies redirected to ESM imports from https://unpkg.com
 
 ### Bundling
 
-By default external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as writing content or developing the framework offline.
+By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as writing content or developing the framework offline.
 
-For this reason we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.bundle.js`.
+For this reason, we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.bundle.js`.
 
 To generate a bundle, use the following command:
 
@@ -324,7 +324,7 @@ For Windows support, see [these Deno installation instructions](https://deno.lan
 
 #### Running tests automatically
 
-Command line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).
+Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).
 
 ## FAQ
 
@@ -344,7 +344,7 @@ Note that this could be reconsidered in the future, giving Typescript-based Deno
 
 #### Tell me the backstory!
 
-Visualia is actually a second take on the same idea: creating lightweight dynamic documents using latest Javascript features, VueJS and Markdown.
+Visualia is a second take on the same idea: creating lightweight dynamic documents using latest Javascript features, VueJS and Markdown.
 
 Although the [first version called Fachwerk](https://github.com/designstem/fachwerk) did serve the need of the project it was created for -- to deliver next-gen educational materials -- the actual implementation was somewhat lacking:
 
@@ -352,10 +352,10 @@ Although the [first version called Fachwerk](https://github.com/designstem/fachw
 
 - One of the messiest implementations were ThreeJS-related code, starting from missing ESM support, especially in more experimental code such as `THREE.SVGRenderer` that had to be ported to ES6 manually. Also, the ThreeJS code was parly based on outdated [vue-threejs](https://github.com/fritx/vue-threejs) implementation that was hard to reason about.
 
-- Some key ideas such as a simple global state using `set` and `get` only appeared in the project in a later stage. This left several inferior attempts for state handling via `v-slot` still into codebase and into the documentation.
+- Some key ideas such as a simple global state using `set` and `get` only appeared in the project in a later stage. This left several inferior attempts for state handling via `v-slot` still into the codebase and the documentation.
 
-- The performance was not a prioritized goal: CSS live injection approach was unefficient, math rendering needed a explicit update triggering and ThreeJS components were always animating even when the input data was static.
+- The performance was not a prioritized goal: CSS live injection approach was inefficient, math rendering needed a explicit update triggering and ThreeJS components were always animating even when the input data was static.
 
 - Very modest test coverage and missing integration with CI (Continuous Integration) systems.
 
-- Documentation, content creation, content marketing and contributions / community management were mostly an afterthought.
+- Documentation, content creation, content marketing, contributions, and community management were mostly an afterthought.
