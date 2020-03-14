@@ -2,9 +2,13 @@
 
 ## About
 
-Visualia is a web framework for creating interactive documents. It uses Markdown text format and [VueJS 3.x](https://github.com/vuejs/vue-next) components for authoring.
+Visualia is a web framework for creating interactive documents. It uses [Markdown](https://guides.github.com/features/mastering-markdown/) text format and [VueJS 3.x](https://github.com/vuejs/vue-next) components for authoring.
 
-Visualia supports a wide range of use cases, starting from learning materials, interactive slides and visual notebooks to generative art and data visualizations.
+Visualia supports a wide range of use cases, starting from interactive learning materials and live notebooks to generative design and data visualization.
+
+https://github.com/visualia/visualia
+
+![](https://github.com/visualia/visualia/workflows/Test/badge.svg) ![](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
 
 ## Getting started
 
@@ -83,7 +87,7 @@ it will internally be rendered as:
 
 ```v
 <v-scene>
-  <v-square position="150 150" r="100" />
+  <v-square position="100 100" r="50" />
 </v-scene>
 ```
 
@@ -93,7 +97,7 @@ it will internally be rendered as:
 
 ```v
 <v-scene>
-  <v-circle position="150 150" r="100" />
+  <v-circle position="100 100" r="50" />
 </v-scene>
 ```
 
@@ -120,8 +124,8 @@ It is more useful to use `get()` function inside components, for example:
 ```v
 <v-scene>
   <v-square
-    position="150 150"
-    r="100"
+    position="100 100"
+    r="50"
     :rotation="get('a')"
   />
 </v-scene>
@@ -140,8 +144,8 @@ Another way of adjusting live variables is to `<v-animate>` one value to another
 
 <v-scene>
   <v-square
-    position="150 150"
-    r="100"
+    position="100 100"
+    r="50"
     :rotation="get('b')"
   />
 </v-scene>
