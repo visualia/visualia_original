@@ -113,13 +113,13 @@ The simplest way to create a dynamic variable is to use `<v-slider>` component w
 <v-slider set="a" />
 ```
 
-To get the live value, use the `get()` function to print out the value.
+To display the live value, use the `get()` function:
 
 ```v
 <blockquote>a is {{ get("a") }}</blockquote>
 ```
 
-It is more useful to use `get()` function inside components, for example:
+You can use `get()` function anywhere in the document, including inside components:
 
 ```v
 <v-scene>
@@ -131,11 +131,9 @@ It is more useful to use `get()` function inside components, for example:
 </v-scene>
 ```
 
-Most components that generate data accept `set=""` as a prop, but there is also a `set()` function for cases you want to do something custom.
-
 #### Animate
 
-Another way of adjusting live variables is to `<v-animate>` one value to another in certain duration.
+Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the certain `duration`.
 
 ```v
 <v-animate set="b" />
@@ -193,9 +191,12 @@ The true power of the framework emerges when math functions are combined with li
 
 ### Markdown compiler
 
-The heart of Visualia lies on a very simple idea:
+The heart of Visualia, `<v-compiler>` component, is based on a very simple idea:
 
-> Take a Markdown file, add some VueJS components and live compile them into Vue template
+1. Take a Markdown file
+2. Add some VueJS components
+3. Live-compile them into Vue component template
+4. Display the component
 
 In VueJS 3.x code it can be expressed as:
 
