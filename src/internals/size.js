@@ -3,8 +3,8 @@ import { computed } from "../deps/vue.js";
 import { toNumber } from "../../visualia.js";
 
 export const sizeProps = {
-  width: { default: 300, type: [String, Number] },
-  height: { default: 300, type: [String, Number] }
+  width: { default: 200, type: [String, Number] },
+  height: { default: 200, type: [String, Number] }
 };
 
 export const useSize = props => {
