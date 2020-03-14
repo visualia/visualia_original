@@ -113,13 +113,13 @@ The simplest way to create a dynamic variable is to use `<v-slider>` component w
 <v-slider set="a" />
 ```
 
-To get the live value, use the `get()` function to print out the value.
+To display the live value, use the `get()` function:
 
 ```v
 <blockquote>a is {{ get("a") }}</blockquote>
 ```
 
-It is more useful to use `get()` function inside components, for example:
+You can use `get()` function anywhere in the document, including inside components:
 
 ```v
 <v-scene>
@@ -131,11 +131,9 @@ It is more useful to use `get()` function inside components, for example:
 </v-scene>
 ```
 
-Most components that generate data accept `set=""` as a prop, but there is also a `set()` function for cases you want to do something custom.
-
 #### Animate
 
-Another way of adjusting live variables is to `<v-animate>` one value to another in certain duration.
+Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the certain `duration`.
 
 ```v
 <v-animate set="b" />
@@ -189,13 +187,16 @@ The true power of the framework emerges when math functions are combined with li
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 ```
 
-## Development
+## Architecture
 
 ### Markdown compiler
 
-The heart of Visualia lies on a very simple idea:
+The heart of Visualia, `<v-compiler>` component is based on a very simple idea:
 
-> Take a Markdown file, add some VueJS components and live compile them into Vue template
+1. Take a Markdown file
+2. Add some VueJS components
+3. Live-compile them into Vue component template
+4. Display the component
 
 In VueJS 3.x code it can be expressed as:
 
@@ -228,30 +229,28 @@ The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler
 
 ### Content display
 
-`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, parses it via `parseContent()` into pages separated by `---` divider.
+`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, parses it into pages separated by `---` divider and further into the page regions, separated by `-` dividers.
 
-Pages can be optionally divided into grid regions, separated by `-` dividers.
-
-Then each region and page is looped over and rendered by `<v-compiler>`.
+Then each region is rendered by `<v-compiler>`.
 
 ### CSS and styling
 
 Global CSS resides in `/visualia.css` file and relies heavily on CSS variables.
 
-Component CSS is stored as a `css` attribute on each component:
+Component CSS can be stored as a `css` attribute on each component:
 
 ```js
 const VExample = {
   template: `<div class="VExample">Hello</div>`,
-  css: {
+  css: `
     .VExample {
       color: var(--red);
     }
-  }
-}
+  `
+};
 ```
 
-In `utils/css.js` there is a function `componentCss()` that gets the `css` attribute values from all components, merges them into a single CSS string and injects it to HTML `<style>` tag:
+On framework initialization components CSS will be merged into a single CSS string and be injected into HTML `<style>` tag:
 
 ```js
 import { components } from "https://visualia.github.io/visualia/visualia.js";
@@ -259,17 +258,23 @@ import { components } from "https://visualia.github.io/visualia/visualia.js";
 componentCss(components);
 ```
 
-There are also utility functions for getting and setting CSS variables, `getCssVariable()` and `setCssVariable()` respectively.
-
 ### Code organization
+
+[./visualia.js](./visualia.js)
+
+The main library entrypoint. All public API components and utilities should be imported from `./visualia.js`, not from the actual component files.
+
+[./index.js](./index.js)
+
+Visualia homepage. It imports `./visualia.js` and displays `README.md` file.
 
 [./src/components](./src/components)
 
-Public VueJS components, all loaded when the framework is initialized and accessible in Markdown documents.
+VueJS components, all loaded when the framework is initialized and accessible in Markdown documents.
 
 [./src/utils](./src/utils)
 
-Public utility functions, accessible in Markdown documents.
+Utility functions, accessible in Markdown documents.
 
 [./src/internal](./src/utils)
 
@@ -277,7 +282,7 @@ Internal functions used by components.
 
 [./src/deps](./src/deps)
 
-External dependencies redirected to ESM imports from https://unpkg.com
+External dependencies, ESM imports from https://unpkg.com
 
 ### Bundling
 
@@ -297,19 +302,18 @@ Visualia relies on a suite of unit tests that verify that utility and internal f
 
 #### Writing tests
 
-Tests are simple functions starting with `test_` that return `actual` and `expected` results:
+Tests are simple functions starting with `test_` prefix that return `actual` and `expected` results of the function.
 
 ```js
 export const add = value => value + 1
 
 export const test_add = {
+  // return [actual, expected];
   return [add(1), 2]
 }
 ```
 
-Test functions are picked up by test runner `/test.js` that compare the values returned. If they equal, the test passes. If they are not equal, the test fails.
-
-Tests can be run either from the browser or command line.
+Test functions are picked up by test runner `/test.js` that compare the va`actual` and `expected` results returned. If they equal, the test passes. If they do not equal, the test fails.
 
 #### Run browser tests
 
@@ -348,7 +352,7 @@ Note that this could be reconsidered in the future, giving Typescript-based Deno
 
 #### Tell me the backstory!
 
-Visualia is a second take on the same idea: creating lightweight dynamic documents using latest Javascript features, VueJS and Markdown.
+Visualia is a second take on the same idea: creating lightweight dynamic documents using the latest Javascript features, VueJS and Markdown.
 
 Although the [first version called Fachwerk](https://github.com/designstem/fachwerk) did serve the need of the project it was created for -- to deliver next-gen educational materials -- the actual implementation was somewhat lacking:
 
