@@ -1,0 +1,325 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:400,400i,700,700i|Cousine:400,400i,700,700i|IBM+Plex+Serif:400,400i,500,500i");
+
+/* Variables */
+
+:root {
+  --font-sansserif: Inter;
+  --font-mono: Cousine, monospace;
+  --font-mono-size: 15px;
+  --font-mono-lineheight: 22px;
+
+  --purple: #663399;
+  --darkpurple: #4c2672;
+  --red: #ff595e;
+  --yellow: #fec938;
+  --lightyellow: #ffe18e;
+  --lighteryellow: #feeec1;
+  --lightblue: hsl(209, 53%, 95%);
+  --blue: #1982c4;
+  --paleblue: #263238;
+  --palerblue: hsl(200, 19%, 92%);
+  --green: #59cd90;
+  --darkblue: #162e3d;
+  --orange: #ff9849;
+  --black: #111111;
+  --darkestgray: #222222;
+  --darkergray: #333333;
+  --darkgray: #555555;
+  --gray: #aaaaaa;
+  --lightgray: #cccccc;
+  --lightergray: #eee;
+  --lightestgray: #f4f4f4;
+  --white: #ffffff;
+
+  --accent: var(--red);
+  --transparent: rgba(0, 0, 0, 0);
+
+  --primary: var(--darkergray);
+  --secondary: var(--gray);
+  --tertiary: var(--lightgray);
+  --quaternary: var(--lightgray);
+
+  --background: var(--white);
+
+  --border-width: 2px;
+  --border-radius: 6px;
+
+  --slider-size: var(--base3);
+
+  --base: 8px;
+
+  --base2: calc(var(--base) * 2);
+  --base3: calc(var(--base) * 3);
+  --base4: calc(var(--base) * 4);
+  --base5: calc(var(--base) * 5);
+  --base6: calc(var(--base) * 6);
+  --base7: calc(var(--base) * 7);
+  --base8: calc(var(--base) * 8);
+  --base9: calc(var(--base) * 9);
+  --base10: calc(var(--base) * 10);
+}
+
+/* All */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body */
+
+body {
+  font-family: var(--font-sansserif);
+  font-size: calc(var(--base) * 2);
+  margin: 0;
+  color: var(--primary);
+  background: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 2em 0 0.5em 0;
+  padding: 0;
+  line-height: 1.25em;
+  color: var(--primary);
+  font-weight: 700;
+}
+h1 {
+  margin: 1em 0 0 0;
+  font-size: 100px;
+  line-height: 1em;
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 16px;
+}
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child {
+  margin-top: 0;
+}
+p {
+  font-size: calc(var(--base) * 2);
+  line-height: 1.5em;
+  margin: 0 0 var(--base2) 0;
+  color: var(--primary);
+}
+br {
+  margin: 0 0 var(--base2) 0;
+}
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  border-bottom: 1px solid var(--primary);
+}
+a:hover {
+  filter: brightness(90%);
+}
+b,
+strong {
+  color: var(--primary);
+}
+img {
+  width: 100%;
+  display: block;
+}
+ul {
+  margin: 0 0 calc(var(--base) * 2) 0;
+}
+li {
+  color: var(--primary);
+  font-size: calc(var(--base) * 2);
+  margin-bottom: var(--base);
+}
+ol {
+  counter-reset: f-counter;
+  list-style: none;
+  padding-left: 40px;
+}
+ol li {
+  margin: 0 0 0.5rem 0;
+  counter-increment: f-counter;
+  position: relative;
+}
+ol li::before {
+  --size: calc(var(--base) * 3);
+  content: counter(f-counter);
+  color: var(--white);
+  font-size: calc(var(--size) * 0.55);
+  font-weight: bold;
+  position: absolute;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  background: var(--accent);
+  border-radius: 50%;
+  text-align: center;
+}
+
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  width: 100%;
+  background: var(--primary);
+  height: var(--border-width);
+  position: relative;
+  outline: none;
+  width: 100%;
+  margin-bottom: var(--base5);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: var(--border-width) solid var(--primary);
+  height: var(--slider-size);
+  width: var(--slider-size);
+  border-radius: 1000px;
+  background: white;
+  cursor: pointer;
+  background: var(--white);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  height: calc(var(--slider-size) * 1.05);
+  width: calc(var(--slider-size) * 1.05);
+  border-radius: 1000px;
+}
+input[type="text"],
+input[type="number"] {
+  display: block;
+  border: var(--border-width) solid var(--primary);
+  color: var(--darkgray);
+  border-radius: var(--border-radius);
+  padding: calc(var(--base) * 0.6);
+  outline: none;
+  font-size: calc(var(--base) * 1.75);
+  font-weight: bold;
+  margin: 0 0 var(--base2) 0;
+  box-shadow: inset var(--border-width) var(--border-width) 0px
+    var(--lightergray);
+  width: var(--base8);
+}
+
+input:disabled {
+  opacity: 0.3;
+}
+
+blockquote {
+  margin: 0;
+  padding: var(--base) var(--base2) var(--base) var(--base3);
+  border-left: 4px solid var(--accent);
+  margin-bottom: var(--base2);
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-bottom: var(--border-width) solid var(--primary);
+}
+
+/* Code and output */
+
+pre {
+  font-family: var(--font-mono);
+  font-size: calc(var(--base) * 1.75);
+  line-height: calc(var(--base) * 2.5);
+  background: var(--paleblue);
+  color: var(--white);
+  padding: calc(var(--base) * 1.5);
+  margin: 0 0 var(--base2) 0;
+  word-break: break-word;
+  white-space: pre-wrap;
+  border-radius: 2px;
+}
+
+code {
+  font-family: var(--font-mono);
+  border-radius: 2px;
+  background: var(--palerblue);
+  color: var(--primary);
+  padding: 0.2ch 0.5ch 0ch 0.5ch;
+  font-size: 0.9em;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+pre code {
+  white-space: pre-wrap;
+  padding: 0;
+  overflow: auto;
+}
+
+/* Keyboard */
+
+kbd {
+  font-family: var(--font-mono);
+  font-weight: normal;
+  border-radius: 2px;
+  background: var(--gray);
+  color: var(--lightgray);
+  padding: 0.2ch 0.5ch 0ch 0.5ch;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--base2);
+}
+th {
+  border-bottom: var(--border-width) solid var(--tertiary);
+  padding: calc(var(--base) * 1) calc(var(--base) / 2);
+  text-align: left;
+  font-weight: normal;
+  color: var(--tertiary);
+  font-size: calc(var(--base) * 1.8);
+}
+th p {
+  color: var(--tertiary);
+  font-size: calc(var(--base) * 1.8);
+}
+tr {
+  border-bottom: 1px solid var(--tertiary);
+}
+td {
+  padding: calc(var(--base) * 1) calc(var(--base) / 1.5);
+  color: var(--primary);
+  font-size: calc(var(--base) * 1.8);
+  line-height: calc(var(--base) * 2.5);
+  vertical-align: top;
+}
+th p:last-child,
+td p:last-child {
+  margin-bottom: 0;
+}
+td p {
+  font-size: calc(var(--base) * 1.8);
+  line-height: calc(var(--base) * 2.5);
+}
