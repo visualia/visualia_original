@@ -35,7 +35,9 @@ const compileContent = content => {
 export const VCompiler = {
   props: {
     content: {
-      default: ""
+      default: "",
+      type: String,
+      docs: "Content to be compiled into VueJS template"
     }
   },
   setup(props) {

@@ -5,7 +5,8 @@ export const VContent = {
   props: {
     content: {
       default: "",
-      type: String
+      type: String,
+      docs: "Content to be compiled into VueJS template"
     }
   },
   setup(props) {

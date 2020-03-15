@@ -16,7 +16,9 @@ export const VScene = {
   props: {
     type: {
       default: "svg",
-      type: String
+      type: String,
+      docs:
+        "Rendering type, could be either `svg`, `canvas`, `three` or `webgl`"
     }
   },
   setup(props, context) {
