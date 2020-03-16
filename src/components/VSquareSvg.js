@@ -6,7 +6,15 @@ import {
 } from "../internals.js";
 
 export const VSquareSvg = {
-  props: { r: { default: 1 }, ...transformTwoProps, ...stylingProps },
+  props: {
+    r: {
+      default: 1,
+      type: [String, Number],
+      docs: "Square radius (half of the width)"
+    },
+    ...transformTwoProps,
+    ...stylingProps
+  },
   setup(props) {
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);

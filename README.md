@@ -50,17 +50,35 @@ All Visualia components are prefixed with `v-` and are loaded automatically when
 
 ### Graphics
 
+Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
+
 `<v-scene>`
 
-Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc. You can choose between using different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output.
+First you need to add a _scene_ to the document, an area where graphics components are placed.
+
+```
+<v-scene>
+</v-scene>
+```
 
 <!--- <v-props component="VScene" /> --->
+
+`type` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different types, their dimensions, and underlying technology:
+
+| Mode                      | Type      | Tech                   |
+| ------------------------- | --------- | ---------------------- |
+| `<v-scene type="svg">`    | 2D vector | `<svg>`                |
+| `<v-scene type="canvas">` | 2D bitmap | `<canvas>`             |
+| `<v-scene type="three">`  | 3D vector | ThreeJS SVG renderer   |
+| `<v-scene type="webgl">`  | 3D bitmap | ThreeJS WebGL renderer |
+
+<br />
 
 #### Square
 
 `<v-square>`
 
-vDisplays a 2D or 3D square.
+Displays a 2D or 3D square.
 
 ```v
 <v-scene>
@@ -68,7 +86,7 @@ vDisplays a 2D or 3D square.
 </v-scene>
 ```
 
-<!--- <v-props component="VSquareThree" /> --->
+<!--- <v-props component="VSquareSvg" /> --->
 
 #### Circle
 
@@ -82,7 +100,7 @@ Displays a 2D circle.
 </v-scene>
 ```
 
-<!--- <v-props component="VCircleThree" /> --->
+<!--- <v-props component="VCircleSvg" /> --->
 
 ### Live variables
 
