@@ -249,7 +249,7 @@ Each graphics component is aware of the current`<v-scene>` type and passes the a
 When writing the following code:
 
 ```
-<v-scene mode="svg">
+<v-scene mode="svg" width="500" height="500">
   <v-square r="100" />
 </v-scene>
 ```
@@ -257,9 +257,29 @@ When writing the following code:
 it will internally be rendered as:
 
 ```
-<v-scene-svg>
+<v-scene-svg width="500" height="500">
   <v-square-svg r="100" />
 </v-scene-svg>
+```
+
+How `<v-square>` knows to pass the rendering onto the `<v-square-svg>`? How `<v-square>` can access its parent `<v-scene>` height and width?
+
+`<v-scene>` passes a set of reactive values as `renderContext` object to all it's children. All the dynamic rendering logic is based on this data.
+
+```
+const VSquareSvg = {
+  setup() {
+    const renderContext = inject("renderContext");
+    /*
+    renderContext = {
+      type.value: 'svg',
+      width.value: 400,
+      height.value: 400,
+      unit.value: 1
+    }
+    */
+  }
+}
 ```
 
 ### CSS and styling
