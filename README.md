@@ -58,7 +58,9 @@ Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc.
 
 #### Square
 
-`<v-square>` Displays a 2D or 3D square.
+`<v-square>`
+
+vDisplays a 2D or 3D square.
 
 ```v
 <v-scene>
@@ -70,7 +72,9 @@ Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc.
 
 #### Circle
 
-`<v-circle>` displays a 2D circle.
+`<v-circle>`
+
+Displays a 2D circle.
 
 ```v
 <v-scene>
@@ -78,11 +82,15 @@ Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc.
 </v-scene>
 ```
 
+<!--- <v-props component="VCircleThree" /> --->
+
 ### Live variables
 
 Visualia supports live variables, they can be easily set and used to create dynamic experiences.
 
 #### Slider
+
+`<v-slider>`
 
 The simplest way to create a dynamic variable is to use `<v-slider>` component with `set` prop:
 
@@ -108,7 +116,11 @@ You can use `get()` function anywhere in the document, including inside componen
 </v-scene>
 ```
 
+<!--- <v-props component="VSlider" /> --->
+
 #### Animate
+
+`<v-animate>`
 
 Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the certain `duration`.
 
@@ -125,6 +137,8 @@ Another way of generating live variables is to use `<v-animate>` component that 
   />
 </v-scene>
 ```
+
+<!--- <v-props component="VAnimate" /> --->
 
 ### Events
 
@@ -211,8 +225,6 @@ The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler
 Then each region is rendered by `<v-compiler>`.
 
 ### Graphics implementation
-
-### Graphics components
 
 Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
 
