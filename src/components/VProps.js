@@ -34,6 +34,7 @@ export const VProps = {
     return { componentProps };
   },
   template: `
+  <h5>Props</h5>
   <v-table :rows="componentProps" />
   `
 };

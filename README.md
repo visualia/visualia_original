@@ -50,46 +50,23 @@ All Visualia components are prefixed with `v-` and are loaded automatically when
 
 ### Graphics
 
+`<v-scene>`
+
 Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc. You can choose between using different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output.
 
-To choose the rendering technology you first set a graphics scene element, `<v-scene>` and set an attribute `type` to pick a suitable rendering type:
-
-| Mode                      | Type      |
-| ------------------------- | --------- |
-| `<v-scene type="svg">`    | 2D vector |
-| `<v-scene type="canvas">` | 2D bitmap |
-| `<v-scene type="three">`  | 3D vector |
-| `<v-scene type="webgl">`  | 3D bitmap |
-
-<br>
-
-Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
-
-When writing the following code:
-
-```
-<v-scene mode="svg">
-  <v-square r="100" />
-</v-scene>
-```
-
-it will internally be rendered as:
-
-```
-<v-scene-svg>
-  <v-square-svg r="100" />
-</v-scene-svg>
-```
+<!--- <v-props component="VScene" /> --->
 
 #### Square
 
-`<v-square>` Displays a 2D square.
+`<v-square>` Displays a 2D or 3D square.
 
 ```v
 <v-scene>
   <v-square position="100 100" r="50" />
 </v-scene>
 ```
+
+<!--- <v-props component="VSquareThree" /> --->
 
 #### Circle
 
@@ -232,6 +209,28 @@ The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler
 `<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, parses it into pages separated by `---` divider and further into the page regions, separated by `-` dividers.
 
 Then each region is rendered by `<v-compiler>`.
+
+### Graphics implementation
+
+### Graphics components
+
+Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
+
+When writing the following code:
+
+```
+<v-scene mode="svg">
+  <v-square r="100" />
+</v-scene>
+```
+
+it will internally be rendered as:
+
+```
+<v-scene-svg>
+  <v-square-svg r="100" />
+</v-scene-svg>
+```
 
 ### CSS and styling
 
