@@ -202,8 +202,6 @@ The true power of the framework emerges when math functions are combined with li
 
 #### Compiler
 
-`<v-compiler>`
-
 `<v-compiler>`, the heart of Visualia is based on a very simple idea:
 
 1. Take a Markdown file
@@ -241,13 +239,9 @@ The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler
 
 #### Content display
 
-`<v-content>`
-
 `<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, does some extra formatting, splits the content into pages, separated by `---` and renders the result with `<v-compiler>`.
 
 #### Main entrypoint
-
-`visualia()`
 
 To ease the the initialization of the framework, `<v-content>` is wrapped into a `visualia()` function that creates `App` component, fetches the content from Markdown file and displays it using `<v-content>` component.
 
