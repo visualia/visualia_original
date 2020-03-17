@@ -8,7 +8,7 @@ Visualia supports a wide range of use cases, starting from interactive learning 
 
 https://github.com/visualia/visualia
 
-![](https://github.com/visualia/visualia/workflows/Test/badge.svg) ![](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
+![](https://github.com/visualia/visualia/workflows/Test/badge.svg)
 
 ## Getting started
 
@@ -196,18 +196,21 @@ The true power of the framework emerges when math functions are combined with li
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 ```
 
-## Architecture
+## Development
 
-### Markdown compiler
+### Component architecture
 
-The heart of Visualia, `<v-compiler>` component is based on a very simple idea:
+#### Compiler
+
+`<v-compiler>`
+
+`<v-compiler>`, the heart of Visualia is based on a very simple idea:
 
 1. Take a Markdown file
-2. Add some VueJS components
-3. Live-compile them into Vue component template
-4. Display the component
+2. Add some VueJS components into the document
+3. Live-compile the result into Vue component
 
-In VueJS 3.x code it can be expressed as:
+In VueJS 3.x it can be expressed as:
 
 ```js
 import {
@@ -236,20 +239,42 @@ createApp(App).mount("#app");
 
 The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler.js) is a little more sophisticated, including error handling and injecting utility functions, but the basic idea stays the same.
 
-### Content display
+#### Content display
 
-`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, parses it into pages separated by `---` divider and further into the page regions, separated by `-` dividers.
+`<v-content>`
 
-Then each region is rendered by `<v-compiler>`.
+`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, does some extra formatting, splits the content into pages, separated by `---` and renders the result with `<v-compiler>`.
+
+#### Main entrypoint
+
+`visualia()`
+
+To ease the the initialization of the framework, `<v-content>` is wrapped into a `visualia()` function that creates `App` component, fetches the content from Markdown file and displays it using `<v-content>` component.
 
 ### Graphics implementation
 
-Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
+Each graphics scene has to be wrapped into `<v-scene>`.
+
+`type` prop defines what technology-specific scene component will actually render the scene.
+
+```
+<v-scene type="svg" width="500" height="500">
+</v-scene>
+```
+
+it will internally be rendered as:
+
+```
+<v-scene-svg>
+</v-scene-svg>
+```
+
+Each child of `<v-scene>` is aware of the scene `type` prop and passes the actual rendering to a technology-specific subcomponent.
 
 When writing the following code:
 
 ```
-<v-scene mode="svg" width="500" height="500">
+<v-scene type="svg">
   <v-square r="100" />
 </v-scene>
 ```
@@ -257,12 +282,12 @@ When writing the following code:
 it will internally be rendered as:
 
 ```
-<v-scene-svg width="500" height="500">
+<v-scene-svg>
   <v-square-svg r="100" />
 </v-scene-svg>
 ```
 
-How `<v-square>` knows to pass the rendering onto the `<v-square-svg>`? How `<v-square>` can access its parent `<v-scene>` height and width?
+How `<v-square>` knows to pass the rendering onto the `<v-square-svg>`?
 
 `<v-scene>` passes a set of reactive values as `renderContext` object to all it's children. All the dynamic rendering logic is based on this data.
 
