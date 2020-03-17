@@ -9,10 +9,22 @@ import {
 import { toNumber } from "../utils.js";
 
 export const stylingProps = {
-  stroke: { default: "black", type: [String] },
-  strokeWidth: { default: 2, type: [String, Number] },
-  fill: { default: "none", type: [String, Number] },
-  opacity: { default: 1, type: [String, Number] }
+  stroke: { default: "black", type: [String], docs: "Stroke color" },
+  strokeWidth: {
+    default: 2,
+    type: [String, Number],
+    docs: 'Stroke width in pixels. Set to "none" for no stroke'
+  },
+  fill: {
+    default: "none",
+    type: [String, Number],
+    docs: 'Fill color. Set to "none" for no fill'
+  },
+  opacity: {
+    default: 1,
+    type: [String, Number],
+    docs: "Object opacity, a floating point number from `0` to `1`"
+  }
 };
 
 export const useSvgStyling = props => {

@@ -7,9 +7,26 @@ import { dynamicProps } from "../internals/dynamic.js";
 export const VAnimate = {
   props: {
     ...dynamicProps,
-    duration: { default: 10000, type: [String, Number] },
-    easing: { default: "linear", type: String },
-    alternate: { default: false, type: Boolean }
+    duration: {
+      default: 10000,
+      type: [String, Number],
+      docs: "Animation duration in milliseconds"
+    },
+    easing: {
+      default: "linear",
+      type: String,
+      docs: "Animation easing function"
+    },
+    loop: {
+      default: true,
+      type: Boolean,
+      docs: "Loop animation"
+    },
+    alternate: {
+      default: false,
+      type: Boolean,
+      docs: "Alternate between start and end value"
+    }
   },
   setup(props, { emit }) {
     const progress = ref(0);
@@ -19,7 +36,7 @@ export const VAnimate = {
       duration: props.duration,
       easing: props.easing,
       direction: props.alternate ? "alternate" : null,
-      loop: true
+      loop: props.loop
     });
     watch(progress, progress => {
       const currentProgress = props.integer ? Math.floor(progress) : progress;

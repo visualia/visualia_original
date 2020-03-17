@@ -8,7 +8,7 @@ Visualia supports a wide range of use cases, starting from interactive learning 
 
 https://github.com/visualia/visualia
 
-![](https://github.com/visualia/visualia/workflows/Test/badge.svg) ![](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
+![](https://github.com/visualia/visualia/workflows/Test/badge.svg)
 
 ## Getting started
 
@@ -50,40 +50,35 @@ All Visualia components are prefixed with `v-` and are loaded automatically when
 
 ### Graphics
 
-Visualia offers a set of graphics _primitives_ to draw circles, rectangles, etc. You can choose between using different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output.
+Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
 
-To choose the rendering technology you first set a graphics scene element, `<v-scene>` and set an attribute `type` to pick a suitable rendering type:
+`<v-scene>`
 
-| Mode                      | Type      |
-| ------------------------- | --------- |
-| `<v-scene type="svg">`    | 2D vector |
-| `<v-scene type="canvas">` | 2D bitmap |
-| `<v-scene type="three">`  | 3D vector |
-| `<v-scene type="webgl">`  | 3D bitmap |
-
-<br>
-
-Each graphics component is aware of the current`<v-scene>` type and passes the actual rendering to a technology-specific subcomponent.
-
-When writing the following code:
+First you need to add a _scene_ to the document, an area where graphics components are placed.
 
 ```
-<v-scene mode="svg">
-  <v-square r="100" />
+<v-scene>
 </v-scene>
 ```
 
-it will internally be rendered as:
+<!--- <v-props component="VScene" /> --->
 
-```
-<v-scene-svg>
-  <v-square-svg r="100" />
-</v-scene-svg>
-```
+`type` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different types, their dimensions, and underlying technology:
+
+| Mode                      | Type      | Tech                   |
+| ------------------------- | --------- | ---------------------- |
+| `<v-scene type="svg">`    | 2D vector | `<svg>`                |
+| `<v-scene type="canvas">` | 2D bitmap | `<canvas>`             |
+| `<v-scene type="three">`  | 3D vector | ThreeJS SVG renderer   |
+| `<v-scene type="webgl">`  | 3D bitmap | ThreeJS WebGL renderer |
+
+<br />
 
 #### Square
 
-`<v-square>` Displays a 2D square.
+`<v-square>`
+
+Displays a 2D or 3D square.
 
 ```v
 <v-scene>
@@ -91,9 +86,13 @@ it will internally be rendered as:
 </v-scene>
 ```
 
+<!--- <v-props component="VSquareSvg" /> --->
+
 #### Circle
 
-`<v-circle>` displays a 2D circle.
+`<v-circle>`
+
+Displays a 2D circle.
 
 ```v
 <v-scene>
@@ -101,11 +100,15 @@ it will internally be rendered as:
 </v-scene>
 ```
 
+<!--- <v-props component="VCircleSvg" /> --->
+
 ### Live variables
 
 Visualia supports live variables, they can be easily set and used to create dynamic experiences.
 
 #### Slider
+
+`<v-slider>`
 
 The simplest way to create a dynamic variable is to use `<v-slider>` component with `set` prop:
 
@@ -131,7 +134,11 @@ You can use `get()` function anywhere in the document, including inside componen
 </v-scene>
 ```
 
+<!--- <v-props component="VSlider" /> --->
+
 #### Animate
+
+`<v-animate>`
 
 Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the certain `duration`.
 
@@ -148,6 +155,8 @@ Another way of generating live variables is to use `<v-animate>` component that 
   />
 </v-scene>
 ```
+
+<!--- <v-props component="VAnimate" /> --->
 
 ### Events
 
@@ -187,18 +196,19 @@ The true power of the framework emerges when math functions are combined with li
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 ```
 
-## Architecture
+## Development
 
-### Markdown compiler
+### Component architecture
 
-The heart of Visualia, `<v-compiler>` component is based on a very simple idea:
+#### Compiler
+
+`<v-compiler>`, the heart of Visualia is based on a very simple idea:
 
 1. Take a Markdown file
-2. Add some VueJS components
-3. Live-compile them into Vue component template
-4. Display the component
+2. Add some VueJS components into the document
+3. Live-compile the result into Vue component
 
-In VueJS 3.x code it can be expressed as:
+In VueJS 3.x it can be expressed as:
 
 ```js
 import {
@@ -227,11 +237,69 @@ createApp(App).mount("#app");
 
 The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler.js) is a little more sophisticated, including error handling and injecting utility functions, but the basic idea stays the same.
 
-### Content display
+#### Content display
 
-`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, parses it into pages separated by `---` divider and further into the page regions, separated by `-` dividers.
+`<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, does some extra formatting, splits the content into pages, separated by `---` and renders the result with `<v-compiler>`.
 
-Then each region is rendered by `<v-compiler>`.
+#### Main entrypoint
+
+To ease the the initialization of the framework, `<v-content>` is wrapped into a `visualia()` function that creates `App` component, fetches the content from Markdown file and displays it using `<v-content>` component.
+
+### Graphics implementation
+
+Each graphics scene has to be wrapped into `<v-scene>`.
+
+`type` prop defines what technology-specific scene component will actually render the scene.
+
+```
+<v-scene type="svg" width="500" height="500">
+</v-scene>
+```
+
+it will internally be rendered as:
+
+```
+<v-scene-svg>
+</v-scene-svg>
+```
+
+Each child of `<v-scene>` is aware of the scene `type` prop and passes the actual rendering to a technology-specific subcomponent.
+
+When writing the following code:
+
+```
+<v-scene type="svg">
+  <v-square r="100" />
+</v-scene>
+```
+
+it will internally be rendered as:
+
+```
+<v-scene-svg>
+  <v-square-svg r="100" />
+</v-scene-svg>
+```
+
+How `<v-square>` knows to pass the rendering onto the `<v-square-svg>`?
+
+`<v-scene>` passes a set of reactive values as `renderContext` object to all it's children. All the dynamic rendering logic is based on this data.
+
+```
+const VSquareSvg = {
+  setup() {
+    const renderContext = inject("renderContext");
+    /*
+    renderContext = {
+      type.value: 'svg',
+      width.value: 400,
+      height.value: 400,
+      unit.value: 1
+    }
+    */
+  }
+}
+```
 
 ### CSS and styling
 

@@ -21,7 +21,27 @@ export const test_isObject_array = () => [isObject([1]), false];
 
 export const test_isObject_date = () => [isObject(new Date()), false];
 
-// toNumber
+export const typename = type => {
+  if (isArray(type)) {
+    return "array";
+  }
+  if (isObject(type)) {
+    return "object";
+  }
+  if (isString(type)) {
+    return "string";
+  }
+  if (isNumber(type)) {
+    return "number";
+  }
+  if (isBoolean(type)) {
+    return "boolean";
+  }
+  if (isFunction(type)) {
+    return "function";
+  }
+  return typeof type;
+};
 
 export const toNumber = (value, def = 0) => {
   const float = parseFloat(value);

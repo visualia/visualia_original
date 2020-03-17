@@ -14,9 +14,14 @@ export const VSceneThreeWebgl = (props, context) =>
 
 export const VScene = {
   props: {
+    // sizeProps are here just for props documentation,
+    // the component passes through all passed props anyway
+    ...sizeProps,
     type: {
       default: "svg",
-      type: String
+      type: String,
+      docs:
+        "Rendering type, could be either `svg`, `canvas`, `three` or `webgl`"
     }
   },
   setup(props, context) {

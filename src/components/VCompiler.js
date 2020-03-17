@@ -20,10 +20,13 @@ ${code}`;
   return `<pre v-pre>${escapedCode}</pre>`;
 };
 
+const processContent = content =>
+  content.replace(/<!---\s+/g, "").replace(/\s+--->/g, "");
+
 const compileContent = content => {
   let c = () => null;
   try {
-    c = compile(marked(content, { renderer, breaks: true }), {
+    c = compile(marked(processContent(content), { renderer, breaks: true }), {
       onError: onCompilerError
     });
   } catch (error) {
@@ -35,7 +38,9 @@ const compileContent = content => {
 export const VCompiler = {
   props: {
     content: {
-      default: ""
+      default: "",
+      type: String,
+      docs: "Content to be compiled into VueJS template"
     }
   },
   setup(props) {
