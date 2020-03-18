@@ -196,6 +196,67 @@ The true power of the framework emerges when math functions are combined with li
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 ```
 
+## Integrating with other frameworks
+
+### p5
+
+p5, a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
+
+##### index.js
+
+```js
+import { visualia, get } from "http://visualia.github.io/visualia/visualia.js";
+import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
+import { p5 } from "http://visualia.github.io/p5/p5.js";
+
+// p5 sketch
+
+// Note that you need to wrap into the sketch function
+// and prefix all commands with s, otherwise it is regular p5 API
+
+// Note tht use get() function to use Visualia live variables
+
+const sketch = s => {
+  s.setup = () => {
+    s.createCanvas(200, 200);
+  };
+  s.draw = () => {
+    s.background(0);
+    s.fill(100);
+    s.rect(get("a", 0), 100, 50, 50);
+  };
+};
+
+// We are wrapping p5 sketch into a Vue / Visualia component
+
+const P5Example = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      new p5(sketch, el.value);
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `
+};
+
+// We initialize Visualia with our p5 component
+
+visualia({
+  components: { P5Example }
+});
+```
+
+##### index.md
+
+```md
+<v-slider set="a" />
+
+<p5-example />
+```
+
 ## Development
 
 ### Component architecture
