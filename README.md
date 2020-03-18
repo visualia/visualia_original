@@ -200,7 +200,9 @@ The true power of the framework emerges when math functions are combined with li
 
 ### p5
 
-p5, a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
+[p5](https://p5js.org/), a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
+
+To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
 
 ##### index.js
 
@@ -214,7 +216,7 @@ import { p5 } from "http://visualia.github.io/p5/p5.js";
 // Note that you need to wrap into the sketch function
 // and prefix all commands with s, otherwise it is regular p5 API
 
-// Note tht use get() function to use Visualia live variables
+// Note that we use get() function to use Visualia live variables
 
 const sketch = s => {
   s.setup = () => {
