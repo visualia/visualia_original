@@ -104,7 +104,7 @@ Displays a 2D circle.
 
 ### Live variables
 
-Visualia supports live variables, they can be easily set and used to create dynamic experiences.
+Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
 
 #### Slider
 
@@ -140,7 +140,7 @@ You can use `get()` function anywhere in the document, including inside componen
 
 `<v-animate>`
 
-Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the certain `duration`.
+Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the during the certain `duration`.
 
 ```v
 <v-animate set="b" />
@@ -417,11 +417,11 @@ External dependencies, ESM imports from https://unpkg.com
 
 ### Bundling
 
-By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as writing content or developing the framework offline.
+By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as using the framework offline.
 
 For this reason, we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.bundle.js`.
 
-To generate a bundle, use the following command:
+To generate the bundle, use the following command:
 
 ```
 deno bundle.js visualia.js > visualia.bundle.js
@@ -429,7 +429,7 @@ deno bundle.js visualia.js > visualia.bundle.js
 
 ### Testing
 
-Visualia relies on a suite of unit tests that verify that utility and internal functions work right.
+Visualia relies on a suite of unit tests that verify that framework's utility and internal functions work right.
 
 #### Writing tests
 
@@ -444,7 +444,7 @@ export const test_add = {
 }
 ```
 
-Test functions are picked up by test runner `/test.js` that compare the va`actual` and `expected` results returned. If they equal, the test passes. If they do not equal, the test fails.
+Test functions are picked up by test runner `/test.js` that compares the `actual` and `expected` results. If they equal, the test passes. If they do not equal, the test fails.
 
 #### Run browser tests
 
@@ -469,7 +469,7 @@ Command-line tests run on each commit to Github repository, there is a Github ac
 
 #### Why not package.json? Why not npm?
 
-Visualia fully embraces the future of Javascript modules and is very much inspired by toolless movement and projects such as [Deno](https://deno.land/std/manual.md), [Pika](https://www.pika.dev/) and [reg](https://github.com/mikeal/reg) for next-generation ESM-based Javascript package management.
+Visualia embraces the future of Javascript modules and is very much inspired by projects such as [Deno](https://deno.land/std/manual.md), [Pika](https://www.pika.dev/) and [reg](https://github.com/mikeal/reg) for next-generation ESM-based Javascript package management.
 
 #### What about versioning the releases?
 
@@ -481,11 +481,11 @@ It is a viable option and could provide excellent developer experience for the f
 
 Note that this could be reconsidered in the future, giving Typescript-based Deno is part of the project toolchain already.
 
-#### Tell me the backstory!
+## Backstory
 
-Visualia is a second take on the same idea: creating lightweight dynamic documents using the latest Javascript features, VueJS and Markdown.
+Visualia is a second take on the initial idea: creating lightweight dynamic documents using the latest Javascript features, VueJS and Markdown.
 
-Although the [first version called Fachwerk](https://github.com/designstem/fachwerk) did serve the need of the project it was created for -- to deliver next-gen educational materials -- the actual implementation was somewhat lacking:
+Although the first version called [Fachwerk](https://github.com/designstem/fachwerk) did serve the need of the project it was created for -- to deliver next-gen educational materials -- the actual implementation was somewhat lacking:
 
 - It was too early for fully embracing ESM (ECMAScript modules). Many of the project dependencies did not yet offer ESM module builds so custom Rollup-based build system was introduced for transpiling CommonJS modules to ESM (similar what [Snowpack](https://www.snowpack.dev/) does).
 
