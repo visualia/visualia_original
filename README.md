@@ -80,7 +80,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 Displays a 2D or 3D square.
 
-```v
+```live
 <v-scene>
   <v-square position="100 100" r="50" />
 </v-scene>
@@ -94,7 +94,7 @@ Displays a 2D or 3D square.
 
 Displays a 2D circle.
 
-```v
+```live
 <v-scene>
   <v-circle position="100 100" r="50" />
 </v-scene>
@@ -112,19 +112,19 @@ Visualia supports live variables to create dynamic experiences, you can `set` an
 
 The simplest way to create a dynamic variable is to use `<v-slider>` component with `set` prop:
 
-```v
+```live
 <v-slider set="a" />
 ```
 
 To display the live value, use the `get()` function:
 
-```v
-<blockquote>a is {{ get("a") }}</blockquote>
+```live
+a is {{ get("a") }}
 ```
 
 You can use `get()` function anywhere in the document, including inside components:
 
-```v
+```live
 <v-scene>
   <v-square
     position="100 100"
@@ -142,10 +142,10 @@ You can use `get()` function anywhere in the document, including inside componen
 
 Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the during the certain `duration`.
 
-```v
+```live
 <v-animate set="b" />
 
-<blockquote>b is {{ get("b") }}</blockquote>
+b is {{ get("b") }}
 
 <v-scene>
   <v-square
@@ -166,31 +166,31 @@ In addition to the live variables, Visualia also provides a way to send and rece
 
 To send an event, use `send()` function:
 
-```v
-<blockquote><button v-on:click="send('click!')">Click me</button></blockquote>
+```live
+<button v-on:click="send('click!')">Click me</button>
 ```
 
 #### Receiving an event
 
 To receive an event, use `receive()` function:
 
-```v
+```live
 {{ receive("click!", () => set("clicked", true)) }}
 
-<blockquote>{{ get('clicked') ? 'Clicked!' : 'Waiting for a click'}}</blockquote>
+{{ get('clicked') ? 'Clicked!' : 'Waiting for a click'}}
 ```
 
 ### Math
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
-```v
+```live
 <v-math>b = a^2</v-math>
 ```
 
 The true power of the framework emerges when math functions are combined with live variables:
 
-```v
+```live
 <v-slider set="a" />
 
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>

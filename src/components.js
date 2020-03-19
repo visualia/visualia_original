@@ -5,7 +5,7 @@ export * from "./components/VCircleSvg.js";
 export * from "./components/VCircleThree.js";
 export * from "./components/VCompiler.js";
 export * from "./components/VContent.js";
-export * from "./components/VContentEditor.js";
+export * from "./components/VLive.js";
 export * from "./components/VEditor.js";
 export * from "./components/VMath.js";
 export * from "./components/VProps.js";

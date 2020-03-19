@@ -1,6 +1,6 @@
 import { ref, watch } from "../deps/vue.js";
 
-export const VContentEditor = {
+export const VLive = {
   props: {
     content: {
       default: "",
