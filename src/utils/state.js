@@ -4,4 +4,4 @@ const state = ref({});
 
 export const set = (key, value) => (state.value[key] = value);
 
-export const get = (key = null) => (key ? state.value[key] : state.value);
+export const get = (key = null, def = null) => (key ? state.value[key] : def);

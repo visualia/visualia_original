@@ -16,8 +16,9 @@
   --lighteryellow: #feeec1;
   --lightblue: hsl(209, 53%, 95%);
   --blue: #1982c4;
-  --paleblue: #263238;
-  --palerblue: hsl(200, 19%, 92%);
+  --darkpaleblue: hsl(200, 19%, 18%);
+  --paleblue: hsl(200, 19%, 28%);
+  --lightpaleblue: hsl(200, 19%, 92%);
   --green: #59cd90;
   --darkblue: #162e3d;
   --orange: #ff9849;
@@ -244,7 +245,7 @@ pre {
   font-size: calc(var(--base) * 1.75);
   line-height: calc(var(--base) * 2.5);
   background: var(--paleblue);
-  color: var(--white);
+  color: var(--lightpaleblue);
   padding: calc(var(--base) * 1.5);
   margin: 0 0 var(--base2) 0;
   word-break: break-word;
@@ -255,7 +256,7 @@ pre {
 code {
   font-family: var(--font-mono);
   border-radius: 2px;
-  background: var(--palerblue);
+  background: var(--lightpaleblue);
   color: var(--primary);
   padding: 0.2ch 0.5ch 0ch 0.5ch;
   font-size: 0.9em;
@@ -325,4 +326,8 @@ td p {
     display: grid;
     grid-template-columns: 1fr;
   }
+}
+
+.fullwidth {
+  margin-left: calc(var(--base2) * -1);
 }

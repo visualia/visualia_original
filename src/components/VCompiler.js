@@ -12,10 +12,8 @@ renderer.code = (code, info) => {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-  if (info === "v") {
-    return `<pre v-pre>${escapedCode}</pre>
-
-${code}`;
+  if (info === "live") {
+    return `<p><v-live content="${escapedCode}" /></p>`;
   }
   return `<pre v-pre>${escapedCode}</pre>`;
 };
