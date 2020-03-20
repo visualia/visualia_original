@@ -2,6 +2,7 @@ import { computed } from "../deps/vue.js";
 import { line } from "../deps/d3-shape.js";
 
 import {
+  lineProps,
   stylingProps,
   useSvgStyling,
   transformTwoProps,
@@ -11,11 +12,7 @@ import {
 
 export const VLineSvg = {
   props: {
-    points: {
-      default: "0 0, 10 10",
-      type: [String, Array, Object],
-      docs: "Array of points that the line will follow"
-    },
+    ...lineProps,
     ...transformTwoProps,
     ...stylingProps
   },

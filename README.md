@@ -102,6 +102,20 @@ Displays a 2D circle.
 
 <!--- <v-props component="VCircleSvg" /> --->
 
+#### Line
+
+`<v-line>`
+
+Displays a line.
+
+```live
+<v-scene>
+  <v-line points="50 50, 150 150" />
+</v-scene>
+```
+
+<!--- <v-props component="VLineSvg" /> --->
+
 ### Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
