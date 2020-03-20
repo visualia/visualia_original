@@ -74,6 +74,20 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 <br />
 
+#### Point
+
+`<v-point>`
+
+Displays a point.
+
+```live
+<v-scene>
+  <v-point position="100 100" />
+</v-scene>
+```
+
+<!--- <v-props component="VPoint" /> --->
+
 #### Square
 
 `<v-square>`
