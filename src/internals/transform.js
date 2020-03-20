@@ -104,28 +104,23 @@ export const transformCanvasReset = ctx => {
 
 // Three
 
-export const useThreeTransform = (props, object) => {
+export const threeFitX = (x, width) => fit(x, 0, width, width / -2, width / 2);
+
+export const threeFitY = (y, height) =>
+  fit(y, 0, height, height / 2, height / -2);
+
+export const useThreeTransform = (props, object, fit = false) => {
   const { width, height } = inject("sceneContext");
   watch(
     () => props.position,
     () => {
       const { position } = getThreeTransform(props);
-      object.position.x = position[0];
-      object.position.y = position[1];
-      object.position.x = fit(
-        position[0],
-        0,
-        width.value,
-        width.value / -2,
-        width.value / 2
-      );
-      object.position.y = fit(
-        position[1],
-        0,
-        height.value,
-        height.value / 2,
-        height.value / -2
-      );
+      object.position.x = fit
+        ? threeFitX(position[0], width.value)
+        : position[0];
+      object.position.y = fit
+        ? threeFitY(position[1], height.value)
+        : position[1];
       object.position.z = position[2];
     }
   );

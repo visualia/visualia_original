@@ -1,0 +1,56 @@
+import { inject } from "../deps/vue.js";
+
+import {
+  Group,
+  Vector3,
+  LineBasicMaterial,
+  BufferGeometry,
+  Line
+} from "../deps/three.js";
+
+import {
+  lineProps,
+  stylingProps,
+  transformThreeProps,
+  parseCoords,
+  threeFitX,
+  threeFitY
+} from "../internals.js";
+
+export const VLineThree = {
+  props: {
+    ...lineProps,
+    ...transformThreeProps,
+    ...stylingProps
+  },
+  setup(props) {
+    const sceneContext = inject("sceneContext");
+
+    const parsedPoints = parseCoords(props.points);
+
+    const geometry = new BufferGeometry().setFromPoints(
+      parsedPoints
+        .map(([x, y]) => [
+          threeFitX(x, sceneContext.width.value),
+          threeFitY(y, sceneContext.height.value)
+        ])
+        .map(point => new Vector3(...point))
+    );
+
+    var group = new Group();
+
+    const stroke = new LineBasicMaterial({
+      color: props.stroke,
+      linewidth: props.strokeWidth,
+      opacity: props.opacity
+    });
+
+    const line = new Line(geometry, stroke);
+
+    group.add(line);
+
+    sceneContext.scene.add(group);
+
+    return () => null;
+  }
+};

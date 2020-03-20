@@ -39,7 +39,7 @@ export const VCircleThree = {
 
     sceneContext.scene.add(group);
 
-    useThreeTransform(props, group);
+    useThreeTransform(props, group, true);
 
     return () => null;
   }
