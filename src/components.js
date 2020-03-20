@@ -12,6 +12,7 @@ export * from "./components/VLineSvg.js";
 export * from "./components/VLineThree.js";
 export * from "./components/VLive.js";
 export * from "./components/VMath.js";
+export * from "./components/VPoint.js";
 export * from "./components/VProps.js";
 export * from "./components/VScene.js";
 export * from "./components/VSceneCanvas.js";
