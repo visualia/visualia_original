@@ -1,3 +1,18 @@
+```live
+<v-scene>
+  <v-line :points="circlepoints()" />
+</v-scene>
+```
+
+```live
+
+{{ set('p', array(10).map(_ => [[0,0],[random(1,100), random(1,100)]])) }}
+
+<v-scene>
+  <v-line v-for="a in get('p')" :points="a" />
+</v-scene>
+```
+
 # Visu&#8203;alia
 
 ## About
