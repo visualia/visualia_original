@@ -17,38 +17,20 @@ export const VGroupCanvas = {
         transformCanvas(props, sceneContext.ctx.value);
       }
     });
-    // watch(
-    //   () => slots.default(),
-    //   slots => {
-    //     const node = nodes[0].children;
-    //     math.value = katex.renderToString(String.raw`${node}`, {
-    //       throwOnError: false
-    //     });
-    //   }
-    // );
-    // onBeforeUpdate(() => {
-    //   watch(() => {
-    //     if (sceneContext.ctx.value) {
-    //       //console.log(sceneContext.ctx.value.getTransform());
-    //       transformCanvas(props, sceneContext.ctx.value);
-    //     }
-    //   });
-    // });
-    // console.log(sceneContext.ctx.value);
-    // if (sceneContext.ctx.value) {
-    //   console.log(sceneContext.ctx.value);
-    //   transformCanvas(props, sceneContext.ctx.value);
-    // }
-    // onBeforeUpdate(() => {
-    //   transformCanvasReset(sceneContext.ctx.value);
-    //   transformCanvas(props, sceneContext.ctx.value);
-    // });
-    // watch(() => {
-    //   if (sceneContext.ctx.value) {
-    //     transformCanvas(props, sceneContext.ctx.value);
-    //   }
-    // });
-    //console.log(slots.default());
+    onBeforeUpdate(() => {
+      if (sceneContext.ctx.value) {
+        transformCanvas(props, sceneContext.ctx.value);
+        sceneContext.ctx.value.save();
+        transformCanvasReset(sceneContext.ctx.value);
+        sceneContext.ctx.value.clearRect(
+          0,
+          0,
+          sceneContext.width.value,
+          sceneContext.height.value
+        );
+        sceneContext.ctx.value.restore();
+      }
+    });
     return () => slots.default();
   }
 };

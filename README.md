@@ -1,13 +1,28 @@
 ```live
-<v-slider set="a" from="10" value="10"  />
+<v-slider set="a"  />
+
+<v-scene type="three">
+  <v-group-three  position="100 100">
+    <v-square r="50" :rotation="get('a')"  />
+  </v-group-three>
+    <v-square r="20" :rotation="get('a')"  />
+</v-scene>
+
+<v-scene type="canvas">
+  <v-group-canvas  :rotation="get('a')">
+    <v-square r="10"  v-for="a in [50,100,150]"  :position="a" :rotation="get('a')"  />
+  </v-group-canvas>
+</v-scene>
+
+<v-scene type="svg">
+  <v-group-svg  :rotation="get('a')">
+    <v-square r="10"  v-for="a in [50,100,150]"  :position="a" :rotation="get('a')"  />
+  </v-group-svg>
+</v-scene>
 
 {{ get('a') }}
 
-<v-scene type="canvas">
-  <v-group-canvas>
-    <v-square r="30" position="100" :rotation="get('a')" />
-  </v-group-canvas>
-</v-scene>
+
 ```
 
 # Visu&#8203;alia
