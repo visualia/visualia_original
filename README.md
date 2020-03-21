@@ -1,15 +1,9 @@
 ```live
+<v-slider set="a" />
 <v-scene>
-  <v-line :points="circlepoints()" />
-</v-scene>
-```
-
-```live
-
-{{ set('p', array(10).map(_ => [[0,0],[random(1,100), random(1,100)]])) }}
-
-<v-scene>
-  <v-line v-for="a in get('p')" :points="a" />
+<v-group-svg :rotation="get('a') / 4">
+  <v-circle r="50" position="100" />
+</v-group-svg>
 </v-scene>
 ```
 

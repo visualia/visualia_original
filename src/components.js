@@ -6,6 +6,7 @@ export * from "./components/VCircleThree.js";
 export * from "./components/VCompiler.js";
 export * from "./components/VContent.js";
 export * from "./components/VEditor.js";
+export * from "./components/VGroupSvg.js";
 export * from "./components/VLine.js";
 export * from "./components/VLineCanvas.js";
 export * from "./components/VLineSvg.js";
