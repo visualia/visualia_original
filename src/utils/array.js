@@ -1,3 +1,5 @@
+export const array = (length = 1) => Array.from({ length });
+
 export const flatten = list =>
   list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 
