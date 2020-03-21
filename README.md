@@ -1,9 +1,12 @@
 ```live
-<v-slider set="a" />
-<v-scene>
-<v-group-svg :rotation="get('a') / 4">
-  <v-circle r="50" position="100" />
-</v-group-svg>
+<v-slider set="a" from="10" value="10"  />
+
+{{ get('a') }}
+
+<v-scene type="canvas">
+  <v-group-canvas>
+    <v-square r="30" position="100" :rotation="get('a')" />
+  </v-group-canvas>
 </v-scene>
 ```
 
