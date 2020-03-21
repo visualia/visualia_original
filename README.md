@@ -2,10 +2,9 @@
 <v-slider set="a"  />
 
 <v-scene type="three">
-  <v-group-three  position="100 100">
-    <v-square r="50" :rotation="get('a')"  />
+  <v-group-three  :rotation="get('a')" position="100 100" >
+    <v-square r="100" />
   </v-group-three>
-    <v-square r="20" :rotation="get('a')"  />
 </v-scene>
 
 <v-scene type="canvas">

@@ -37,7 +37,6 @@ export const VSquareThree = {
       const strokeObject = new LineSegments(edges, stroke.value);
       group.add(strokeObject);
     }
-
     sceneContext.scene.add(group);
 
     useThreeTransform(props, group, true);

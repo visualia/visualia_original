@@ -12,6 +12,8 @@ import { SVGRenderer } from "../deps/svgrenderer.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
+import { receive } from "../utils.js";
+
 export const VSceneThree = {
   props: {
     ...sizeProps,
@@ -51,6 +53,7 @@ export const VSceneThree = {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.scene = scene;
+    sceneContext.update = () => renderer.render(scene, camera);
 
     onMounted(() => {
       el.value.append(renderer.domElement);
