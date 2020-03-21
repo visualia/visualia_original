@@ -19,6 +19,7 @@ export * from "./components/VSceneCanvas.js";
 export * from "./components/VSceneSvg.js";
 export * from "./components/VSceneThree.js";
 export * from "./components/VSlider.js";
+export * from "./components/VSphere.js";
 export * from "./components/VSphereThree.js";
 export * from "./components/VSquare.js";
 export * from "./components/VSquareCanvas.js";

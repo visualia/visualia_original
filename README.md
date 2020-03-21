@@ -1,7 +1,3 @@
-<v-scene type="three">
-  <v-sphere-three r="50" position="100 100" />
-</v-scene>
-
 # Visu&#8203;alia
 
 ## About
@@ -92,6 +88,20 @@ Displays a point.
 
 <!--- <v-props component="VPoint" /> --->
 
+#### Line
+
+`<v-line>`
+
+Displays a line.
+
+```live
+<v-scene>
+  <v-line points="50 50, 150 150" />
+</v-scene>
+```
+
+<!--- <v-props component="VLineSvg" /> --->
+
 #### Square
 
 `<v-square>`
@@ -120,19 +130,17 @@ Displays a 2D circle.
 
 <!--- <v-props component="VCircleSvg" /> --->
 
-#### Line
+#### Sphere
 
-`<v-line>`
-
-Displays a line.
+Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ```live
-<v-scene>
-  <v-line points="50 50, 150 150" />
+<v-scene type="three">
+  <v-sphere r="50" position="100 100" />
 </v-scene>
 ```
 
-<!--- <v-props component="VLineSvg" /> --->
+<!--- <v-props component="VSphereThree" /> --->
 
 ### Live variables
 
