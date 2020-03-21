@@ -1,5 +1,5 @@
 <v-scene type="three">
-  <v-sphere-three r="50" fill="red" :rotation="[get('b',0),get('b',0),get('b',0)]" position="100 100" />
+  <v-sphere-three r="50" position="100 100" />
 </v-scene>
 
 # Visu&#8203;alia
