@@ -17,7 +17,11 @@ export const VLive = {
   },
   template: `
   <div
-    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));">
+    style="
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      grid-template-rows: 250px;
+    ">
     <v-editor
       :content="currentContent"
       @input:content="content => currentContent = content"

@@ -1,18 +1,3 @@
-```live
-<v-scene>
-  <v-line :points="circlepoints()" />
-</v-scene>
-```
-
-```live
-
-{{ set('p', array(10).map(_ => [[0,0],[random(1,100), random(1,100)]])) }}
-
-<v-scene>
-  <v-line v-for="a in get('p')" :points="a" />
-</v-scene>
-```
-
 # Visu&#8203;alia
 
 ## About
@@ -155,7 +140,22 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 </v-scene>
 ```
 
-<!--- <v-props component="VSphereThree" /> --->
+<!--- <v-props component="VCircleSvg" /> --->
+
+#### Group
+
+Allows to apply transformations to group of graphics elements.
+
+```live
+<v-scene>
+  <v-group rotation="-10">
+    <v-square r="25" position="50 100" />
+    <v-square r="25" position="150 100" />
+  </v-group>
+</v-scene>
+```
+
+<!--- <v-props component="VGroupSvg" /> --->
 
 ### Live variables
 
