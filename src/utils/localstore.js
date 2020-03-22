@@ -3,7 +3,7 @@ import { ref, computed } from "../deps/vue.js";
 export const useLocalstore = (initialValue = null, key = null) => {
   const value = ref(initialValue);
   if (window.localStorage !== undefined) {
-    if (key && !window.localStorage.getItem(key)) {
+    if (initialValue !== null && key && !window.localStorage.getItem(key)) {
       window.localStorage.setItem(key, JSON.stringify(initialValue));
     }
     const localValue = computed({

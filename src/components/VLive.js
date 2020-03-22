@@ -103,7 +103,7 @@ export const VLive = {
       height: 300px;
     "
   >
-    <div style="height: 100%;">
+    <div style="display: flex; flex-direction: column;">
       <v-content-save
         v-if="saveid"
         :saveid="saveid"
@@ -112,6 +112,7 @@ export const VLive = {
         @load="onLoad"
       />
       <v-editor
+        style="flex: 1;"
         :content="currentContent"
         @input:content="content => currentContent = content"
       />
