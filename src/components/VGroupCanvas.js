@@ -1,4 +1,4 @@
-import { inject, onBeforeUpdate, watch, ref } from "../deps/vue.js";
+import { inject, onBeforeUpdate, watch } from "../deps/vue.js";
 
 import {
   transformTwoProps,
@@ -17,14 +17,6 @@ export const VGroupCanvas = {
         transformCanvas(props, sceneContext.ctx.value);
       }
     });
-    // watch(
-    //   () => slots.default(),
-    //   _ => {
-    //     if (sceneContext.ctx.value) {
-    //       //sceneContext.update();
-    //     }
-    //   }
-    // );
     onBeforeUpdate(() => {
       if (sceneContext.ctx.value) {
         sceneContext.clear();
@@ -32,8 +24,6 @@ export const VGroupCanvas = {
         transformCanvasReset(sceneContext.ctx.value);
       }
     });
-    return () => slots.default()[0];
-    //return () => null;
+    return () => slots.default();
   }
-  //template: "<slot />"
 };

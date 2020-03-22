@@ -2,8 +2,8 @@
 <v-slider set="a"  />
 
 <v-scene v-for="t in ['canvas','svg','webgl']" :type="t">
-  <v-group :rotation="get('a')" v-for="(x,i) in [50,100,150]" :position="[x,50]" >
-    <v-square :rotation="get('a')" r="25"   />
+  <v-group :rotation="get('a')"  >
+    <v-square :rotation="get('a')" r="25" v-for="(x,i) in [50,100,150]" :position="[x,50]"  />
   </v-group>
 </v-scene>
 
