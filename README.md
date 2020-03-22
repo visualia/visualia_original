@@ -1,21 +1,9 @@
 ```live
 <v-slider set="a"  />
 
-<v-scene type="canvas">
-  <v-group position="0 50" :rotation="get('a')">
-    <v-square :rotation="get('a')"  r="25" position="50 0" />
-  </v-group>
-</v-scene>
-
-<v-scene type="svg">
-  <v-group position="0 50" >
-    <v-square r="25" position="50 0" :rotation="get('a')"  />
-  </v-group>
-</v-scene>
-
-<v-scene type="webgl">
-  <v-group :rotation="get('a')" position="0 50" >
-    <v-square r="25" position="50 0" />
+<v-scene v-for="t in ['canvas','svg','webgl']" :type="t">
+  <v-group :rotation="get('a')" v-for="(x,i) in [50,100,150]" :position="[x,50]" >
+    <v-square :rotation="get('a')" r="25"   />
   </v-group>
 </v-scene>
 

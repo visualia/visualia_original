@@ -29,9 +29,10 @@ export const VGroupCanvas = {
       if (sceneContext.ctx.value) {
         sceneContext.clear();
         transformCanvas(props, sceneContext.ctx.value);
+        transformCanvasReset(sceneContext.ctx.value);
       }
     });
-    return () => slots.default();
+    return () => slots.default()[0];
     //return () => null;
   }
   //template: "<slot />"

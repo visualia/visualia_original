@@ -31,6 +31,6 @@ export const VSlider = {
     @input="onInput"
     :min="from"
     :max="to"
-    :step="integer ? 1 : step ? step : 0.0001"
+    :step="integer ? 1 : step ? step : 0.0000001"
   />`
 };
