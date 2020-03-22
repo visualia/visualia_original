@@ -5,6 +5,8 @@ import { utils, onCompilerError } from "../../visualia.js";
 const renderer = new marked.Renderer();
 
 renderer.code = (code, info) => {
+  const i = info.split(/\s+/);
+  const saveid = i[1] ? `v-live-${i[1]}` : "";
   const escapedCode = code
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -12,8 +14,8 @@ renderer.code = (code, info) => {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-  if (info === "live") {
-    return `<p><v-live content="${escapedCode}" /></p>`;
+  if (i[0] === "live") {
+    return `<p><v-live saveid="${saveid}" content="${escapedCode}" /></p>`;
   }
   return `<pre v-pre>${escapedCode}</pre>`;
 };

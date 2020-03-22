@@ -80,7 +80,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 Displays a point.
 
-```live
+```live point
 <v-scene>
   <v-point position="100 100" />
 </v-scene>
@@ -94,7 +94,7 @@ Displays a point.
 
 Displays a line.
 
-```live
+```live line
 <v-scene>
   <v-line points="50 50, 150 150" />
 </v-scene>
@@ -108,7 +108,7 @@ Displays a line.
 
 Displays a 2D or 3D square.
 
-```live
+```live square
 <v-scene>
   <v-square position="100 100" r="50" />
 </v-scene>
@@ -122,7 +122,7 @@ Displays a 2D or 3D square.
 
 Displays a 2D circle.
 
-```live
+```live circle
 <v-scene>
   <v-circle position="100 100" r="50" />
 </v-scene>
@@ -134,7 +134,7 @@ Displays a 2D circle.
 
 Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
-```live
+```live sphere
 <v-scene type="three">
   <v-sphere r="50" position="100 100" />
 </v-scene>
@@ -146,7 +146,7 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 Allows to apply transformations to group of graphics elements.
 
-```live
+```live group
 <v-scene>
   <v-group rotation="-10">
     <v-square r="25" position="50 100" />
@@ -167,19 +167,19 @@ Visualia supports live variables to create dynamic experiences, you can `set` an
 
 The simplest way to create a dynamic variable is to use `<v-slider>` component with `set` prop:
 
-```live
+```live set
 <v-slider set="a" />
 ```
 
 To display the live value, use the `get()` function:
 
-```live
+```live get
 a is {{ get("a") }}
 ```
 
 You can use `get()` function anywhere in the document, including inside components:
 
-```live
+```live getscene
 <v-scene>
   <v-square
     position="100 100"
@@ -197,7 +197,7 @@ You can use `get()` function anywhere in the document, including inside componen
 
 Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the during the certain `duration`.
 
-```live
+```live animate
 <v-animate set="b" />
 
 b is {{ get("b") }}
@@ -221,7 +221,7 @@ In addition to the live variables, Visualia also provides a way to send and rece
 
 To send an event, use `send()` function:
 
-```live
+```live send
 <button v-on:click="send('click!')">Click me</button>
 ```
 
@@ -229,7 +229,7 @@ To send an event, use `send()` function:
 
 To receive an event, use `receive()` function:
 
-```live
+```live receive
 {{ receive("click!", () => set("clicked", true)) }}
 
 {{ get('clicked') ? 'Clicked!' : 'Waiting for a click'}}
@@ -239,13 +239,13 @@ To receive an event, use `receive()` function:
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
-```live
+```live math
 <v-math>b = a^2</v-math>
 ```
 
 The true power of the framework emerges when math functions are combined with live variables:
 
-```live
+```live mathget
 <v-slider set="a" />
 
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
