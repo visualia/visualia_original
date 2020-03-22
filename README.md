@@ -1,18 +1,3 @@
-```live
-<v-slider set="a"  />
-
-<v-scene v-for="t in ['canvas','svg','webgl']" :type="t">
-  <v-group :rotation="get('a')"  >
-    <v-square :rotation="get('a')" r="25" v-for="(x,i) in [50,100,150]" :position="[x,50]"  />
-  </v-group>
-</v-scene>
-
-
-{{ get('a') }}
-
-
-```
-
 # Visu&#8203;alia
 
 ## About
@@ -155,7 +140,22 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 </v-scene>
 ```
 
-<!--- <v-props component="VSphereThree" /> --->
+<!--- <v-props component="VCircleSvg" /> --->
+
+#### Group
+
+Allows to apply transformations to group of graphics elements.
+
+```live
+<v-scene>
+  <v-group rotation="-10">
+    <v-square r="25" position="50 100" />
+    <v-square r="25" position="150 100" />
+  </v-group>
+</v-scene>
+```
+
+<!--- <v-props component="VGroupSvg" /> --->
 
 ### Live variables
 

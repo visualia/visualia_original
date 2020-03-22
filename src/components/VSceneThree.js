@@ -77,7 +77,6 @@ export const VSceneThree = {
   css: /*css*/ `
     .v-scene-three > * {
       display: block;
-      border: 1px solid red;
     }
   `
 };
