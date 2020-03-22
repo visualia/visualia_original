@@ -43,6 +43,7 @@ export const VEditor = {
       outline: none;
       resize: none;
       width: 100%;
+      height: 100%;
       padding: var(--base2);
     "
   />
