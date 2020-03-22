@@ -327,7 +327,3 @@ td p {
     grid-template-columns: 1fr;
   }
 }
-
-.fullwidth {
-  margin-left: calc(var(--base2) * -1);
-}

@@ -96,14 +96,8 @@ export const VLive = {
     return { currentContent, onLoad };
   },
   template: `
-  <div
-    style="
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-      height: 300px;
-    "
-  >
-    <div style="display: flex; flex-direction: column;">
+  <div class="v-live">
+    <div style="display: flex; flex-direction: column; height: 300px;">
       <v-content-save
         v-if="saveid"
         :saveid="saveid"
@@ -117,7 +111,21 @@ export const VLive = {
         @input:content="content => currentContent = content"
       />
     </div>
-    <v-content style="overflow: auto" :content="currentContent" />
+    <v-content
+      style="overflow: auto; height: 300px;"
+      :content="currentContent"
+    />
   </div>
+  `,
+  css: `
+    .v-live {
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+    }
+    @media (max-width: 600px) {
+      .v-live {
+        grid-template-columns: 1fr;
+      }
+    }
   `
 };
