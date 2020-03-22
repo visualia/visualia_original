@@ -1,5 +1,4 @@
 import { inject, watch, provide } from "../deps/vue.js";
-import { send } from "../utils.js";
 
 import { Group } from "../deps/three.js";
 

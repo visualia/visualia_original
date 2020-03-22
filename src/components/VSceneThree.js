@@ -12,8 +12,6 @@ import { SVGRenderer } from "../deps/svgrenderer.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-import { receive } from "../utils.js";
-
 export const VSceneThree = {
   props: {
     ...sizeProps,
@@ -64,15 +62,20 @@ export const VSceneThree = {
       renderer.render(scene, camera);
     });
 
-    return { el };
+    const position = [width.value / -2, height.value / 2];
+    const scale = [1, -1];
+
+    return { el, position, scale };
   },
   template: `
-    <div class="f-scene-three" ref="el">
-      <slot />
+    <div class="v-scene-three" ref="el">
+      <v-group :position="position" :scale="scale">
+        <slot />
+      </v-group>
     </div>
   `,
   css: /*css*/ `
-    .f-scene-three > * {
+    .v-scene-three > * {
       display: block;
       border: 1px solid red;
     }
