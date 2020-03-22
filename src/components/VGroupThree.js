@@ -17,14 +17,9 @@ export const VGroupThree = {
       }
     );
     const group = new Group();
-    useThreeTransform(props, group, false);
+    useThreeTransform(props, group);
     sceneContext.scene.add(group);
     provide("sceneContext", { ...sceneContext, scene: group });
-    //group.positi
-    //sceneContext.scene = group;
-    //console.log(group);
-    // return () => slots.default();
-    // return a.value();
   },
   template: `<slot  />`
 };

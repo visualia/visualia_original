@@ -19,16 +19,7 @@ export const VGroupCanvas = {
     });
     onBeforeUpdate(() => {
       if (sceneContext.ctx.value) {
-        transformCanvas(props, sceneContext.ctx.value);
-        sceneContext.ctx.value.save();
-        transformCanvasReset(sceneContext.ctx.value);
-        sceneContext.ctx.value.clearRect(
-          0,
-          0,
-          sceneContext.width.value,
-          sceneContext.height.value
-        );
-        sceneContext.ctx.value.restore();
+        sceneContext.ctx.value.update();
       }
     });
     return () => slots.default();

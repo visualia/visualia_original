@@ -2,22 +2,11 @@
 <v-slider set="a"  />
 
 <v-scene type="three">
-  <v-group-three  :rotation="get('a')" position="100 100" >
-    <v-square r="100" />
+  <v-group-three :rotation="get('a')" position="0 0" >
+    <v-square r="25" position="0 0" />
   </v-group-three>
 </v-scene>
 
-<v-scene type="canvas">
-  <v-group-canvas  :rotation="get('a')">
-    <v-square r="10"  v-for="a in [50,100,150]"  :position="a" :rotation="get('a')"  />
-  </v-group-canvas>
-</v-scene>
-
-<v-scene type="svg">
-  <v-group-svg  :rotation="get('a')">
-    <v-square r="10"  v-for="a in [50,100,150]"  :position="a" :rotation="get('a')"  />
-  </v-group-svg>
-</v-scene>
 
 {{ get('a') }}
 

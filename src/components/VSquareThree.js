@@ -39,7 +39,7 @@ export const VSquareThree = {
     }
     sceneContext.scene.add(group);
 
-    useThreeTransform(props, group, true);
+    useThreeTransform(props, group);
 
     return () => null;
   }
