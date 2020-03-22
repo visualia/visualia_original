@@ -17,11 +17,22 @@ export const VGroupCanvas = {
         transformCanvas(props, sceneContext.ctx.value);
       }
     });
+    // watch(
+    //   () => slots.default(),
+    //   _ => {
+    //     if (sceneContext.ctx.value) {
+    //       //sceneContext.update();
+    //     }
+    //   }
+    // );
     onBeforeUpdate(() => {
       if (sceneContext.ctx.value) {
-        sceneContext.ctx.value.update();
+        transformCanvas(props, sceneContext.ctx.value);
+        sceneContext.update();
       }
     });
     return () => slots.default();
+    //return () => null;
   }
+  //template: "<slot />"
 };

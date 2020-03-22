@@ -1,10 +1,22 @@
 ```live
 <v-slider set="a"  />
 
-<v-scene type="three">
-  <v-group-three :rotation="get('a')" position="0 0" >
-    <v-square r="25" position="0 0" />
-  </v-group-three>
+<v-scene type="canvas">
+  <v-group position="0 50" >
+    <v-square :rotation="get('a')"  r="25" position="50 0" />
+  </v-group>
+</v-scene>
+
+<v-scene type="svg">
+  <v-group position="0 50" >
+    <v-square r="25" position="50 0" :rotation="get('a')"  />
+  </v-group>
+</v-scene>
+
+<v-scene type="webgl">
+  <v-group :rotation="get('a')" position="0 50" >
+    <v-square r="25" position="50 0" />
+  </v-group>
 </v-scene>
 
 

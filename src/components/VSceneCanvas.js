@@ -1,4 +1,10 @@
-import { inject, ref, onMounted, onBeforeUpdate } from "../deps/vue.js";
+import {
+  inject,
+  ref,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated
+} from "../deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
@@ -16,6 +22,7 @@ export const VSceneCanvas = {
     sceneContext.ctx = ctx;
     sceneContext.update = () => {
       sceneContext.ctx.value.save();
+      sceneContext.ctx.value.resetTransform();
       sceneContext.ctx.value.clearRect(0, 0, width.value, height.value);
       sceneContext.ctx.value.restore();
     };
@@ -26,7 +33,7 @@ export const VSceneCanvas = {
       sceneContext.ctx.value = canvas.getContext("2d");
     });
     onBeforeUpdate(() => {
-      sceneContext.ctx.value.update();
+      sceneContext.update();
     });
     return { el };
   },
