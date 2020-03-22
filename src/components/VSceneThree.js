@@ -51,6 +51,7 @@ export const VSceneThree = {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.scene = scene;
+    sceneContext.clear = () => renderer.render(scene, camera);
 
     onMounted(() => {
       el.value.append(renderer.domElement);
@@ -61,15 +62,20 @@ export const VSceneThree = {
       renderer.render(scene, camera);
     });
 
-    return { el };
+    const position = [width.value / -2, height.value / 2];
+    const scale = [1, -1];
+
+    return { el, position, scale };
   },
   template: `
-    <div class="f-scene-three" ref="el">
-      <slot />
+    <div class="v-scene-three" ref="el">
+      <v-group :position="position" :scale="scale">
+        <slot />
+      </v-group>
     </div>
   `,
   css: /*css*/ `
-    .f-scene-three > * {
+    .v-scene-three > * {
       display: block;
     }
   `

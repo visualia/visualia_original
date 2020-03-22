@@ -52,7 +52,7 @@ export const VSphereThree = {
 
     sceneContext.scene.add(group);
 
-    useThreeTransform(props, group, true);
+    useThreeTransform(props, group);
 
     return () => null;
   }
