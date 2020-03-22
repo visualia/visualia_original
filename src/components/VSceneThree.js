@@ -3,6 +3,7 @@ import { inject, ref, onMounted, onBeforeUpdate } from "../deps/vue.js";
 import {
   Scene,
   PerspectiveCamera,
+  OrthographicCamera,
   Color,
   DirectionalLight,
   WebGLRenderer
@@ -31,13 +32,23 @@ export const VSceneThree = {
     directionalLight.position.set(0, 0, 10);
     scene.add(directionalLight);
 
-    const camera = new PerspectiveCamera(
-      100,
-      width.value / height.value,
-      0.1,
+    // const camera = new PerspectiveCamera(
+    //   100,
+    //   width.value / height.value,
+    //   0.1,
+    //   1000
+    // );
+    // camera.position.z = width.value / 2.5;
+
+    const camera = new OrthographicCamera(
+      width.value / -150,
+      width.value / 150,
+      height.value / 150,
+      height.value / -150,
+      -100,
       1000
     );
-    camera.position.z = width.value / 2.5;
+    //camera.position.z = width.value / 2.5;
 
     const renderer =
       props.renderer == "webgl" ? new WebGLRenderer() : new SVGRenderer();
@@ -63,7 +74,7 @@ export const VSceneThree = {
     });
 
     const position = [width.value / -2, height.value / 2];
-    const scale = [1, -1];
+    const scale = [1, -1, 1];
 
     return { el, position, scale };
   },
