@@ -2,7 +2,7 @@ import { ref, watch, computed } from "../deps/vue.js";
 
 import { useLocalstore } from "../utils.js";
 
-export const VContentStore = {
+export const VContentSave = {
   props: {
     content: {
       default: "",
@@ -11,10 +11,14 @@ export const VContentStore = {
     currentContent: {
       default: "",
       type: String
+    },
+    saveid: {
+      required: true,
+      type: String
     }
   },
   setup(props, { emit }) {
-    const storedContent = useLocalstore(null, "a");
+    const storedContent = useLocalstore(null, props.saveid);
     const isSaved = computed(
       () =>
         storedContent.value &&
@@ -71,10 +75,14 @@ export const VContentStore = {
 };
 
 export const VLive = {
-  components: { VContentStore },
+  components: { VContentSave },
   props: {
     content: {
       default: "",
+      type: String
+    },
+    saveid: {
+      default: null,
       type: String
     }
   },
@@ -96,7 +104,9 @@ export const VLive = {
     "
   >
     <div style="height: 100%;">
-      <v-content-store 
+      <v-content-save
+        v-if="saveid"
+        :saveid="saveid"
         :content="content"
         :current-content="currentContent"
         @load="onLoad"
