@@ -51,7 +51,7 @@ export const VSceneThree = {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.scene = scene;
-    sceneContext.update = () => renderer.render(scene, camera);
+    sceneContext.clear = () => renderer.render(scene, camera);
 
     onMounted(() => {
       el.value.append(renderer.domElement);

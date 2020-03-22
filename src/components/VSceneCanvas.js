@@ -20,7 +20,7 @@ export const VSceneCanvas = {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.ctx = ctx;
-    sceneContext.update = () => {
+    sceneContext.clear = () => {
       sceneContext.ctx.value.save();
       sceneContext.ctx.value.resetTransform();
       sceneContext.ctx.value.clearRect(0, 0, width.value, height.value);
@@ -33,7 +33,7 @@ export const VSceneCanvas = {
       sceneContext.ctx.value = canvas.getContext("2d");
     });
     onBeforeUpdate(() => {
-      sceneContext.update();
+      sceneContext.clear();
     });
     return { el };
   },

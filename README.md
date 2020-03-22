@@ -2,7 +2,7 @@
 <v-slider set="a"  />
 
 <v-scene type="canvas">
-  <v-group position="0 50" >
+  <v-group position="0 50" :rotation="get('a')">
     <v-square :rotation="get('a')"  r="25" position="50 0" />
   </v-group>
 </v-scene>

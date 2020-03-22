@@ -12,7 +12,7 @@ export const VGroupThree = {
     watch(
       () => slots.default(),
       _ => {
-        sceneContext.update();
+        sceneContext.clear();
       }
     );
     const group = new Group();

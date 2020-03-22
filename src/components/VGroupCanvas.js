@@ -27,8 +27,8 @@ export const VGroupCanvas = {
     // );
     onBeforeUpdate(() => {
       if (sceneContext.ctx.value) {
+        sceneContext.clear();
         transformCanvas(props, sceneContext.ctx.value);
-        sceneContext.update();
       }
     });
     return () => slots.default();
