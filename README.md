@@ -61,7 +61,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 </v-scene>
 ```
 
-<!--- <v-props component="VScene" /> --->
+<!--- <v-props component="VSceneThree" /> --->
 
 `type` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different types, their dimensions, and underlying technology:
 
@@ -135,12 +135,17 @@ Displays a 2D circle.
 Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ```live sphere
-<v-scene type="three">
-  <v-sphere r="50" position="100 100" />
+<v-scene type="three" isometric>
+  <v-sphere
+    r="50"
+    position="100 100"
+    rotation="60 0 0"
+    segments="32"
+  />
 </v-scene>
 ```
 
-<!--- <v-props component="VCircleSvg" /> --->
+<!--- <v-props component="VSphereThree" /> --->
 
 #### Group
 

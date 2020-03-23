@@ -22,6 +22,12 @@ export const VScene = {
       type: String,
       docs:
         "Rendering type, could be either `svg`, `canvas`, `three` or `webgl`"
+    },
+    isometric: {
+      default: false,
+      type: [Boolean, String],
+      docs:
+        "Use ortographic projection? Only applies to `three` and `webgl` render types"
     }
   },
   setup(props, context) {
