@@ -12,9 +12,7 @@ import {
   lineProps,
   stylingProps,
   transformThreeProps,
-  parseCoords,
-  threeFitX,
-  threeFitY
+  parseCoords
 } from "../internals.js";
 
 export const VLineThree = {
@@ -29,12 +27,7 @@ export const VLineThree = {
     const parsedPoints = parseCoords(props.points);
 
     const geometry = new BufferGeometry().setFromPoints(
-      parsedPoints
-        .map(([x, y]) => [
-          threeFitX(x, sceneContext.width.value),
-          threeFitY(y, sceneContext.height.value)
-        ])
-        .map(point => new Vector3(...point))
+      parsedPoints.map(point => new Vector3(...point))
     );
 
     var group = new Group();
