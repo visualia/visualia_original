@@ -19,6 +19,10 @@ export const VSceneThree = {
     renderer: {
       default: "svg",
       type: String
+    },
+    isometric: {
+      default: false,
+      type: [Boolean, String]
     }
   },
   setup(props) {
@@ -32,24 +36,25 @@ export const VSceneThree = {
     directionalLight.position.set(0, 0, 10);
     scene.add(directionalLight);
 
-    // const camera = new PerspectiveCamera(
-    //   100,
-    //   width.value / height.value,
-    //   0.1,
-    //   1000
-    // );
-    // camera.position.z = width.value / 2.5;
-
-    const camera = new OrthographicCamera(
-      width.value / -150,
-      width.value / 150,
-      height.value / 150,
-      height.value / -150,
-      -100,
-      1000
-    );
-    //camera.position.z = width.value / 2.5;
-
+    let camera = null;
+    if (props.isometric) {
+      camera = new OrthographicCamera(
+        width.value / -2,
+        width.value / 2,
+        height.value / 2,
+        height.value / -2,
+        0,
+        1000
+      );
+    } else {
+      camera = new PerspectiveCamera(
+        100,
+        width.value / height.value,
+        0.1,
+        1000
+      );
+      camera.position.z = width.value / 2.5;
+    }
     const renderer =
       props.renderer == "webgl" ? new WebGLRenderer() : new SVGRenderer();
     renderer.setSize(width.value, height.value);
