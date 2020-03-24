@@ -34,7 +34,8 @@ export const useSvgStyling = props => {
     const stroke = props.stroke;
     const strokeWidth =
       toNumber(props.strokeWidth, 1) * sceneContext.unit.value;
-    return { fill, stroke, strokeWidth };
+    const opacity = props.opacity;
+    return { fill, stroke, strokeWidth, opacity };
   });
 };
 
@@ -44,6 +45,7 @@ export const stylingCanvas = (props, scene) => {
   scene.fillStyle = props.fill;
   scene.strokeStyle = props.stroke;
   scene.lineWidth = props.strokeWidth;
+  scene.globalAlpha = props.opacity;
 };
 
 // Three

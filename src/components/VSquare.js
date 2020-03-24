@@ -4,6 +4,8 @@ import { VSquareSvg } from "./VSquareSvg.js";
 import { VSquareCanvas } from "./VSquareCanvas.js";
 import { VSquareThree } from "./VSquareThree.js";
 
+import { parseCoords } from "../internals.js";
+
 export const VSquare = {
   setup(props, { slots }) {
     const types = {
@@ -13,6 +15,12 @@ export const VSquare = {
       webgl: VSquareThree
     };
     const sceneContext = inject("sceneContext");
-    return () => h(types[sceneContext.type.value], { ...props }, slots);
+    const positions = parseCoords(props.position);
+    return () =>
+      types[sceneContext.type.value]
+        ? positions.map(position =>
+            h(types[sceneContext.type.value], { ...props, position }, slots)
+          )
+        : null;
   }
 };
