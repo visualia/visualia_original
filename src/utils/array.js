@@ -14,3 +14,8 @@ export const test_padArrayRight_empty = () => {
 export const test_padArrayRight_existing = () => {
   return [padArrayRight(["a"], 2, "b"), ["a", "b"]];
 };
+
+export const chunk = (arr, length) =>
+  Array.from({ length: Math.ceil(arr.length / length) }).map((_, n) =>
+    arr.slice(n * length, n * length + length)
+  );

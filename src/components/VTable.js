@@ -19,7 +19,7 @@ export const VTable = {
       if (isArray(props.rows[0])) {
         return props.rows.map(row =>
           row.reduce((acc, el, index) => {
-            acc[`column ${index + 1}`] = el;
+            acc[`col ${index + 1}`] = el;
             return acc;
           }, {})
         );

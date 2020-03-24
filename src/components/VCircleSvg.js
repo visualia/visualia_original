@@ -29,5 +29,6 @@ export const VCircleSvg = {
       :fill="styling.fill"
       :stroke="styling.stroke"
       :stroke-width="styling.strokeWidth"
+      :opacity="styling.opacity"
     />`
 };
