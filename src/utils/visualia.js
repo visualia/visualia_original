@@ -10,6 +10,8 @@ import {
 
 export const visualia = (options = {}) => {
   const customOptions = {
+    content: "",
+    el: "#app",
     file: "./index.md",
     components: {},
     utils: {},
@@ -20,7 +22,13 @@ export const visualia = (options = {}) => {
   const App = {
     setup() {
       provide("customUtils", customOptions.utils);
-      const { content } = useFetch(customOptions.file);
+      let content = "";
+      if (customOptions.content) {
+        content = customOptions.content;
+      } else {
+        const fetch = useFetch(customOptions.file);
+        content = fetch.content;
+      }
       return { content };
     },
     template:
@@ -42,5 +50,5 @@ export const visualia = (options = {}) => {
   // app.config.errorHandler = onError;
   // app.config.warnHandler = onWarning;
 
-  app.mount("#app");
+  app.mount(customOptions.el);
 };
