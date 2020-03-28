@@ -12,7 +12,7 @@ https://github.com/visualia/visualia
 
 ## Getting started
 
-To get started you will need a single HTML file and a Markdown file:
+To get started you will need three files: `index.html` for HTML, `index.js` for Javascript and `index.md` for Markdown.
 
 **index.html**
 
@@ -30,18 +30,24 @@ To get started you will need a single HTML file and a Markdown file:
   </head>
   <body>
     <div id="app"></div>
-    <script type="module">
-      import { visualia } from "https://visualia.github.io/visualia/visualia";
-      visualia();
-    </script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
 ```
 
+**index.js**
+
+```js
+import { visualia } from "https://visualia.github.io/visualia/visualia.js";
+visualia();
+```
+
 **index.md**
 
-```md
-# Hello world!
+```live index
+## Hello
+
+Welcome to Visualia. Edit me!
 ```
 
 ## Components
@@ -147,7 +153,9 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 <!--- <v-props component="VSphereThree" /> --->
 
-#### Group
+<!--
+
+ #### Group
 
 Allows to apply transformations to group of graphics elements.
 
@@ -159,6 +167,8 @@ Allows to apply transformations to group of graphics elements.
   </v-group>
 </v-scene>
 ```
+
+-->
 
 <!--- <v-props component="VGroupSvg" /> --->
 
