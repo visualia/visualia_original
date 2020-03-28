@@ -346,7 +346,7 @@ const ObservableExample = {
     const el = ref(null);
     onMounted(() => {
       const node = el.value;
-      new Runtime().module(notebook, name => {
+      const o = new Runtime().module(notebook, name => {
         if (name == "a") {
           return {
             fulfilled(value) {
@@ -359,6 +359,7 @@ const ObservableExample = {
           );
         }
       });
+      watch(get('b'), () => o.redefine('b', get('b')))
     });
     return { el };
   },
