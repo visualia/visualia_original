@@ -329,6 +329,47 @@ visualia({
 <p5-example />
 ```
 
+### Observable
+
+```
+import { visualia, set } from "../../visualia.js";
+import { ref, onMounted } from "../deps/vue.js";
+import {
+  Runtime,
+  Inspector
+} from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
+
+import notebook from "https://api.observablehq.com/@kristjanjansen/using-observable-in-visualia.js?v=3";
+
+const ObservableExample = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      const node = el.value;
+      new Runtime().module(notebook, name => {
+        if (name == "a") {
+          return {
+            fulfilled(value) {
+              set("a", value);
+            }
+          };
+        } else {
+          return new Inspector(
+            el.value.appendChild(document.createElement("p"))
+          );
+        }
+      });
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `
+};
+
+visualia({ components: { ObservableExample } });
+```
+
 ## Development
 
 ### Component architecture
