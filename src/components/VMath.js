@@ -9,14 +9,11 @@ export const VMath = {
       nodes => {
         const node = nodes[0].children;
         math.value = katex.renderToString(String.raw`${node}`, {
-          throwOnError: false
+          throwOnError: true
         });
       }
     );
     return { math };
   },
-  template: `<div style="margin-bottom: var(--base)" v-html="math" />`,
-  css: /*css */ `
-  @import url('https://unpkg.com/katex@0.11.1/dist/katex.min.css');
-  `
+  template: `<div style="margin-bottom: var(--base)" v-html="math" />`
 };
