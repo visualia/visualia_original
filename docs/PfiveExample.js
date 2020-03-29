@@ -1,6 +1,6 @@
 import { get } from "../visualia.js";
 import { ref, onMounted } from "../src/deps/vue.js";
-import { p5 } from "http://visualia.github.io/p5/p5.js";
+import { p5 } from "https://visualia.github.io/p5/p5.js";
 
 // p5 sketch
 
