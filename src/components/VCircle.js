@@ -7,7 +7,7 @@ import { parseCoords } from "../internals.js";
 
 export const VCircle = {
   setup(props, { slots }) {
-    const types = {
+    const modes = {
       svg: VCircleSvg,
       canvas: VCircleCanvas,
       three: VCircleThree,
@@ -16,9 +16,9 @@ export const VCircle = {
     const sceneContext = inject("sceneContext");
     const positions = parseCoords(props.position);
     return () =>
-      types[sceneContext.type.value]
+      modes[sceneContext.mode.value]
         ? positions.map(position =>
-            h(types[sceneContext.type.value], { ...props, position }, slots)
+            h(modes[sceneContext.mode.value], { ...props, position }, slots)
           )
         : null;
   }

@@ -8,7 +8,7 @@ import { parseCoords } from "../internals.js";
 
 export const VSquare = {
   setup(props, { slots }) {
-    const types = {
+    const modes = {
       svg: VSquareSvg,
       canvas: VSquareCanvas,
       three: VSquareThree,
@@ -17,9 +17,9 @@ export const VSquare = {
     const sceneContext = inject("sceneContext");
     const positions = parseCoords(props.position);
     return () =>
-      types[sceneContext.type.value]
+      modes[sceneContext.mode.value]
         ? positions.map(position =>
-            h(types[sceneContext.type.value], { ...props, position }, slots)
+            h(modes[sceneContext.mode.value], { ...props, position }, slots)
           )
         : null;
   }

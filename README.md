@@ -67,14 +67,14 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 <!--- <v-props component="VSceneThree" /> --->
 
-`type` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different types, their dimensions, and underlying technology:
+`mode` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different render modes, their dimensions, and underlying implementation:
 
 | Mode                      | Type      | Tech                   |
 | ------------------------- | --------- | ---------------------- |
-| `<v-scene type="svg">`    | 2D vector | `<svg>`                |
-| `<v-scene type="canvas">` | 2D bitmap | `<canvas>`             |
-| `<v-scene type="three">`  | 3D vector | ThreeJS SVG renderer   |
-| `<v-scene type="webgl">`  | 3D bitmap | ThreeJS WebGL renderer |
+| `<v-scene mode="svg">`    | 2D vector | `<svg>`                |
+| `<v-scene mode="canvas">` | 2D bitmap | `<canvas>`             |
+| `<v-scene mode="three">`  | 3D vector | ThreeJS SVG renderer   |
+| `<v-scene mode="webgl">`  | 3D bitmap | ThreeJS WebGL renderer |
 
 <br />
 
@@ -139,7 +139,7 @@ Displays a 2D circle.
 Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ```live sphere
-<v-scene type="three" isometric>
+<v-scene mode="three" isometric>
   <v-sphere
     r="50"
     position="100 100"
@@ -298,10 +298,10 @@ To ease the the initialization of the framework, `<v-content>` is wrapped into a
 
 Each graphics scene has to be wrapped into `<v-scene>`.
 
-`type` prop defines what technology-specific scene component will actually render the scene.
+`mode` prop defines what technology-specific scene component will actually render the scene.
 
 ```
-<v-scene type="svg" width="500" height="500">
+<v-scene mode="svg" width="500" height="500">
 </v-scene>
 ```
 
@@ -312,12 +312,12 @@ it will internally be rendered as:
 </v-scene-svg>
 ```
 
-Each child of `<v-scene>` is aware of the scene `type` prop and passes the actual rendering to a technology-specific subcomponent.
+Each child of `<v-scene>` is aware of the scene `mode` prop and passes the actual rendering to a technology-specific subcomponent.
 
 When writing the following code:
 
 ```
-<v-scene type="svg">
+<v-scene mode="svg">
   <v-square r="100" />
 </v-scene>
 ```
@@ -340,7 +340,7 @@ const VSquareSvg = {
     const renderContext = inject("renderContext");
     /*
     renderContext = {
-      type.value: 'svg',
+      mode.value: 'svg',
       width.value: 400,
       height.value: 400,
       unit.value: 1

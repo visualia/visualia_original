@@ -6,7 +6,7 @@ import { VSphereThree } from "./VSphereThree.js";
 
 export const VSphere = {
   setup(props, { slots }) {
-    const types = {
+    const modes = {
       svg: VCircleSvg,
       canvas: VCircleCanvas,
       three: VSphereThree,
@@ -14,8 +14,8 @@ export const VSphere = {
     };
     const sceneContext = inject("sceneContext");
     return () =>
-      types[sceneContext.type.value]
-        ? h(types[sceneContext.type.value], { ...props }, slots)
+      modes[sceneContext.mode.value]
+        ? h(modes[sceneContext.mode.value], { ...props }, slots)
         : null;
   }
 };
