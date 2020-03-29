@@ -412,7 +412,7 @@ For this reason, we ship also provide a command to create a bundled version of t
 To generate the bundle, use the following command:
 
 ```
-deno bundle.js visualia.js > visualia.bundle.js
+deno bundle.js dist/visualia.js > dist/visualia.bundle.js
 ```
 
 ### Testing
