@@ -266,111 +266,6 @@ The true power of the framework emerges when math functions are combined with li
 <v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 ```
 
-## Integrating with other frameworks
-
-### p5
-
-[p5](https://p5js.org/), a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
-
-To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
-
-##### index.js
-
-```js
-import { visualia, get } from "http://visualia.github.io/visualia/visualia.js";
-import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
-import { p5 } from "http://visualia.github.io/p5/p5.js";
-
-// p5 sketch
-
-// Note that you need to wrap into the sketch function
-// and prefix all commands with s, otherwise it is regular p5 API
-
-// Note that we use get() function to use Visualia live variables
-
-const sketch = s => {
-  s.setup = () => {
-    s.createCanvas(200, 200);
-  };
-  s.draw = () => {
-    s.background(0);
-    s.fill(100);
-    s.rect(get("a", 0), 100, 50, 50);
-  };
-};
-
-// We are wrapping p5 sketch into a Vue / Visualia component
-
-const P5Example = {
-  setup() {
-    const el = ref(null);
-    onMounted(() => {
-      new p5(sketch, el.value);
-    });
-    return { el };
-  },
-  template: `
-    <div ref="el" />
-  `
-};
-
-// We initialize Visualia with our p5 component
-
-visualia({
-  components: { P5Example }
-});
-```
-
-##### index.md
-
-```md
-<v-slider set="a" />
-
-<p5-example />
-```
-
-### Observable
-
-```
-import { visualia, set } from "../../visualia.js";
-import { ref, onMounted } from "../deps/vue.js";
-import {
-  Runtime,
-  Inspector
-} from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
-
-import notebook from "https://api.observablehq.com/@kristjanjansen/using-observable-in-visualia.js?v=3";
-
-const ObservableExample = {
-  setup() {
-    const el = ref(null);
-    onMounted(() => {
-      const node = el.value;
-      const o = new Runtime().module(notebook, name => {
-        if (name == "a") {
-          return {
-            fulfilled(value) {
-              set("a", value);
-            }
-          };
-        } else {
-          return new Inspector(
-            el.value.appendChild(document.createElement("p"))
-          );
-        }
-      });
-      watch(get('b'), () => o.redefine('b', get('b')))
-    });
-    return { el };
-  },
-  template: `
-    <div ref="el" />
-  `
-};
-
-visualia({ components: { ObservableExample } });
-```
-
 ## Development
 
 ### Component architecture
@@ -576,6 +471,158 @@ For Windows support, see [these Deno installation instructions](https://deno.lan
 #### Running tests automatically
 
 Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).
+
+## Integrating with other frameworks
+
+### p5
+
+[p5](https://p5js.org/), a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
+
+To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
+
+##### index.js
+
+```js
+import { visualia, get } from "http://visualia.github.io/visualia/visualia.js";
+import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
+import { p5 } from "http://visualia.github.io/p5/p5.js";
+
+// p5 sketch
+
+// Note that you need to wrap into the sketch function
+// and prefix all commands with s, otherwise it is regular p5 API
+
+// Note that we use get() function to use Visualia live variables
+
+const sketch = s => {
+  s.setup = () => {
+    s.createCanvas(200, 200);
+  };
+  s.draw = () => {
+    s.background(0);
+    s.fill(100);
+    s.rect(get("a", 0), 100, 50, 50);
+  };
+};
+
+// We are wrapping p5 sketch into a Vue / Visualia component
+
+const P5Example = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      new p5(sketch, el.value);
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `
+};
+
+// We initialize Visualia with our p5 component
+
+visualia({
+  components: { P5Example }
+});
+```
+
+##### index.md
+
+```md
+<v-slider set="a" />
+
+<p5-example />
+```
+
+### Observable
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As is is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+#### Using Visualia in Observable
+
+Here is a sample Observable notebook that imports Visualia into Observable notebook and allows to share reactive data between the environments.
+
+https://observablehq.com/@kristjanjansen/visualia-in-observable
+
+#### Using Observable in Visualia
+
+As Observable allows [exporting notebooks as ESM modules](https://observablehq.com/@observablehq/downloading-and-embedding-notebooks), you can also import Observable notebook into Visualia.
+
+Here's the code how to import a sample notebook to Visualia and have a two-way data exchange between two reacive environments:
+
+**index.js**
+
+```js
+import { visualia, set } from "../../visualia.js";
+import { ref, onMounted } from "../deps/vue.js";
+import {
+  Runtime,
+  Inspector
+} from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
+
+// We are importing the notebook
+// https://observablehq.com/@kristjanjansen/using-observable-in-visualia
+// Note the "api" prefix and ".js?v=3" suffx to make the import work
+
+import notebook from "https://api.observablehq.com/@kristjanjansen/using-observable-in-visualia.js?v=3";
+
+// We are creating a wrapper component <observable-example />
+
+const ObservableExample = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      const observable = new Runtime().module(notebook, name => {
+        if (name == "a") {
+          // Getting data from Obsevable to Visualia:
+          // we loop over Obsevable notebook cells and if the one of them
+          // returns value "a", we set it as Visualia global variable "a"
+
+          return {
+            fulfilled(value) {
+              set("a", value);
+            }
+          };
+        } else {
+          // For all other cells we just render the Observable cell in Visualia
+          return new Inspector(
+            el.value.appendChild(document.createElement("p"))
+          );
+        }
+      });
+      // Sending data from Visualia to Observable:
+      // We are watching Visualia global value "b"
+      // and when it changes, we change the Observable
+      // cell value "b"
+      watch(
+        () => get("b"),
+        () => observable.redefine("b", get("b"))
+      );
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `
+};
+
+visualia({ components: { ObservableExample } });
+```
+
+**index.md**
+
+```md
+<observable-example />
+
+#### Visualia document
+
+a = {{ get('a') }}
+
+Visualia slider is setting Observable value `b` {{ get('b') }}
+
+<v-slider set="b" to="100" step="1" />
+```
 
 ## FAQ
 
