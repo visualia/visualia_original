@@ -1,12 +1,8 @@
 import { createApp, provide } from "../deps/vue.js";
 
-import {
-  useFetch,
-  components,
-  componentCss,
-  onError,
-  onWarning
-} from "../../visualia.js";
+import * as components from "../components.js";
+
+import { useFetch, componentCss, onError, onWarning } from "../utils.js";
 
 export const visualia = (options = {}) => {
   const customOptions = {
@@ -47,8 +43,8 @@ export const visualia = (options = {}) => {
 
   componentCss(components);
 
-  // app.config.errorHandler = onError;
-  // app.config.warnHandler = onWarning;
+  app.config.errorHandler = onError;
+  app.config.warnHandler = onWarning;
 
   app.mount(customOptions.el);
 };

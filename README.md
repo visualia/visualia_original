@@ -25,7 +25,7 @@ To get started you will need three files: `index.html` for HTML, `index.js` for 
     <title>Visualia</title>
     <link
       rel="stylesheet"
-      href="https://visualia.github.io/visualia/visualia.css"
+      href="https://visualia.github.io/visualia/dist/visualia.css"
     />
   </head>
   <body>
@@ -38,7 +38,7 @@ To get started you will need three files: `index.html` for HTML, `index.js` for 
 **index.js**
 
 ```js
-import { visualia } from "https://visualia.github.io/visualia/visualia.js";
+import { visualia } from "https://visualia.github.io/visualia/dist/visualia.js";
 visualia();
 ```
 
@@ -372,16 +372,16 @@ const VExample = {
 On framework initialization components CSS will be merged into a single CSS string and be injected into HTML `<style>` tag:
 
 ```js
-import { components } from "https://visualia.github.io/visualia/visualia.js";
+import { components } from "https://visualia.github.io/visualia/dist/visualia.js";
 
 componentCss(components);
 ```
 
 ### Code organization
 
-[./visualia.js](./visualia.js)
+[./dist/visualia.js](./dist/visualia.js)
 
-The main library entrypoint. All public API components and utilities should be imported from `./visualia.js`, not from the actual component files.
+The main library entrypoint. All public API components and utilities should be are accessible from `./dist/visualia.js`.
 
 [./index.js](./index.js)
 
@@ -464,7 +464,10 @@ To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https:/
 ##### index.js
 
 ```js
-import { visualia, get } from "http://visualia.github.io/visualia/visualia.js";
+import {
+  visualia,
+  get
+} from "http://visualia.github.io/visualia/dist/visualia.js";
 import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
 import { p5 } from "http://visualia.github.io/p5/p5.js";
 
@@ -536,7 +539,7 @@ Here's the code how to import a sample notebook to Visualia and have a two-way d
 **index.js**
 
 ```js
-import { get, set } from "http://visualia.github.io/visualia/visualia.js";
+import { get, set } from "http://visualia.github.io/visualia/dist/visualia.js";
 import {
   ref,
   onMounted,

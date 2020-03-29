@@ -1,6 +1,6 @@
 import { computed } from "../deps/vue.js";
 
-import { toNumber } from "../../visualia.js";
+import { toNumber } from "../utils.js";
 
 export const sizeProps = {
   width: {
