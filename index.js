@@ -1,2 +1,9 @@
 import { visualia } from "./visualia.js";
-visualia({ file: "./README.md" });
+
+import { PfiveExample } from "./docs/PfiveExample.js";
+import { ObservableExample } from "./docs/ObservableExample.js";
+
+visualia({
+  file: "./README.md",
+  components: { PfiveExample, ObservableExample }
+});

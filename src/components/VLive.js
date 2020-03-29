@@ -97,7 +97,7 @@ export const VLive = {
   },
   template: `
   <div class="v-live">
-    <div style="display: flex; flex-direction: column; height: 300px;">
+    <div style="display: flex; flex-direction: column;">
       <v-content-save
         v-if="saveid"
         :saveid="saveid"

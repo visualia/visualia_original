@@ -480,15 +480,16 @@ const sketch = s => {
     s.createCanvas(200, 200);
   };
   s.draw = () => {
-    s.background(0);
-    s.fill(100);
-    s.rect(get("a", 0), 100, 50, 50);
+    s.background(255);
+    s.stroke(0);
+    s.strokeWeight(2);
+    s.circle(100, 100, get("a") || 10);
   };
 };
 
-// We are wrapping p5 sketch into a Vue / Visualia component
+// We are wrapping p5 sketch into a Visualia component
 
-const P5Example = {
+export const PfiveExample = {
   setup() {
     const el = ref(null);
     onMounted(() => {
@@ -504,16 +505,16 @@ const P5Example = {
 // We initialize Visualia with our p5 component
 
 visualia({
-  components: { P5Example }
+  components: { PfiveExample }
 });
 ```
 
 ##### index.md
 
-```md
-<v-slider set="a" />
+```live p5
+<v-slider set="a" from="10" to="200" />
 
-<p5-example />
+<pfive-example />
 ```
 
 ### Observable
@@ -535,8 +536,12 @@ Here's the code how to import a sample notebook to Visualia and have a two-way d
 **index.js**
 
 ```js
-import { visualia, set } from "../../visualia.js";
-import { ref, onMounted } from "../deps/vue.js";
+import { get, set } from "http://visualia.github.io/visualia/visualia.js";
+import {
+  ref,
+  onMounted,
+  watch
+} from "http://visualia.github.io/visualia/deps/vue.js";
 import {
   Runtime,
   Inspector
@@ -550,19 +555,19 @@ import notebook from "https://api.observablehq.com/@kristjanjansen/using-observa
 
 // We are creating a wrapper component <observable-example />
 
-const ObservableExample = {
+export const ObservableExample = {
   setup() {
     const el = ref(null);
     onMounted(() => {
       const observable = new Runtime().module(notebook, name => {
-        if (name == "a") {
+        if (name == "c") {
           // Getting data from Obsevable to Visualia:
           // we loop over Obsevable notebook cells and if the one of them
           // returns value "a", we set it as Visualia global variable "a"
 
           return {
             fulfilled(value) {
-              set("a", value);
+              set("c", value);
             }
           };
         } else {
@@ -577,8 +582,8 @@ const ObservableExample = {
       // and when it changes, we change the Observable
       // cell value "b"
       watch(
-        () => get("b"),
-        () => observable.redefine("b", get("b"))
+        () => get("d"),
+        () => observable.redefine("d", get("d"))
       );
     });
     return { el };
@@ -587,22 +592,20 @@ const ObservableExample = {
     <div ref="el" />
   `
 };
-
-visualia({ components: { ObservableExample } });
 ```
 
 **index.md**
 
-```md
+```live observable
 <observable-example />
 
 #### Visualia document
 
-a = {{ get('a') }}
+c = {{ get('c') }}
 
-Visualia slider is setting Observable value `b` {{ get('b') }}
+Visualia slider is setting Observable value `d` {{ get('d') }}
 
-<v-slider set="b" to="100" step="1" />
+<v-slider set="d" to="100" step="1" />
 ```
 
 ## FAQ
