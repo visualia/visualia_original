@@ -1,4 +1,4 @@
-import { get, set } from "../visualia.js";
+import { get, set } from "../dist/visualia.js";
 import { ref, onMounted, watch } from "../src/deps/vue.js";
 import {
   Runtime,
@@ -19,9 +19,9 @@ export const ObservableExample = {
     onMounted(() => {
       const observable = new Runtime().module(notebook, name => {
         if (name == "c") {
-          // Getting data from Obsevable to Visualia:
+          // Getting Obsevable data to Visualia:
           // we loop over Obsevable notebook cells and if the one of them
-          // returns value "a", we set it as Visualia global variable "a"
+          // returns value "c", we set it as Visualia global variable "c"
 
           return {
             fulfilled(value) {
@@ -35,10 +35,10 @@ export const ObservableExample = {
           );
         }
       });
-      // Sending data from Visualia to Observable:
-      // We are watching Visualia global value "b"
+      // Setting Visualia data in Observable:
+      // We are watching Visualia global value "d"
       // and when it changes, we change the Observable
-      // cell value "b"
+      // cell value "d"
       watch(
         () => get("d"),
         () => observable.redefine("d", get("d"))

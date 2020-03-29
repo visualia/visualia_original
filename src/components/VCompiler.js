@@ -1,6 +1,6 @@
 import { computed, h, compile, onErrorCaptured, inject } from "../deps/vue.js";
 import marked from "../deps/marked.js";
-import { utils, onCompilerError } from "../../visualia.js";
+import * as utils from "../utils.js";
 
 const renderer = new marked.Renderer();
 
@@ -27,10 +27,10 @@ const compileContent = content => {
   let c = () => null;
   try {
     c = compile(marked(processContent(content), { renderer, breaks: true }), {
-      onError: onCompilerError
+      onError: utils.onCompilerError
     });
   } catch (error) {
-    onCompilerError(error);
+    utils.onCompilerError(error);
   }
   return c;
 };
@@ -44,7 +44,7 @@ export const VCompiler = {
     }
   },
   setup(props) {
-    onErrorCaptured(onCompilerError);
+    onErrorCaptured(utils.onCompilerError);
     const customUtils = inject("customUtils");
     const compiledContent = computed(() => ({
       setup() {

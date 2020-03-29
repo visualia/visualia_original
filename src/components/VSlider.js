@@ -1,4 +1,4 @@
-import { set as storeSet, toNumber } from "../../visualia.js";
+import { set as storeSet, toNumber } from "../utils.js";
 import { dynamicProps } from "../internals/dynamic.js";
 
 export const VSlider = {
