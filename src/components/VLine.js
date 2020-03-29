@@ -6,13 +6,13 @@ import { VLineThree } from "./VLineThree.js";
 
 export const VLine = {
   setup(props, { slots }) {
-    const types = {
+    const modes = {
       svg: VLineSvg,
       canvas: VLineCanvas,
       three: VLineThree,
       webgl: VLineThree
     };
     const sceneContext = inject("sceneContext");
-    return () => h(types[sceneContext.type.value], { ...props }, slots);
+    return () => h(modes[sceneContext.mode.value], { ...props }, slots);
   }
 };

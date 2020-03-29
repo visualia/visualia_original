@@ -17,29 +17,28 @@ export const VScene = {
     // sizeProps are here just for props documentation,
     // the component passes through all passed props anyway
     ...sizeProps,
-    type: {
+    mode: {
       default: "svg",
       type: String,
       docs:
-        "Rendering type, could be either `svg`, `canvas`, `three` or `webgl`"
+        "Rendering mode, could be either `svg`, `canvas`, `three` or `webgl`"
     },
     isometric: {
       default: false,
       type: [Boolean, String],
       docs:
-        "Use ortographic projection? Only applies to `three` and `webgl` render types"
+        "Use ortographic projection? Only applies to `three` and `webgl` render modes"
     }
   },
   setup(props, context) {
-    const types = {
+    const modes = {
       svg: VSceneSvg,
       canvas: VSceneCanvas,
       three: VSceneThreeSvg,
       webgl: VSceneThreeWebgl
     };
-    const type = computed(() => props.type);
-    provide("sceneContext", { type });
-
-    return () => h(types[type.value], { ...props }, context.slots);
+    const mode = computed(() => props.mode);
+    provide("sceneContext", { mode });
+    return () => h(modes[mode.value], { ...props }, context.slots);
   }
 };
