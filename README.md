@@ -1,7 +1,5 @@
 # Visu&#8203;alia
 
-## About
-
 Visualia is a web framework for creating interactive documents. It uses [Markdown](https://guides.github.com/features/mastering-markdown/) text format and [VueJS 3.x](https://github.com/vuejs/vue-next) components for authoring.
 
 Visualia supports a wide range of use cases, starting from interactive learning materials and live notebooks to generative design and data visualization.
@@ -412,7 +410,7 @@ For this reason, we ship also provide a command to create a bundled version of t
 To generate the bundle, use the following command:
 
 ```
-deno bundle.js visualia.js > visualia.bundle.js
+deno bundle.js dist/visualia.js > dist/visualia.bundle.js
 ```
 
 ### Testing

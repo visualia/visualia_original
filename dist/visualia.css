@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Inter:400,400i,700,700i|Cousine:400,400i,700,700i|IBM+Plex+Serif:400,400i,500,500i");
+@import url("https://unpkg.com/katex@0.11.1/dist/katex.min.css");
 
 /* Variables */
 
@@ -92,7 +93,6 @@ h5 {
   font-weight: 700;
 }
 h1 {
-  margin: 1em 0 0 0;
   font-size: 100px;
   line-height: 1em;
   letter-spacing: -0.025em;
@@ -109,6 +109,7 @@ h4 {
 h5 {
   font-size: 16px;
 }
+h1:first-child,
 h2:first-child,
 h3:first-child,
 h4:first-child,
