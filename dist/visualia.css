@@ -92,7 +92,6 @@ h5 {
   font-weight: 700;
 }
 h1 {
-  margin: 1em 0 0 0;
   font-size: 100px;
   line-height: 1em;
   letter-spacing: -0.025em;
@@ -109,6 +108,7 @@ h4 {
 h5 {
   font-size: 16px;
 }
+h1:first-child,
 h2:first-child,
 h3:first-child,
 h4:first-child,
