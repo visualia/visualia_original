@@ -7,10 +7,6 @@ export * from "./components/VCompiler.js";
 export * from "./components/VContent.js";
 export * from "./components/VSave.js";
 export * from "./components/VEditor.js";
-export * from "./components/VGroup.js";
-export * from "./components/VGroupCanvas.js";
-export * from "./components/VGroupSvg.js";
-export * from "./components/VGroupThree.js";
 export * from "./components/VLine.js";
 export * from "./components/VLineCanvas.js";
 export * from "./components/VLineSvg.js";
@@ -31,3 +27,16 @@ export * from "./components/VSquareCanvas.js";
 export * from "./components/VSquareSvg.js";
 export * from "./components/VSquareThree.js";
 export * from "./components/VTable.js";
+
+export const publicComponents = [
+  "VAnimate",
+  "VCircle",
+  "VLine",
+  "VPoint",
+  "VSlider",
+  "VSphere",
+  "VSquare",
+  "VTable"
+];
+
+export const publicComponentsWithChildren = ["VMath", "VScene"];
