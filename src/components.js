@@ -27,3 +27,16 @@ export * from "./components/VSquareCanvas.js";
 export * from "./components/VSquareSvg.js";
 export * from "./components/VSquareThree.js";
 export * from "./components/VTable.js";
+
+export const publicComponents = [
+  "VAnimate",
+  "VCircle",
+  "VLine",
+  "VPoint",
+  "VSlider",
+  "VSphere",
+  "VSquare",
+  "VTable"
+];
+
+export const publicComponentsWithChildren = ["VMath", "VScene"];
