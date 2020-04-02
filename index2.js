@@ -45,20 +45,15 @@ const template = `
 <br><router-link to="/a/hey#b">a/hey</router-link>
 <br><router-view />`;
 
-const app = createApp({
-  setup() {
-    const router = useRouter();
-    //router.push("/a/ii");
-  },
-  components: { Link, View },
-  template
-  //use: { router }
+visualia({
+  components: { VLink: Link, VView: View },
+  template,
+  use: { router }
 });
-app.use(router);
-app.mount("#app");
 
-// visualia({
-//   components: { VLink: Link, VView: View },
-//   template,
-//   use: { router }
+// const app = createApp({
+//   components: { Link, View },
+//   template
 // });
+// app.use(router);
+// app.mount("#app");
