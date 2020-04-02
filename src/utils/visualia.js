@@ -12,6 +12,7 @@ export const visualia = (options = {}) => {
     components: {},
     utils: {},
     template: "",
+    use: {},
     ...options
   };
 
@@ -41,10 +42,11 @@ export const visualia = (options = {}) => {
     ...customOptions.components
   }).forEach(([name, component]) => app.component(name, component));
 
+  Object.entries(customOptions.use).forEach(([_, use]) => app.use(use));
+
   componentCss(components);
 
   // app.config.errorHandler = onError;
   // app.config.warnHandler = onWarning;
-
   app.mount(customOptions.el);
 };
