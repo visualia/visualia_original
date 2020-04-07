@@ -4,12 +4,12 @@ import {
 } from "./providers.js";
 
 import { watch, ref, onMounted } from "../../src/deps/vue.js";
-import * as monaco from "https://visualia.github.io/editor/deps/editor.js";
+import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
 
 window.MonacoEnvironment = {
   getWorkerUrl: function (workerId, label) {
     return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-      importScripts('https://visualia.github.io/editor/deps/editor.worker.js');`)}`;
+      importScripts('https://visualia.github.io/editor/dist/editor.worker.js');`)}`;
   },
 };
 

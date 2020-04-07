@@ -5,7 +5,7 @@ import {
   publicComponentsWithChildren,
 } from "../../dist/visualia.js";
 
-import * as monaco from "https://visualia.github.io/editor/deps/editor.js";
+import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
 
 const components = Object.entries({ ...rawComponents })
   .filter(([key]) =>

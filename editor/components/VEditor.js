@@ -1,7 +1,5 @@
 import { VSave, VContent } from "../../src/components.js";
-
 import { watch, ref } from "../../src/deps/vue.js";
-
 import { VMonaco } from "./VMonaco.js";
 
 export const VEditor = {
