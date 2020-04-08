@@ -1,24 +1,11 @@
-import {
-  stylingProps,
-  useSvgStyling,
-  transformTwoProps,
-  useSvgTransform
-} from "../internals.js";
+import { useSvgStyling, useSvgTransform } from "../internals.js";
 
 export const VSquareSvg = {
-  props: {
-    r: {
-      default: 1,
-      type: [String, Number],
-      docs: "Square radius (half of the width)"
-    },
-    ...transformTwoProps,
-    ...stylingProps
-  },
   setup(props) {
+    const r = props.r;
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
-    return { styling, transform };
+    return { r, styling, transform };
   },
   template: `
     <rect 
@@ -31,5 +18,5 @@ export const VSquareSvg = {
       :stroke-width="styling.strokeWidth"
       :opacity="styling.opacity"
       :transform="transform"
-    />`
+    />`,
 };

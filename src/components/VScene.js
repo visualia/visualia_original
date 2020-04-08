@@ -29,7 +29,6 @@ export const VScene = {
     },
     isometric: {
       default: false,
-      suggest: ["false", "true"],
       type: [Boolean, String],
       docs:
         "Use ortographic projection? Only applies to `three` and `webgl` render modes",

@@ -5,15 +5,10 @@ import {
   stylingCanvas,
   transformTwoProps,
   transformCanvas,
-  transformCanvasReset
+  transformCanvasReset,
 } from "../internals.js";
 
 export const VCircleCanvas = {
-  props: {
-    ...transformTwoProps,
-    ...stylingProps,
-    r: { default: 1 }
-  },
   setup(props) {
     const sceneContext = inject("sceneContext");
     watch(() => {
@@ -32,5 +27,5 @@ export const VCircleCanvas = {
       }
     });
     return () => null;
-  }
+  },
 };

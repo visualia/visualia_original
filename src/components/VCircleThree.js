@@ -4,7 +4,7 @@ import {
   CircleGeometry,
   Mesh,
   EdgesGeometry,
-  LineSegments
+  LineSegments,
 } from "../deps/three.js";
 
 import {
@@ -12,11 +12,10 @@ import {
   useThreeFill,
   useThreeStroke,
   transformThreeProps,
-  useThreeTransform
+  useThreeTransform,
 } from "../internals.js";
 
 export const VCircleThree = {
-  props: { r: { default: 1 }, ...stylingProps, ...transformThreeProps },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
@@ -42,5 +41,5 @@ export const VCircleThree = {
     useThreeTransform(props, group);
 
     return () => null;
-  }
+  },
 };

@@ -3,49 +3,52 @@ import { computed, watch, inject } from "../deps/vue.js";
 import {
   parseCoords,
   normalizeScale,
-  normalizeThreeRotation
+  normalizeThreeRotation,
 } from "../internals.js";
 
-import { deg2rad, fit } from "../utils.js";
+import { deg2rad } from "../utils.js";
 
 export const transformTwoProps = {
   position: {
     default: [0, 0],
+    suggest: "0 0",
     type: [String, Number, Array, Object],
-    docs: "Object position in 2D"
+    docs: "Object position in 2D",
   },
   rotation: {
     default: 0,
+    suggest: ["0", "90", "180", "270"],
     type: [String, Number, Array, Object],
-    docs: "Object rotation angle in degrees, in 2D plane"
+    docs: "Object rotation angle in degrees, in 2D plane",
   },
   scale: {
     default: [1, 1],
+    suggest: "1 1",
     type: [String, Number, Array, Object],
-    docs: "Object scale. Negative scale flips the object."
-  }
+    docs: "Object scale. Negative scale flips the object.",
+  },
 };
 
 export const transformThreeProps = {
   position: {
     default: [0, 0, 0],
     type: [String, Number, Array, Object],
-    docs: "Object position in 3D"
+    docs: "Object position in 3D",
   },
   rotation: {
     default: [0, 0, 0],
     type: [String, Number, Array, Object],
-    docs: "Object rotation angle in degrees, over X, Y and Z axis"
+    docs: "Object rotation angle in degrees, over X, Y and Z axis",
   },
   scale: {
     default: [1, 1, 1],
     type: [String, Number, Array, Object],
     docs:
-      "Object scale in X, Y and Z dimensions, Negative scale value flips the object in that dimension"
-  }
+      "Object scale in X, Y and Z dimensions, Negative scale value flips the object in that dimension",
+  },
 };
 
-const getTwoTransform = props => {
+const getTwoTransform = (props) => {
   const position = parseCoords(props.position)[0];
   const rotation = parseCoords(props.rotation)[0];
   const scale = parseCoords(props.scale, normalizeScale)[0];
@@ -53,7 +56,7 @@ const getTwoTransform = props => {
   return { position, rotation, scale };
 };
 
-const getThreeTransform = props => {
+const getThreeTransform = (props) => {
   const position = parseCoords(props.position)[0];
   const rotation = parseCoords(props.rotation, normalizeThreeRotation)[0];
   const scale = parseCoords(props.scale, normalizeScale)[0];
@@ -63,7 +66,7 @@ const getThreeTransform = props => {
 
 // SVG
 
-export const useSvgTransform = props => {
+export const useSvgTransform = (props) => {
   return computed(() => {
     const { position, rotation, scale } = getTwoTransform(props);
     const positionStr = `translate(${position[0]} ${position[1]})`;
@@ -77,7 +80,7 @@ export const useSvgTransform = props => {
 export const test_useSvgTransform_default_props = () => {
   return [
     useSvgTransform(transformTwoProps).value,
-    "translate(0 0) rotate(0) scale(1 1)"
+    "translate(0 0) rotate(0) scale(1 1)",
   ];
 };
 
@@ -85,7 +88,7 @@ export const test_useSvgTransform_custom_props = () => {
   const props = { position: "100 200", rotation: "300", scale: "2" };
   return [
     useSvgTransform(props).value,
-    "translate(100 200) rotate(300) scale(2 2)"
+    "translate(100 200) rotate(300) scale(2 2)",
   ];
 };
 
@@ -98,7 +101,7 @@ export const transformCanvas = (props, ctx) => {
   ctx.scale(scale[0], scale[1]);
 };
 
-export const transformCanvasReset = ctx => {
+export const transformCanvasReset = (ctx) => {
   ctx.resetTransform();
 };
 

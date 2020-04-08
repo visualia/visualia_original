@@ -87,7 +87,7 @@ const tagSuggestions = (range) => {
       insertTextRules:
         monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
       insertText: text,
-      documentation: "",
+      documentation: "Hello",
       range,
     };
   });
