@@ -65,13 +65,13 @@ const tagSuggestions = (range) => {
     const suggestions = formatSuggestions(c);
     let text = "";
     if (publicComponentsWithChildren.includes(c.pascalName)) {
-      text = `<${c.kebabName}>\n  ${suggestions.join(" ")}\n\n$0</${
+      text = `<${c.kebabName} ${suggestions.join(" ")}>\n  $0\n</${
         c.kebabName
       }>`;
     } else {
       text = `<${c.kebabName} ${suggestions.join(" ")}${
         suggestions.length ? " " : ""
-      }/>\n\n$0`;
+      }/>$0`;
     }
     return {
       label: c.kebabName,
