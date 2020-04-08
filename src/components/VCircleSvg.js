@@ -1,24 +1,11 @@
-import {
-  stylingProps,
-  useSvgStyling,
-  transformTwoProps,
-  useSvgTransform
-} from "../internals.js";
+import { useSvgStyling, useSvgTransform } from "../internals.js";
 
 export const VCircleSvg = {
-  props: {
-    ...transformTwoProps,
-    ...stylingProps,
-    r: {
-      default: 1,
-      type: [String, Number],
-      docs: "Square radius (half of the width)"
-    }
-  },
   setup(props) {
+    const r = props.r;
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
-    return { transform, styling };
+    return { r, transform, styling };
   },
   template: `
     <circle 
@@ -30,5 +17,5 @@ export const VCircleSvg = {
       :stroke="styling.stroke"
       :stroke-width="styling.strokeWidth"
       :opacity="styling.opacity"
-    />`
+    />`,
 };

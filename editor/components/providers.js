@@ -3,6 +3,8 @@ import {
   kebabcase,
   publicComponents,
   publicComponentsWithChildren,
+  flatten,
+  isArray,
 } from "../../dist/visualia.js";
 
 import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
@@ -46,21 +48,46 @@ ${value.description || ""}
 const formatDocs = (component) =>
   `[Source](https://github.com/visualia/visualia/blob/master/src/components/${component.pascalName}.js)`;
 
+const formatSuggestions = (c) => {
+  let formattedSuggestions = [];
+  if (c.props) {
+    const suggestions = Object.entries(c.props).filter(
+      ([key, value]) => value.suggest
+    );
+    if (suggestions.length) {
+      return suggestions.map(([key, value], i) => {
+        let values = "";
+        if (isArray(value.suggest)) {
+          values = `|${value.suggest.join(",")}|`;
+        } else {
+          values = `:${value.suggest}`;
+        }
+        return `${key}="\$\{${i + 1}${values}\}"`;
+      });
+    }
+  }
+  return formattedSuggestions;
+};
 const tagSuggestions = (range) => {
   return components.map((c) => {
-    let snippet = "";
+    const suggestions = formatSuggestions(c);
+    let text = "";
     if (publicComponentsWithChildren.includes(c.pascalName)) {
-      snippet = `<${c.kebabName}>\n  $0\n</${c.kebabName}>`;
+      text = `<${c.kebabName}${suggestions.length ? " " : ""}${suggestions.join(
+        " "
+      )}>\n  $0\n</${c.kebabName}>`;
     } else {
-      snippet = `<${c.kebabName} />$0`;
+      text = `<${c.kebabName} ${suggestions.join(" ")}${
+        suggestions.length ? " " : ""
+      }/>$0`;
     }
     return {
       label: c.kebabName,
       kind: monaco.languages.CompletionItemKind.Function,
       insertTextRules:
         monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-      insertText: snippet,
-      documentation: c.docs,
+      insertText: text,
+      documentation: "Hello",
       range,
     };
   });

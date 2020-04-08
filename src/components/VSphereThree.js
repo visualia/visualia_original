@@ -4,28 +4,16 @@ import {
   SphereGeometry,
   Mesh,
   EdgesGeometry,
-  LineSegments
+  LineSegments,
 } from "../deps/three.js";
 
 import {
-  stylingProps,
   useThreeFill,
   useThreeStroke,
-  transformThreeProps,
-  useThreeTransform
+  useThreeTransform,
 } from "../internals.js";
 
 export const VSphereThree = {
-  props: {
-    r: { default: 10, type: [String, Number], docs: "Sphere radius" },
-    segments: {
-      default: 12,
-      type: [String, Number],
-      docs: "Number of segments. Minimum value is 3"
-    },
-    ...stylingProps,
-    ...transformThreeProps
-  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
@@ -55,5 +43,5 @@ export const VSphereThree = {
     useThreeTransform(props, group);
 
     return () => null;
-  }
+  },
 };

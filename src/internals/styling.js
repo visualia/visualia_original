@@ -3,31 +3,40 @@ import { computed, inject } from "../deps/vue.js";
 import {
   MeshPhongMaterial,
   DoubleSide,
-  LineBasicMaterial
+  LineBasicMaterial,
 } from "../deps/three.js";
 
 import { toNumber } from "../utils.js";
 
 export const stylingProps = {
-  stroke: { default: "black", type: [String], docs: "Stroke color" },
+  stroke: {
+    default: "black",
+    suggest: ["black", "red", "green", "blue", "none"],
+    type: [String],
+    docs: "Stroke color",
+  },
   strokeWidth: {
     default: 2,
+    suggest: "2",
     type: [String, Number],
-    docs: 'Stroke width in pixels. Set to "none" for no stroke'
+    docs: 'Stroke width in pixels. Set to "none" for no stroke',
   },
   fill: {
     default: "none",
+    suggest: ["none", "black", "red", "green", "blue"],
     type: [String, Number],
-    docs: 'Fill color. Set to "none" for no fill'
+    docs: 'Fill color. Set to "none" for no fill',
   },
   opacity: {
     default: 1,
+    suggest: ["1", "0.75", "0.5", "0.25", "0"],
     type: [String, Number],
-    docs: "Object opacity, a floating point number from `0` to `1`"
-  }
+    docs:
+      "Object opacity, `1` means no transparency, `0` means fully transparent",
+  },
 };
 
-export const useSvgStyling = props => {
+export const useSvgStyling = (props) => {
   const sceneContext = inject("sceneContext");
   return computed(() => {
     const fill = props.fill;
@@ -50,17 +59,17 @@ export const stylingCanvas = (props, scene) => {
 
 // Three
 
-export const useThreeFill = props =>
+export const useThreeFill = (props) =>
   computed(
     () =>
       new MeshPhongMaterial({
         color: props.fill,
         opacity: props.opacity,
-        side: DoubleSide
+        side: DoubleSide,
       })
   );
 
-export const useThreeStroke = props =>
+export const useThreeStroke = (props) =>
   computed(
     () =>
       new LineBasicMaterial({
@@ -69,6 +78,6 @@ export const useThreeStroke = props =>
         linecap: "round",
         linejoin: "round",
         opacity: props.opacity,
-        side: DoubleSide
+        side: DoubleSide,
       })
   );

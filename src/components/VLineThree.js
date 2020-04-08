@@ -5,29 +5,19 @@ import {
   Vector3,
   LineBasicMaterial,
   BufferGeometry,
-  Line
+  Line,
 } from "../deps/three.js";
 
-import {
-  lineProps,
-  stylingProps,
-  transformThreeProps,
-  parseCoords
-} from "../internals.js";
+import { parseCoords } from "../internals.js";
 
 export const VLineThree = {
-  props: {
-    ...lineProps,
-    ...transformThreeProps,
-    ...stylingProps
-  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
     const parsedPoints = parseCoords(props.points);
 
     const geometry = new BufferGeometry().setFromPoints(
-      parsedPoints.map(point => new Vector3(...point))
+      parsedPoints.map((point) => new Vector3(...point))
     );
 
     var group = new Group();
@@ -35,7 +25,7 @@ export const VLineThree = {
     const stroke = new LineBasicMaterial({
       color: props.stroke,
       linewidth: props.strokeWidth,
-      opacity: props.opacity
+      opacity: props.opacity,
     });
 
     const line = new Line(geometry, stroke);
@@ -45,5 +35,5 @@ export const VLineThree = {
     sceneContext.scene.add(group);
 
     return () => null;
-  }
+  },
 };
