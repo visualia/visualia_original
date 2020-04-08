@@ -17,13 +17,11 @@ export const transformTwoProps = {
   },
   rotation: {
     default: 0,
-    suggest: ["0", "90", "180", "270"],
     type: [String, Number, Array, Object],
     docs: "Object rotation angle in degrees, in 2D plane",
   },
   scale: {
     default: [1, 1],
-    suggest: "1 1",
     type: [String, Number, Array, Object],
     docs: "Object scale. Negative scale flips the object.",
   },
@@ -32,11 +30,13 @@ export const transformTwoProps = {
 export const transformThreeProps = {
   position: {
     default: [0, 0, 0],
+    suggest: "0 0",
     type: [String, Number, Array, Object],
     docs: "Object position in 3D",
   },
   rotation: {
     default: [0, 0, 0],
+    suggest: "0 0",
     type: [String, Number, Array, Object],
     docs: "Object rotation angle in degrees, over X, Y and Z axis",
   },

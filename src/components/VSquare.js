@@ -4,7 +4,7 @@ import { VSquareSvg } from "./VSquareSvg.js";
 import { VSquareCanvas } from "./VSquareCanvas.js";
 import { VSquareThree } from "./VSquareThree.js";
 
-import { stylingProps, transformThreeProps } from "../internals.js";
+import { stylingProps, transformTwoProps } from "../internals.js";
 
 export const VSquare = {
   props: {
@@ -15,7 +15,7 @@ export const VSquare = {
       docs: "Square radius (half of the width)",
     },
     ...stylingProps,
-    ...transformThreeProps,
+    ...transformTwoProps,
   },
   setup(props, { slots }) {
     const modes = {

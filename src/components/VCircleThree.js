@@ -8,10 +8,8 @@ import {
 } from "../deps/three.js";
 
 import {
-  stylingProps,
   useThreeFill,
   useThreeStroke,
-  transformThreeProps,
   useThreeTransform,
 } from "../internals.js";
 

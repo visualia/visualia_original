@@ -9,7 +9,12 @@ import {
 import { toNumber } from "../utils.js";
 
 export const stylingProps = {
-  stroke: { default: "black", type: [String], docs: "Stroke color" },
+  stroke: {
+    default: "black",
+    suggest: ["black", "red", "green", "blue", "none"],
+    type: [String],
+    docs: "Stroke color",
+  },
   strokeWidth: {
     default: 2,
     suggest: "2",
@@ -18,7 +23,7 @@ export const stylingProps = {
   },
   fill: {
     default: "none",
-    suggest: ["none", "red", "green", "blue"],
+    suggest: ["none", "black", "red", "green", "blue"],
     type: [String, Number],
     docs: 'Fill color. Set to "none" for no fill',
   },

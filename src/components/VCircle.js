@@ -4,11 +4,7 @@ import { VCircleSvg } from "./VCircleSvg.js";
 import { VCircleCanvas } from "./VCircleCanvas.js";
 import { VCircleThree } from "./VCircleThree.js";
 
-import {
-  stylingProps,
-  transformTwoProps,
-  transformThreeProps,
-} from "../internals.js";
+import { stylingProps, transformTwoProps } from "../internals.js";
 
 export const VCircle = {
   props: {
@@ -19,7 +15,7 @@ export const VCircle = {
       docs: "Square radius (half of the width)",
     },
     ...stylingProps,
-    ...transformThreeProps,
+    ...transformTwoProps,
   },
   setup(props, { slots }) {
     const modes = {
@@ -29,9 +25,6 @@ export const VCircle = {
       webgl: VCircleThree,
     };
     const sceneContext = inject("sceneContext");
-    const transformProps = ["three", "webgl"].includes(sceneContext.mode.value)
-      ? transformThreeProps
-      : transformTwoProps;
     return () =>
       modes[sceneContext.mode.value]
         ? h(modes[sceneContext.mode.value], { ...props }, slots)
