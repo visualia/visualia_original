@@ -46,8 +46,37 @@ ${value.description || ""}
 const formatDocs = (component) =>
   `[Source](https://github.com/visualia/visualia/blob/master/src/components/${component.pascalName}.js)`;
 
+const formatSnippets = (c) => {
+  let snippets = [];
+  if (c.props) {
+    const suggestions = Object.entries(c.props).filter(
+      ([key, value]) => value.suggest
+    );
+    if (suggestions.length) {
+      return suggestions.map(([key, value], i) => {
+        const index = i == suggestions.length - 1 ? 0 : i + 1;
+        return `${key}="\$\{${index}:${value.suggest}\}"`;
+      });
+    }
+  }
+};
 const tagSuggestions = (range) => {
   return components.map((c) => {
+    const a = formatSnippets(c);
+    console.log(a);
+    // const snippets = c.props
+    //   ? Object.entries(c.props)
+    //       .filter(([key, value]) => value.suggest)
+    //       .map(([key, value], i) => {
+    //         const index = 0
+    //         if (i === Object.entries(c.props).length - 1) {
+
+    //         } 0 : i - 1;
+    //         //console.log(i === Object.entries(c.props).length - 1);
+    //         return `${key}="\$\{${index}:${value.suggest}\}"`;
+    //       })
+    //   : [];
+    console.log(snippets);
     let snippet = "";
     if (publicComponentsWithChildren.includes(c.pascalName)) {
       snippet = `<${c.kebabName}>\n  $0\n</${c.kebabName}>`;
@@ -60,7 +89,7 @@ const tagSuggestions = (range) => {
       insertTextRules:
         monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
       insertText: snippet,
-      documentation: c.docs,
+      documentation: "Documentat*ion*",
       range,
     };
   });
