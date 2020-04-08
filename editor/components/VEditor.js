@@ -26,13 +26,14 @@ export const VEditor = {
   template: `
   <div style="display: grid; grid-template-columns: 1fr 1fr; height: 100vh;">
     <div style="display: flex; flex-direction: column;">
-      <v-save
+      <!-- <v-save
         style="--darkpaleblue: #1e1e1e;"
         :saveid="saveid"
         :content="content"
         :current-content="currentContent"
         @load="onLoad"
-      />
+      /> -->
+      <div style="background: #1e1e1e; height: 20px" />
       <v-monaco
         style="flex: 1;"
         :content="currentContent"
