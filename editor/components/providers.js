@@ -55,15 +55,17 @@ const formatSnippets = (c) => {
     if (suggestions.length) {
       return suggestions.map(([key, value], i) => {
         const index = i == suggestions.length - 1 ? 0 : i + 1;
-        return `${key}="\$\{${index}:${value.suggest}\}"`;
+        return `${key}="\$\{${i + 1}:${value.suggest}\}"`;
       });
     }
   }
+  return snippets;
 };
 const tagSuggestions = (range) => {
   return components.map((c) => {
-    const a = formatSnippets(c);
-    console.log(a);
+    const snippets = formatSnippets(c);
+    let snippet = "";
+    //console.log(a);
     // const snippets = c.props
     //   ? Object.entries(c.props)
     //       .filter(([key, value]) => value.suggest)
@@ -76,12 +78,12 @@ const tagSuggestions = (range) => {
     //         return `${key}="\$\{${index}:${value.suggest}\}"`;
     //       })
     //   : [];
-    console.log(snippets);
-    let snippet = "";
     if (publicComponentsWithChildren.includes(c.pascalName)) {
-      snippet = `<${c.kebabName}>\n  $0\n</${c.kebabName}>`;
+      snippet = `<${c.kebabName}>\n  ${snippets.join(" ")}$0\n</${
+        c.kebabName
+      }>`;
     } else {
-      snippet = `<${c.kebabName} />$0`;
+      snippet = `<${c.kebabName} ${snippets.join(" ")}/>$0`;
     }
     return {
       label: c.kebabName,
