@@ -9,24 +9,25 @@ export const VAnimate = {
     ...dynamicProps,
     duration: {
       default: 10000,
+      suggest: "10000",
       type: [String, Number],
-      docs: "Animation duration in milliseconds"
+      docs: "Animation duration in milliseconds",
     },
     easing: {
       default: "linear",
       type: String,
-      docs: "Animation easing function"
+      docs: "Animation easing function",
     },
     loop: {
       default: true,
       type: Boolean,
-      docs: "Loop animation"
+      docs: "Loop animation",
     },
     alternate: {
       default: false,
       type: Boolean,
-      docs: "Alternate between start and end value"
-    }
+      docs: "Alternate between start and end value",
+    },
   },
   setup(props, { emit }) {
     const progress = ref(0);
@@ -36,9 +37,9 @@ export const VAnimate = {
       duration: props.duration,
       easing: props.easing,
       direction: props.alternate ? "alternate" : null,
-      loop: props.loop
+      loop: props.loop,
     });
-    watch(progress, progress => {
+    watch(progress, (progress) => {
       const currentProgress = props.integer ? Math.floor(progress) : progress;
       emit("value", currentProgress);
       if (props.set) {
@@ -46,5 +47,5 @@ export const VAnimate = {
       }
     });
     return () => null;
-  }
+  },
 };

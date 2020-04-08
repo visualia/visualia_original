@@ -46,52 +46,40 @@ ${value.description || ""}
 const formatDocs = (component) =>
   `[Source](https://github.com/visualia/visualia/blob/master/src/components/${component.pascalName}.js)`;
 
-const formatSnippets = (c) => {
-  let snippets = [];
+const formatSuggestions = (c) => {
+  let formattedSuggestions = [];
   if (c.props) {
     const suggestions = Object.entries(c.props).filter(
       ([key, value]) => value.suggest
     );
     if (suggestions.length) {
       return suggestions.map(([key, value], i) => {
-        const index = i == suggestions.length - 1 ? 0 : i + 1;
         return `${key}="\$\{${i + 1}:${value.suggest}\}"`;
       });
     }
   }
-  return snippets;
+  return formattedSuggestions;
 };
 const tagSuggestions = (range) => {
   return components.map((c) => {
-    const snippets = formatSnippets(c);
-    let snippet = "";
-    //console.log(a);
-    // const snippets = c.props
-    //   ? Object.entries(c.props)
-    //       .filter(([key, value]) => value.suggest)
-    //       .map(([key, value], i) => {
-    //         const index = 0
-    //         if (i === Object.entries(c.props).length - 1) {
-
-    //         } 0 : i - 1;
-    //         //console.log(i === Object.entries(c.props).length - 1);
-    //         return `${key}="\$\{${index}:${value.suggest}\}"`;
-    //       })
-    //   : [];
+    const suggestions = formatSuggestions(c);
+    let text = "";
     if (publicComponentsWithChildren.includes(c.pascalName)) {
-      snippet = `<${c.kebabName}>\n  ${snippets.join(" ")}$0\n</${
+      text = `<${c.kebabName}>\n  ${suggestions.join(" ")}\n\n$0</${
         c.kebabName
       }>`;
     } else {
-      snippet = `<${c.kebabName} ${snippets.join(" ")}/>$0`;
+      text = `<${c.kebabName} ${suggestions.join(" ")}${
+        suggestions.length ? " " : ""
+      }/>\n\n$0`;
     }
     return {
       label: c.kebabName,
       kind: monaco.languages.CompletionItemKind.Function,
       insertTextRules:
         monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-      insertText: snippet,
-      documentation: "Documentat*ion*",
+      insertText: text,
+      documentation: "",
       range,
     };
   });
