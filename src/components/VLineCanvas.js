@@ -2,21 +2,13 @@ import { inject, watch } from "../deps/vue.js";
 import { line } from "../deps/d3-shape.js";
 
 import {
-  lineProps,
-  stylingProps,
   stylingCanvas,
-  transformTwoProps,
   transformCanvas,
   transformCanvasReset,
-  parseCoords
+  parseCoords,
 } from "../internals.js";
 
 export const VLineCanvas = {
-  props: {
-    ...lineProps,
-    ...transformTwoProps,
-    ...stylingProps
-  },
   setup(props) {
     const sceneContext = inject("sceneContext");
     watch(() => {
@@ -32,5 +24,5 @@ export const VLineCanvas = {
       }
     });
     return () => null;
-  }
+  },
 };

@@ -1,21 +1,9 @@
 import { computed } from "../deps/vue.js";
 import { line } from "../deps/d3-shape.js";
 
-import {
-  lineProps,
-  stylingProps,
-  useSvgStyling,
-  transformTwoProps,
-  useSvgTransform,
-  parseCoords
-} from "../internals.js";
+import { useSvgStyling, useSvgTransform, parseCoords } from "../internals.js";
 
 export const VLineSvg = {
-  props: {
-    ...lineProps,
-    ...transformTwoProps,
-    ...stylingProps
-  },
   setup(props) {
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
@@ -32,5 +20,5 @@ export const VLineSvg = {
       :stroke="styling.stroke"
       :stroke-width="styling.strokeWidth"
       :transform="transform"
-    />`
+    />`,
 };
