@@ -50,8 +50,6 @@ export const VMonaco = {
         monaco.languages.setMonarchTokensProvider("visualia", language);
       });
 
-    let format = null;
-
     onMounted(() => {
       // Setting up autcomplete and hover providers
 

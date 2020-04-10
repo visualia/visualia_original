@@ -26,16 +26,3 @@ export const formatVisualia = (str) => {
   }
   return formattedStr;
 };
-
-const p = `##  Hello
-
-
-Our <f-math>documentation</f-math> helpful guides to get started.
-Also, there          *is* a full editable reference to our 📦 131 components, covering everything from 2D/3D graphics, user interaction, comprehensive layouts, beautiful math and more.
-
-
-
-<v-slider 
-  alpha="100" :beta="100" @theta="100000" />`;
-
-console.log(formatVisualia(p));
