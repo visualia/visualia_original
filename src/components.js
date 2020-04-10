@@ -6,7 +6,7 @@ export * from "./components/VCircleThree.js";
 export * from "./components/VCompiler.js";
 export * from "./components/VContent.js";
 export * from "./components/VSave.js";
-export * from "./components/VEditor.js";
+export * from "./components/VTextarea.js";
 export * from "./components/VLine.js";
 export * from "./components/VLineCanvas.js";
 export * from "./components/VLineSvg.js";
@@ -36,7 +36,7 @@ export const publicComponents = [
   "VSlider",
   "VSphere",
   "VSquare",
-  "VTable"
+  "VTable",
 ];
 
 export const publicComponentsWithChildren = ["VMath", "VScene"];

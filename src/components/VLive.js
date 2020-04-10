@@ -4,20 +4,20 @@ export const VLive = {
   props: {
     content: {
       default: "",
-      type: String
+      type: String,
     },
     saveid: {
       default: null,
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props) {
     const currentContent = ref(props.content);
     watch(
       () => props.content,
-      content => (currentContent.value = content)
+      (content) => (currentContent.value = content)
     );
-    const onLoad = content => (currentContent.value = content);
+    const onLoad = (content) => (currentContent.value = content);
     return { currentContent, onLoad };
   },
   template: `
@@ -30,7 +30,7 @@ export const VLive = {
         :current-content="currentContent"
         @load="onLoad"
       />
-      <v-editor
+      <v-textarea
         style="flex: 1;"
         :content="currentContent"
         @input:content="content => currentContent = content"
@@ -52,5 +52,5 @@ export const VLive = {
         grid-template-columns: 1fr;
       }
     }
-  `
+  `,
 };

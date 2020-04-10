@@ -1,21 +1,21 @@
 import { ref, watch, onMounted } from "../deps/vue.js";
 
-export const VEditor = {
+export const VTextarea = {
   props: { content: { default: "", type: String } },
   setup(props, { emit }) {
     const editor = ref(null);
     const currentContent = ref("");
     watch(
       () => props.content,
-      content => {
+      (content) => {
         currentContent.value = content;
       }
     );
-    watch(currentContent, currentContent => {
+    watch(currentContent, (currentContent) => {
       emit("input:content", currentContent);
     });
     onMounted(() => {
-      editor.value.onkeydown = function(e) {
+      editor.value.onkeydown = function (e) {
         if (e.keyCode === 9) {
           const val = this.value;
           const start = this.selectionStart;
@@ -46,5 +46,5 @@ export const VEditor = {
       padding: var(--base2);
     "
   />
-  `
+  `,
 };

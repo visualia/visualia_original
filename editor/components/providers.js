@@ -72,14 +72,16 @@ const tagSuggestions = (range) => {
   return components.map((c) => {
     const suggestions = formatSuggestions(c);
     let text = "";
+    const suggestionsString =
+      suggestions.join(" ").length > 80
+        ? `\n  ${suggestions.join("\n  ")}\n`
+        : suggestions.join(" ");
     if (publicComponentsWithChildren.includes(c.pascalName)) {
       text = `<${c.kebabName}${suggestions.length ? " " : ""}${suggestions.join(
         " "
       )}>\n  $0\n</${c.kebabName}>`;
     } else {
-      text = `<${c.kebabName} ${suggestions.join(" ")}${
-        suggestions.length ? " " : ""
-      }/>$0`;
+      text = `<${c.kebabName} ${suggestionsString}/>$0`;
     }
     return {
       label: c.kebabName,
