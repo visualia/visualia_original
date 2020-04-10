@@ -1,10 +1,14 @@
+import { receive, send } from "../../src/utils.js";
+import { watch, ref, onMounted } from "../../src/deps/vue.js";
+
+import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
+
 import {
   provideComponentsCompletion,
   provideComponentsHover,
 } from "./providers.js";
 
-import { watch, ref, onMounted } from "../../src/deps/vue.js";
-import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
+import { formatVisualia } from "./format.js";
 
 window.MonacoEnvironment = {
   getWorkerUrl: function (workerId, label) {
@@ -46,6 +50,8 @@ export const VMonaco = {
         monaco.languages.setMonarchTokensProvider("visualia", language);
       });
 
+    let format = null;
+
     onMounted(() => {
       // Setting up autcomplete and hover providers
 
@@ -55,7 +61,17 @@ export const VMonaco = {
       monaco.languages.registerHoverProvider("visualia", {
         provideHover: provideComponentsHover,
       });
-
+      monaco.languages.registerDocumentFormattingEditProvider("visualia", {
+        provideDocumentFormattingEdits(model) {
+          const text = formatVisualia(model.getValue());
+          return [
+            {
+              range: model.getFullModelRange(),
+              text,
+            },
+          ];
+        },
+      });
       // Setting up editor
 
       const editor = monaco.editor.create(el.value, {
@@ -63,7 +79,7 @@ export const VMonaco = {
         theme: "vs-dark",
         fontSize: "15px",
         wordWrap: "wordWrapColumn",
-        wordWrapColumn: 75,
+        wordWrapColumn: 70,
         lineNumbers: "off",
         minimap: {
           enabled: false,
