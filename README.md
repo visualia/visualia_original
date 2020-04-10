@@ -247,6 +247,15 @@ The true power of the framework emerges when math functions are combined with li
 
 ## Development
 
+### Work environment
+
+We recommend to use Visual Studio Code with the following extensions:
+
+https://github.com/axetroy/vscode-deno
+https://github.com/faisalhakim47/vscode-vue-inline-template
+https://github.com/bashmish/es6-string-css
+https://github.com/ritwickdey/vscode-live-server
+
 ### Component architecture
 
 #### Compiler
@@ -262,7 +271,7 @@ In VueJS 3.x it can be expressed as:
 ```js
 import {
   compile,
-  createApp
+  createApp,
 } from "https://unpkg.com/vue@3.0.0-alpha.4/dist/vue.esm.js";
 
 import marked from "https://unpkg.com/marked@0.8.0/lib/marked.esm.js";
@@ -278,7 +287,7 @@ const App = {
   setup() {
     const template = marked(content);
     return () => compile(template)();
-  }
+  },
 };
 
 createApp(App).mount("#app");
@@ -363,7 +372,7 @@ const VExample = {
     .VExample {
       color: var(--red);
     }
-  `
+  `,
 };
 ```
 
@@ -464,10 +473,10 @@ To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https:/
 ```js
 import {
   visualia,
-  get
+  get,
 } from "http://visualia.github.io/visualia/dist/visualia.js";
 import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
-import { p5 } from "http://visualia.github.io/p5/p5.js";
+import { p5 } from "http://visualia.github.io/p5/dist/p5.js";
 
 // p5 sketch
 
@@ -476,7 +485,7 @@ import { p5 } from "http://visualia.github.io/p5/p5.js";
 
 // Note that we use get() function to use Visualia live variables
 
-const sketch = s => {
+const sketch = (s) => {
   s.setup = () => {
     s.createCanvas(200, 200);
   };
@@ -500,13 +509,13 @@ export const PfiveExample = {
   },
   template: `
     <div ref="el" />
-  `
+  `,
 };
 
 // We initialize Visualia with our p5 component
 
 visualia({
-  components: { PfiveExample }
+  components: { PfiveExample },
 });
 ```
 
@@ -520,7 +529,7 @@ visualia({
 
 ### Observable
 
-Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As is is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
 
 #### Using Visualia in Observable
 
@@ -541,11 +550,11 @@ import { get, set } from "http://visualia.github.io/visualia/dist/visualia.js";
 import {
   ref,
   onMounted,
-  watch
+  watch,
 } from "http://visualia.github.io/visualia/deps/vue.js";
 import {
   Runtime,
-  Inspector
+  Inspector,
 } from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
 
 // We are importing the notebook
@@ -560,7 +569,7 @@ export const ObservableExample = {
   setup() {
     const el = ref(null);
     onMounted(() => {
-      const observable = new Runtime().module(notebook, name => {
+      const observable = new Runtime().module(notebook, (name) => {
         if (name == "c") {
           // Getting data from Obsevable to Visualia:
           // we loop over Obsevable notebook cells and if the one of them
@@ -569,7 +578,7 @@ export const ObservableExample = {
           return {
             fulfilled(value) {
               set("c", value);
-            }
+            },
           };
         } else {
           // For all other cells we just render the Observable cell in Visualia
@@ -591,7 +600,7 @@ export const ObservableExample = {
   },
   template: `
     <div ref="el" />
-  `
+  `,
 };
 ```
 
