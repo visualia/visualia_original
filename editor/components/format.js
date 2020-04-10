@@ -6,7 +6,7 @@ import {
 
 const formatHtml = (str) =>
   prettier.format(str, {
-    printWidth: 70,
+    printWidth: 30,
     parser: "html",
     plugins: [html],
   });
