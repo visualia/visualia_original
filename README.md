@@ -1,3 +1,5 @@
+<!--- <br /> --->
+
 # Visu&#8203;alia
 
 Visualia is a web framework for creating interactive documents. It uses [Markdown](https://guides.github.com/features/mastering-markdown/) text format and [VueJS 3.x](https://github.com/vuejs/vue-next) components for authoring.
@@ -43,7 +45,7 @@ visualia();
 **index.md**
 
 ```live index
-## Hello
+# Hello
 
 Welcome to Visualia. Edit me!
 ```
