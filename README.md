@@ -12,7 +12,22 @@ https://github.com/visualia/visualia
 
 ## Getting started
 
-To get started you will need three files: `index.html` for HTML, `index.js` for Javascript and `index.md` for Markdown.
+To get started you will need three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
+
+**index.md**
+
+```live index
+# Hello
+
+Welcome to Visualia. Edit me!
+```
+
+**index.js.** Yes, two lines.
+
+```js
+import { visualia } from "https://visualia.github.io/visualia/dist/visualia.js";
+visualia();
+```
 
 **index.html**
 
@@ -35,21 +50,6 @@ To get started you will need three files: `index.html` for HTML, `index.js` for 
 </html>
 ```
 
-**index.js**
-
-```js
-import { visualia } from "https://visualia.github.io/visualia/dist/visualia.js";
-visualia();
-```
-
-**index.md**
-
-```live index
-# Hello
-
-Welcome to Visualia. Edit me!
-```
-
 ## Components
 
 All Visualia components are prefixed with `v-` and are loaded automatically when the framework starts.
@@ -67,7 +67,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 </v-scene>
 ```
 
-<!--- <v-props component="VSceneThree" /> --->
+<!--- <v-props component="VScene" /> --->
 
 `mode` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different render modes, their dimensions, and underlying implementation:
 
@@ -106,7 +106,7 @@ Displays a line.
 </v-scene>
 ```
 
-<!--- <v-props component="VLineSvg" /> --->
+<!--- <v-props component="VLine" /> --->
 
 #### Square
 
@@ -120,7 +120,7 @@ Displays a 2D or 3D square.
 </v-scene>
 ```
 
-<!--- <v-props component="VSquareSvg" /> --->
+<!--- <v-props component="VSquare" /> --->
 
 #### Circle
 
@@ -134,7 +134,7 @@ Displays a 2D circle.
 </v-scene>
 ```
 
-<!--- <v-props component="VCircleSvg" /> --->
+<!--- <v-props component="VCircle" /> --->
 
 #### Sphere
 
@@ -151,7 +151,7 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 </v-scene>
 ```
 
-<!--- <v-props component="VSphereThree" /> --->
+<!--- <v-props component="VSphere" /> --->
 
 ### Live variables
 
@@ -167,15 +167,11 @@ The simplest way to create a dynamic variable is to use `<v-slider>` component w
 <v-slider set="a" />
 ```
 
-To display the live value, use the `get()` function:
+To display the live value, use the `get()` function. You can use `get()` anywhere in the document, including _inside components_:
 
 ```live get
 a is {{ get("a") }}
-```
 
-You can use `get()` function anywhere in the document, including inside components:
-
-```live getscene
 <v-scene>
   <v-square
     position="100 100"
@@ -381,7 +377,10 @@ const VExample = {
 On framework initialization components CSS will be merged into a single CSS string and be injected into HTML `<style>` tag:
 
 ```js
-import { components } from "https://visualia.github.io/visualia/dist/visualia.js";
+import {
+  componentCss,
+  components,
+} from "https://visualia.github.io/visualia/dist/visualia.js";
 
 componentCss(components);
 ```
@@ -543,7 +542,7 @@ https://observablehq.com/@kristjanjansen/visualia-in-observable
 
 As Observable allows [exporting notebooks as ESM modules](https://observablehq.com/@observablehq/downloading-and-embedding-notebooks), you can also import Observable notebook into Visualia.
 
-Here's the code how to import a sample notebook to Visualia and have a two-way data exchange between two reacive environments:
+Here's the code how to import a sample notebook to Visualia and have a two-way data exchange between two reactive environments:
 
 **index.js**
 
@@ -636,20 +635,32 @@ It is a viable option and could provide excellent developer experience for the f
 
 Note that this could be reconsidered in the future, giving Typescript-based Deno is part of the project toolchain already.
 
-## Backstory
+## Backstory and lessons learned
 
-Visualia is a second take on the initial idea: creating lightweight dynamic documents using the latest Javascript features, VueJS and Markdown.
+Visualia is a second iteration of the same idea, the predecessor project [Fachwerk](https://github.com/designstem/fachwerk) was also based on latest Javascript features, ESM, VueJS and Markdown.
 
-Although the first version called [Fachwerk](https://github.com/designstem/fachwerk) did serve the need of the project it was created for -- to deliver next-gen educational materials -- the actual implementation was somewhat lacking:
+It was built to deliver interactive educational materials -- it served that need, but he the actual implementation was somewhat lacking. Here are the key lessons we learned from Fachwerk:
 
-- It was too early for fully embracing ESM (ECMAScript modules). Many of the project dependencies did not yet offer ESM module builds so custom Rollup-based build system was introduced for transpiling CommonJS modules to ESM (similar what [Snowpack](https://www.snowpack.dev/) does).
+#### It was too early for full-on ESM
 
-- One of the messiest implementations were ThreeJS-related code, starting from missing ESM support, especially in more experimental code such as `THREE.SVGRenderer` that had to be ported to ES6 manually. Also, the ThreeJS code was parly based on outdated [vue-threejs](https://github.com/fritx/vue-threejs) implementation that was hard to reason about.
+2017-2019 was too early for fully embracing ECMAScript modules. Many of the project dependencies did not yet offer ESM module builds so custom Rollup-based build system was introduced for transpiling CommonJS modules to ESM (similar what [Snowpack](https://www.snowpack.dev/) does).
 
-- Some key ideas such as a simple global state using `set` and `get` only appeared in the project in a later stage. This left several inferior attempts for state handling via `v-slot` still into the codebase and the documentation.
+#### ThreeJS was not yet modular
 
-- The performance was not a prioritized goal: CSS live injection approach was inefficient, math rendering needed a explicit update triggering and ThreeJS components were always animating even when the input data was static.
+One of the messiest parts of Fachwerk was 3D code, based on ThreeJS. ESM builds of the library had to be created partially using Rollup, partially manually (`THREE.SVGRenderer`). In addition, the [vue-threejs](https://github.com/fritx/vue-threejs) integration library code Fachwerk used was quite hard to reason about.
 
-- Very modest test coverage and missing integration with CI (Continuous Integration) systems.
+#### Key ideas arriving too late
 
-- Documentation, content creation, content marketing, contributions, and community management were mostly an afterthought.
+Some key ideas such as a simple global state using `set` and `get` and having a proper routing only appeared in the project in a later stage. This left previous inferior attempts still into the codebase and documentation.
+
+#### Performance issues
+
+The web performance was not a prioritized goal: CSS live injection approach was inefficient, math rendering needed a explicit update triggering and ThreeJS components were always animating even when the input data was stale.
+
+#### Missing integrations
+
+Fachwerk had a very modest test coverage and missing integration with CI (Continuous Integration) systems.
+
+#### Missing documentation
+
+Documentation, content creation, content marketing, contributions, and community management were mostly an afterthought.
