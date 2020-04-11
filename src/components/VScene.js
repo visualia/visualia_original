@@ -16,9 +16,6 @@ const modes = ["svg", "canvas", "three", "webgl"];
 
 export const VScene = {
   props: {
-    // sizeProps are here just for props documentation,
-    // the component passes through all passed props anyway
-    ...sizeProps,
     mode: {
       default: "svg",
       suggest: modes,
@@ -27,6 +24,7 @@ export const VScene = {
         "Rendering mode, can be either " +
         modes.map((m) => `\`${m}\``).join(", "),
     },
+    ...sizeProps,
     isometric: {
       default: false,
       type: [Boolean, String],

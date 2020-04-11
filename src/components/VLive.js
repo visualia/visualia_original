@@ -37,7 +37,7 @@ export const VLive = {
       />
     </div>
     <v-content
-      style="overflow: auto; height: 300px;"
+      style="overflow: auto; height: 350px;"
       :content="currentContent"
     />
   </div>
@@ -46,6 +46,7 @@ export const VLive = {
     .v-live {
       grid-template-columns: 1fr 1fr;
       display: grid;
+      box-shadow: 0 0 20px hsla(200, 19%, 28%, 0.1);
     }
     @media (max-width: 600px) {
       .v-live {

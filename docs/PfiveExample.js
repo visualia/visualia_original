@@ -1,6 +1,6 @@
 import { get } from "../dist/visualia.js";
 import { ref, onMounted } from "../src/deps/vue.js";
-import { p5 } from "https://visualia.github.io/p5/p5.js";
+import { p5 } from "https://visualia.github.io/p5/dist/p5.js";
 
 // p5 sketch
 
@@ -9,7 +9,7 @@ import { p5 } from "https://visualia.github.io/p5/p5.js";
 
 // Note that we use get() function to use Visualia live variables
 
-const sketch = s => {
+const sketch = (s) => {
   s.setup = () => {
     s.createCanvas(200, 200);
   };
@@ -33,5 +33,5 @@ export const PfiveExample = {
   },
   template: `
     <div ref="el" />
-  `
+  `,
 };
