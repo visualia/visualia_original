@@ -6,8 +6,8 @@ export const VContent = {
     content: {
       default: "",
       type: String,
-      docs: "Content to be compiled into VueJS template"
-    }
+      docs: "Content to be compiled into VueJS template",
+    },
   },
   setup(props) {
     const parsedContent = computed(() => parseContent(props.content));
@@ -15,7 +15,7 @@ export const VContent = {
     return { parsedContent, slideGridStyle };
   },
   template: `
-  <div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: center; position: relative;">
     <div style="max-width: 800px; width: 100%;">
       <div
         v-for="(slide,i) in parsedContent"
@@ -30,6 +30,9 @@ export const VContent = {
         </div>
       </div>
     </div>
+    <div style="position: absolute; right: 0; bottom: 0; left: 0; opacity: 0.75;">
+      <v-messages />
+    </div>
   </div>
-  `
+  `,
 };
