@@ -5,6 +5,7 @@ import { VCircleCanvas } from "./VCircleCanvas.js";
 import { VSphereThree } from "./VSphereThree.js";
 
 import { stylingProps, transformThreeProps } from "../internals.js";
+import { message } from "../utils.js";
 
 export const VSphere = {
   props: {
@@ -25,15 +26,18 @@ export const VSphere = {
   },
   setup(props, { slots }) {
     const modes = {
-      svg: VCircleSvg,
-      canvas: VCircleCanvas,
       three: VSphereThree,
       webgl: VSphereThree,
     };
     const sceneContext = inject("sceneContext");
-    return () =>
-      modes[sceneContext.mode.value]
-        ? h(modes[sceneContext.mode.value], { ...props }, slots)
-        : null;
+
+    if (modes[sceneContext.mode.value]) {
+      return () => h(modes[sceneContext.mode.value], { ...props }, slots);
+    } else {
+      message(
+        '`v-sphere` can only displayed on `mode="three" and `mode="webgl"`'
+      );
+      return () => null;
+    }
   },
 };
