@@ -37,7 +37,7 @@ export const VEditor = {
       <v-monaco
         style="flex: 1;"
         :content="currentContent"
-        @input:content="content => currentContent = content"
+        @input:content="content => { currentContent = content }"
       />
     </div>
     <v-content
