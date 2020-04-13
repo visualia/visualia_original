@@ -1,4 +1,5 @@
 import { messages } from "../utils.js";
+import marked from "../deps/marked.js";
 
 export const VMessages = {
   setup() {
