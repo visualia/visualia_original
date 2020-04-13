@@ -30,14 +30,16 @@ export const VSphere = {
       webgl: VSphereThree,
     };
     const sceneContext = inject("sceneContext");
-
-    if (modes[sceneContext.mode.value]) {
-      return () => h(modes[sceneContext.mode.value], { ...props }, slots);
-    } else {
-      message(
-        '`v-sphere` can only displayed on `mode="three" and `mode="webgl"`'
-      );
-      return () => null;
+    if (sceneContext) {
+      if (modes[sceneContext.mode.value]) {
+        return () => h(modes[sceneContext.mode.value], { ...props }, slots);
+      } else {
+        message(
+          '`v-sphere` can only displayed on `mode="three" and `mode="webgl"`'
+        );
+        return () => null;
+      }
     }
+    message("`v-sphere` needs to placed inside `v-scene`");
   },
 };
