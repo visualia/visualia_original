@@ -1,9 +1,13 @@
-<v-slider set="b" />
+```live
 
-b is {{ get("b") }}
+<v-slider set="r" />
+
+r is is {{ get("r") }}
 
 <v-scene mode="pdf">
   <v-circle
-    :r="get('b')"
+    :r="get('r')"
   />
 </v-scene>
+
+```
