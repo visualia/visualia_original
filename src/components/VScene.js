@@ -13,7 +13,7 @@ export const VSceneThreeSvg = (props, context) =>
 export const VSceneThreeWebgl = (props, context) =>
   h(VSceneThree, { ...props, renderer: "webgl" }, context.slots);
 
-const modes = ["svg", "canvas", "three", "webgl"];
+const modes = ["svg", "canvas", "three", "webgl", "pdf"];
 
 export const VScene = {
   props: {

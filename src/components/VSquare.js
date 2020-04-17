@@ -3,6 +3,7 @@ import { h, inject } from "../deps/vue.js";
 import { VSquareSvg } from "./VSquareSvg.js";
 import { VSquareCanvas } from "./VSquareCanvas.js";
 import { VSquareThree } from "./VSquareThree.js";
+import { VSquarePdf } from "./VSquarePdf.js";
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 
@@ -18,11 +19,13 @@ export const VSquare = {
     ...transformTwoProps,
   },
   setup(props, { slots }) {
+    console.log("a");
     const modes = {
       svg: VSquareSvg,
       canvas: VSquareCanvas,
       three: VSquareThree,
       webgl: VSquareThree,
+      pdf: VSquarePdf,
     };
     const sceneContext = inject("sceneContext");
     return () =>

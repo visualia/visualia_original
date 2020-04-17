@@ -1,4 +1,10 @@
-import { inject, ref, onMounted } from "../deps/vue.js";
+import {
+  inject,
+  ref,
+  onMounted,
+  onBeforeUpdate,
+  onActivated,
+} from "../deps/vue.js";
 
 import { jsPDF } from "https://visualia.github.io/jspdf/dist/jspdf.js";
 
@@ -15,18 +21,25 @@ export const VScenePdf = {
 
     const sceneContext = inject("sceneContext");
 
+    pdf.value = new jsPDF({
+      width: width.value,
+      height: height.value,
+    });
+
     sceneContext.pdf = pdf;
 
     onMounted(() => {
-      sceneContext.pdf.value = new jsPDF({
-        width: width.value,
-        height: height.value,
-      });
       src.value = sceneContext.pdf.value.output("datauristring");
     });
+
+    onBeforeUpdate(() => {
+      console.log(sceneContext.pdf.value.output("datauristring"));
+    });
+
     return { el, src, width, height };
   },
   template: `
+  <slot />
   <iframe
     ref="el"
     :height="height"
@@ -34,6 +47,7 @@ export const VScenePdf = {
     :src="src"
     frameborder="0"
     scrolling="no"
-  />
+  >
+  </iframe>
   `,
 };
