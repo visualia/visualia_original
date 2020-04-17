@@ -1,6 +1,6 @@
 ```live
 
-<v-slider set="r" />
+<v-slider set="r" step="20" />
 
 r is is {{ get("r") }}
 
