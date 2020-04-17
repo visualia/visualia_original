@@ -3,6 +3,7 @@ import { computed, h, provide } from "../deps/vue.js";
 import { VSceneSvg } from "./VSceneSvg.js";
 import { VSceneCanvas } from "./VSceneCanvas.js";
 import { VSceneThree } from "./VSceneThree.js";
+import { VScenePdf } from "./VScenePdf.js";
 
 import { sizeProps } from "../internals/size.js";
 
@@ -38,6 +39,7 @@ export const VScene = {
       canvas: VSceneCanvas,
       three: VSceneThreeSvg,
       webgl: VSceneThreeWebgl,
+      pdf: VScenePdf,
     };
     const mode = computed(() => props.mode);
     provide("sceneContext", { mode });
