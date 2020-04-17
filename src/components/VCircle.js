@@ -3,6 +3,7 @@ import { h, inject } from "../deps/vue.js";
 import { VCircleSvg } from "./VCircleSvg.js";
 import { VCircleCanvas } from "./VCircleCanvas.js";
 import { VCircleThree } from "./VCircleThree.js";
+import { VCirclePdf } from "./VCirclePdf.js";
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 
@@ -23,6 +24,7 @@ export const VCircle = {
       canvas: VCircleCanvas,
       three: VCircleThree,
       webgl: VCircleThree,
+      pdf: VCirclePdf,
     };
     const sceneContext = inject("sceneContext");
     return () =>
