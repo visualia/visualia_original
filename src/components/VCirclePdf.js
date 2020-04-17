@@ -5,7 +5,9 @@ export const VCirclePdf = {
     const sceneContext = inject("sceneContext");
     watch(() => {
       if (sceneContext.pdf.value) {
+        sceneContext.beforeDraw();
         sceneContext.pdf.value.circle(0, 0, props.r);
+        sceneContext.afterDraw();
       }
     });
     return () => null;
