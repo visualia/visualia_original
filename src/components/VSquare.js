@@ -19,7 +19,6 @@ export const VSquare = {
     ...transformTwoProps,
   },
   setup(props, { slots }) {
-    console.log("a");
     const modes = {
       svg: VSquareSvg,
       canvas: VSquareCanvas,

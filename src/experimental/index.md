@@ -1,7 +1,10 @@
-<v-slider set="a" />
+<v-slider set="b" />
 
-<v-scene mode="svg">
-  <v-circle :r="get('a')" />
+b is {{ get("b") }}
+
+<v-scene mode="pdf">
+  <v-square
+    position="100 100"
+    :r="get('b')"
+  />
 </v-scene>
-
-{{ get('a') }}
