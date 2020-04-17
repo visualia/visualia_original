@@ -33,7 +33,8 @@ export const VScenePdf = {
     });
 
     onBeforeUpdate(() => {
-      console.log(sceneContext.pdf.value.output("datauristring"));
+      sceneContext.pdf.value.deletePage(1);
+      sceneContext.pdf.value.addPage([width.value, height.value]);
     });
 
     return { el, src, width, height };

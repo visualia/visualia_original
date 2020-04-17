@@ -1,5 +1,7 @@
-```live
-<v-scene mode="pdf" width="210" height="297">
-  <v-circle r="100"/>
+<v-slider set="a" />
+
+<v-scene mode="svg">
+  <v-circle :r="get('a')" />
 </v-scene>
-```
+
+{{ get('a') }}
