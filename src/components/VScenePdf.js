@@ -24,16 +24,15 @@ export const VScenePdf = {
       });
       src.value = sceneContext.pdf.value.output("datauristring");
     });
-
     return { el, src, width, height };
   },
   template: `
   <iframe
     ref="el"
-    width="width"
-    height="height"
+    :height="height"
+    :width="width"
     :src="src"
-    frame-border="0"
+    frameborder="0"
     scrolling="no"
   />
   `,
