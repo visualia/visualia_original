@@ -12,7 +12,7 @@ export const stylingProps = {
   stroke: {
     default: "black",
     suggest: ["black", "red", "green", "blue", "none"],
-    type: [String],
+    type: [String, Number, Array, Object],
     docs: "Stroke color",
   },
   strokeWidth: {
@@ -24,7 +24,7 @@ export const stylingProps = {
   fill: {
     default: "none",
     suggest: ["none", "black", "red", "green", "blue"],
-    type: [String, Number],
+    type: [String, Number, Array, Object],
     docs: 'Fill color. Set to "none" for no fill',
   },
   opacity: {
@@ -81,3 +81,31 @@ export const useThreeStroke = (props) =>
         side: DoubleSide,
       })
   );
+
+// PDF
+
+const getPdfStyle = (stroke, fill) => {
+  if (stroke && !fill) {
+    return "S";
+  }
+  if (!stroke && fill) {
+    return "F";
+  }
+  if (stroke && fill) {
+    return "DF";
+  }
+  return "S";
+};
+
+export const stylingPdf = (props, pdf) => {
+  if (props.stroke !== "none") {
+    pdf.setDrawColor(0, 0, 0);
+  }
+
+  if (props.fill !== "none") {
+    pdf.setFillColor(...props.fill);
+  }
+  const pdfStyle = getPdfStyle(props.stroke !== "none", props.fill !== "none");
+
+  return { pdfStyle };
+};

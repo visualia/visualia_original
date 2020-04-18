@@ -9,5 +9,5 @@ r is is {{ get("r") }}
   <v-square
     :r="get('r')"
   />
-  <v-line points="0 0, 50 50, 0 25" />
+  <v-line points="0 0, 50 50, 0 25" :fill="[0,255,0]" />
 </v-scene>
