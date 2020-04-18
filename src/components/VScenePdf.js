@@ -32,16 +32,9 @@ export const VScenePdf = {
       src.value = sceneContext.pdf.value.output("datauristring");
     });
 
-    sceneContext.beforeDraw = () => {
-      sceneContext.pdf.value.addPage();
-    };
-    sceneContext.afterDraw = () => {
-      sceneContext.pdf.value.deletePage(1);
+    sceneContext.update = () => {
       src.value = sceneContext.pdf.value.output("datauristring");
     };
-
-    // onBeforeUpdate(() => {
-    // });
 
     return { el, src, width, height };
   },

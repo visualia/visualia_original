@@ -8,6 +8,9 @@ r is is {{ get("r") }}
   <v-circle
     :r="get('r')"
   />
+  <v-square
+    :r="get('r')"
+  />
 </v-scene>
 
 ```

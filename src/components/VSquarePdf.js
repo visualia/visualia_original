@@ -11,6 +11,7 @@ export const VSquarePdf = {
           props.r * 2,
           props.r * 2
         );
+        sceneContext.update();
       }
     });
     return () => null;
