@@ -1,10 +1,4 @@
-import {
-  inject,
-  ref,
-  onMounted,
-  onBeforeUpdate,
-  onActivated,
-} from "../deps/vue.js";
+import { inject, ref, onMounted } from "../deps/vue.js";
 
 import { jsPDF } from "https://visualia.github.io/jspdf/dist/jspdf.js";
 
@@ -27,6 +21,7 @@ export const VScenePdf = {
     });
 
     sceneContext.pdf = pdf;
+    sceneContext.ctx = pdf.value.context2d;
 
     onMounted(() => {
       src.value = sceneContext.pdf.value.output("datauristring");
