@@ -4,9 +4,11 @@ r is is {{ get("r") }}
 
 ```live
 <v-scene mode="svg">
-  <v-line
+  <v-square
     position="50 50"
-    points="0 0, 100 100"
+    r="25"
+    stroke="red"
+    fill="blue"
   />
 </v-scene>
 ```
