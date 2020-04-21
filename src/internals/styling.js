@@ -12,7 +12,7 @@ export const stylingProps = {
   stroke: {
     default: "black",
     suggest: ["black", "red", "green", "blue", "none"],
-    type: [String],
+    type: [String, Number, Array, Object],
     docs: "Stroke color",
   },
   strokeWidth: {
@@ -24,7 +24,7 @@ export const stylingProps = {
   fill: {
     default: "none",
     suggest: ["none", "black", "red", "green", "blue"],
-    type: [String, Number],
+    type: [String, Number, Array, Object],
     docs: 'Fill color. Set to "none" for no fill',
   },
   opacity: {

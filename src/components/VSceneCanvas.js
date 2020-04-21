@@ -3,7 +3,7 @@ import {
   ref,
   onMounted,
   onBeforeUpdate,
-  onUpdated
+  onUpdated,
 } from "../deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
@@ -41,5 +41,5 @@ export const VSceneCanvas = {
   <canvas ref="el">
     <slot />
   </canvas>
-  `
+  `,
 };
