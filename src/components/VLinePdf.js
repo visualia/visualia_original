@@ -1,19 +1,6 @@
 import { inject } from "../deps/vue.js";
 import { parseCoords, stylingPdf } from "../internals.js";
 
-const styleString = (stroke, fill) => {
-  if (stroke && !fill) {
-    return "S";
-  }
-  if (!stroke && fill) {
-    return "F";
-  }
-  if (stroke && fill) {
-    return "DF";
-  }
-  return "S";
-};
-
 export const VLinePdf = {
   setup(props) {
     const sceneContext = inject("sceneContext");

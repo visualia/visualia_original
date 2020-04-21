@@ -1,12 +1,12 @@
 import { inject, ref, onMounted } from "../deps/vue.js";
 
-import { jsPDF } from "https://visualia.github.io/jspdf/dist/jspdf.js";
+import { PDFDocument } from "https://visualia.github.io/pdf-lib/dist/pdf-lib.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
 export const VScenePdf = {
   props: { ...sizeProps },
-  setup(props) {
+  async setup(props) {
     const el = ref(null);
     const pdf = ref(null);
     const src = ref(null);
@@ -14,22 +14,14 @@ export const VScenePdf = {
     const { width, height } = useSize(props);
 
     const sceneContext = inject("sceneContext");
-
-    pdf.value = new jsPDF({
-      width: width.value,
-      height: height.value,
-    });
-
     sceneContext.pdf = pdf;
-    sceneContext.ctx = pdf.value.context2d;
 
-    onMounted(() => {
-      src.value = sceneContext.pdf.value.output("datauristring");
+    onMounted(async function () {
+      const doc = await PDFDocument.create();
+      pdf.value = doc.addPage([width.value, height.value]);
+      const datauri = await doc.saveAsBase64({ dataUri: true });
+      src.value = datauri;
     });
-
-    sceneContext.update = () => {
-      src.value = sceneContext.pdf.value.output("datauristring");
-    };
 
     return { el, src, width, height };
   },
@@ -42,7 +34,6 @@ export const VScenePdf = {
     :src="src"
     frameborder="0"
     scrolling="no"
-  >
-  </iframe>
+  />
   `,
 };
