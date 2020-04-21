@@ -1,4 +1,10 @@
-import { inject, ref, onMounted } from "../deps/vue.js";
+import {
+  inject,
+  ref,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+} from "../deps/vue.js";
 
 import { PDFDocument } from "https://visualia.github.io/pdf-lib/dist/pdf-lib.js";
 
@@ -16,12 +22,18 @@ export const VScenePdf = {
     const sceneContext = inject("sceneContext");
     sceneContext.pdf = pdf;
 
-    onMounted(async function () {
-      const doc = await PDFDocument.create();
-      pdf.value = doc.addPage([width.value, height.value]);
+    //onMounted(async function () {
+    const doc = await PDFDocument.create();
+    pdf.value = doc.addPage([width.value, height.value]);
+    const datauri = await doc.saveAsBase64({ dataUri: true });
+    src.value = datauri;
+
+    onUpdated(async function () {
+      console.log("a");
       const datauri = await doc.saveAsBase64({ dataUri: true });
       src.value = datauri;
     });
+    //});
 
     return { el, src, width, height };
   },
