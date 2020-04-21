@@ -81,31 +81,3 @@ export const useThreeStroke = (props) =>
         side: DoubleSide,
       })
   );
-
-// PDF
-
-const getPdfStyle = (stroke, fill) => {
-  if (stroke && !fill) {
-    return "S";
-  }
-  if (!stroke && fill) {
-    return "F";
-  }
-  if (stroke && fill) {
-    return "DF";
-  }
-  return "S";
-};
-
-export const stylingPdf = (props, pdf) => {
-  if (props.stroke !== "none") {
-    pdf.setDrawColor(0, 0, 0);
-  }
-
-  if (props.fill !== "none") {
-    pdf.setFillColor(...props.fill);
-  }
-  const pdfStyle = getPdfStyle(props.stroke !== "none", props.fill !== "none");
-
-  return { pdfStyle };
-};

@@ -4,8 +4,7 @@ r is is {{ get("r") }}
 
 <v-scene mode="pdf">
   <v-square
-    r="5"
-    :fill="[0,0,255]"
-    position="50 50"
+    r="10"
+    position="20 20"
   />
 </v-scene>

@@ -18,22 +18,16 @@ export const VScenePdf = {
     const src = ref(null);
 
     const { width, height } = useSize(props);
-
     const sceneContext = inject("sceneContext");
     sceneContext.pdf = pdf;
 
-    //onMounted(async function () {
-    const doc = await PDFDocument.create();
-    pdf.value = doc.addPage([width.value, height.value]);
-    const datauri = await doc.saveAsBase64({ dataUri: true });
-    src.value = datauri;
+    pdf.value = await PDFDocument.create();
+    pdf.value.addPage([width.value, height.value]);
 
-    onUpdated(async function () {
-      console.log("a");
-      const datauri = await doc.saveAsBase64({ dataUri: true });
+    sceneContext.update = async function () {
+      const datauri = await pdf.value.saveAsBase64({ dataUri: true });
       src.value = datauri;
-    });
-    //});
+    };
 
     return { el, src, width, height };
   },
