@@ -6,7 +6,7 @@ import {
   onUpdated,
 } from "../deps/vue.js";
 
-import { PDFDocument } from "https://visualia.github.io/pdf-lib/dist/pdf-lib.js";
+import { PDFDocument } from "../deps/pdf-lib.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
