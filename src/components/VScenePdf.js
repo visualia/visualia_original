@@ -1,10 +1,4 @@
-import {
-  inject,
-  ref,
-  onMounted,
-  onBeforeUpdate,
-  onUpdated,
-} from "../deps/vue.js";
+import { inject, ref } from "../deps/vue.js";
 
 import { PDFDocument } from "../deps/pdf-lib.js";
 
