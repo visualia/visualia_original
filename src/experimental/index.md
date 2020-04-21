@@ -3,8 +3,8 @@
 r is is {{ get("r") }}
 
 <v-scene mode="pdf">
-  <v-square
-    r="10"
-    position="20 20"
+  <v-circle
+    r="200"
+    position="0 0"
   />
 </v-scene>

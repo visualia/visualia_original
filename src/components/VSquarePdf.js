@@ -1,6 +1,5 @@
 import { inject } from "../deps/vue.js";
 import { parseCoords } from "../internals.js";
-import { toNumber } from "../utils.js";
 
 export const VSquarePdf = {
   setup(props) {
