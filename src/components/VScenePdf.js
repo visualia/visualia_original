@@ -1,7 +1,5 @@
 import { inject, ref } from "../deps/vue.js";
 
-import { PDFDocument } from "../deps/pdf-lib.js";
-
 import { sizeProps, useSize } from "../internals/size.js";
 
 export const VScenePdf = {
@@ -14,6 +12,8 @@ export const VScenePdf = {
     const { width, height } = useSize(props);
     const sceneContext = inject("sceneContext");
     sceneContext.pdf = pdf;
+
+    const { PDFDocument } = await import("../deps/pdf-lib.js");
 
     pdf.value = await PDFDocument.create();
     pdf.value.addPage([width.value, height.value]);

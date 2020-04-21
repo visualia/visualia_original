@@ -12,6 +12,8 @@ export const VSquarePdf = {
         y: page.getHeight() - y - props.r,
         width: props.r * 2,
         height: props.r * 2,
+        borderColor: { type: "RGB", red: 0, green: 0, blue: 0 },
+        borderWidth: 2,
       });
       sceneContext.update();
     }

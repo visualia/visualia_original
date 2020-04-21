@@ -26,7 +26,6 @@ export * from "./components/VSquare.js";
 export * from "./components/VSquareCanvas.js";
 export * from "./components/VSquareSvg.js";
 export * from "./components/VSquareThree.js";
-export * from "./components/VSquarePdf.js";
 export * from "./components/VTable.js";
 
 export const publicComponents = [
