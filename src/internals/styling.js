@@ -6,7 +6,9 @@ import {
   LineBasicMaterial,
 } from "../deps/three.js";
 
-import { toNumber } from "../utils.js";
+import { color } from "../deps/d3-color.js";
+
+import { toNumber, fit } from "../utils.js";
 
 export const stylingProps = {
   stroke: {
@@ -81,3 +83,30 @@ export const useThreeStroke = (props) =>
         side: DoubleSide,
       })
   );
+
+// PDF
+
+const pdfColor = (c) => {
+  const { r, g, b } = color(c);
+  return {
+    red: fit(r, 0, 255, 0, 1),
+    green: fit(g, 0, 255, 0, 1),
+    blue: fit(b, 0, 255, 0, 1),
+    type: "RGB",
+  };
+};
+
+export const stylingPdf = (props) => {
+  let color = null;
+  let strokeColor = null;
+
+  if (props.fill !== "none") {
+    color = pdfColor(props.fill);
+  }
+  if (props.stroke !== "none") {
+    borderColor = pdfColor(props.stroke);
+  }
+  // TODO: add correct width
+  let borderWidth = props.strokeWidth;
+  return { color, borderColor, borderWidth };
+};
