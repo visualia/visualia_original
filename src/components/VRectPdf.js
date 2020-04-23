@@ -10,14 +10,13 @@ export const VSquarePdf = {
       const page = sceneContext.pdf.value.getPages()[0];
       page.drawRectangle({
         ...styles,
-        x: x - props.r,
-        y: page.getHeight() - y - props.r,
-        width: props.r * 2,
-        height: props.r * 2,
+        x: x,
+        y: page.getHeight() - y,
+        width: props.width,
+        height: props.height,
       });
       sceneContext.update();
     }
-    ``;
     return () => null;
   },
 };

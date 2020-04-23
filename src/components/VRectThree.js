@@ -5,7 +5,7 @@ import {
   PlaneGeometry,
   Mesh,
   EdgesGeometry,
-  LineSegments
+  LineSegments,
 } from "../deps/three.js";
 
 import {
@@ -13,7 +13,7 @@ import {
   useThreeFill,
   useThreeStroke,
   transformThreeProps,
-  useThreeTransform
+  useThreeTransform,
 } from "../internals.js";
 
 export const VSquareThree = {
@@ -23,7 +23,7 @@ export const VSquareThree = {
 
     var group = new Group();
 
-    const geometry = new PlaneGeometry(props.r * 2, props.r * 2);
+    const geometry = new PlaneGeometry(props.width, props.height);
 
     if (props.fill !== "none") {
       const fill = useThreeFill(props);
@@ -42,5 +42,5 @@ export const VSquareThree = {
     useThreeTransform(props, group);
 
     return () => null;
-  }
+  },
 };
