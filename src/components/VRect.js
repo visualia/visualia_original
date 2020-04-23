@@ -9,6 +9,18 @@ import { stylingProps, transformTwoProps } from "../internals.js";
 
 export const VRect = {
   props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
     width: {
       default: 0,
       suggest: "0",

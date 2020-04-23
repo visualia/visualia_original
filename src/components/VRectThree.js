@@ -16,8 +16,7 @@ import {
   useThreeTransform,
 } from "../internals.js";
 
-export const VSquareThree = {
-  props: { r: { default: 1 }, ...transformThreeProps, ...stylingProps },
+export const VRectThree = {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
@@ -28,6 +27,8 @@ export const VSquareThree = {
     if (props.fill !== "none") {
       const fill = useThreeFill(props);
       const fillObject = new Mesh(geometry, fill.value);
+      fillObject.position.x = 0;
+      fillObject.position.y = 0;
       group.add(fillObject);
     }
 
@@ -35,6 +36,8 @@ export const VSquareThree = {
       const edges = new EdgesGeometry(geometry);
       const stroke = useThreeStroke(props);
       const strokeObject = new LineSegments(edges, stroke.value);
+      strokeObject.position.x = 0;
+      strokeObject.position.y = 0;
       group.add(strokeObject);
     }
     sceneContext.scene.add(group);
