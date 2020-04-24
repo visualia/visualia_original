@@ -140,6 +140,23 @@ Displays a regular polygon.
 
 <!--- <v-props component="VRegularpolygon" /> --->
 
+#### Hexagon
+
+`<v-hexagon>`
+
+Displays a hexagon.
+
+```live hexagon
+<v-scene>
+  <v-hexagon
+    r="50"
+    position="100 100"
+  />
+</v-scene>
+```
+
+<!--- <v-props component="VHexagon" /> --->
+
 #### Rectangle
 
 `<v-rect>`
