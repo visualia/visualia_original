@@ -14,7 +14,7 @@ export const VRectPdf = {
       page.drawRectangle({
         ...styles,
         x: props.x + posX,
-        y: page.getHeight() - (props.y + posY),
+        y: page.getHeight() - props.y - props.height - posY,
         width: toNumber(props.width),
         height: toNumber(props.height),
       });
