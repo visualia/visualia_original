@@ -8,7 +8,10 @@ export const VLineSvg = {
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
     const path = computed(() => {
-      const parsedPoints = parseCoords(props.points);
+      let parsedPoints = parseCoords(props.points);
+      if (props.closed) {
+        parsedPoints = [...parsedPoints, parsedPoints[0]];
+      }
       return line()(parsedPoints);
     });
     return { styling, transform, path };

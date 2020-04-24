@@ -5,4 +5,9 @@ export const lineProps = {
     type: [String, Array, Object],
     docs: "Array of points that the line will follow",
   },
+  closed: {
+    default: false,
+    type: [Boolean, String],
+    docs: "Is it a closed line?",
+  },
 };
