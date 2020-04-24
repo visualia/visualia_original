@@ -12,7 +12,7 @@ export const VPolygon = {
     <v-line
       :points="points"
       closed
-      fill="blue"
+      :fill="fill"
       :stroke="stroke"
       :strokeWidth="strokeWidth"
       :position="position"
