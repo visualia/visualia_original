@@ -1,18 +1,14 @@
 ```live
-<v-scene v-for="m in ['pdf','svg','canvas','three','webgl']" :mode="m">
-  <v-rect
-    width="50"
-    height="50"
-    position="10 10"
-    stroke-width="10"
+<v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
+  <v-line
+    points="0 0, 50 50, 50 25"
     fill="yellow"
-    stroke="none"
   />
-  <v-square
-    r="10"
-    position="60 60"
-    stroke-width="11"
-    stroke="blue"
+  <v-line
+    points="0 50, 50 100, 50 75"
+    stroke="red"
+    fill="yellow"
+    closed
   />
 </v-scene>
 ```

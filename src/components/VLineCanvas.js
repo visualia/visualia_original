@@ -15,7 +15,10 @@ export const VLineCanvas = {
       if (sceneContext.ctx.value) {
         transformCanvas(props, sceneContext.ctx.value);
         stylingCanvas(props, sceneContext.ctx.value);
-        const parsedPoints = parseCoords(props.points);
+        let parsedPoints = parseCoords(props.points);
+        if (props.closed) {
+          parsedPoints = [...parsedPoints, parsedPoints[0]];
+        }
         const path = line().context(sceneContext.ctx.value);
         sceneContext.ctx.value.beginPath();
         path(parsedPoints);

@@ -1,5 +1,5 @@
 import { inject } from "../deps/vue.js";
-import { parseCoords } from "../internals.js";
+import { parseCoords, stylingPdf } from "../internals.js";
 
 import { line } from "../deps/d3-shape.js";
 
@@ -10,7 +10,10 @@ export const VLinePdf = {
     const styles = stylingPdf(props);
     if (sceneContext.pdf.value) {
       const page = sceneContext.pdf.value.getPages()[0];
-      const parsedPoints = parseCoords(props.points);
+      let parsedPoints = parseCoords(props.points);
+      if (props.closed) {
+        parsedPoints = [...parsedPoints, parsedPoints[0]];
+      }
       const path = line()(parsedPoints);
       page.drawSvgPath(path, {
         ...styles,

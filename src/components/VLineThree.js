@@ -14,8 +14,10 @@ export const VLineThree = {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
-    const parsedPoints = parseCoords(props.points);
-
+    let parsedPoints = parseCoords(props.points);
+    if (props.closed) {
+      parsedPoints = [...parsedPoints, parsedPoints[0]];
+    }
     const geometry = new BufferGeometry().setFromPoints(
       parsedPoints.map((point) => new Vector3(...point))
     );
