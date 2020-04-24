@@ -110,6 +110,7 @@ export const stylingPdf = (props) => {
     styling.borderColor = pdfColor(props.stroke);
   }
   // TODO: add correct width
-  styling.borderWidth = toNumber(props.strokeWidth);
+  styling.borderWidth =
+    props.stroke !== "none" ? toNumber(props.strokeWidth) : 0;
   return styling;
 };

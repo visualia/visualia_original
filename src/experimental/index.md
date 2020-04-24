@@ -1,5 +1,5 @@
 ```live
-<v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
+<v-scene v-for="m in ['pdf','svg','canvas','three','webgl']" :mode="m">
   <v-rect
     width="50"
     height="50"
