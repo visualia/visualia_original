@@ -22,7 +22,12 @@ export const VLineCanvas = {
         const path = line().context(sceneContext.ctx.value);
         sceneContext.ctx.value.beginPath();
         path(parsedPoints);
-        sceneContext.ctx.value.stroke();
+        if (props.fill !== "none") {
+          sceneContext.ctx.value.fill();
+        }
+        if (props.stroke !== "none") {
+          sceneContext.ctx.value.stroke();
+        }
         transformCanvasReset(sceneContext.ctx.value);
       }
     });

@@ -102,11 +102,25 @@ Displays a line.
 
 ```live line
 <v-scene>
-  <v-line points="50 50, 150 150" />
+  <v-line points="50 50, 150 150, 150 50" />
 </v-scene>
 ```
 
 <!--- <v-props component="VLine" /> --->
+
+#### Polygon
+
+`<v-polygon>`
+
+Displays a polygon.
+
+```live line
+<v-scene>
+  <v-polygon points="50 50, 150 150, 150 50" />
+</v-scene>
+```
+
+<!--- <v-props component="VPolygon" /> --->
 
 #### Rectangle
 
