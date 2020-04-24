@@ -2,6 +2,7 @@ import { computed, inject } from "../deps/vue.js";
 
 import {
   MeshPhongMaterial,
+  MeshBasicMaterial,
   DoubleSide,
   LineBasicMaterial,
 } from "../deps/three.js";
@@ -61,16 +62,19 @@ export const stylingCanvas = (props, scene) => {
 
 // Three
 
-export const useThreeFill = (props) =>
-  computed(
+export const useThreeFill = (props) => {
+  const sceneContext = inject("sceneContext");
+  const Material =
+    sceneContext.mode.value == "three" ? MeshBasicMaterial : MeshPhongMaterial;
+  return computed(
     () =>
-      new MeshPhongMaterial({
+      new Material({
         color: props.fill,
         opacity: props.opacity,
         side: DoubleSide,
       })
   );
-
+};
 export const useThreeStroke = (props) =>
   computed(
     () =>
@@ -97,16 +101,16 @@ const pdfColor = (c) => {
 };
 
 export const stylingPdf = (props) => {
-  let color = null;
-  let strokeColor = null;
+  let styling = {};
 
   if (props.fill !== "none") {
-    color = pdfColor(props.fill);
+    styling.color = pdfColor(props.fill);
   }
   if (props.stroke !== "none") {
-    borderColor = pdfColor(props.stroke);
+    styling.borderColor = pdfColor(props.stroke);
   }
   // TODO: add correct width
-  let borderWidth = props.strokeWidth;
-  return { color, borderColor, borderWidth };
+  styling.borderWidth =
+    props.stroke !== "none" ? toNumber(props.strokeWidth) : 0;
+  return styling;
 };

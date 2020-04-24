@@ -1,14 +1,18 @@
-<v-slider set="r" step="20" />
-
-r is is {{ get("r") }}
-
 ```live
-<v-scene mode="svg">
+<v-scene v-for="m in ['pdf','svg','canvas','three','webgl']" :mode="m">
+  <v-rect
+    width="50"
+    height="50"
+    position="10 10"
+    stroke-width="10"
+    fill="yellow"
+    stroke="none"
+  />
   <v-square
-    position="50 50"
-    r="25"
-    stroke="red"
-    fill="blue"
+    r="10"
+    position="60 60"
+    stroke-width="11"
+    stroke="blue"
   />
 </v-scene>
 ```

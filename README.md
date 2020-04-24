@@ -108,15 +108,31 @@ Displays a line.
 
 <!--- <v-props component="VLine" /> --->
 
+#### Rectangle
+
+`<v-rect>`
+
+Displays a 2D rectangle.
+
+```live rect
+<v-scene>
+  <v-rect position="100 100" width="50" height="50" />
+  <v-point position="100 100" fill="red" />
+</v-scene>
+```
+
+<!--- <v-props component="VRect" /> --->
+
 #### Square
 
 `<v-square>`
 
-Displays a 2D or 3D square.
+Displays a 2D square.
 
 ```live square
 <v-scene>
-  <v-square position="100 100" r="50" />
+  <v-square position="100 100" r="25" />
+  <v-point position="100 100" fill="red" />
 </v-scene>
 ```
 

@@ -1,11 +1,11 @@
 import { inject } from "../deps/vue.js";
-
+import { toNumber } from "../utils.js";
 import {
   Group,
   PlaneGeometry,
   Mesh,
   EdgesGeometry,
-  LineSegments
+  LineSegments,
 } from "../deps/three.js";
 
 import {
@@ -13,17 +13,16 @@ import {
   useThreeFill,
   useThreeStroke,
   transformThreeProps,
-  useThreeTransform
+  useThreeTransform,
 } from "../internals.js";
 
-export const VSquareThree = {
-  props: { r: { default: 1 }, ...transformThreeProps, ...stylingProps },
+export const VRectThree = {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
     var group = new Group();
 
-    const geometry = new PlaneGeometry(props.r * 2, props.r * 2);
+    const geometry = new PlaneGeometry(props.width, props.height);
 
     if (props.fill !== "none") {
       const fill = useThreeFill(props);
@@ -37,10 +36,12 @@ export const VSquareThree = {
       const strokeObject = new LineSegments(edges, stroke.value);
       group.add(strokeObject);
     }
+    group.position.x = props.width / 2 + props.x;
+    group.position.y = props.height / 2 + props.y;
     sceneContext.scene.add(group);
 
     useThreeTransform(props, group);
 
     return () => null;
-  }
+  },
 };

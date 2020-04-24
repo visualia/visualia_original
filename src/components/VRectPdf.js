@@ -1,23 +1,25 @@
 import { inject } from "../deps/vue.js";
 import { parseCoords, stylingPdf } from "../internals.js";
+import { toNumber } from "../utils.js";
 
-export const VSquarePdf = {
+export const VRectPdf = {
   setup(props) {
     const sceneContext = inject("sceneContext");
-    const [x, y] = parseCoords(props.position)[0];
+
+    const [posX, posY] = parseCoords(props.position)[0];
     const styles = stylingPdf(props);
+
     if (sceneContext.pdf.value) {
       const page = sceneContext.pdf.value.getPages()[0];
       page.drawRectangle({
         ...styles,
-        x: x - props.r,
-        y: page.getHeight() - y - props.r,
-        width: props.r * 2,
-        height: props.r * 2,
+        x: props.x + posX,
+        y: page.getHeight() - props.y - props.height - posY,
+        width: toNumber(props.width),
+        height: toNumber(props.height),
       });
       sceneContext.update();
     }
-    ``;
     return () => null;
   },
 };

@@ -1,11 +1,4 @@
-import { h, inject } from "../deps/vue.js";
-
-import { VSquareSvg } from "./VSquareSvg.js";
-import { VSquareCanvas } from "./VSquareCanvas.js";
-import { VSquareThree } from "./VSquareThree.js";
-import { VSquarePdf } from "./VSquarePdf.js";
-
-import { stylingProps, transformTwoProps } from "../internals.js";
+import { stylingProps, transformTwoProps } from "../internals.js"
 
 export const VSquare = {
   props: {
@@ -18,18 +11,17 @@ export const VSquare = {
     ...stylingProps,
     ...transformTwoProps,
   },
-  setup(props, { slots }) {
-    const modes = {
-      svg: VSquareSvg,
-      canvas: VSquareCanvas,
-      three: VSquareThree,
-      webgl: VSquareThree,
-      pdf: VSquarePdf,
-    };
-    const sceneContext = inject("sceneContext");
-    return () =>
-      modes[sceneContext.mode.value]
-        ? h(modes[sceneContext.mode.value], { ...props }, slots)
-        : null;
-  },
-};
+  template: `
+  <v-rect
+    :x="-r"
+    :y="-r"
+    :width="r * 2"
+    :height="r * 2"
+    :fill="fill"
+    :stroke="stroke"
+    :position="position"
+    :rotation="rotation"
+    :scale="scale"
+  />
+  `,
+}
