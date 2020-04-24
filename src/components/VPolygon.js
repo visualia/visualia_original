@@ -1,5 +1,3 @@
-import { h } from "../deps/vue.js";
-
 import { lineProps, stylingProps, transformTwoProps } from "../internals.js";
 
 export const VPolygon = {

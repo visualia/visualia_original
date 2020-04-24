@@ -8,7 +8,7 @@ import {
   Line,
 } from "../deps/three.js";
 
-import { parseCoords } from "../internals.js";
+import { parseCoords, useThreeTransform } from "../internals.js";
 
 export const VLineThree = {
   setup(props) {
@@ -35,6 +35,8 @@ export const VLineThree = {
     group.add(line);
 
     sceneContext.scene.add(group);
+
+    useThreeTransform(props, group);
 
     return () => null;
   },
