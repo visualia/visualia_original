@@ -25,7 +25,6 @@ export const VRectThree = {
     const geometry = new PlaneGeometry(props.width, props.height);
 
     if (props.fill !== "none") {
-      console.log(props.fill);
       const fill = useThreeFill(props);
       const fillObject = new Mesh(geometry, fill.value);
       group.add(fillObject);

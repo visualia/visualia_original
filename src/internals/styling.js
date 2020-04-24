@@ -2,6 +2,7 @@ import { computed, inject } from "../deps/vue.js";
 
 import {
   MeshPhongMaterial,
+  MeshBasicMaterial,
   DoubleSide,
   LineBasicMaterial,
 } from "../deps/three.js";
@@ -61,16 +62,19 @@ export const stylingCanvas = (props, scene) => {
 
 // Three
 
-export const useThreeFill = (props) =>
-  computed(
+export const useThreeFill = (props) => {
+  const sceneContext = inject("sceneContext");
+  const Material =
+    sceneContext.mode.value == "three" ? MeshBasicMaterial : MeshPhongMaterial;
+  return computed(
     () =>
-      new MeshPhongMaterial({
+      new Material({
         color: props.fill,
         opacity: props.opacity,
         side: DoubleSide,
       })
   );
-
+};
 export const useThreeStroke = (props) =>
   computed(
     () =>
