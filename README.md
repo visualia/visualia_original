@@ -114,13 +114,31 @@ Displays a line.
 
 Displays a polygon.
 
-```live line
+```live polygon
 <v-scene>
   <v-polygon points="50 50, 150 150, 150 50" />
 </v-scene>
 ```
 
 <!--- <v-props component="VPolygon" /> --->
+
+#### Regular polygon
+
+`<v-regularpolygon>`
+
+Displays a regular polygon.
+
+```live regularpolygon
+<v-scene>
+  <v-regularpolygon
+    count="5"
+    r="50"
+    position="100 100"
+  />
+</v-scene>
+```
+
+<!--- <v-props component="VRegularpolygon" /> --->
 
 #### Rectangle
 

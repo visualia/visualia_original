@@ -2,6 +2,7 @@ export * from "./components/VAnimate.js";
 export * from "./components/VCircle.js";
 export * from "./components/VCompiler.js";
 export * from "./components/VContent.js";
+export * from "./components/VHexagon.js";
 export * from "./components/VLine.js";
 export * from "./components/VLive.js";
 export * from "./components/VMath.js";
@@ -21,6 +22,7 @@ export * from "./components/VTextarea.js";
 export const publicComponents = [
   "VAnimate",
   "VCircle",
+  "VHexagon",
   "VLine",
   "VPoint",
   "VPolygon",
