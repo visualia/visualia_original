@@ -6,7 +6,7 @@ import {
   OrthographicCamera,
   Color,
   DirectionalLight,
-  WebGLRenderer
+  WebGLRenderer,
 } from "../deps/three.js";
 
 import { SVGRenderer } from "../deps/svgrenderer.js";
@@ -21,12 +21,12 @@ export const VSceneThree = {
     ...sizeProps,
     renderer: {
       default: "svg",
-      type: String
+      type: String,
     },
     isometric: {
       default: false,
-      type: [Boolean, String]
-    }
+      type: [Boolean, String],
+    },
   },
   setup(props) {
     const el = ref(null);
@@ -97,5 +97,5 @@ export const VSceneThree = {
     .v-scene-three > * {
       display: block;
     }
-  `
+  `,
 };

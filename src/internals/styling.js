@@ -97,16 +97,15 @@ const pdfColor = (c) => {
 };
 
 export const stylingPdf = (props) => {
-  let color = null;
-  let strokeColor = null;
+  let styling = {};
 
   if (props.fill !== "none") {
-    color = pdfColor(props.fill);
+    styling.color = pdfColor(props.fill);
   }
   if (props.stroke !== "none") {
-    borderColor = pdfColor(props.stroke);
+    styling.borderColor = pdfColor(props.stroke);
   }
   // TODO: add correct width
-  let borderWidth = props.strokeWidth;
-  return { color, borderColor, borderWidth };
+  styling.borderWidth = toNumber(props.strokeWidth);
+  return styling;
 };

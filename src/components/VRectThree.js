@@ -1,5 +1,5 @@
 import { inject } from "../deps/vue.js";
-
+import { toNumber } from "../utils.js";
 import {
   Group,
   PlaneGeometry,
@@ -27,8 +27,6 @@ export const VRectThree = {
     if (props.fill !== "none") {
       const fill = useThreeFill(props);
       const fillObject = new Mesh(geometry, fill.value);
-      fillObject.position.x = 0;
-      fillObject.position.y = 0;
       group.add(fillObject);
     }
 
@@ -36,10 +34,10 @@ export const VRectThree = {
       const edges = new EdgesGeometry(geometry);
       const stroke = useThreeStroke(props);
       const strokeObject = new LineSegments(edges, stroke.value);
-      strokeObject.position.x = 0;
-      strokeObject.position.y = 0;
       group.add(strokeObject);
     }
+    group.position.x = props.width / 2 + props.x;
+    group.position.y = props.height / 2 + props.y;
     sceneContext.scene.add(group);
 
     useThreeTransform(props, group);

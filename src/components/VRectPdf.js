@@ -1,5 +1,6 @@
 import { inject } from "../deps/vue.js";
 import { parseCoords, stylingPdf } from "../internals.js";
+import { toNumber } from "../utils.js";
 
 export const VRectPdf = {
   setup(props) {
@@ -14,8 +15,8 @@ export const VRectPdf = {
         ...styles,
         x: props.x + posX,
         y: page.getHeight() - (props.y + posY),
-        width: width,
-        height: height,
+        width: toNumber(props.width),
+        height: toNumber(props.height),
       });
       sceneContext.update();
     }
