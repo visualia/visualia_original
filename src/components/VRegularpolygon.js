@@ -1,21 +1,6 @@
 import { computed } from "../deps/vue.js";
 import { circlepoints } from "../utils.js";
-import { stylingProps, transformTwoProps } from "../internals.js";
-
-const regularProps = {
-  count: {
-    default: 6,
-    suggest: "6",
-    type: [Number, String],
-    docs: "Number of sides",
-  },
-  r: {
-    default: 10,
-    suggest: "10",
-    type: [Number, String],
-    docs: "Radius size",
-  },
-};
+import { regularProps, stylingProps, transformTwoProps } from "../internals.js";
 
 export const VRegularpolygon = {
   props: {
