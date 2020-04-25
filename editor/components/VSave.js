@@ -1,6 +1,6 @@
 import { computed } from "../../src/deps/vue.js";
 
-import { useLocalstore } from "../../src/utils.js";
+import { useLocalstore, send } from "../../src/utils.js";
 
 export const VSave = {
   props: {
@@ -38,7 +38,9 @@ export const VSave = {
       storedContent.value = props.content;
       emit("load", storedContent.value);
     };
-    return { isSaved, isResetable, onSave, onReset };
+    const onFormat = () => send("format");
+
+    return { isSaved, isResetable, onSave, onReset, onFormat };
   },
   template: `
   <div style="
@@ -54,10 +56,20 @@ export const VSave = {
       @click="onReset"
     >↩</button>
     <div v-if="!isSaved" />
-    <button
-      class="v-content-store-button"
-      @click="onSave"
-    >{{isSaved ? 'Saved' : 'Save'}}</button>
+    <div>
+      <!-- <button
+        class="v-content-store-button"
+        style="margin-right: var(--base2);"
+        @click="onFormat"
+      >
+        Format
+      </button> -->
+      <button
+        class="v-content-store-button"
+        @click="onSave"
+      >{{isSaved ? 'Saved' : 'Save'}}
+      </button>
+    </div>
   </div>
   `,
   css: `
