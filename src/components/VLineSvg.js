@@ -21,6 +21,7 @@ export const VLineSvg = {
       :d="path"
       :fill="styling.fill"
       :stroke="styling.stroke"
+      :opacity="styling.opacity"
       :stroke-width="styling.strokeWidth"
       :transform="transform"
     />`,

@@ -13,6 +13,7 @@ export const VPolygon = {
       :fill="fill"
       :stroke="stroke"
       :strokeWidth="strokeWidth"
+      :opacity="opacity"
       :position="position"
       :rotation="rotation"
       :scale="scale"
