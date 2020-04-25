@@ -12,6 +12,7 @@ export const VHexagon = {
       :fill="fill"
       :stroke="stroke"
       :strokeWidth="strokeWidth"
+      :opacity="opacity"
       :position="position"
       :rotation="rotation"
       :scale="scale"

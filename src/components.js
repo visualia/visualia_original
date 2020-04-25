@@ -7,6 +7,7 @@ export * from "./components/VLine.js";
 export * from "./components/VLive.js";
 export * from "./components/VMath.js";
 export * from "./components/VPoint.js";
+export * from "./components/VPointgrid.js";
 export * from "./components/VPolygon.js";
 export * from "./components/VProps.js";
 export * from "./components/VRect.js";
@@ -25,6 +26,7 @@ export const publicComponents = [
   "VHexagon",
   "VLine",
   "VPoint",
+  "VPointgrid",
   "VPolygon",
   "VRect",
   "VRegularpolygon",

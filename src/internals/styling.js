@@ -70,7 +70,7 @@ export const useThreeFill = (props) => {
     () =>
       new Material({
         color: props.fill,
-        opacity: props.opacity,
+        opacity: toNumber(props.opacity),
         side: DoubleSide,
       })
   );
@@ -81,9 +81,7 @@ export const useThreeStroke = (props) =>
       new LineBasicMaterial({
         color: props.stroke,
         linewidth: props.strokeWidth,
-        linecap: "round",
-        linejoin: "round",
-        opacity: props.opacity,
+        opacity: toNumber(props.opacity),
         side: DoubleSide,
       })
   );

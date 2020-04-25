@@ -18,6 +18,7 @@ export const VRegularpolygon = {
       closed
       :fill="fill"
       :stroke="stroke"
+      :opacity="opacity"
       :strokeWidth="strokeWidth"
       :position="position"
       :rotation="rotation"
