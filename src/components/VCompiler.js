@@ -25,14 +25,17 @@ const processContent = (content) =>
 
 const compileContent = (content) => {
   let c = () => null;
-  try {
-    c = compile(marked(processContent(content), { renderer, breaks: true }), {
-      onError: utils.onCompilerError,
-    });
-  } catch (error) {
-    utils.onCompilerError(error);
-  }
-  return c;
+  do {
+    try {
+      c = compile(marked(processContent(content), { renderer, breaks: true }), {
+        onError: utils.onCompilerError,
+      });
+      return c;
+    } catch (error) {
+      utils.onCompilerError(error);
+      break;
+    }
+  } while (true);
 };
 
 export const VCompiler = {
