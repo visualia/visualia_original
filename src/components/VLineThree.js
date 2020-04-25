@@ -14,14 +14,6 @@ import {
 
 import { parseCoords, useThreeTransform, useThreeFill } from "../internals.js";
 
-// const polygonGeometry = (points) => {
-//   const geometry = new Geometry();
-//   points.forEach((p) => geometry.vertices.push(new Vector3(...p)));
-//   geometry.faces.push(new Face3(0, 1, 2));
-//   geometry.computeFaceNormals();
-//   return geometry;
-// };
-
 export const VLineThree = {
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -45,15 +37,12 @@ export const VLineThree = {
       const geometry = new BufferGeometry().setFromPoints(
         parsedPoints.map((point) => new Vector3(...point))
       );
-
       const stroke = new LineBasicMaterial({
         color: props.stroke,
         linewidth: props.strokeWidth,
         opacity: props.opacity,
       });
-
       const line = new Line(geometry, stroke);
-
       group.add(line);
     }
 
