@@ -6,6 +6,7 @@ import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
 import {
   provideComponentsCompletion,
   provideComponentsHover,
+  provideUtilsCompletion,
 } from "./providers.js";
 
 import { formatVisualia } from "./format.js";
@@ -30,7 +31,8 @@ export const VMonaco = {
       .loader()
       .then(({ language, conf }) => {
         // https://github.com/microsoft/monaco-languages/blob/master/src/html/html.ts#L17
-        conf.wordPattern = /(-?\d*\.\d\w*)|([^\`\~\!\@\$\^\&\*\(\)\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\s]+)/g;
+        //        conf.wordPattern = /(-?\d*\.\d\w*)|([^\`\~\!\@\$\^\&\*\(\)\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\s]+)/g;
+        conf.wordPattern = /(-?\d*\.\d\w*)|([^\`\~\!\@\$\^\&\*\(\)\+\[\]\\\|\;\:\'\,\.\<\>\/\s]+)/g;
         monaco.languages.setLanguageConfiguration("visualia", conf);
 
         language.tokenizer.html = [
@@ -55,6 +57,9 @@ export const VMonaco = {
 
       monaco.languages.registerCompletionItemProvider("visualia", {
         provideCompletionItems: provideComponentsCompletion,
+      });
+      monaco.languages.registerCompletionItemProvider("visualia", {
+        provideCompletionItems: provideUtilsCompletion,
       });
       monaco.languages.registerHoverProvider("visualia", {
         provideHover: provideComponentsHover,

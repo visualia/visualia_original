@@ -148,3 +148,34 @@ export const provideComponentsHover = (model, position) => {
   }
   return {};
 };
+
+const utilsSuggestions = (range) => {
+  return [
+    {
+      label: "=a",
+      kind: monaco.languages.CompletionItemKind.Function,
+      insertTextRules:
+        monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+      insertText: "aa",
+      documentation: "Hello",
+      //range,
+    },
+  ];
+};
+
+export const provideUtilsCompletion = (model, position) => {
+  const word = model.getWordUntilPosition(position);
+  word.word;
+  if (word.word.endsWith("=")) {
+    var range = {
+      startLineNumber: position.lineNumber,
+      endLineNumber: position.lineNumber,
+      startColumn: word.startColumn,
+      endColumn: word.endColumn,
+    };
+    return {
+      suggestions: utilsSuggestions(range),
+    };
+  }
+  return [];
+};
