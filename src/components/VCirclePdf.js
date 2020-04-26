@@ -9,6 +9,7 @@ export const VCirclePdf = {
     const styles = stylingPdf(props);
     if (sceneContext.pdf.value) {
       const page = sceneContext.pdf.value.getPages()[0];
+      console.log(sceneContext);
       page.drawCircle({
         ...styles,
         x: x,

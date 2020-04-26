@@ -56,7 +56,7 @@ const getTwoTransform = (props) => {
   return { position, rotation, scale };
 };
 
-const getThreeTransform = (props) => {
+export const getThreeTransform = (props) => {
   const position = parseCoords(props.position)[0];
   const rotation = parseCoords(props.rotation, normalizeThreeRotation)[0];
   const scale = parseCoords(props.scale, normalizeScale)[0];

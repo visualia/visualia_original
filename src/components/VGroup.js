@@ -1,11 +1,11 @@
-import { h, inject } from "../deps/vue.js";
+import { h, inject, provide } from "../deps/vue.js";
 
 import { VGroupSvg } from "./VGroupSvg.js";
 import { VGroupCanvas } from "./VGroupCanvas.js";
 import { VGroupThree } from "./VGroupThree.js";
 import { VGroupPdf } from "./VGroupPdf.js";
 
-import { transformThreeProps, parseCoords } from "../internals.js";
+import { transformThreeProps, getThreeTransform } from "../internals.js";
 
 export const VGroup = {
   props: {
@@ -20,6 +20,13 @@ export const VGroup = {
       pdf: VGroupPdf,
     };
     const sceneContext = inject("sceneContext");
+    const { position, rotation, scale } = getThreeTransform(props);
+    provide("sceneContext", {
+      ...sceneContext,
+      position,
+      rotation,
+      scale,
+    });
     return () =>
       modes[sceneContext.mode.value]
         ? h(modes[sceneContext.mode.value], { ...props }, slots)
