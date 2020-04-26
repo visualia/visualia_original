@@ -8,10 +8,9 @@ export const VGroupThree = {
   props: { ...transformThreeProps },
   setup(props, { slots }) {
     const sceneContext = inject("sceneContext");
-
     watch(
       () => slots.default(),
-      _ => {
+      (_) => {
         sceneContext.clear();
       }
     );
@@ -19,6 +18,6 @@ export const VGroupThree = {
     useThreeTransform(props, group);
     sceneContext.scene.add(group);
     provide("sceneContext", { ...sceneContext, scene: group });
+    return () => slots.default();
   },
-  template: `<slot  />`
 };

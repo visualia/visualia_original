@@ -1,13 +1,7 @@
 ```live
-<v-scene v-for="m in ['svg','canvas','three','webgl']" :mode="m">
-  <v-pointgrid step="5" />
-  <v-regularpolygon
-    stroke="red"
-    fill="yellow"
-    position="50 50"
-    r="50"
-    count="10"
-    opacity="0.5"
-  />
+<v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
+<v-group position="50 50">
+  <v-circle r="25" />
+</v-group>
 </v-scene>
 ```

@@ -1,15 +1,8 @@
 import { inject, onBeforeUpdate, watch } from "../deps/vue.js";
 
-import {
-  transformTwoProps,
-  transformCanvas,
-  transformCanvasReset
-} from "../internals.js";
+import { transformCanvas, transformCanvasReset } from "../internals.js";
 
 export const VGroupCanvas = {
-  props: {
-    ...transformTwoProps
-  },
   setup(props, { slots }) {
     const sceneContext = inject("sceneContext");
     watch(() => {
@@ -25,5 +18,5 @@ export const VGroupCanvas = {
       }
     });
     return () => slots.default();
-  }
+  },
 };
