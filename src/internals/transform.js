@@ -94,8 +94,15 @@ export const test_useSvgTransform_custom_props = () => {
 
 // Canvas
 
-export const transformCanvas = (props, ctx) => {
-  const { position, rotation, scale } = getTwoTransform(props);
+export const transformCanvas = (props, ctx, sceneContext = null) => {
+  let { position, rotation, scale } = getTwoTransform(props);
+  position =
+    sceneContext && sceneContext.position
+      ? [
+          sceneContext.position[0] + position[0],
+          sceneContext.position[1] + position[1],
+        ]
+      : position;
   ctx.translate(position[0], position[1]);
   ctx.rotate(deg2rad(rotation[0]));
   ctx.scale(scale[0], scale[1]);
