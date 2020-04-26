@@ -20,12 +20,9 @@ export const VGroup = {
       pdf: VGroupPdf,
     };
     const sceneContext = inject("sceneContext");
-    const positions = parseCoords(props.position);
     return () =>
       modes[sceneContext.mode.value]
-        ? positions.map((position) =>
-            h(modes[sceneContext.mode.value], { ...props, position }, slots)
-          )
+        ? h(modes[sceneContext.mode.value], { ...props }, slots)
         : null;
   },
 };
