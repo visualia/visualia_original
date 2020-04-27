@@ -1,5 +1,5 @@
 import { inject } from "../deps/vue.js";
-import { parseCoords, stylingPdf } from "../internals.js";
+import { parseCoords, stylingPdf, combineTransforms } from "../internals.js";
 import { toNumber } from "../utils.js";
 
 export const VRectPdf = {
@@ -11,10 +11,11 @@ export const VRectPdf = {
 
     if (sceneContext.pdf.value) {
       const page = sceneContext.pdf.value.getPages()[0];
+      const { position } = combineTransforms(sceneContext.transform, props);
       page.drawRectangle({
         ...styles,
-        x: props.x + posX,
-        y: page.getHeight() - props.y - props.height - posY,
+        x: props.x + posX + position[0],
+        y: page.getHeight() - props.y - props.height - posY - position[1],
         width: toNumber(props.width),
         height: toNumber(props.height),
       });

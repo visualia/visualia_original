@@ -1,4 +1,5 @@
 import { computed, watch, inject } from "../deps/vue.js";
+import { toNumber } from "../utils.js";
 
 import {
   parseCoords,
@@ -101,9 +102,9 @@ export const combineTransforms = (t1, t2) => {
   }
   if (t2.position) {
     position = [
-      position[0] + t2.position[0],
-      position[1] + t2.position[1],
-      position[2] + t2.position[2],
+      toNumber(position[0]) + toNumber(t2.position[0]),
+      toNumber(position[1]) + toNumber(t2.position[1]),
+      toNumber(position[2]) + toNumber(t2.position[2]),
     ];
   }
   if (t1.rotation) {
@@ -111,9 +112,9 @@ export const combineTransforms = (t1, t2) => {
   }
   if (t2.rotation) {
     rotation = [
-      rotation[0] + t2.rotation[0],
-      rotation[1] + t2.rotation[1],
-      rotation[2] + t2.rotation[2],
+      toNumber(rotation[0]) + toNumber(t2.rotation[0]),
+      toNumber(rotation[1]) + toNumber(t2.rotation[1]),
+      toNumber(rotation[2]) + toNumber(t2.rotation[2]),
     ];
   }
   if (t1.scale) {
@@ -121,9 +122,9 @@ export const combineTransforms = (t1, t2) => {
   }
   if (t2.scale) {
     scale = [
-      scale[0] * t2.scale[0],
-      scale[1] * t2.scale[1],
-      scale[2] * t2.scale[2],
+      toNumber(scale[0]) * toNumber(t2.scale[0]),
+      toNumber(scale[1]) * toNumber(t2.scale[1]),
+      toNumber(scale[2]) * toNumber(t2.scale[2]),
     ];
   }
   return { position, rotation, scale };
