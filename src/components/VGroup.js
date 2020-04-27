@@ -23,9 +23,7 @@ export const VGroup = {
     const { position, rotation, scale } = getThreeTransform(props);
     provide("sceneContext", {
       ...sceneContext,
-      position,
-      rotation,
-      scale,
+      transform: { position, rotation, scale },
     });
     return () =>
       modes[sceneContext.mode.value]

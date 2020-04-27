@@ -131,18 +131,16 @@ export const combineTransforms = (t1, t2) => {
 
 // Canvas
 
-export const transformCanvas = (props, ctx, sceneContext = null) => {
-  let { position, rotation, scale } = getTwoTransform(props);
-  position =
-    sceneContext && sceneContext.position
-      ? [
-          sceneContext.position[0] + position[0],
-          sceneContext.position[1] + position[1],
-        ]
-      : position;
-  ctx.translate(position[0], position[1]);
-  ctx.rotate(deg2rad(rotation[0]));
-  ctx.scale(scale[0], scale[1]);
+export const transformCanvas = (props, sceneContext) => {
+  const parentTransform = sceneContext.transform;
+  const childTransform = getTwoTransform(props);
+  const { position, rotation, scale } = combineTransforms(
+    parentTransform,
+    childTransform
+  );
+  sceneContext.ctx.value.translate(position[0], position[1]);
+  sceneContext.ctx.value.rotate(deg2rad(rotation[0]));
+  sceneContext.ctx.value.scale(scale[0], scale[1]);
 };
 
 export const transformCanvasReset = (ctx) => {

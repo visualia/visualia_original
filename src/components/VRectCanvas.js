@@ -12,7 +12,7 @@ export const VRectCanvas = {
 
     watch(() => {
       if (sceneContext.ctx.value) {
-        transformCanvas(props, sceneContext.ctx.value);
+        transformCanvas(props, sceneContext);
         stylingCanvas(props, sceneContext.ctx.value);
         if (props.fill !== "none") {
           sceneContext.ctx.value.fillRect(
