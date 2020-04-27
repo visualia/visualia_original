@@ -92,6 +92,43 @@ export const test_useSvgTransform_custom_props = () => {
   ];
 };
 
+export const combineTransforms = (t1, t2) => {
+  let position = [0, 0, 0];
+  let rotation = [0, 0, 0];
+  let scale = [1, 1, 1];
+  if (t1.position) {
+    position = t1.position;
+  }
+  if (t2.position) {
+    position = [
+      position[0] + t2.position[0],
+      position[1] + t2.position[1],
+      position[2] + t2.position[2],
+    ];
+  }
+  if (t1.rotation) {
+    rotation = t1.rotation;
+  }
+  if (t2.rotation) {
+    rotation = [
+      rotation[0] + t2.rotation[0],
+      rotation[1] + t2.rotation[1],
+      rotation[2] + t2.rotation[2],
+    ];
+  }
+  if (t1.scale) {
+    scale = t1.scale;
+  }
+  if (t2.scale) {
+    scale = [
+      scale[0] * t2.scale[0],
+      scale[1] * t2.scale[1],
+      scale[2] * t2.scale[2],
+    ];
+  }
+  return { position, rotation, scale };
+};
+
 // Canvas
 
 export const transformCanvas = (props, ctx, sceneContext = null) => {
