@@ -1,4 +1,4 @@
-import { receive, send } from "../../src/utils.js";
+import { receive } from "../../src/utils.js";
 import { watch, ref, onMounted } from "../../src/deps/vue.js";
 
 import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
@@ -114,6 +114,10 @@ export const VMonaco = {
             );
           }
         }
+      );
+
+      receive("format", () =>
+        editor.getAction("editor.action.formatDocument").run()
       );
     });
 

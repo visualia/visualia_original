@@ -5,5 +5,5 @@ import { ObservableExample } from "./docs/ObservableExample.js";
 
 visualia({
   file: "./README.md",
-  components: { PfiveExample, ObservableExample }
+  components: { PfiveExample, ObservableExample },
 });

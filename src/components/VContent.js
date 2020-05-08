@@ -1,7 +1,8 @@
-import { computed } from "../deps/vue.js";
+import { computed, Suspense } from "../deps/vue.js";
 import { parseContent, slideGridStyle } from "../internals/content.js";
 
 export const VContent = {
+  components: { Suspense },
   props: {
     content: {
       default: "",
@@ -26,7 +27,14 @@ export const VContent = {
         }"
       >
         <div v-for="cell in slide.content">
-          <v-compiler :content="cell" />
+          <suspense>
+          <template #default>
+            <v-compiler :content="cell" />
+          </template>
+          <template #fallback>
+            <div>Loading...</div>
+          </template>
+          </suspense>
         </div>
       </div>
     </div>

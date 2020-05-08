@@ -6,33 +6,49 @@ import {
   LineBasicMaterial,
   BufferGeometry,
   Line,
+  Shape,
+  ShapeGeometry,
+  Vector2,
+  Mesh,
 } from "../deps/three.js";
 
-import { parseCoords } from "../internals.js";
+import { parseCoords, useThreeTransform, useThreeFill } from "../internals.js";
 
 export const VLineThree = {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
-    const parsedPoints = parseCoords(props.points);
-
-    const geometry = new BufferGeometry().setFromPoints(
-      parsedPoints.map((point) => new Vector3(...point))
-    );
+    let parsedPoints = parseCoords(props.points);
+    if (props.closed) {
+      parsedPoints = [...parsedPoints, parsedPoints[0]];
+    }
 
     var group = new Group();
 
-    const stroke = new LineBasicMaterial({
-      color: props.stroke,
-      linewidth: props.strokeWidth,
-      opacity: props.opacity,
-    });
+    if (props.fill !== "none") {
+      const shape = new Shape(parsedPoints.map((p) => new Vector2(p[0], p[1])));
+      const geometry = new ShapeGeometry(shape);
+      const fill = useThreeFill(props);
+      const fillObject = new Mesh(geometry, fill.value);
+      group.add(fillObject);
+    }
 
-    const line = new Line(geometry, stroke);
-
-    group.add(line);
+    if (props.stroke !== "none") {
+      const geometry = new BufferGeometry().setFromPoints(
+        parsedPoints.map((point) => new Vector3(...point))
+      );
+      const stroke = new LineBasicMaterial({
+        color: props.stroke,
+        linewidth: props.strokeWidth,
+        opacity: props.opacity,
+      });
+      const line = new Line(geometry, stroke);
+      group.add(line);
+    }
 
     sceneContext.scene.add(group);
+
+    useThreeTransform(props, group);
 
     return () => null;
   },

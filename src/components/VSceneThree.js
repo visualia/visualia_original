@@ -6,27 +6,24 @@ import {
   OrthographicCamera,
   Color,
   DirectionalLight,
-  WebGLRenderer
+  WebGLRenderer,
 } from "../deps/three.js";
 
 import { SVGRenderer } from "../deps/svgrenderer.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-import { VGroupThree } from "../internals/VGroupThree.js";
-
 export const VSceneThree = {
-  components: { VGroupThree },
   props: {
     ...sizeProps,
     renderer: {
       default: "svg",
-      type: String
+      type: String,
     },
     isometric: {
       default: false,
-      type: [Boolean, String]
-    }
+      type: [Boolean, String],
+    },
   },
   setup(props) {
     const el = ref(null);
@@ -88,14 +85,14 @@ export const VSceneThree = {
   },
   template: `
     <div class="v-scene-three" ref="el">
-      <v-group-three :position="position" :scale="scale">
+      <v-group :position="position" :scale="scale">
         <slot />
-      </v-group-three>
+      </v-group>
     </div>
   `,
   css: /*css*/ `
     .v-scene-three > * {
       display: block;
     }
-  `
+  `,
 };

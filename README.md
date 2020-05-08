@@ -102,21 +102,86 @@ Displays a line.
 
 ```live line
 <v-scene>
-  <v-line points="50 50, 150 150" />
+  <v-line points="50 50, 150 150, 150 50" />
 </v-scene>
 ```
 
 <!--- <v-props component="VLine" /> --->
 
+#### Polygon
+
+`<v-polygon>`
+
+Displays a polygon.
+
+```live polygon
+<v-scene>
+  <v-polygon points="50 50, 150 150, 150 50" />
+</v-scene>
+```
+
+<!--- <v-props component="VPolygon" /> --->
+
+#### Regular polygon
+
+`<v-regularpolygon>`
+
+Displays a regular polygon.
+
+```live regularpolygon
+<v-scene>
+  <v-regularpolygon
+    count="5"
+    r="50"
+    position="100 100"
+  />
+</v-scene>
+```
+
+<!--- <v-props component="VRegularpolygon" /> --->
+
+#### Hexagon
+
+`<v-hexagon>`
+
+Displays a hexagon.
+
+```live hexagon
+<v-scene>
+  <v-hexagon
+    r="50"
+    position="100 100"
+  />
+</v-scene>
+```
+
+<!--- <v-props component="VHexagon" /> --->
+
+#### Rectangle
+
+`<v-rect>`
+
+Displays a 2D rectangle.
+
+```live rect
+<v-scene>
+  <v-rect position="100 100" width="50" height="50" />
+  <v-point position="100 100" fill="red" />
+</v-scene>
+```
+
+<!--- <v-props component="VRect" /> --->
+
 #### Square
 
 `<v-square>`
 
-Displays a 2D or 3D square.
+Displays a 2D square.
 
 ```live square
 <v-scene>
-  <v-square position="100 100" r="50" />
+  <v-square position="100 100" r="25" />
+  <v-point position="100 100" fill="red" />
 </v-scene>
 ```
 

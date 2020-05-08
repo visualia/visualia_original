@@ -1,18 +1,22 @@
+import { computed } from "../deps/vue.js";
 import { useSvgStyling, useSvgTransform } from "../internals.js";
 
-export const VSquareSvg = {
+export const VRectSvg = {
   setup(props) {
-    const r = props.r;
+    const x = computed(() => props.x);
+    const y = computed(() => props.y);
+    const width = computed(() => props.width);
+    const height = computed(() => props.height);
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
-    return { r, styling, transform };
+    return { x, y, width, height, styling, transform };
   },
   template: `
     <rect 
-      :x="-r"
-      :y="-r"
-      :width="r * 2"
-      :height="r * 2"
+      :x="x"
+      :y="y"
+      :width="width"
+      :height="height"
       :fill="styling.fill"
       :stroke="styling.stroke"
       :stroke-width="styling.strokeWidth"

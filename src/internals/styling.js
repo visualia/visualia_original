@@ -2,17 +2,20 @@ import { computed, inject } from "../deps/vue.js";
 
 import {
   MeshPhongMaterial,
+  MeshBasicMaterial,
   DoubleSide,
   LineBasicMaterial,
 } from "../deps/three.js";
 
-import { toNumber } from "../utils.js";
+import { color } from "../deps/d3-color.js";
+
+import { toNumber, fit } from "../utils.js";
 
 export const stylingProps = {
   stroke: {
     default: "black",
     suggest: ["black", "red", "green", "blue", "none"],
-    type: [String],
+    type: [String, Number, Array, Object],
     docs: "Stroke color",
   },
   strokeWidth: {
@@ -24,7 +27,7 @@ export const stylingProps = {
   fill: {
     default: "none",
     suggest: ["none", "black", "red", "green", "blue"],
-    type: [String, Number],
+    type: [String, Number, Array, Object],
     docs: 'Fill color. Set to "none" for no fill',
   },
   opacity: {
@@ -59,25 +62,53 @@ export const stylingCanvas = (props, scene) => {
 
 // Three
 
-export const useThreeFill = (props) =>
-  computed(
+export const useThreeFill = (props) => {
+  const sceneContext = inject("sceneContext");
+  const Material =
+    sceneContext.mode.value == "three" ? MeshBasicMaterial : MeshPhongMaterial;
+  return computed(
     () =>
-      new MeshPhongMaterial({
+      new Material({
         color: props.fill,
-        opacity: props.opacity,
+        opacity: toNumber(props.opacity),
         side: DoubleSide,
       })
   );
-
+};
 export const useThreeStroke = (props) =>
   computed(
     () =>
       new LineBasicMaterial({
         color: props.stroke,
         linewidth: props.strokeWidth,
-        linecap: "round",
-        linejoin: "round",
-        opacity: props.opacity,
+        opacity: toNumber(props.opacity),
         side: DoubleSide,
       })
   );
+
+// PDF
+
+const pdfColor = (c) => {
+  const { r, g, b } = color(c);
+  return {
+    red: fit(r, 0, 255, 0, 1),
+    green: fit(g, 0, 255, 0, 1),
+    blue: fit(b, 0, 255, 0, 1),
+    type: "RGB",
+  };
+};
+
+export const stylingPdf = (props) => {
+  let styling = {};
+
+  if (props.fill !== "none") {
+    styling.color = pdfColor(props.fill);
+  }
+  if (props.stroke !== "none") {
+    styling.borderColor = pdfColor(props.stroke);
+  }
+  // TODO: add correct width
+  styling.borderWidth =
+    props.stroke !== "none" ? toNumber(props.strokeWidth) : 0;
+  return styling;
+};
