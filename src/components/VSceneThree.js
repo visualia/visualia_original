@@ -13,10 +13,7 @@ import { SVGRenderer } from "../deps/svgrenderer.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-import { VGroupThree } from "../internals/VGroupThree.js";
-
 export const VSceneThree = {
-  components: { VGroupThree },
   props: {
     ...sizeProps,
     renderer: {
@@ -88,9 +85,9 @@ export const VSceneThree = {
   },
   template: `
     <div class="v-scene-three" ref="el">
-      <v-group-three :position="position" :scale="scale">
+      <v-group :position="position" :scale="scale">
         <slot />
-      </v-group-three>
+      </v-group>
     </div>
   `,
   css: /*css*/ `

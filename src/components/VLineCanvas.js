@@ -13,7 +13,7 @@ export const VLineCanvas = {
     const sceneContext = inject("sceneContext");
     watch(() => {
       if (sceneContext.ctx.value) {
-        transformCanvas(props, sceneContext.ctx.value);
+        transformCanvas(props, sceneContext);
         stylingCanvas(props, sceneContext.ctx.value);
         let parsedPoints = parseCoords(props.points);
         if (props.closed) {
