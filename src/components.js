@@ -38,4 +38,4 @@ export const publicComponents = [
   "VTable",
 ];
 
-export const publicComponentsWithChildren = ["VMath", "VScene"];
+export const publicComponentsWithChildren = ["VMath", "VScene", "VGroup"];
