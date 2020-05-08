@@ -16,6 +16,6 @@ export const VMessages = {
     v-if="currentMessages.length"
     style="padding: var(--base); background: var(--yellow);"
   >
-    <div v-for="message in currentMessages.slice(-5)" v-html="message" />
+    <div v-for="message in currentMessages" v-html="message" />
   </div>`,
 };
