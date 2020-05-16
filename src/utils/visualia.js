@@ -24,10 +24,10 @@ export const visualia = (options = {}) => {
     template: "",
     routes: {
       index: {
-        file: "./README.md",
+        file: "./RELEASES.md",
       },
       releases: {
-        file: "./RELEASES.md",
+        file: "./README.md",
       },
     },
     ...options,
@@ -66,10 +66,11 @@ export const visualia = (options = {}) => {
           content.value = await res.text();
         }
       );
-      return { content };
+      const routes = customOptions.routes;
+      return { content, routes };
     },
     template: `
-      <v-content :content="content" toc />
+      <v-content :content="content" :routes="routes" toc />
     `,
   };
 

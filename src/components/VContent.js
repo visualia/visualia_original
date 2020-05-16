@@ -9,6 +9,11 @@ export const VContent = {
       type: String,
       docs: "Content to be compiled into VueJS template",
     },
+    routes: {
+      default: {},
+      type: Object,
+      docs: "Routes object",
+    },
     toc: {
       default: false,
       type: [Boolean, String],
@@ -31,7 +36,7 @@ export const VContent = {
           ...slideGridStyle(slide)
         }"
       >
-        <v-toc v-if="toc" :toc="slide.toc" />
+        <v-toc v-if="toc" :toc="slide.toc" :routes="routes" />
         <div v-for="cell in slide.content">
           <suspense>
           <template #default>

@@ -8,9 +8,15 @@ export const VToc = {
       type: Array,
       docs: "Table of contents as a collection",
     },
+    routes: {
+      default: {},
+      type: Object,
+      docs: "Routes object",
+    },
   },
   setup(props) {
     const router = inject("router");
+
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
       if (!!router.value[1]) {
@@ -19,7 +25,7 @@ export const VToc = {
       return false;
     };
 
-    const routeLinks = ["index"];
+    //const routeLinks = ["index"];
 
     // const observer = new IntersectionObserver(
     //   (entries) => {
@@ -40,13 +46,13 @@ export const VToc = {
 
     // onUnmounted(() => observer.disconnect());
 
-    return { isAnchorActive, routeLinks, router };
+    return { isAnchorActive, router };
   },
   template: `
   <div style="background: white; position: fixed; top: 0; left: 0; bottom: 0; overflow: scroll; padding: 20px; width: 250px;">
-    <div v-for="routeLink in routeLinks">
+    <div v-for="route in Object.entries(routes)">
       <div style="padding-bottom: 20px;">
-        <a :href="routeLink == 'index' ? '' : '#' + routeLink">{{ routeLink }}</a>
+        <a :href="route[0] == 'index' ? '' : '#' + route[0]">{{ route[1].file }}</a>
       </div>
       <div
         v-for="link in toc"
@@ -54,7 +60,6 @@ export const VToc = {
           fontSize: '0.8em',
           marginBottom: '10px', 
           marginLeft: ((link.level - 1) * 12) + 'px',
-          fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
         }"
       >
         <a :href="'#' + link.anchor">{{ link.text }}</a>
