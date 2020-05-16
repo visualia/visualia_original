@@ -1,4 +1,4 @@
-import { inject, watch, computed } from "../deps/vue.js";
+import { inject, onMounted, onUnmounted } from "../deps/vue.js";
 import { parseHash } from "../internals.js";
 
 export const VToc = {
@@ -20,8 +20,27 @@ export const VToc = {
     };
 
     const routeLinks = ["index"];
-    const toc = computed(() => props.toc);
-    return { toc, isAnchorActive, routeLinks, router };
+
+    // const observer = new IntersectionObserver(
+    //   (entries) => {
+    //     entries.forEach((entry) => {
+    //       if (entry.isIntersecting && entry.intersectionRatio === 1) {
+    //         router.value[1] = parseHash(entries[0].target.id)[1];
+    //       }
+    //     });
+    //   },
+    //   { threshold: 1 }
+    // );
+
+    // onMounted(() => {
+    //   props.toc.value.forEach(({ anchor }) => {
+    //     observer.observe(document.getElementById(anchor));
+    //   });
+    // });
+
+    // onUnmounted(() => observer.disconnect());
+
+    return { isAnchorActive, routeLinks, router };
   },
   template: `
   <div style="position: fixed; top: 0; left: 0; bottom: 0; overflow: scroll; padding: 20px; width: 250px;">
