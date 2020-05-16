@@ -36,7 +36,6 @@ export const VContent = {
           ...slideGridStyle(slide)
         }"
       >
-        <v-toc v-if="toc" :toc="slide.toc" :routes="routes" />
         <div v-for="cell in slide.content">
           <suspense>
           <template #default>
@@ -47,6 +46,7 @@ export const VContent = {
           </template>
           </suspense>
         </div>
+        <v-toc v-if="toc" :toc="slide.toc" :routes="routes" />
       </div>
     </div>
   </div>

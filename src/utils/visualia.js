@@ -24,10 +24,22 @@ export const visualia = (options = {}) => {
     template: "",
     routes: {
       index: {
-        file: "./RELEASES.md",
-      },
-      readme: {
         file: "./README.md",
+      },
+      development: {
+        file: "./docs/development.md",
+      },
+      components: {
+        file: "./docs/components.md",
+      },
+      integration: {
+        file: "./docs/integation.md",
+      },
+      faq: {
+        file: "./docs/faq.md",
+      },
+      releases: {
+        file: "./docs/RELEASES.md",
       },
     },
     ...options,
