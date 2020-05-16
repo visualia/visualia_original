@@ -26,7 +26,7 @@ export const visualia = (options = {}) => {
       index: {
         file: "./RELEASES.md",
       },
-      releases: {
+      readme: {
         file: "./README.md",
       },
     },
@@ -58,14 +58,12 @@ export const visualia = (options = {}) => {
       //   content.value = fetch.content;
       // }
       const content = ref("");
-      watch(
-        () => router,
-        async (r) => {
-          const file = customOptions.routes[r.value[0] || "index"].file;
-          const res = await fetch(file);
-          content.value = await res.text();
-        }
-      );
+      watch(async (r) => {
+        console.log(router.value);
+        const file = customOptions.routes[router.value[0] || "index"].file;
+        const res = await fetch(file);
+        content.value = await res.text();
+      });
       const routes = customOptions.routes;
       return { content, routes };
     },

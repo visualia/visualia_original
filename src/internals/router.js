@@ -23,12 +23,12 @@ export const useRouter = () => {
     (e) => {
       if (e.target.tagName === "A" && e.target.hash) {
         e.preventDefault();
-        //toc.value = [];
         router.value = parseHash(e.target.hash);
         if (router.value[0]) {
           location.hash = formatHash(router.value, true);
         } else {
-          removeHash();
+          //removeHash();
+          location.hash = "";
         }
         if (router.value[1]) {
           const target = document.getElementById(formatHash(router.value));
