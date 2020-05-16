@@ -1,4 +1,4 @@
-import { onMounted, ref } from "../deps/vue.js";
+import { ref } from "../deps/vue.js";
 
 export const parseHash = (hash) => hash.replace(/#/g, "").split("_");
 
@@ -10,10 +10,6 @@ const removeHash = () =>
     document.title,
     window.location.pathname + window.location.search
   );
-
-// export const router = ref(["", ""]);
-
-export const toc = ref([]);
 
 export const useRouter = () => {
   const router = ref(["", ""]);
@@ -58,22 +54,4 @@ export const useRouter = () => {
   });
 
   return router;
-  // const observer = new IntersectionObserver(
-  //   (entries) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting && entry.intersectionRatio === 1) {
-  //         router.value[1] = parseHash(entries[0].target.id)[1];
-  //       }
-  //     });
-  //   },
-  //   { threshold: 1 }
-  // );
-
-  // onMounted(() => {
-  //   toc.value.forEach(({ anchor }) => {
-  //     observer.observe(document.getElementById(anchor));
-  //   });
-  // });
-
-  // onUnmounted(() => observer.disconnect());
 };
