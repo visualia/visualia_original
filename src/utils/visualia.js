@@ -4,6 +4,8 @@ import * as components from "../components.js";
 
 import { useFetch, componentCss, onError, onWarning } from "../utils.js";
 
+import { useRouter } from "../internals.js";
+
 export const visualia = (options = {}) => {
   const customOptions = {
     content: "",
@@ -12,11 +14,12 @@ export const visualia = (options = {}) => {
     components: {},
     utils: {},
     template: "",
-    ...options
+    ...options,
   };
 
   const App = {
     setup() {
+      provide("router", useRouter());
       provide("customUtils", customOptions.utils);
       let content = "";
       if (customOptions.content) {
@@ -31,14 +34,14 @@ export const visualia = (options = {}) => {
       customOptions.template ||
       `
       <v-content :content="content" />
-    `
+    `,
   };
 
   const app = createApp(App);
 
   Object.entries({
     ...components,
-    ...customOptions.components
+    ...customOptions.components,
   }).forEach(([name, component]) => app.component(name, component));
 
   componentCss(components);

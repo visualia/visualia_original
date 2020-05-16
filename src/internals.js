@@ -4,6 +4,7 @@ export * from "./internals/dynamic.js";
 export * from "./internals/line.js";
 export * from "./internals/points.js";
 export * from "./internals/regular.js";
+export * from "./internals/router.js";
 export * from "./internals/size.js";
 export * from "./internals/styling.js";
 export * from "./internals/transform.js";

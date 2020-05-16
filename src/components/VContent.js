@@ -26,6 +26,7 @@ export const VContent = {
           ...slideGridStyle(slide)
         }"
       >
+        <pre>{{ slide.toc }}</pre>
         <div v-for="cell in slide.content">
           <suspense>
           <template #default>
