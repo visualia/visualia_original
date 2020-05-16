@@ -32,6 +32,7 @@ export const VToc = {
       <div
         v-for="link in toc"
         :style="{ 
+          fontSize: '0.8em',
           marginBottom: '10px', 
           marginLeft: ((link.level - 1) * 12) + 'px',
           fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
