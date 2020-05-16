@@ -38,8 +38,8 @@ export const useRouter = () => {
           const target = document.getElementById(formatHash(router.value));
           window.scrollTo({
             left: 0,
-            top: target.offsetTop,
-            //behavior: "smooth",
+            top: target.offsetTop - 10,
+            behavior: "smooth",
           });
         }
       }
@@ -77,69 +77,3 @@ export const useRouter = () => {
 
   // onUnmounted(() => observer.disconnect());
 };
-
-/*
-
-const renderer = new marked.Renderer();
-
-const toc = ref([]);
-
-renderer.heading = function (text, level, raw) {
-  const anchor = formatHash([
-    router.value[0],
-    raw.toLowerCase().replace(/[^\w]+/g, "-"),
-  ]);
-  toc.value.push({
-    anchor: anchor,
-    level: level,
-    text: text,
-  });
-  return `<h${level} id="${anchor}"><a href="#${anchor}">#</a> ${text}</h${level}>\n`;
-};
-
-const template = computed(() =>
-  marked(router.value[0] ? routes[router.value[0]] : routes.index, {
-    renderer,
-    breaks: true,
-  })
-);
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio === 1) {
-        router.value[1] = parseHash(entries[0].target.id)[1];
-      }
-    });
-  },
-  { threshold: 1 }
-);
-
-onMounted(() => {
-  toc.value.forEach(({ anchor }) => {
-    observer.observe(document.getElementById(anchor));
-  });
-});
-
-onUnmounted(() => observer.disconnect());
-
-// const isPageActive = (hash) => {
-//   const parsedHash = parseHash(hash);
-//   if (router.value[0]) {
-//     return parsedHash[0] === router.value[0];
-//   }
-//   return false;
-// };
-
-const isAnchorActive = (hash) => {
-  const parsedHash = parseHash(hash);
-  if (!!router.value[1]) {
-    return parsedHash[1] === router.value[1];
-  }
-  return false;
-};
-
-const routeLinks = Object.keys(routes);
-*/
-
-//return { toc, template, isAnchorActive, route, routeLinks };

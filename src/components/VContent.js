@@ -9,6 +9,11 @@ export const VContent = {
       type: String,
       docs: "Content to be compiled into VueJS template",
     },
+    toc: {
+      default: false,
+      type: [Boolean, String],
+      docs: "Show table of contents?",
+    },
   },
   setup(props) {
     const parsedContent = computed(() => parseContent(props.content));
@@ -26,7 +31,7 @@ export const VContent = {
           ...slideGridStyle(slide)
         }"
       >
-        <pre>{{ slide.toc }}</pre>
+        <v-toc v-if="toc" :toc="slide.toc" />
         <div v-for="cell in slide.content">
           <suspense>
           <template #default>

@@ -33,7 +33,7 @@ export const visualia = (options = {}) => {
     template:
       customOptions.template ||
       `
-      <v-content :content="content" />
+      <v-content :content="content" toc />
     `,
   };
 

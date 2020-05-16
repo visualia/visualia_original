@@ -27,7 +27,7 @@ renderer.heading = function (text, level, raw) {
     router.value[0],
     raw.toLowerCase().replace(/[^\w]+/g, "-"),
   ]);
-  return `<h${level} id="${anchor}"><a href="#${anchor}">#</a> ${text}</h${level}>\n`;
+  return `<h${level} id="${anchor}"><a href="#${anchor}" style="opacity: 0.2">#</a> ${text}</h${level}>\n`;
 };
 
 const processContent = (content) =>
