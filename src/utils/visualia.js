@@ -35,10 +35,6 @@ export const visualia = (options = {}) => {
         file: "./docs/integration.md",
         title: "Integrations",
       },
-      faq: {
-        file: "./docs/faq.md",
-        title: "FAQ",
-      },
       development: {
         file: "./docs/development.md",
         title: "Development",
@@ -46,6 +42,14 @@ export const visualia = (options = {}) => {
       releases: {
         file: "./RELEASES.md",
         title: "Releases",
+      },
+      backstory: {
+        file: "./docs/backstory.md",
+        title: "Backstory",
+      },
+      faq: {
+        file: "./docs/faq.md",
+        title: "FAQ",
       },
     },
     ...options,

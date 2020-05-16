@@ -7,16 +7,18 @@ const generateToc = (content) => {
   const renderer = new marked.Renderer();
   let toc = [];
   renderer.heading = function (text, level, raw) {
-    // TODO: use slug()
-    const anchor = formatHash([
-      router.value[0],
-      raw.toLowerCase().replace(/[^\w]+/g, "-"),
-    ]);
-    toc.push({
-      anchor: anchor,
-      level: level,
-      text: text,
-    });
+    if (level > 1) {
+      // TODO: use slug()
+      const anchor = formatHash([
+        router.value[0],
+        raw.toLowerCase().replace(/[^\w]+/g, "-"),
+      ]);
+      toc.push({
+        anchor: anchor,
+        level: level,
+        text: text,
+      });
+    }
   };
   marked(content, { renderer });
   return toc;

@@ -59,6 +59,7 @@ export const VToc = {
         router[0] == route[0])"
         v-for="link in toc"
         :style="{ 
+          opacity: 0.75,
           fontSize: '0.8em',
           marginBottom: '10px', 
           marginLeft: ((link.level - 1) * 12) + 'px',

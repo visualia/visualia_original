@@ -1,6 +1,6 @@
-## Development
+# Development
 
-### Work environment
+## Work environment
 
 We recommend to use Visual Studio Code with the following extensions:
 
@@ -9,9 +9,9 @@ https://github.com/faisalhakim47/vscode-vue-inline-template
 https://github.com/bashmish/es6-string-css
 https://github.com/ritwickdey/vscode-live-server
 
-### Component architecture
+## Component architecture
 
-#### Compiler
+### Compiler
 
 `<v-compiler>`, the heart of Visualia is based on a very simple idea:
 
@@ -48,15 +48,15 @@ createApp(App).mount("#app");
 
 The actual `<v-compiler>` component [in the codebase](./src/components/VCompiler.js) is a little more sophisticated, including error handling and injecting utility functions, but the basic idea stays the same.
 
-#### Content display
+### Content display
 
 `<v-content>` is working on top of `<v-compiler>`. It accepts `content` prop for Markdown content, does some extra formatting, splits the content into pages, separated by `---` and renders the result with `<v-compiler>`.
 
-#### Main entrypoint
+### Main entrypoint
 
 To ease the the initialization of the framework, `<v-content>` is wrapped into a `visualia()` function that creates `App` component, fetches the content from Markdown file and displays it using `<v-content>` component.
 
-### Graphics implementation
+## Graphics implementation
 
 Each graphics scene has to be wrapped into `<v-scene>`.
 
@@ -112,7 +112,7 @@ const VSquareSvg = {
 }
 ```
 
-### CSS and styling
+## CSS and styling
 
 Global CSS resides in `/visualia.css` file and relies heavily on CSS variables.
 
@@ -140,7 +140,7 @@ import {
 componentCss(components);
 ```
 
-### Code organization
+## Code organization
 
 [./dist/visualia.js](./dist/visualia.js)
 
@@ -166,7 +166,7 @@ Internal functions used by components.
 
 External dependencies, ESM imports from https://unpkg.com
 
-### Bundling
+## Bundling
 
 By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as using the framework offline.
 
@@ -178,11 +178,11 @@ To generate the bundle, use the following command:
 deno bundle.js dist/visualia.js > dist/visualia.bundle.js
 ```
 
-### Testing
+## Testing
 
 Visualia relies on a suite of unit tests that verify that framework's utility and internal functions work right.
 
-#### Writing tests
+### Writing tests
 
 Tests are simple functions starting with `test_` prefix that return `actual` and `expected` results of the function.
 
@@ -197,11 +197,11 @@ export const test_add = {
 
 Test functions are picked up by test runner `/test.js` that compares the `actual` and `expected` results. If they equal, the test passes. If they do not equal, the test fails.
 
-#### Run browser tests
+### Run browser tests
 
 Open [/test.html](/test.html) file in local server and open Developer Tools panel.
 
-#### Run command line tests
+### Run command line tests
 
 First, you will need to install [Deno](https://deno.land/std/manual.md) and run the following commands on MacOS:
 
@@ -212,6 +212,6 @@ deno test.js
 
 For Windows support, see [these Deno installation instructions](https://deno.land/std/manual.md#download-and-install).
 
-#### Running tests automatically
+### Running tests automatically
 
 Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).

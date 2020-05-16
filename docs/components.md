@@ -1,8 +1,8 @@
-## Components
+# Components
 
 All Visualia components are prefixed with `v-` and are loaded automatically when the framework starts.
 
-### Graphics
+## Graphics
 
 Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
 
@@ -28,7 +28,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 <br />
 
-#### Point
+### Point
 
 `<v-point>`
 
@@ -42,7 +42,7 @@ Displays a point.
 
 <!--- <v-props component="VPoint" /> --->
 
-#### Line
+### Line
 
 `<v-line>`
 
@@ -56,7 +56,7 @@ Displays a line.
 
 <!--- <v-props component="VLine" /> --->
 
-#### Polygon
+### Polygon
 
 `<v-polygon>`
 
@@ -70,7 +70,7 @@ Displays a polygon.
 
 <!--- <v-props component="VPolygon" /> --->
 
-#### Regular polygon
+### Regular polygon
 
 `<v-regularpolygon>`
 
@@ -88,7 +88,7 @@ Displays a regular polygon.
 
 <!--- <v-props component="VRegularpolygon" /> --->
 
-#### Hexagon
+### Hexagon
 
 `<v-hexagon>`
 
@@ -105,7 +105,7 @@ Displays a hexagon.
 
 <!--- <v-props component="VHexagon" /> --->
 
-#### Rectangle
+### Rectangle
 
 `<v-rect>`
 
@@ -120,7 +120,7 @@ Displays a 2D rectangle.
 
 <!--- <v-props component="VRect" /> --->
 
-#### Square
+### Square
 
 `<v-square>`
 
@@ -135,7 +135,7 @@ Displays a 2D square.
 
 <!--- <v-props component="VSquare" /> --->
 
-#### Circle
+### Circle
 
 `<v-circle>`
 
@@ -149,7 +149,7 @@ Displays a 2D circle.
 
 <!--- <v-props component="VCircle" /> --->
 
-#### Sphere
+### Sphere
 
 Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
@@ -166,11 +166,11 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 <!--- <v-props component="VSphere" /> --->
 
-### Live variables
+## Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
 
-#### Slider
+### Slider
 
 `<v-slider>`
 
@@ -196,7 +196,7 @@ a is {{ get("a") }}
 
 <!--- <v-props component="VSlider" /> --->
 
-#### Animate
+### Animate
 
 `<v-animate>`
 
@@ -218,11 +218,11 @@ b is {{ get("b") }}
 
 <!--- <v-props component="VAnimate" /> --->
 
-### Events
+## Events
 
 In addition to the live variables, Visualia also provides a way to send and receive global events.
 
-#### Sending an event
+### Sending an event
 
 To send an event, use `send()` function:
 
@@ -230,7 +230,7 @@ To send an event, use `send()` function:
 <button v-on:click="send('click!')">Click me</button>
 ```
 
-#### Receiving an event
+### Receiving an event
 
 To receive an event, use `receive()` function:
 
@@ -240,7 +240,7 @@ To receive an event, use `receive()` function:
 {{ get('clicked') ? 'Clicked!' : 'Waiting for a click'}}
 ```
 
-### Math
+## Math
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
