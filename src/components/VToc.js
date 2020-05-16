@@ -43,7 +43,7 @@ export const VToc = {
     return { isAnchorActive, routeLinks, router };
   },
   template: `
-  <div style="position: fixed; top: 0; left: 0; bottom: 0; overflow: scroll; padding: 20px; width: 250px;">
+  <div style="background: white; position: fixed; top: 0; left: 0; bottom: 0; overflow: scroll; padding: 20px; width: 250px;">
     <div v-for="routeLink in routeLinks">
       <div style="padding-bottom: 20px;">
         <a :href="routeLink == 'index' ? '' : '#' + routeLink">{{ routeLink }}</a>

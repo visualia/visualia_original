@@ -1,4 +1,12 @@
-import { createApp, provide } from "../deps/vue.js";
+import {
+  createApp,
+  provide,
+  computed,
+  h,
+  ref,
+  watch,
+  Suspense,
+} from "../deps/vue.js";
 
 import * as components from "../components.js";
 
@@ -14,26 +22,68 @@ export const visualia = (options = {}) => {
     components: {},
     utils: {},
     template: "",
+    routes: {
+      index: {
+        file: "./README.md",
+      },
+      releases: {
+        file: "./RELEASES.md",
+      },
+    },
     ...options,
   };
 
   const App = {
+    components: { Suspense },
     setup() {
-      provide("router", useRouter());
+      const router = useRouter();
+      provide("router", router);
       provide("customUtils", customOptions.utils);
-      let content = "";
-      if (customOptions.content) {
-        content = customOptions.content;
-      } else {
-        const fetch = useFetch(customOptions.file);
-        content = fetch.content;
-      }
+      // let content = ref("");
+      // if (customOptions.content) {
+      //   content.value = customOptions.content;
+      // }
+      // if (customOptions.routes) {
+      //   content = computed(() => {
+      //     const file = customOptions.routes[router.value[0] || "index"].file;
+      //     const fetch = useFetch(file);
+      //     console.log(fetch.content.value);
+      //     // const fetch = useFetch(
+
+      //     // );
+      //     return "a";
+      //   });
+      // } else {
+      //   const fetch = useFetch(customOptions.file);
+      //   content.value = fetch.content;
+      // }
+      const content = ref("");
+      watch(
+        () => router,
+        async (r) => {
+          const file = customOptions.routes[r.value[0] || "index"].file;
+          const res = await fetch(file);
+          content.value = await res.text();
+        }
+      );
       return { content };
     },
-    template:
-      customOptions.template ||
-      `
+    template: `
       <v-content :content="content" toc />
+    `,
+  };
+
+  const Wrapper = {
+    components: { App },
+    template: `
+    <suspense>
+      <template #default>
+        <app />
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+    </suspense>
     `,
   };
 
