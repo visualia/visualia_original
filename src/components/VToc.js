@@ -50,10 +50,9 @@ export const VToc = {
   },
   template: `
   <div style="background: white; position: fixed; top: 0; left: 0; bottom: 0; overflow: scroll; padding: 20px; width: 250px;">
-    <div>{{ routes }}</div>
     <div v-for="route in Object.entries(routes)">
       <div style="padding-bottom: 20px;">
-        <a :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].file }}</a>
+        <a :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
       </div>
       <div
         v-if="(router[0] == '' && route[0] == 'index') || (
