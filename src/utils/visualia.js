@@ -22,36 +22,7 @@ export const visualia = (options = {}) => {
     components: {},
     utils: {},
     template: "",
-    routes: {
-      index: {
-        file: "./README.md",
-        title: "Getting started",
-      },
-      components: {
-        file: "./docs/components.md",
-        title: "Components",
-      },
-      integration: {
-        file: "./docs/integration.md",
-        title: "Integrations",
-      },
-      development: {
-        file: "./docs/development.md",
-        title: "Development",
-      },
-      releases: {
-        file: "./RELEASES.md",
-        title: "Releases",
-      },
-      backstory: {
-        file: "./docs/backstory.md",
-        title: "Backstory",
-      },
-      faq: {
-        file: "./docs/faq.md",
-        title: "FAQ",
-      },
-    },
+    routes: {},
     ...options,
   };
 
@@ -90,20 +61,6 @@ export const visualia = (options = {}) => {
     },
     template: `
       <v-content :content="content" :routes="routes" toc />
-    `,
-  };
-
-  const Wrapper = {
-    components: { App },
-    template: `
-    <suspense>
-      <template #default>
-        <app />
-      </template>
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
-    </suspense>
     `,
   };
 
