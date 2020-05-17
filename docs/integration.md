@@ -1,8 +1,10 @@
-# Integrations with other frameworks
+# Integrations
+
+Visualia provides integration with several popular Javascript-based visualization frameworks.
 
 ## p5
 
-[p5](https://p5js.org/), a popular re-imagination of Processing framework can easily integrated with Visualia and they can even share live values and events.
+[p5](https://p5js.org/), a popular implementation of Processing framework in Javascript can easily integrated with Visualia and they can even share live values and events.
 
 To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
 
@@ -69,13 +71,13 @@ visualia({
 
 Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
 
-### Using Visualia in Observable
+### Visualia in Observable
 
 Here is a sample Observable notebook that imports Visualia into Observable notebook and allows to share reactive data between the environments.
 
 https://observablehq.com/@kristjanjansen/visualia-in-observable
 
-### Using Observable in Visualia
+### Observable in Visualia
 
 As Observable allows [exporting notebooks as ESM modules](https://observablehq.com/@observablehq/downloading-and-embedding-notebooks), you can also import Observable notebook into Visualia.
 
