@@ -1,8 +1,4 @@
 export const routes = {
-  utils: {
-    file: "./docs/utils.md",
-    title: "Utils",
-  },
   index: {
     file: "./README.md",
     title: "Getting started",
@@ -10,6 +6,10 @@ export const routes = {
   components: {
     file: "./docs/components.md",
     title: "Components",
+  },
+  utils: {
+    file: "./docs/utils.md",
+    title: "Utils",
   },
   integration: {
     file: "./docs/integration.md",
