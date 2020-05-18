@@ -26,7 +26,7 @@ export const VContent = {
     return { parsedContent, slideGridStyle };
   },
   template: `
-  <div style="display: flex; justify-content: center;">
+  <div style="position: relative; display: flex; justify-content: center;">
     <div style="max-width: 800px; width: 100%;">
       <div
         v-for="(slide,i) in parsedContent"
