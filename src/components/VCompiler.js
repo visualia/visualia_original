@@ -1,6 +1,7 @@
 import { computed, h, compile, onErrorCaptured, inject } from "../deps/vue.js";
 import marked from "../deps/marked.js";
 import * as utils from "../utils.js";
+import { formatHash } from "../internals.js";
 
 const renderer = new marked.Renderer();
 
@@ -18,6 +19,17 @@ renderer.code = (code, info) => {
     return `<p><v-live saveid="${saveid}" content="${escapedCode}" /></p>`;
   }
   return `<pre v-pre>${escapedCode}</pre>`;
+};
+
+renderer.heading = function (text, level, raw) {
+  const router = inject("router");
+  const anchor = formatHash([
+    router.value[0],
+    raw.toLowerCase().replace(/[^\w]+/g, "-"),
+  ]);
+  return level > 1
+    ? `<h${level} id="${anchor}" style="margin-left: -0.8em;"><a style="opacity: 0.2" href="#${anchor}">#</a> ${text}</h${level}>\n`
+    : `<h${level} id="${anchor}">${text}</h${level}>\n`;
 };
 
 const processContent = (content) =>
