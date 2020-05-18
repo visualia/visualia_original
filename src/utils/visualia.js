@@ -59,7 +59,9 @@ export const visualia = (options = {}) => {
       const routes = customOptions.routes;
       return { content, routes };
     },
-    template: `
+    template:
+      customOptions.template ||
+      `
       <v-content :content="content" :routes="routes" toc />
     `,
   };
