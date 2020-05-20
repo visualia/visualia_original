@@ -1,7 +1,7 @@
 export const routes = {
   index: {
     file: "./README.md",
-    title: "Getting started",
+    title: "Visualia",
   },
   components: {
     file: "./docs/components.md",

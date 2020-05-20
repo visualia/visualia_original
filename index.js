@@ -7,5 +7,6 @@ import { routes } from "./docs/routes.js";
 
 visualia({
   routes,
+  //file: "./README.md",
   components: { PfiveExample, ObservableExample },
 });
