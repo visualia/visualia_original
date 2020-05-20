@@ -19,10 +19,11 @@ export const visualia = (options = {}) => {
     content: "",
     el: "#app",
     file: "./index.md",
+    title: "Visualia",
     components: {},
     utils: {},
     template: "",
-    routes: {},
+    routes: null,
     ...options,
   };
 
@@ -50,6 +51,14 @@ export const visualia = (options = {}) => {
       //   const fetch = useFetch(customOptions.file);
       //   content.value = fetch.content;
       // }
+      if (!customOptions.routes) {
+        customOptions.routes = {
+          index: {
+            file: customOptions.file,
+            title: customOptions.title,
+          },
+        };
+      }
       const content = ref("");
       watch(async (r) => {
         const file = customOptions.routes[router.value[0] || "index"].file;
