@@ -29,27 +29,41 @@ export const VContent = {
     return { parsedContent, contentToc, slideGridStyle };
   },
   template: `
-  <div style="position: relative; display: flex; justify-content: center;">
-    <div style="max-width: 800px; width: 100%;">
-      <div
-        v-for="(slide,i) in parsedContent"
-        :style="{
-          padding: 'var(--base4)',
-          display: 'grid',
-          ...slideGridStyle(slide)
-        }"
-      >
-        <div v-for="cell in slide.content">
-          <suspense>
-          <template #default>
-            <v-compiler :content="cell" />
-          </template>
-          <template #fallback>
-            <div>Loading...</div>
-          </template>
-          </suspense>
+  <div style="display: flex;">
+    <div v-if="toc && contentToc.length" style="width: 300px;">
+    </div>
+    <div v-if="toc && contentToc.length" style="
+      z-index: 1000;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 250px;
+      overflow: scroll;
+    ">
+      <v-toc :toc="contentToc" :routes="routes" />
+    </div>
+    <div style="flex: 1; position: relative; display: flex; justify-content: center;">
+      <div style="max-width: 800px; width: 100%;">
+        <div
+          v-for="(slide,i) in parsedContent"
+          :style="{
+            padding: 'var(--base8) var(--base4)',
+            display: 'grid',
+            ...slideGridStyle(slide)
+          }"
+        >
+          <div v-for="cell in slide.content">
+            <suspense>
+            <template #default>
+              <v-compiler :content="cell" />
+            </template>
+            <template #fallback>
+              <div>Loading...</div>
+            </template>
+            </suspense>
+          </div>
         </div>
-        <v-toc v-if="toc" :toc="contentToc" :routes="routes" />
       </div>
     </div>
   </div>
