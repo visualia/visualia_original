@@ -1,5 +1,6 @@
-import { computed, Suspense } from "../deps/vue.js";
-import { parseContent, slideGridStyle } from "../internals/content.js";
+import { computed, Suspense, watch } from "../deps/vue.js";
+import { flatten } from "../utils.js";
+import { parseContent, slideGridStyle } from "../internals.js";
 
 export const VContent = {
   components: { Suspense },
@@ -22,8 +23,10 @@ export const VContent = {
   },
   setup(props) {
     const parsedContent = computed(() => parseContent(props.content));
-
-    return { parsedContent, slideGridStyle };
+    const contentToc = computed(() =>
+      flatten(parsedContent.value.map((slide) => slide.toc))
+    );
+    return { parsedContent, contentToc, slideGridStyle };
   },
   template: `
   <div style="position: relative; display: flex; justify-content: center;">
@@ -46,7 +49,7 @@ export const VContent = {
           </template>
           </suspense>
         </div>
-        <v-toc v-if="toc" :toc="slide.toc" :routes="routes" />
+        <v-toc v-if="toc" :toc="contentToc" :routes="routes" />
       </div>
     </div>
   </div>
