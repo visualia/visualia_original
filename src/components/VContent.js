@@ -1,6 +1,27 @@
-import { computed, Suspense, watch } from "../deps/vue.js";
+import {
+  computed,
+  Suspense,
+  onMounted,
+  watch,
+  ref,
+  nextTick,
+} from "../deps/vue.js";
 import { flatten } from "../utils.js";
 import { parseContent, slideGridStyle } from "../internals.js";
+
+const useResize = () => {
+  const el = ref(null);
+  const width = ref(null);
+  const height = ref(null);
+  onMounted(() => {
+    const observer = new ResizeObserver(async (entries) => {
+      await nextTick();
+      width.value = entries[0].contentRect.width;
+    });
+    observer.observe(el.value);
+  });
+  return { el, width };
+};
 
 export const VContent = {
   components: { Suspense },
@@ -22,23 +43,32 @@ export const VContent = {
     },
   },
   setup(props) {
+    const { el, width } = useResize();
+    const isMobile = computed(() => width.value < 800);
+    const showMenu = ref(true);
+
     const parsedContent = computed(() => parseContent(props.content));
     const contentToc = computed(() =>
       flatten(parsedContent.value.map((slide) => slide.toc))
     );
-    const mobile = false;
-    return { parsedContent, contentToc, slideGridStyle, mobile };
+    return {
+      parsedContent,
+      contentToc,
+      slideGridStyle,
+      el,
+      showMenu,
+      isMobile,
+    };
   },
   template: `
-  <div style="display: flex;">
-    <div v-if="toc && !mobile" style="width: 300px;">
-    </div>
-    <div v-if="toc"
+  <div ref="el" style="display: flex; position: relative;">
+    <div v-if="toc && !isMobile && showMenu" style="width: 300px; background: gray;"></div>
+    <div v-if="toc && showMenu"
       :style="{
-        boxShadow: mobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
+        boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
       }"
       style="
-      z-index: 10000;
+      z-index: 1000;
       position: fixed;
       top: 0;
       bottom: 0;
@@ -49,8 +79,21 @@ export const VContent = {
     ">
       <v-toc :toc="contentToc" :routes="routes" />
     </div>
+    <div
+      v-if="toc"
+      style="
+        position: fixed;
+        top: 0px;
+        left: 10px;
+        z-index: 10000;
+        font-size: 32px;
+        cursor: pointer;
+        opacity: 0.75;
+      "
+      @click="showMenu = !showMenu"
+    >≡</div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
-      <div style="max-width: 800px; width: 100%;">
+      <div  style="max-width: 900px; width: 100%;">
         <div
           v-for="(slide,i) in parsedContent"
           :style="{
