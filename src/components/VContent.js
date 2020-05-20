@@ -26,20 +26,26 @@ export const VContent = {
     const contentToc = computed(() =>
       flatten(parsedContent.value.map((slide) => slide.toc))
     );
-    return { parsedContent, contentToc, slideGridStyle };
+    const mobile = false;
+    return { parsedContent, contentToc, slideGridStyle, mobile };
   },
   template: `
   <div style="display: flex;">
-    <div v-if="toc && contentToc.length" style="width: 300px;">
+    <div v-if="toc && !mobile" style="width: 300px;">
     </div>
-    <div v-if="toc && contentToc.length" style="
-      z-index: 1000;
+    <div v-if="toc"
+      :style="{
+        boxShadow: mobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
+      }"
+      style="
+      z-index: 10000;
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
-      width: 250px;
+      width: 300px;
       overflow: scroll;
+      background: white;
     ">
       <v-toc :toc="contentToc" :routes="routes" />
     </div>
