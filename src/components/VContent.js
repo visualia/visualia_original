@@ -2,12 +2,12 @@ import {
   computed,
   Suspense,
   onMounted,
-  watch,
+  inject,
   ref,
   nextTick,
 } from "../deps/vue.js";
-import { flatten } from "../utils.js";
-import { parseContent, slideGridStyle } from "../internals.js";
+import { flatten, slug } from "../utils.js";
+import { parseContent, slideGridStyle, formatHash } from "../internals.js";
 
 const useResize = () => {
   const el = ref(null);
@@ -15,7 +15,6 @@ const useResize = () => {
   const height = ref(null);
   onMounted(() => {
     const observer = new ResizeObserver(async (entries) => {
-      await nextTick();
       width.value = entries[0].contentRect.width;
     });
     observer.observe(el.value);
@@ -46,10 +45,32 @@ export const VContent = {
     const { el, width } = useResize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
+    const router = inject("router");
 
-    const parsedContent = computed(() => parseContent(props.content));
+    const parsedContent = computed(() =>
+      parseContent(props.content).map((slide) => {
+        if (slide.title) {
+          slide.anchor = formatHash([router.value[0], slug(slide.title)]);
+        }
+        return slide;
+      })
+    );
+
     const contentToc = computed(() =>
-      flatten(parsedContent.value.map((slide) => slide.toc))
+      flatten(
+        parsedContent.value.map((slide) =>
+          slide.anchor
+            ? [
+                {
+                  anchor: slide.anchor,
+                  level: 1,
+                  text: slide.title,
+                },
+                slide.toc,
+              ]
+            : slide.toc
+        )
+      )
     );
     return {
       parsedContent,
@@ -62,7 +83,19 @@ export const VContent = {
   },
   template: `
   <div ref="el" style="display: flex; position: relative;">
-    <div v-if="toc && !isMobile && showMenu" style="width: 300px; background: gray;"></div>
+    <div v-if="toc && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
+    <div v-if="toc && isMobile && showMenu"
+      style="
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: calc(100vw - 250px);
+        background: rgba(0,0,0,0.2);
+      "
+      @click="showMenu = !showMenu"
+    />
     <div v-if="toc && showMenu"
       :style="{
         boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
@@ -73,7 +106,7 @@ export const VContent = {
       top: 0;
       bottom: 0;
       left: 0;
-      width: 300px;
+      width: 250px;
       overflow: scroll;
       background: white;
     ">
@@ -91,7 +124,9 @@ export const VContent = {
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
-    >≡</div>
+    >
+      <v-menu-icon />
+    </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
         <div
@@ -101,6 +136,7 @@ export const VContent = {
             display: 'grid',
             ...slideGridStyle(slide)
           }"
+          :id="slide.anchor || ''"
         >
           <div v-for="cell in slide.content">
             <suspense>

@@ -51,6 +51,7 @@ export const VLive = {
     @media (max-width: 600px) {
       .v-live {
         grid-template-columns: 1fr;
+        grid-template-rows: 80vw 80vw;
       }
     }
   `,

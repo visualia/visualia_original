@@ -25,6 +25,7 @@ export const VToc = {
       return false;
     };
 
+    /*
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,6 +43,7 @@ export const VToc = {
     onMounted(() => {
       watch(() => {
         if (props.toc) {
+          // TODO: disconnect prev observers?
           props.toc.forEach(({ anchor }) => {
             observer.observe(document.getElementById(anchor));
           });
@@ -50,14 +52,15 @@ export const VToc = {
     });
 
     onUnmounted(() => observer.disconnect());
+    */
 
     return { isAnchorActive, router };
   },
   template: `
   <div style="padding: var(--base8) var(--base4);">
     <div v-for="route in Object.entries(routes)">
-      <div style="padding-bottom: 20px;">
-        <a style="border: none;":href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
+      <div style="padding-bottom: var(--base2)">
+        <a style="border: none;" :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
       </div>
       <div
         v-if="(router[0] == '' && route[0] == 'index') || (
@@ -66,7 +69,7 @@ export const VToc = {
         :style="{ 
           opacity: 0.75,
           fontSize: '0.8em',
-          marginBottom: '10px', 
+          marginBottom: 'calc(var(--base) * 1.5)', 
           marginLeft: ((link.level - 1) * 6) + 'px'
         }"
       >

@@ -1,5 +1,6 @@
 import { inject } from "../deps/vue.js";
 import marked from "../deps/marked.js";
+import { array2object } from "../utils.js";
 import { formatHash } from "../internals.js";
 
 const generateToc = (content) => {
@@ -65,7 +66,10 @@ export const parsePage = (page) => {
       .map((c) => c.replace(pattern, ""));
     const toc = generateToc(page);
 
-    return Object.assign({ rowCount, colCount, areas, content, toc }, ...meta);
+    return Object.assign(
+      { rowCount, colCount, areas, content, toc },
+      array2object(meta)
+    );
   } else {
     const content = page.split(/\r?\n-\r?\n/);
     const toc = generateToc(page);
@@ -77,7 +81,7 @@ export const parsePage = (page) => {
         content: content,
         toc,
       },
-      ...meta
+      array2object(meta)
     );
   }
 };

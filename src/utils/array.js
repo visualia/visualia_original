@@ -19,3 +19,9 @@ export const chunk = (arr, length) =>
   Array.from({ length: Math.ceil(arr.length / length) }).map((_, n) =>
     arr.slice(n * length, n * length + length)
   );
+
+export const array2object = (array) =>
+  array.reduce((acc, el) => {
+    acc[el[0]] = el[1];
+    return acc;
+  }, {});
