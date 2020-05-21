@@ -2,12 +2,12 @@ import {
   computed,
   Suspense,
   onMounted,
-  watch,
+  inject,
   ref,
   nextTick,
 } from "../deps/vue.js";
-import { flatten } from "../utils.js";
-import { parseContent, slideGridStyle } from "../internals.js";
+import { flatten, slug } from "../utils.js";
+import { parseContent, slideGridStyle, formatHash } from "../internals.js";
 
 const useResize = () => {
   const el = ref(null);
@@ -15,7 +15,6 @@ const useResize = () => {
   const height = ref(null);
   onMounted(() => {
     const observer = new ResizeObserver(async (entries) => {
-      await nextTick();
       width.value = entries[0].contentRect.width;
     });
     observer.observe(el.value);
@@ -46,10 +45,32 @@ export const VContent = {
     const { el, width } = useResize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
+    const router = inject("router");
 
-    const parsedContent = computed(() => parseContent(props.content));
+    const parsedContent = computed(() =>
+      parseContent(props.content).map((slide) => {
+        if (slide.title) {
+          slide.anchor = formatHash([router.value[0], slug(slide.title)]);
+        }
+        return slide;
+      })
+    );
+
     const contentToc = computed(() =>
-      flatten(parsedContent.value.map((slide) => slide.toc))
+      flatten(
+        parsedContent.value.map((slide) =>
+          slide.anchor
+            ? [
+                {
+                  anchor: slide.anchor,
+                  level: 1,
+                  text: slide.title,
+                },
+                slide.toc,
+              ]
+            : slide.toc
+        )
+      )
     );
     return {
       parsedContent,
@@ -101,6 +122,7 @@ export const VContent = {
             display: 'grid',
             ...slideGridStyle(slide)
           }"
+          :id="slide.anchor || ''"
         >
           <div v-for="cell in slide.content">
             <suspense>
