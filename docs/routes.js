@@ -16,8 +16,8 @@ export const routes = {
     title: "Integrations",
   },
   development: {
-    file: "./docs/development.md",
-    title: "Development",
+    file: "./docs/internals.md",
+    title: "Internals",
   },
   releases: {
     file: "./RELEASES.md",
