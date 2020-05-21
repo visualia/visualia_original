@@ -27,8 +27,8 @@ export const useRouter = () => {
         if (router.value[0]) {
           location.hash = formatHash(router.value, true);
         } else {
-          //removeHash();
-          location.hash = "";
+          removeHash();
+          //location.hash = "";
         }
         if (router.value[1]) {
           const target = document.getElementById(formatHash(router.value));

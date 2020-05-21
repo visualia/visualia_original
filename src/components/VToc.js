@@ -1,5 +1,5 @@
-import { inject, onMounted, onUnmounted } from "../deps/vue.js";
-import { parseHash } from "../internals.js";
+import { inject, onMounted, onUnmounted, watch } from "../deps/vue.js";
+import { parseHash, formatHash } from "../internals.js";
 
 export const VToc = {
   props: {
@@ -19,32 +19,37 @@ export const VToc = {
 
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
-      if (!!router.value[1]) {
+      if (router.value[1]) {
         return parsedHash[1] === router.value[1];
       }
       return false;
     };
 
-    //const routeLinks = ["index"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            // TODO: Move this logic to router
+            router.value[1] = parseHash(entries[0].target.id)[1];
+            location.hash = formatHash(router.value, true);
+          }
+        });
+      },
+      // From https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
+      { threshold: 1, rootMargin: "-70px 0px -80% 0px" }
+    );
 
-    // const observer = new IntersectionObserver(
-    //   (entries) => {
-    //     entries.forEach((entry) => {
-    //       if (entry.isIntersecting && entry.intersectionRatio === 1) {
-    //         router.value[1] = parseHash(entries[0].target.id)[1];
-    //       }
-    //     });
-    //   },
-    //   { threshold: 1 }
-    // );
+    onMounted(() => {
+      watch(() => {
+        if (props.toc) {
+          props.toc.forEach(({ anchor }) => {
+            observer.observe(document.getElementById(anchor));
+          });
+        }
+      });
+    });
 
-    // onMounted(() => {
-    //   props.toc.value.forEach(({ anchor }) => {
-    //     observer.observe(document.getElementById(anchor));
-    //   });
-    // });
-
-    // onUnmounted(() => observer.disconnect());
+    onUnmounted(() => observer.disconnect());
 
     return { isAnchorActive, router };
   },
@@ -52,7 +57,7 @@ export const VToc = {
   <div style="padding: var(--base8) var(--base4);">
     <div v-for="route in Object.entries(routes)">
       <div style="padding-bottom: 20px;">
-        <a :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
+        <a style="border: none;":href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
       </div>
       <div
         v-if="(router[0] == '' && route[0] == 'index') || (
@@ -62,10 +67,13 @@ export const VToc = {
           opacity: 0.75,
           fontSize: '0.8em',
           marginBottom: '10px', 
-          marginLeft: ((link.level - 1) * 12) + 'px',
+          marginLeft: ((link.level - 1) * 6) + 'px'
         }"
       >
-        <a :href="'#' + link.anchor">{{ link.text }}</a>
+        <a :style="{
+          border: 'none',
+          fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
+        }" :href="'#' + link.anchor">{{ link.text }}</a>
       </div>
     </div>
   </div>   
