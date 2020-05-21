@@ -89,6 +89,9 @@ h5 {
   line-height: 1.25em;
   color: var(--primary);
   font-weight: 700;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 h1 {
   font-size: 64px;
@@ -335,9 +338,11 @@ td p {
   line-height: calc(var(--base) * 2.5);
 }
 @media (max-width: 600px) {
-  thead,
   tr {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  thead {
+    display: none;
   }
 }
