@@ -1,5 +1,5 @@
 import { inject, onMounted, onUnmounted, watch } from "../deps/vue.js";
-import { parseHash } from "../internals.js";
+import { parseHash, formatHash } from "../internals.js";
 
 export const VToc = {
   props: {
@@ -19,7 +19,7 @@ export const VToc = {
 
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
-      if (!!router.value[1]) {
+      if (router.value[1]) {
         return parsedHash[1] === router.value[1];
       }
       return false;
@@ -29,11 +29,14 @@ export const VToc = {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            // TODO: Move this logic to router
             router.value[1] = parseHash(entries[0].target.id)[1];
+            location.hash = formatHash(router.value, true);
           }
         });
       },
-      { threshold: 1 }
+      // From https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
+      { threshold: 1, rootMargin: "-70px 0px -80% 0px" }
     );
 
     onMounted(() => {
@@ -64,10 +67,13 @@ export const VToc = {
           opacity: 0.75,
           fontSize: '0.8em',
           marginBottom: '10px', 
-          marginLeft: ((link.level - 1) * 12) + 'px',
+          marginLeft: ((link.level - 1) * 6) + 'px'
         }"
       >
-        <a :href="'#' + link.anchor">{{ link.text }}</a>
+        <a :style="{
+          border: 'none',
+          fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
+        }" :href="'#' + link.anchor">{{ link.text }}</a>
       </div>
     </div>
   </div>   
