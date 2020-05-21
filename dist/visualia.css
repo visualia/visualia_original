@@ -59,6 +59,8 @@
   --base8: calc(var(--base) * 8);
   --base9: calc(var(--base) * 9);
   --base10: calc(var(--base) * 10);
+
+  --icon-stroke: var(--primary);
 }
 
 /* All */

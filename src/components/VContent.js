@@ -112,7 +112,9 @@ export const VContent = {
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
-    >≡</div>
+    >
+      <v-menu-icon />
+    </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
         <div
