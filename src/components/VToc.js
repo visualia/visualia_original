@@ -57,7 +57,7 @@ export const VToc = {
   <div style="padding: var(--base8) var(--base4);">
     <div v-for="route in Object.entries(routes)">
       <div style="padding-bottom: 20px;">
-        <a :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
+        <a style="border: none;":href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
       </div>
       <div
         v-if="(router[0] == '' && route[0] == 'index') || (
