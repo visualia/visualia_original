@@ -94,21 +94,21 @@ h5 {
   word-break: break-word;
 }
 h1 {
-  font-size: 64px;
+  font-size: calc(var(--base) * 8);
   line-height: 1em;
   letter-spacing: -0.025em;
 }
 h2 {
-  font-size: 32px;
+  font-size: calc(var(--base) * 4);
 }
 h3 {
-  font-size: 24px;
+  font-size: calc(var(--base) * 3);
 }
 h4 {
-  font-size: 20px;
+  font-size: calc(var(--base) * 2.5);
 }
 h5 {
-  font-size: 16px;
+  font-size: calc(var(--base) * 2);
 }
 h1:first-child,
 h2:first-child,

@@ -82,7 +82,11 @@ export const VContent = {
     };
   },
   template: `
-  <div ref="el" style="display: flex; position: relative;">
+  <div
+    ref="el"
+    style="display: flex; position: relative;"
+    :style="{'--base': isMobile ? '7px' : '8px'}"
+  >
     <div v-if="toc && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
     <div v-if="toc && isMobile && showMenu"
       style="
@@ -132,7 +136,7 @@ export const VContent = {
         <div
           v-for="(slide,i) in parsedContent"
           :style="{
-            padding: 'var(--base8) var(--base4)',
+            padding: 'var(--base6) var(--base4)',
             display: 'grid',
             ...slideGridStyle(slide)
           }"
