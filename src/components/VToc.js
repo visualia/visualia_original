@@ -57,7 +57,7 @@ export const VToc = {
     return { isAnchorActive, router };
   },
   template: `
-  <div style="padding: var(--base8) var(--base4);">
+  <div style="padding: var(--base6) var(--base4);">
     <div v-for="route in Object.entries(routes)">
       <div style="padding-bottom: var(--base2)">
         <a style="border: none;" :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
