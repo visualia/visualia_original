@@ -1,4 +1,4 @@
-import { inject, onMounted, onUnmounted } from "../deps/vue.js";
+import { inject, onMounted, onUnmounted, watch } from "../deps/vue.js";
 import { parseHash } from "../internals.js";
 
 export const VToc = {
@@ -25,26 +25,28 @@ export const VToc = {
       return false;
     };
 
-    //const routeLinks = ["index"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            router.value[1] = parseHash(entries[0].target.id)[1];
+          }
+        });
+      },
+      { threshold: 1 }
+    );
 
-    // const observer = new IntersectionObserver(
-    //   (entries) => {
-    //     entries.forEach((entry) => {
-    //       if (entry.isIntersecting && entry.intersectionRatio === 1) {
-    //         router.value[1] = parseHash(entries[0].target.id)[1];
-    //       }
-    //     });
-    //   },
-    //   { threshold: 1 }
-    // );
+    onMounted(() => {
+      watch(() => {
+        if (props.toc) {
+          props.toc.forEach(({ anchor }) => {
+            observer.observe(document.getElementById(anchor));
+          });
+        }
+      });
+    });
 
-    // onMounted(() => {
-    //   props.toc.value.forEach(({ anchor }) => {
-    //     observer.observe(document.getElementById(anchor));
-    //   });
-    // });
-
-    // onUnmounted(() => observer.disconnect());
+    onUnmounted(() => observer.disconnect());
 
     return { isAnchorActive, router };
   },
