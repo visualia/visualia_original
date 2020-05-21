@@ -43,6 +43,7 @@ export const VTextarea = {
       outline: none;
       resize: none;
       width: 100%;
+      margin: 0;
       padding: var(--base2);
       -webkit-appearance: none;
       border-radius: 0;
