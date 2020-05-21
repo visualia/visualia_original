@@ -45,6 +45,7 @@ export const VTextarea = {
       width: 100%;
       padding: var(--base2);
       -webkit-appearance: none;
+      border-radius: 0;
     "
   />
   `,
