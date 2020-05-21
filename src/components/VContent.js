@@ -84,6 +84,18 @@ export const VContent = {
   template: `
   <div ref="el" style="display: flex; position: relative;">
     <div v-if="toc && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
+    <div v-if="toc && isMobile && showMenu"
+      style="
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: calc(100vw - 250px);
+        background: rgba(0,0,0,0.2);
+      "
+      @click="showMenu = !showMenu"
+    />
     <div v-if="toc && showMenu"
       :style="{
         boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
