@@ -25,6 +25,7 @@ export const VToc = {
       return false;
     };
 
+    /*
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,6 +43,7 @@ export const VToc = {
     onMounted(() => {
       watch(() => {
         if (props.toc) {
+          // TODO: disconnect prev observers?
           props.toc.forEach(({ anchor }) => {
             observer.observe(document.getElementById(anchor));
           });
@@ -50,6 +52,7 @@ export const VToc = {
     });
 
     onUnmounted(() => observer.disconnect());
+    */
 
     return { isAnchorActive, router };
   },
