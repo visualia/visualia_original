@@ -60,11 +60,16 @@ export const VToc = {
     */
 
     const showLink = (route, link) => {
-      console.log(link);
-      return (
+      if (
         (router.value[0] == "" && route[0] == "index") ||
         router.value[0] == route[0]
-      );
+      ) {
+        if (props.showSlides) {
+          return link.level === 1;
+        }
+        return true;
+      }
+      return false;
     };
 
     return { isAnchorActive, router, showLink };
@@ -76,17 +81,16 @@ export const VToc = {
         <a style="border: none;" :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
       </div>
       <div
-        v-if="(router[0] == '' && route[0] == 'index') || (
-        router[0] == route[0])"
         v-for="link in toc"
-        :style="{ 
+      >
+        <a
+        v-if="showLink(route,link)"
+        :style="{
           opacity: 0.75,
           fontSize: '0.8em',
           marginBottom: 'calc(var(--base) * 1.5)', 
-          marginLeft: ((link.level - 1) * 6) + 'px'
-        }"
-      >
-        <a :style="{
+          marginLeft: ((link.level - 1) * 6) + 'px',
+          display: 'block',
           border: 'none',
           fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
         }" :href="'#' + link.anchor">{{ link.text }}</a>
