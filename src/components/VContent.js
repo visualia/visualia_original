@@ -129,7 +129,7 @@ export const VContent = {
       "
       @click="showMenu = !showMenu"
     >
-      <v-menu-icon />
+      <v-icon-menu />
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
