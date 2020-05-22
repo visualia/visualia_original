@@ -13,6 +13,11 @@ export const VToc = {
       type: Object,
       docs: "Routes object",
     },
+    showSlides: {
+      default: false,
+      type: [Boolean, String],
+      docs: "Show slides?",
+    },
   },
   setup(props) {
     const router = inject("router");
@@ -54,7 +59,15 @@ export const VToc = {
     onUnmounted(() => observer.disconnect());
     */
 
-    return { isAnchorActive, router };
+    const showLink = (route, link) => {
+      console.log(link);
+      return (
+        (router.value[0] == "" && route[0] == "index") ||
+        router.value[0] == route[0]
+      );
+    };
+
+    return { isAnchorActive, router, showLink };
   },
   template: `
   <div style="padding: var(--base6) var(--base4);">

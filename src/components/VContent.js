@@ -47,6 +47,8 @@ export const VContent = {
     const showMenu = ref(true);
     const router = inject("router");
 
+    const showSlides = ref(false);
+
     const parsedContent = computed(() =>
       parseContent(props.content).map((slide) => {
         if (slide.title) {
@@ -79,6 +81,7 @@ export const VContent = {
       el,
       showMenu,
       isMobile,
+      showSlides,
     };
   },
   template: `
@@ -114,22 +117,35 @@ export const VContent = {
       overflow: scroll;
       background: white;
     ">
-      <v-toc :toc="contentToc" :routes="routes" />
+      <v-toc :toc="contentToc" :routes="routes" :showSlides="showSlides" />
     </div>
     <div
       v-if="toc"
       style="
         position: fixed;
-        top: 0px;
+        top: 10px;
         left: 10px;
         z-index: 10000;
-        font-size: 32px;
         cursor: pointer;
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
     >
       <v-icon-menu />
+    </div>
+    <div
+      style="
+        position: fixed;
+        top: 10px;
+        left: 35px;
+        z-index: 10000;
+        cursor: pointer;
+        opacity: 0.75;
+      "
+      @click="showSlides = !showSlides"
+    >
+      <v-icon-document v-if="showSlides" />
+      <v-icon-slides v-if="!showSlides" />
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">

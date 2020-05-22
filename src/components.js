@@ -8,7 +8,7 @@ export * from "./components/VIconDocument.js";
 export * from "./components/VIconLeft.js";
 export * from "./components/VIconMenu.js";
 export * from "./components/VIconRight.js";
-export * from "./components/VIconSlide.js";
+export * from "./components/VIconSlides.js";
 export * from "./components/VLine.js";
 export * from "./components/VLive.js";
 export * from "./components/VMath.js";
