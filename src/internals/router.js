@@ -32,11 +32,13 @@ export const useRouter = () => {
         }
         if (router.value[1]) {
           const target = document.getElementById(formatHash(router.value));
-          window.scrollTo({
-            left: 0,
-            top: target.offsetTop - 10,
-            behavior: "smooth",
-          });
+          if (target) {
+            window.scrollTo({
+              left: 0,
+              top: target.offsetTop - 10,
+              behavior: "smooth",
+            });
+          }
         }
       }
     },
