@@ -74,6 +74,14 @@ export const VContent = {
         )
       )
     );
+
+    const showSlide = (slide) => {
+      if (showSlides.value && slide.anchor) {
+        return formatHash(router.value) === slide.anchor;
+      }
+      return true;
+    };
+
     return {
       parsedContent,
       contentToc,
@@ -82,6 +90,7 @@ export const VContent = {
       showMenu,
       isMobile,
       showSlides,
+      showSlide,
     };
   },
   template: `
@@ -133,7 +142,7 @@ export const VContent = {
     >
       <v-icon-menu />
     </div>
-    <div
+    <!--div
       style="
         position: fixed;
         top: 10px;
@@ -146,29 +155,31 @@ export const VContent = {
     >
       <v-icon-document v-if="showSlides" />
       <v-icon-slides v-if="!showSlides" />
-    </div>
+    </div-->
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <div
-          v-for="(slide,i) in parsedContent"
-          :style="{
-            padding: 'var(--base6) var(--base4)',
-            display: 'grid',
-            ...slideGridStyle(slide)
-          }"
-          :id="slide.anchor || ''"
-        >
-          <div v-for="cell in slide.content">
-            <suspense>
-            <template #default>
-              <v-compiler :content="cell" />
-            </template>
-            <template #fallback>
-              <div>Loading...</div>
-            </template>
-            </suspense>
+        <template v-for="(slide,i) in parsedContent">
+          <div
+            v-if="showSlide(slide)"
+            :style="{
+              padding: 'var(--base6) var(--base4)',
+              display: 'grid',
+              ...slideGridStyle(slide)
+            }"
+            :id="slide.anchor || ''"
+          >
+            <div v-for="cell in slide.content">
+              <suspense>
+              <template #default>
+                <v-compiler :content="cell" />
+              </template>
+              <template #fallback>
+                <div>Loading...</div>
+              </template>
+              </suspense>
+            </div>
           </div>
-        </div>
+        </template>
       </div>
     </div>
   </div>
