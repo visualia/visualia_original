@@ -20,7 +20,6 @@ export const VToc = {
       return false;
     };
 
-    /*
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -32,7 +31,7 @@ export const VToc = {
         });
       },
       // From https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
-      { threshold: 1, rootMargin: "-70px 0px -80% 0px" }
+      { threshold: 1, rootMargin: "0px 0px -80% 0px" }
     );
 
     onMounted(() => {
@@ -40,14 +39,16 @@ export const VToc = {
         if (props.toc) {
           // TODO: disconnect prev observers?
           props.toc.forEach(({ anchor }) => {
-            observer.observe(document.getElementById(anchor));
+            const el = document.getElementById(anchor);
+            if (el) {
+              observer.observe(document.getElementById(anchor));
+            }
           });
         }
       });
     });
 
     onUnmounted(() => observer.disconnect());
-    */
 
     return { isAnchorActive };
   },

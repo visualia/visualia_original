@@ -159,6 +159,6 @@ deno test.js
 
 For Windows support, see [these Deno installation instructions](https://deno.land/std/manual.md#download-and-install).
 
-#### Running tests automatically
+#### Run CI tests
 
 Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).
