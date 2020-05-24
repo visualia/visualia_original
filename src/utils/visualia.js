@@ -19,7 +19,7 @@ export const visualia = (options = {}) => {
     content: "",
     el: "#app",
     file: "./index.md",
-    title: "Visualia",
+    files: null,
     components: {},
     utils: {},
     template: "",
@@ -33,19 +33,10 @@ export const visualia = (options = {}) => {
       provide("router", router);
       provide("customUtils", customOptions.utils);
 
-      if (!customOptions.files) {
-        customOptions.files = {
-          index: {
-            file: customOptions.file,
-            title: customOptions.title,
-          },
-        };
-      }
-
       const content = ref("");
 
       Promise.all(
-        Object.values(customOptions.routes).map(({ file }) =>
+        (customOptions.files || [customOptions.file]).map((file) =>
           fetch(file).then((res) => res.text())
         )
       ).then((files) => {

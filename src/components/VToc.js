@@ -8,11 +8,6 @@ export const VToc = {
       type: Array,
       docs: "Table of contents as a collection",
     },
-    routes: {
-      default: {},
-      type: Object,
-      docs: "Routes object",
-    },
   },
   setup(props) {
     const router = inject("router");
@@ -54,14 +49,10 @@ export const VToc = {
     onUnmounted(() => observer.disconnect());
     */
 
-    return { isAnchorActive, router };
+    return { isAnchorActive };
   },
   template: `
   <div style="padding: var(--base6) var(--base4);">
-    <div v-for="route in Object.entries(routes)">
-      <!-- <div style="padding-bottom: var(--base2)">
-        <a style="border: none;" :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
-      </div> -->
       <div
         v-for="link in toc"
         :style="{ 
@@ -76,7 +67,6 @@ export const VToc = {
           fontWeight: isAnchorActive(link.anchor) ? 'bold' : 'normal'
         }" :href="'#' + link.anchor">{{ link.text }}</a>
       </div>
-    </div>
   </div>   
 `,
 };
