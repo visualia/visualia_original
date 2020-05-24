@@ -35,7 +35,7 @@ export const useRouter = () => {
           if (target) {
             window.scrollTo({
               left: 0,
-              top: target.offsetTop - 10,
+              top: target.offsetTop - 50,
               behavior: "smooth",
             });
           }

@@ -30,11 +30,6 @@ export const VContent = {
       type: String,
       docs: "Content to be compiled into VueJS template",
     },
-    routes: {
-      default: {},
-      type: Object,
-      docs: "Routes object",
-    },
     toc: {
       default: false,
       type: [Boolean, String],
@@ -114,7 +109,7 @@ export const VContent = {
       overflow: scroll;
       background: white;
     ">
-      <v-toc :toc="contentToc" :routes="routes" />
+      <v-toc :toc="contentToc" />
     </div>
     <div
       v-if="toc"

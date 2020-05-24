@@ -19,7 +19,7 @@ export const visualia = (options = {}) => {
     content: "",
     el: "#app",
     file: "./index.md",
-    title: "Visualia",
+    files: null,
     components: {},
     utils: {},
     template: "",
@@ -28,43 +28,21 @@ export const visualia = (options = {}) => {
   };
 
   const App = {
-    components: { Suspense },
     setup() {
       const router = useRouter();
       provide("router", router);
       provide("customUtils", customOptions.utils);
-      // let content = ref("");
-      // if (customOptions.content) {
-      //   content.value = customOptions.content;
-      // }
-      // if (customOptions.routes) {
-      //   content = computed(() => {
-      //     const file = customOptions.routes[router.value[0] || "index"].file;
-      //     const fetch = useFetch(file);
-      //     console.log(fetch.content.value);
-      //     // const fetch = useFetch(
 
-      //     // );
-      //     return "a";
-      //   });
-      // } else {
-      //   const fetch = useFetch(customOptions.file);
-      //   content.value = fetch.content;
-      // }
-      if (!customOptions.routes) {
-        customOptions.routes = {
-          index: {
-            file: customOptions.file,
-            title: customOptions.title,
-          },
-        };
-      }
       const content = ref("");
-      watch(async (r) => {
-        const file = customOptions.routes[router.value[0] || "index"].file;
-        const res = await fetch(file);
-        content.value = await res.text();
+
+      Promise.all(
+        (customOptions.files || [customOptions.file]).map((file) =>
+          fetch(file).then((res) => res.text())
+        )
+      ).then((files) => {
+        content.value = files.join("\n\n---\n\n");
       });
+
       const routes = customOptions.routes;
       return { content, routes };
     },

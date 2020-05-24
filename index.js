@@ -5,8 +5,17 @@ import { ObservableExample } from "./docs/ObservableExample.js";
 
 import { routes } from "./docs/routes.js";
 
+const files = [
+  "./README.md",
+  "./docs/components.md",
+  "./docs/utils.md",
+  "./docs/integration.md",
+  "./docs/internals.md",
+  "./RELEASES.md",
+  "./docs/backstory.md",
+  "./docs/faq.md",
+];
 visualia({
-  routes,
-  //file: "./README.md",
+  files,
   components: { PfiveExample, ObservableExample },
 });

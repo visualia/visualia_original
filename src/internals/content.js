@@ -1,6 +1,6 @@
 import { inject } from "../deps/vue.js";
 import marked from "../deps/marked.js";
-import { array2object } from "../utils.js";
+import { array2object, slug } from "../utils.js";
 import { formatHash } from "../internals.js";
 
 const generateToc = (content) => {
@@ -8,18 +8,12 @@ const generateToc = (content) => {
   const renderer = new marked.Renderer();
   let toc = [];
   renderer.heading = function (text, level, raw) {
-    if (level > 1) {
-      // TODO: use slug()
-      const anchor = formatHash([
-        router.value[0],
-        raw.toLowerCase().replace(/[^\w]+/g, "-"),
-      ]);
-      toc.push({
-        anchor: anchor,
-        level: level,
-        text: text,
-      });
-    }
+    const anchor = formatHash([router.value[0], slug(raw)]);
+    toc.push({
+      anchor: anchor,
+      level: level,
+      text: text,
+    });
   };
   marked(content, { renderer });
   return toc;
