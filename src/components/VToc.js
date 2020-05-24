@@ -59,16 +59,14 @@ export const VToc = {
   template: `
   <div style="padding: var(--base6) var(--base4);">
     <div v-for="route in Object.entries(routes)">
-      <div style="padding-bottom: var(--base2)">
+      <!-- <div style="padding-bottom: var(--base2)">
         <a style="border: none;" :href="route[0] == 'index' ? '#' : '#' + route[0]">{{ route[1].title }}</a>
-      </div>
+      </div> -->
       <div
-        v-if="(router[0] == '' && route[0] == 'index') || (
-        router[0] == route[0])"
         v-for="link in toc"
         :style="{ 
           opacity: 0.75,
-          fontSize: '0.8em',
+          fontSize: link.level == 1 ? '1em' : '0.8em',
           marginBottom: 'calc(var(--base) * 1.5)', 
           marginLeft: ((link.level - 1) * 6) + 'px'
         }"

@@ -8,7 +8,6 @@ const generateToc = (content) => {
   const renderer = new marked.Renderer();
   let toc = [];
   renderer.heading = function (text, level, raw) {
-    // TODO: use slug()
     const anchor = formatHash([router.value[0], slug(raw)]);
     toc.push({
       anchor: anchor,
