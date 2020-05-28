@@ -1,12 +1,4 @@
-import {
-  createApp,
-  provide,
-  computed,
-  h,
-  ref,
-  watch,
-  Suspense,
-} from "../deps/vue.js";
+import { createApp, provide, computed, h, ref, watch } from "../deps/vue.js";
 
 import * as components from "../components.js";
 
