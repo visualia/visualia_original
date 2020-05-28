@@ -1,12 +1,4 @@
-import {
-  createApp,
-  provide,
-  computed,
-  h,
-  ref,
-  watch,
-  Suspense,
-} from "../deps/vue.js";
+import { createApp, provide, computed, h, ref, watch } from "../deps/vue.js";
 
 import * as components from "../components.js";
 
@@ -49,7 +41,7 @@ export const visualia = (options = {}) => {
     template:
       customOptions.template ||
       `
-      <v-content :content="content" :routes="routes" toc />
+      <v-content :content="content" :routes="routes" menu />
     `,
   };
 
