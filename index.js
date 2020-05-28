@@ -16,6 +16,6 @@ const files = [
   "./docs/faq.md",
 ];
 visualia({
-  files,
+  file: files[0],
   components: { PfiveExample, ObservableExample },
 });

@@ -30,19 +30,19 @@ export const VContent = {
       type: String,
       docs: "Content to be compiled into VueJS template",
     },
-    toc: {
+    menu: {
       default: false,
       type: [Boolean, String],
-      docs: "Show table of contents?",
+      docs: "Show menu?",
     },
   },
   setup(props) {
     const { el, width } = useResize();
     const isMobile = computed(() => width.value < 800);
-    const showMenu = ref(true);
+    const activeMenu = ref(true);
     const router = inject("router");
 
-    const parsedContent = computed(() =>
+    const menu = computed(() =>
       parseContent(props.content).map((slide) => {
         if (slide.title) {
           slide.anchor = formatHash([router.value[0], slug(slide.title)]);
@@ -51,9 +51,9 @@ export const VContent = {
       })
     );
 
-    const contentToc = computed(() =>
+    const contentMenu = computed(() =>
       flatten(
-        parsedContent.value.map((slide) =>
+        menu.value.map((slide) =>
           slide.anchor
             ? [
                 {
@@ -61,18 +61,18 @@ export const VContent = {
                   level: 1,
                   text: slide.title,
                 },
-                slide.toc,
+                slide.menu,
               ]
-            : slide.toc
+            : slide.menu
         )
       )
     );
     return {
-      parsedContent,
-      contentToc,
+      menu,
+      contentMenu,
       slideGridStyle,
       el,
-      showMenu,
+      activeMenu,
       isMobile,
     };
   },
@@ -82,8 +82,8 @@ export const VContent = {
     style="display: flex; position: relative;"
     :style="{'--base': isMobile ? '7px' : '8px'}"
   >
-    <div v-if="toc && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
-    <div v-if="toc && isMobile && showMenu"
+    <div v-if="menu && !isMobile && activeMenu" style="width: 250px; background: gray;"></div>
+    <div v-if="menu && isMobile && activeMenu"
       style="
         z-index: 1000;
         position: fixed;
@@ -93,9 +93,9 @@ export const VContent = {
         width: calc(100vw - 250px);
         background: rgba(0,0,0,0.2);
       "
-      @click="showMenu = !showMenu"
+      @click="activeMenu = !activeMenu"
     />
-    <div v-if="toc && showMenu"
+    <div v-if="menu && activeMenu"
       :style="{
         boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
       }"
@@ -109,10 +109,10 @@ export const VContent = {
       overflow: scroll;
       background: white;
     ">
-      <v-toc :toc="contentToc" />
+      <v-menu :menu="menu" />
     </div>
     <div
-      v-if="toc"
+      v-if="menu"
       style="
         position: fixed;
         top: 0px;
@@ -122,14 +122,14 @@ export const VContent = {
         cursor: pointer;
         opacity: 0.75;
       "
-      @click="showMenu = !showMenu"
+      @click="activeMenu = !activeMenu"
     >
       <v-menu-icon />
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
         <div
-          v-for="(slide,i) in parsedContent"
+          v-for="(slide,i) in menu"
           :style="{
             padding: 'var(--base6) var(--base4)',
             display: 'grid',

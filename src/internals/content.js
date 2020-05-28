@@ -3,20 +3,20 @@ import marked from "../deps/marked.js";
 import { array2object, slug } from "../utils.js";
 import { formatHash } from "../internals.js";
 
-const generateToc = (content) => {
+const generateMenu = (content) => {
   const router = inject("router");
   const renderer = new marked.Renderer();
-  let toc = [];
+  let menu = [];
   renderer.heading = function (text, level, raw) {
     const anchor = formatHash([router.value[0], slug(raw)]);
-    toc.push({
+    menu.push({
       anchor: anchor,
       level: level,
       text: text,
     });
   };
   marked(content, { renderer });
-  return toc;
+  return menu;
 };
 
 export const cleanColumns = (content) => {
@@ -58,22 +58,22 @@ export const parsePage = (page) => {
     const content = page
       .split(/\r?\n-\r?\n/)
       .map((c) => c.replace(pattern, ""));
-    const toc = generateToc(page);
+    const menu = generateMenu(page);
 
     return Object.assign(
-      { rowCount, colCount, areas, content, toc },
+      { rowCount, colCount, areas, content, menu },
       array2object(meta)
     );
   } else {
     const content = page.split(/\r?\n-\r?\n/);
-    const toc = generateToc(page);
+    const menu = generateMenu(page);
     return Object.assign(
       {
         rowCount: 1,
         colCount: content.length,
         areas: `'${content.map((_, i) => `a${i + 1}`).join(" ")}'`,
         content: content,
-        toc,
+        menu,
       },
       array2object(meta)
     );
