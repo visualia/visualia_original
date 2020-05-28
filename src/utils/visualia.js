@@ -49,7 +49,7 @@ export const visualia = (options = {}) => {
     template:
       customOptions.template ||
       `
-      <v-content :content="content" :routes="routes" toc />
+      <v-content :content="content" :routes="routes" menu />
     `,
   };
 

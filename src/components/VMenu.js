@@ -1,9 +1,9 @@
 import { inject, onMounted, onUnmounted, watch } from "../deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
-export const VToc = {
+export const VMenu = {
   props: {
-    toc: {
+    menu: {
       default: [],
       type: Array,
       docs: "Table of contents as a collection",
@@ -36,9 +36,9 @@ export const VToc = {
 
     onMounted(() => {
       watch(() => {
-        if (props.toc) {
+        if (props.menu) {
           // TODO: disconnect prev observers?
-          props.toc.forEach(({ anchor }) => {
+          props.menu.forEach(({ anchor }) => {
             const el = document.getElementById(anchor);
             if (el) {
               observer.observe(document.getElementById(anchor));
@@ -55,7 +55,7 @@ export const VToc = {
   template: `
   <div style="padding: var(--base6) var(--base4);">
       <div
-        v-for="link in toc"
+        v-for="link in menu"
         :style="{ 
           opacity: 0.75,
           fontSize: link.level == 1 ? '1em' : '0.8em',

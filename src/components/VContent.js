@@ -30,7 +30,7 @@ export const VContent = {
       type: String,
       docs: "Content to be compiled into VueJS template",
     },
-    toc: {
+    menu: {
       default: false,
       type: [Boolean, String],
       docs: "Show table of contents?",
@@ -51,7 +51,7 @@ export const VContent = {
       })
     );
 
-    const contentToc = computed(() =>
+    const contentMenu = computed(() =>
       flatten(
         parsedContent.value.map((slide) =>
           slide.anchor
@@ -61,15 +61,15 @@ export const VContent = {
                   level: 1,
                   text: slide.title,
                 },
-                slide.toc,
+                slide.menu,
               ]
-            : slide.toc
+            : slide.menu
         )
       )
     );
     return {
       parsedContent,
-      contentToc,
+      contentMenu,
       slideGridStyle,
       el,
       showMenu,
@@ -82,8 +82,8 @@ export const VContent = {
     style="display: flex; position: relative;"
     :style="{'--base': isMobile ? '7px' : '8px'}"
   >
-    <div v-if="toc && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
-    <div v-if="toc && isMobile && showMenu"
+    <div v-if="menu && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
+    <div v-if="menu && isMobile && showMenu"
       style="
         z-index: 1000;
         position: fixed;
@@ -95,7 +95,7 @@ export const VContent = {
       "
       @click="showMenu = !showMenu"
     />
-    <div v-if="toc && showMenu"
+    <div v-if="menu && showMenu"
       :style="{
         boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
       }"
@@ -109,10 +109,10 @@ export const VContent = {
       overflow: scroll;
       background: white;
     ">
-      <v-toc :toc="contentToc" />
+      <v-menu :menu="contentMenu" />
     </div>
     <div
-      v-if="toc"
+      v-if="menu"
       style="
         position: fixed;
         top: 0px;
