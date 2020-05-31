@@ -23,7 +23,7 @@ export * from "./components/VSphere.js";
 export * from "./components/VSquare.js";
 export * from "./components/VTable.js";
 export * from "./components/VTextarea.js";
-export * from "./components/VToc.js";
+export * from "./components/VMenu.js";
 
 export const publicComponents = [
   "VAnimate",
