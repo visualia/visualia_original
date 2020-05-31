@@ -6,8 +6,21 @@ import {
   ref,
   nextTick,
 } from "../deps/vue.js";
-import { flatten, slug, useSize } from "../utils.js";
+import { flatten, slug } from "../utils.js";
 import { parseContent, slideGridStyle, formatHash } from "../internals.js";
+
+const useResize = () => {
+  const el = ref(null);
+  const width = ref(null);
+  const height = ref(null);
+  onMounted(() => {
+    const observer = new ResizeObserver(async (entries) => {
+      width.value = entries[0].contentRect.width;
+    });
+    observer.observe(el.value);
+  });
+  return { el, width };
+};
 
 export const VContent = {
   components: { Suspense },
@@ -24,7 +37,7 @@ export const VContent = {
     },
   },
   setup(props) {
-    const { el, width } = useSize();
+    const { el, width } = useResize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
     const router = inject("router");
@@ -82,11 +95,22 @@ export const VContent = {
       "
       @click="showMenu = !showMenu"
     />
-      <v-menu
-        v-if="menu && showMenu"
-        :menu="contentMenu"
-        :isMobile="isMobile"
-      />
+    <div v-if="menu && showMenu"
+      :style="{
+        boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
+      }"
+      style="
+      z-index: 1000;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 250px;
+      overflow: scroll;
+      background: white;
+    ">
+      <v-menu :menu="contentMenu" />
+    </div>
     <div
       v-if="menu"
       style="
