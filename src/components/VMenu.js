@@ -20,36 +20,6 @@ export const VMenu = {
       return false;
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio === 1) {
-            // TODO: Move this logic to router
-            router.value[1] = parseHash(entries[0].target.id)[1];
-            location.hash = formatHash(router.value, true);
-          }
-        });
-      },
-      // From https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
-      { threshold: 1, rootMargin: "0px 0px -80% 0px" }
-    );
-
-    onMounted(() => {
-      watch(() => {
-        if (props.menu) {
-          // TODO: disconnect prev observers?
-          props.menu.forEach(({ anchor }) => {
-            const el = document.getElementById(anchor);
-            if (el) {
-              observer.observe(document.getElementById(anchor));
-            }
-          });
-        }
-      });
-    });
-
-    onUnmounted(() => observer.disconnect());
-
     return { isAnchorActive };
   },
   template: `

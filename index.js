@@ -3,8 +3,6 @@ import { visualia } from "./dist/visualia.js";
 import { PfiveExample } from "./docs/PfiveExample.js";
 import { ObservableExample } from "./docs/ObservableExample.js";
 
-import { routes } from "./docs/routes.js";
-
 const files = [
   "./README.md",
   "./docs/components.md",
@@ -15,6 +13,7 @@ const files = [
   "./docs/backstory.md",
   "./docs/faq.md",
 ];
+
 visualia({
   files,
   components: { PfiveExample, ObservableExample },
