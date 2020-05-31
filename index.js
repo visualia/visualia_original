@@ -15,7 +15,10 @@ const files = [
   "./docs/backstory.md",
   "./docs/faq.md",
 ];
+const template = `
+# Hello world
+`;
 visualia({
-  files,
+  template,
   components: { PfiveExample, ObservableExample },
 });
