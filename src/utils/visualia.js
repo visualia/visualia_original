@@ -26,17 +26,26 @@ export const visualia = (options = {}) => {
       provide("customUtils", customOptions.utils);
 
       const content = ref("");
-
-      Promise.all(
-        (customOptions.files || [customOptions.file]).map((file) =>
-          fetch(file).then((res) => res.text())
-        )
-      ).then((files) => {
-        content.value = files.join("\n\n---\n\n");
-      });
-
       const routes = customOptions.routes;
-      return { content, routes };
+
+      if (customOptions.content) {
+        content.value = customOptions.content;
+        return { routes, content };
+      } else if (customOptions.files) {
+        Promise.all(
+          customOptions.files.map((file) =>
+            fetch(file).then((res) => res.text())
+          )
+        ).then((files) => {
+          content.value = files.join("\n\n---\n\n");
+        });
+        return { routes, content };
+      } else {
+        fetch(customOptions.file)
+          .then((res) => res.text())
+          .then((file) => (content.value = file));
+        return { content, routes };
+      }
     },
     template:
       customOptions.template ||

@@ -15,10 +15,37 @@ const files = [
   "./docs/backstory.md",
   "./docs/faq.md",
 ];
-const template = `
+const content = `
 # Hello world
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+## Hi
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+
+---
+
+# Help
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
 `;
 visualia({
-  template,
+  content,
   components: { PfiveExample, ObservableExample },
 });
