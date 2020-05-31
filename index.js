@@ -14,7 +14,12 @@ const files = [
   "./docs/faq.md",
 ];
 
+const content = `
+<v-scene>
+  <v-rect position="100 100" width="50" height="50" />
+</v-scene>
+`;
 visualia({
-  files,
+  content,
   components: { PfiveExample, ObservableExample },
 });
