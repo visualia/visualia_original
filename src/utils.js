@@ -7,6 +7,7 @@ export * from "./utils/localstore.js";
 export * from "./utils/log.js";
 export * from "./utils/math.js";
 export * from "./utils/points.js";
+export * from "./utils/size.js";
 export * from "./utils/state.js";
 export * from "./utils/string.js";
 export * from "./utils/test.js";
