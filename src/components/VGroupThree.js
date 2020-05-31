@@ -12,7 +12,8 @@ export const VGroupThree = {
       () => slots.default(),
       (_) => {
         sceneContext.clear();
-      }
+      },
+      { immediate: true }
     );
     const group = new Group();
     useThreeTransform(props, group);

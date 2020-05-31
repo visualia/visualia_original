@@ -15,7 +15,8 @@ export const VLive = {
     const currentContent = ref(props.content);
     watch(
       () => props.content,
-      (content) => (currentContent.value = content)
+      (content) => (currentContent.value = content),
+      { immediate: true }
     );
     const onLoad = (content) => (currentContent.value = content);
     return { currentContent, onLoad };

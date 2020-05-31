@@ -2,7 +2,7 @@ import { get, set } from "../dist/visualia.js";
 import { ref, onMounted, watch } from "../src/deps/vue.js";
 import {
   Runtime,
-  Inspector
+  Inspector,
 } from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
 
 // We are importing the notebook
@@ -17,7 +17,7 @@ export const ObservableExample = {
   setup() {
     const el = ref(null);
     onMounted(() => {
-      const observable = new Runtime().module(notebook, name => {
+      const observable = new Runtime().module(notebook, (name) => {
         if (name == "c") {
           // Getting Obsevable data to Visualia:
           // we loop over Obsevable notebook cells and if the one of them
@@ -26,7 +26,7 @@ export const ObservableExample = {
           return {
             fulfilled(value) {
               set("c", value);
-            }
+            },
           };
         } else {
           // For all other cells we just render the Observable cell in Visualia
@@ -48,5 +48,5 @@ export const ObservableExample = {
   },
   template: `
     <div ref="el" />
-  `
+  `,
 };

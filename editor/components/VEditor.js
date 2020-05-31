@@ -1,5 +1,5 @@
 import { VContent } from "../../src/components.js";
-import { watch, ref } from "../../src/deps/vue.js";
+import { ref } from "../../src/deps/vue.js";
 
 import { VSave } from "./VSave.js";
 import { VMonaco } from "./VMonaco.js";

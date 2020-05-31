@@ -6,14 +6,15 @@ export const VMath = {
     const math = ref("");
     watch(
       () => slots.default(),
-      nodes => {
+      (nodes) => {
         const node = nodes[0].children;
         math.value = katex.renderToString(String.raw`${node}`, {
-          throwOnError: true
+          throwOnError: true,
         });
-      }
+      },
+      { immediate: true }
     );
     return { math };
   },
-  template: `<div style="margin-bottom: var(--base)" v-html="math" />`
+  template: `<div style="margin-bottom: var(--base)" v-html="math" />`,
 };

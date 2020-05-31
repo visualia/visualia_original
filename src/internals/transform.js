@@ -1,4 +1,4 @@
-import { computed, watch, inject } from "../deps/vue.js";
+import { computed, watch } from "../deps/vue.js";
 import { toNumber } from "../utils.js";
 
 import {
@@ -158,7 +158,8 @@ export const useThreeTransform = (props, object) => {
       object.position.x += position[0];
       object.position.y += position[1];
       object.position.z += position[2];
-    }
+    },
+    { immediate: true }
   );
 
   watch(
@@ -168,7 +169,8 @@ export const useThreeTransform = (props, object) => {
       object.rotation.x += deg2rad(rotation[0]);
       object.rotation.y += deg2rad(rotation[1]);
       object.rotation.z += deg2rad(rotation[2]);
-    }
+    },
+    { immediate: true }
   );
 
   watch(
@@ -178,6 +180,7 @@ export const useThreeTransform = (props, object) => {
       object.scale.x *= scale[0];
       object.scale.y *= scale[1];
       object.scale.z *= scale[2];
-    }
+    },
+    { immediate: true }
   );
 };
