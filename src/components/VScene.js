@@ -5,7 +5,11 @@ import { VSceneCanvas } from "./VSceneCanvas.js";
 import { VSceneThree } from "./VSceneThree.js";
 import { VScenePdf } from "./VScenePdf.js";
 
-import { sizeProps } from "../internals/size.js";
+import {
+  transformThreeProps,
+  getThreeTransform,
+  sizeProps,
+} from "../internals.js";
 
 export const VSceneThreeSvg = (props, context) =>
   h(VSceneThree, { ...props, renderer: "svg" }, context.slots);
@@ -25,13 +29,14 @@ export const VScene = {
         "Rendering mode, can be either " +
         modes.map((m) => `\`${m}\``).join(", "),
     },
-    ...sizeProps,
     isometric: {
       default: false,
       type: [Boolean, String],
       docs:
         "Use ortographic projection? Only applies to `three` and `webgl` render modes",
     },
+    ...sizeProps,
+    ...transformThreeProps,
   },
   setup(props, context) {
     const modes = {
@@ -42,7 +47,8 @@ export const VScene = {
       pdf: VScenePdf,
     };
     const mode = computed(() => props.mode);
-    provide("sceneContext", { mode });
+    const { position, rotation, scale } = getThreeTransform(props);
+    provide("sceneContext", { mode, transform: { position, rotation, scale } });
     return () => h(modes[mode.value], { ...props }, context.slots);
   },
 };
