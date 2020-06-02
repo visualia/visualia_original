@@ -6,7 +6,7 @@ import {
   transformCanvasReset,
 } from "../internals.js";
 
-export const VGroupCanvas = {
+export default {
   props: {
     ...transformThreeProps,
   },
