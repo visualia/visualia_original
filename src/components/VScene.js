@@ -68,7 +68,8 @@ export const VScene = {
     const mode = computed(() => props.mode);
     const { position, rotation, scale } = getThreeTransform(props);
     provide("sceneContext", { mode, transform: { position, rotation, scale } });
-    return () =>
-      h(Suspense, null, h(modes[mode.value], { ...props }, context.slots));
+    // return () =>
+    //   h(Suspense, null, h(modes[mode.value], { ...props }, context.slots));
+    return () => h(modes[mode.value], { ...props }, context.slots);
   },
 };

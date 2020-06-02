@@ -48,11 +48,11 @@ const content = `
 `;
 
 const content2 = `
-<v-animate set="b" />
+<v-slider set="b" />
 
 b is {{ get("b") }}
 
-<v-scene v-for="m in ['svg','canvas']" :mode="m">
+<v-scene v-for="m in ['svg','canvas','three']" :mode="m">
   <v-square
     position="100 100"
     r="50"
@@ -62,6 +62,6 @@ b is {{ get("b") }}
 </v-scene>
 `;
 visualia({
-  content: content2,
+  content: content,
   components: { PfiveExample, ObservableExample },
 });

@@ -1,4 +1,4 @@
-import { inject, watch } from "../deps/vue.js";
+import { inject, watchEffect, watch } from "../deps/vue.js";
 
 import {
   stylingProps,
@@ -21,7 +21,7 @@ export default {
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
-    watch(
+    watchEffect(
       () => {
         if (sceneContext.ctx.value) {
           transformCanvas(props, sceneContext);
@@ -37,7 +37,7 @@ export default {
           transformCanvasReset(sceneContext.ctx.value);
         }
       },
-      { immediate: true }
+      { immediate: false }
     );
     return () => null;
   },
