@@ -11,7 +11,7 @@ import {
   parseCoords,
 } from "../internals.js";
 
-export const VLineCanvas = {
+export default {
   props: {
     ...lineProps,
     ...stylingProps,

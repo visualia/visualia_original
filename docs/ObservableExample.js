@@ -13,7 +13,7 @@ import notebook from "https://api.observablehq.com/@kristjanjansen/using-observa
 
 // We are creating a wrapper component <observable-example />
 
-export const ObservableExample = {
+export default {
   setup() {
     const el = ref(null);
     onMounted(() => {

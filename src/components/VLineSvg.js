@@ -10,7 +10,7 @@ import {
   parseCoords,
 } from "../internals.js";
 
-export const VLineSvg = {
+export default {
   props: {
     ...lineProps,
     ...stylingProps,

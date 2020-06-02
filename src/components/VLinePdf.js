@@ -10,7 +10,7 @@ import {
 
 import { line } from "../deps/d3-shape.js";
 
-export const VLinePdf = {
+export default {
   props: {
     ...lineProps,
     ...stylingProps,

@@ -23,7 +23,7 @@ const sketch = (s) => {
 
 // We are creating a wrapper component <pfive-example />
 
-export const PfiveExample = {
+export default {
   setup() {
     const el = ref(null);
     onMounted(() => {

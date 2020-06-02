@@ -21,7 +21,7 @@ import {
   useThreeFill,
 } from "../internals.js";
 
-export const VLineThree = {
+export default {
   props: {
     ...lineProps,
     ...stylingProps,
