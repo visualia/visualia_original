@@ -8,12 +8,30 @@ import {
 } from "../deps/three.js";
 
 import {
+  stylingProps,
+  transformThreeProps,
   useThreeFill,
   useThreeStroke,
   useThreeTransform,
 } from "../internals.js";
 
 export const VSphereThree = {
+  props: {
+    r: {
+      default: 10,
+      suggest: "10",
+      type: [String, Number],
+      docs: "Sphere radius",
+    },
+    segments: {
+      default: 10,
+      suggest: "10",
+      type: [String, Number],
+      docs: "Number of segments. Minimum value is 3",
+    },
+    ...stylingProps,
+    ...transformThreeProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 

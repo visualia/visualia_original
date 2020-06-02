@@ -1,8 +1,32 @@
 import { inject } from "../deps/vue.js";
-import { parseCoords, stylingPdf, combineTransforms } from "../internals.js";
+import {
+  stylingProps,
+  sizeProps,
+  transformTwoProps,
+  parseCoords,
+  stylingPdf,
+  combineTransforms,
+} from "../internals.js";
 import { toNumber } from "../utils.js";
 
 export const VRectPdf = {
+  props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
+    ...sizeProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 

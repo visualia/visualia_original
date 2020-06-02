@@ -7,7 +7,7 @@ const files = [
   "./README.md",
   "./docs/components.md",
   "./docs/utils.md",
-  "./docs/integration.md",
+  //"./docs/integration.md",
   "./docs/internals.md",
   "./RELEASES.md",
   "./docs/backstory.md",
@@ -20,6 +20,6 @@ const content = `
 </v-scene>
 `;
 visualia({
-  content,
-  components: { PfiveExample, ObservableExample },
+  files,
+  //components: { PfiveExample, ObservableExample },
 });

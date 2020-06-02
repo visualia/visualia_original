@@ -1,12 +1,32 @@
 import { inject, watch } from "../deps/vue.js";
 
 import {
+  stylingProps,
+  sizeProps,
+  transformTwoProps,
   stylingCanvas,
   transformCanvas,
   transformCanvasReset,
 } from "../internals.js";
 
 export const VRectCanvas = {
+  props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
+    ...sizeProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 

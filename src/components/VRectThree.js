@@ -10,6 +10,8 @@ import {
 
 import {
   stylingProps,
+  sizeProps,
+  transformTwoProps,
   useThreeFill,
   useThreeStroke,
   transformThreeProps,
@@ -17,6 +19,23 @@ import {
 } from "../internals.js";
 
 export const VRectThree = {
+  props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
+    ...sizeProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
