@@ -46,7 +46,22 @@ const content = `
 ### world
 
 `;
+
+const content2 = `
+<v-animate set="b" />
+
+b is {{ get("b") }}
+
+<v-scene v-for="m in ['svg','canvas']" :mode="m">
+  <v-square
+    position="100 100"
+    r="50"
+    :rotation="get('b')"
+  />
+  <v-circle r="100" />
+</v-scene>
+`;
 visualia({
-  content,
+  content: content2,
   components: { PfiveExample, ObservableExample },
 });
