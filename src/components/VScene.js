@@ -6,23 +6,23 @@ import {
   Suspense,
 } from "../deps/vue.js";
 
-// import VSceneSvg from "../internals/VSceneSvg.js";
-// import VSceneCanvas from "../internals/VSceneCanvas.js";
-// import VSceneThree from "./internals/VSceneThree.js";
-// import VScenePdf from "./internals/VScenePdf.js";
+import VSceneSvg from "../internals/VSceneSvg.js";
+import VSceneCanvas from "../internals/VSceneCanvas.js";
+import VSceneThree from "../internals/VSceneThree.js";
+import VScenePdf from "../internals/VScenePdf.js";
 
-const VSceneSvg = defineAsyncComponent(() =>
-  import("../internals/VSceneSvg.js")
-);
-const VSceneCanvas = defineAsyncComponent(() =>
-  import("../internals/VSceneCanvas.js")
-);
-const VSceneThree = defineAsyncComponent(() =>
-  import("../internals/VSceneThree.js")
-);
-const VScenePdf = defineAsyncComponent(() =>
-  import("../internals/VScenePdf.js")
-);
+// const VSceneSvg = defineAsyncComponent(() =>
+//   import("../internals/VSceneSvg.js")
+// );
+// const VSceneCanvas = defineAsyncComponent(() =>
+//   import("../internals/VSceneCanvas.js")
+// );
+// const VSceneThree = defineAsyncComponent(() =>
+//   import("../internals/VSceneThree.js")
+// );
+// const VScenePdf = defineAsyncComponent(() =>
+//   import("../internals/VScenePdf.js")
+// );
 
 import {
   transformThreeProps,

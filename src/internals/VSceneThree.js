@@ -67,12 +67,11 @@ export default {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.scene = scene;
-    sceneContext.clear = () => renderer.render(scene, camera);
+    sceneContext.update = () => renderer.render(scene, camera);
 
     onMounted(() => {
       el.value.append(renderer.domElement);
       renderer.render(scene, camera);
-      console.log("mount");
     });
 
     onBeforeUpdate(() => {

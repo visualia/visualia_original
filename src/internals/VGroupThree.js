@@ -11,7 +11,7 @@ export default {
     watch(
       () => slots.default(),
       (_) => {
-        sceneContext.clear();
+        sceneContext.update();
       },
       { immediate: true }
     );

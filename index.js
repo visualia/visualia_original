@@ -33,7 +33,7 @@ const content = `
     <v-point />
     <v-circle />
   </v-group>
-  <v-point :position="[get('a',0), 50]" />
+  <v-circle r="20" :position="[get('a',0), 50]" />
   <v-line points="10 10, 30 40" position="100 100" width="50" height="50" />
   <v-polygon points="10 10, 30 40" position="50 50" width="50" height="50" />
   <v-rect r="50" position="100 100" width="50" height="50" />

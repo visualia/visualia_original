@@ -50,6 +50,8 @@ export default {
 
     useThreeTransform(props, group);
 
+    sceneContext.update();
+
     return () => null;
   },
 };
