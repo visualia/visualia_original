@@ -1,9 +1,21 @@
-import { h, inject } from "../deps/vue.js";
+import { h, inject, defineAsyncComponent } from "../deps/vue.js";
 
-import { VRectSvg } from "./VRectSvg.js";
-import { VRectCanvas } from "./VRectCanvas.js";
-import { VRectThree } from "./VRectThree.js";
-import { VRectPdf } from "./VRectPdf.js";
+const VRectSvg = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VRectSvg.js"),
+});
+const VRectCanvas = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VRectCanvas.js"),
+});
+const VRectThree = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VRectThree.js"),
+});
+const VRectPdf = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VRectPdf.js"),
+});
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 

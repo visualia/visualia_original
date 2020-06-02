@@ -3,7 +3,7 @@ import { useSvgStyling, useSvgTransform } from "../internals.js";
 
 import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
 
-export const VRectSvg = {
+export default {
   props: {
     x: {
       default: 0,

@@ -9,7 +9,7 @@ import {
 } from "../internals.js";
 import { toNumber } from "../utils.js";
 
-export const VRectPdf = {
+export default {
   props: {
     x: {
       default: 0,

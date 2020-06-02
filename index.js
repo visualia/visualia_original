@@ -4,13 +4,15 @@ import { visualia } from "./dist/visualia.js";
 // import PfiveExample from "./docs/PfiveExample.js";
 // import ObservableExample from "./docs/ObservableExample.js";
 
-const PfiveExample = defineAsyncComponent(() =>
-  import("./docs/PfiveExample.js")
-);
+const PfiveExample = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./docs/PfiveExample.js"),
+});
 
-const ObservableExample = defineAsyncComponent(() =>
-  import("./docs/ObservableExample.js")
-);
+const ObservableExample = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./docs/ObservableExample.js"),
+});
 
 const files = [
   "./README.md",
@@ -24,11 +26,20 @@ const files = [
 ];
 
 const content = `
-<v-scene mode="svg">
-  <v-line points="10 10, 30 40" position="100 100" width="50" height="50" />
+<template v-for="m in ['three']">
+<p>v-line {{ m }}</p>
+<v-scene :mode="m">
+  <v-circle r="50" points="10 10, 30 40" position="100 100" width="50" height="50" />
 </v-scene>
+</template>
+<!--template v-for="m in ['svg','canvas','three','webgl','pdf']">
+<p>v-line {{ m }}</p>
+<v-scene :mode="m">
+  <v-line r="50" points="10 10, 30 40" position="100 100" width="50" height="50" />
+</v-scene>
+</template-->
 `;
 visualia({
-  files,
+  content,
   components: { PfiveExample, ObservableExample },
 });

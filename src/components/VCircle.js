@@ -1,9 +1,21 @@
-import { h, inject } from "../deps/vue.js";
+import { h, inject, defineAsyncComponent } from "../deps/vue.js";
 
-import { VCircleSvg } from "./VCircleSvg.js";
-import { VCircleCanvas } from "./VCircleCanvas.js";
-import { VCircleThree } from "./VCircleThree.js";
-import { VCirclePdf } from "./VCirclePdf.js";
+const VCircleSvg = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VCircleSvg.js"),
+});
+const VCircleCanvas = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VCircleCanvas.js"),
+});
+const VCircleThree = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VCircleThree.js"),
+});
+const VCirclePdf = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VCirclePdf.js"),
+});
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 

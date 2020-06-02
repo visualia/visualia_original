@@ -2,7 +2,7 @@ import { ref, inject, computed } from "../deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-export const VSceneSvg = {
+export default {
   props: { ...sizeProps },
   setup(props) {
     const el = ref(null);
@@ -23,5 +23,5 @@ export const VSceneSvg = {
       <slot />
     </svg>
   </div>
-  `
+  `,
 };

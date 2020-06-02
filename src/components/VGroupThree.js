@@ -4,7 +4,7 @@ import { Group } from "../deps/three.js";
 
 import { transformThreeProps, useThreeTransform } from "../internals.js";
 
-export const VGroupThree = {
+export default {
   props: { ...transformThreeProps },
   setup(props, { slots }) {
     const sceneContext = inject("sceneContext");

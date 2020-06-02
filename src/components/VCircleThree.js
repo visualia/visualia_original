@@ -8,12 +8,24 @@ import {
 } from "../deps/three.js";
 
 import {
+  stylingProps,
+  transformTwoProps,
   useThreeFill,
   useThreeStroke,
   useThreeTransform,
 } from "../internals.js";
 
-export const VCircleThree = {
+export default {
+  props: {
+    r: {
+      default: 10,
+      suggest: "10",
+      type: [String, Number],
+      docs: "Square radius (half of the width)",
+    },
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 

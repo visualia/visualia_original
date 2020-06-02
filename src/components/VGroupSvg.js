@@ -1,13 +1,13 @@
 import { transformTwoProps, useSvgTransform } from "../internals.js";
 
-export const VGroupSvg = {
+export default {
   props: {
-    ...transformTwoProps
+    ...transformTwoProps,
   },
   setup(props) {
     const transform = useSvgTransform(props);
     return { transform };
   },
   template: `
-    <g :transform="transform"><slot /></g>`
+    <g :transform="transform"><slot /></g>`,
 };

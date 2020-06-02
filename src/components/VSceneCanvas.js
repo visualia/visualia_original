@@ -8,7 +8,7 @@ import {
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-export const VSceneCanvas = {
+export default {
   props: { ...sizeProps },
   setup(props) {
     const el = ref(null);

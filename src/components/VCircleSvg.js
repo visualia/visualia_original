@@ -5,7 +5,7 @@ import {
   useSvgTransform,
 } from "../internals.js";
 
-export const VCircleSvg = {
+export default {
   props: {
     r: {
       default: 10,

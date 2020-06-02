@@ -9,7 +9,7 @@ import {
   transformCanvasReset,
 } from "../internals.js";
 
-export const VRectCanvas = {
+export default {
   props: {
     x: {
       default: 0,

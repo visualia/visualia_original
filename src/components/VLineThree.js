@@ -28,6 +28,7 @@ export default {
     ...transformTwoProps,
   },
   setup(props) {
+    console.log(props);
     const sceneContext = inject("sceneContext");
 
     let parsedPoints = parseCoords(props.points);

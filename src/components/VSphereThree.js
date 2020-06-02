@@ -15,7 +15,7 @@ import {
   useThreeTransform,
 } from "../internals.js";
 
-export const VSphereThree = {
+export default {
   props: {
     r: {
       default: 10,

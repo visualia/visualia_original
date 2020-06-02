@@ -2,7 +2,7 @@ import { inject, ref } from "../deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-export const VScenePdf = {
+export default {
   props: { ...sizeProps },
   async setup(props) {
     const el = ref(null);

@@ -1,4 +1,4 @@
-export const VGroupPdf = {
+export default {
   setup(props, { slots }) {
     return () => slots.default();
   },

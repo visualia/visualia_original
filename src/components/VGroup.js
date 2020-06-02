@@ -1,9 +1,21 @@
-import { h, inject, provide } from "../deps/vue.js";
+import { h, inject, provide, defineAsyncComponent } from "../deps/vue.js";
 
-import { VGroupSvg } from "./VGroupSvg.js";
-import { VGroupCanvas } from "./VGroupCanvas.js";
-import { VGroupThree } from "./VGroupThree.js";
-import { VGroupPdf } from "./VGroupPdf.js";
+const VGroupSvg = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VGroupSvg.js"),
+});
+const VGroupCanvas = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VGroupCanvas.js"),
+});
+const VGroupThree = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VGroupThree.js"),
+});
+const VGroupPdf = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VGroupPdf.js"),
+});
 
 import {
   transformThreeProps,

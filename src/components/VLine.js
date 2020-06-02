@@ -6,15 +6,18 @@ const VLineSvg = defineAsyncComponent({
 });
 const VLineCanvas = defineAsyncComponent({
   suspensible: false,
-  loader: () => "./VLineCanvas.js",
+  loader: () => import("./VLineCanvas.js"),
 });
-const VLineThree = defineAsyncComponent({
-  suspensible: false,
-  loader: () => "./VLineThree.js",
-});
+// const VLineThree = defineAsyncComponent({
+//   suspensible: false,
+//   loader: () => import("./VLineThree.js"),
+// });
+
+import VLineThree from "./VLineThree.js";
+console.log(VLineThree);
 const VLinePdf = defineAsyncComponent({
   suspensible: false,
-  loader: () => "./VLinePdf.js",
+  loader: () => import("./VLinePdf.js"),
 });
 
 import { lineProps, stylingProps, transformTwoProps } from "../internals.js";

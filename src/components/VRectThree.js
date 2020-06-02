@@ -18,7 +18,7 @@ import {
   useThreeTransform,
 } from "../internals.js";
 
-export const VRectThree = {
+export default {
   props: {
     x: {
       default: 0,
