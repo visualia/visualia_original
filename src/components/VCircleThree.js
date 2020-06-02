@@ -15,7 +15,7 @@ import {
   useThreeTransform,
 } from "../internals.js";
 
-export const VCircleThree = {
+export default {
   props: {
     r: {
       default: 10,

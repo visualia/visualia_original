@@ -8,7 +8,7 @@ import {
   transformCanvasReset,
 } from "../internals.js";
 
-export const VCircleCanvas = {
+export default {
   props: {
     r: {
       default: 10,

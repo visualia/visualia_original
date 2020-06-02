@@ -6,19 +6,19 @@ import VLineThree from "./VLineThree.js";
 import VLinePdf from "./VLinePdf.js";
 
 // const VLineSvg = defineAsyncComponent({
-//   suspensible: true,
+//   suspensible: false,
 //   loader: () => import("./VLineSvg.js"),
 // });
 // const VLineCanvas = defineAsyncComponent({
-//   suspensible: true,
+//   suspensible: false,
 //   loader: () => import("./VLineCanvas.js"),
 // });
 // const VLineThree = defineAsyncComponent({
-//   suspensible: true,
+//   suspensible: false,
 //   loader: () => import("./VLineThree.js"),
 // });
 // const VLinePdf = defineAsyncComponent({
-//   suspensible: true,
+//   suspensible: false,
 //   loader: () => import("./VLinePdf.js"),
 // });
 

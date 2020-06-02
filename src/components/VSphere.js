@@ -1,13 +1,11 @@
 import { h, inject } from "../deps/vue.js";
 
-import { VCircleSvg } from "./VCircleSvg.js";
-import { VCircleCanvas } from "./VCircleCanvas.js";
 import { VSphereThree } from "./VSphereThree.js";
 
 export const VSphere = (props, { slots }) => {
   const modes = {
-    svg: VCircleSvg,
-    canvas: VCircleCanvas,
+    svg: () => null,
+    canvas: () => null,
     three: VSphereThree,
     webgl: VSphereThree,
   };

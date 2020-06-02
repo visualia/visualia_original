@@ -8,7 +8,7 @@ import {
   combineTransforms,
 } from "../internals.js";
 
-export const VCirclePdf = {
+export default {
   props: {
     r: {
       default: 10,
