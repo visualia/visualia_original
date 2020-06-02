@@ -1,9 +1,26 @@
-import { computed, h, provide } from "../deps/vue.js";
+import { computed, h, provide, defineAsyncComponent } from "../deps/vue.js";
 
-import { VSceneSvg } from "./VSceneSvg.js";
-import { VSceneCanvas } from "./VSceneCanvas.js";
-import { VSceneThree } from "./VSceneThree.js";
-import { VScenePdf } from "./VScenePdf.js";
+// import { VSceneSvg } from "./VSceneSvg.js";
+// import { VSceneCanvas } from "./VSceneCanvas.js";
+// import { VSceneThree } from "./VSceneThree.js";
+// import { VScenePdf } from "./VScenePdf.js";
+
+const VSceneSvg = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VSceneSvg.js"),
+});
+const VSceneCanvas = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VSceneCanvas.js"),
+});
+const VSceneThree = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VSceneThree.js"),
+});
+const VScenePdf = defineAsyncComponent({
+  suspensible: false,
+  loader: () => import("./VScenePdf.js"),
+});
 
 import {
   transformThreeProps,
