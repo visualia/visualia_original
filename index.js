@@ -15,8 +15,8 @@ const files = [
 ];
 
 const content = `
-<v-scene>
-  <v-rect position="100 100" width="50" height="50" />
+<v-scene mode="canvas">
+  <v-line points="10 10, 30 40" position="100 100" width="50" height="50" />
 </v-scene>
 `;
 visualia({

@@ -1,6 +1,21 @@
-import { useSvgStyling, useSvgTransform } from "../internals.js";
+import {
+  stylingProps,
+  transformTwoProps,
+  useSvgStyling,
+  useSvgTransform,
+} from "../internals.js";
 
 export const VCircleSvg = {
+  props: {
+    r: {
+      default: 10,
+      suggest: "10",
+      type: [String, Number],
+      docs: "Square radius (half of the width)",
+    },
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const r = props.r;
     const styling = useSvgStyling(props);

@@ -1,9 +1,21 @@
 import { inject } from "../deps/vue.js";
-import { parseCoords, stylingPdf, combineTransforms } from "../internals.js";
+import {
+  lineProps,
+  stylingProps,
+  transformTwoProps,
+  parseCoords,
+  stylingPdf,
+  combineTransforms,
+} from "../internals.js";
 
 import { line } from "../deps/d3-shape.js";
 
 export const VLinePdf = {
+  props: {
+    ...lineProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
     const [x, y] = parseCoords(props.position)[0];
