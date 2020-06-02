@@ -6,8 +6,12 @@ import VLineThree from "../internals/VLineThree.js";
 import VLinePdf from "../internals/VLinePdf.js";
 
 // const VLineSvg = defineAsyncComponent(() => import("../internals/VLineSvg.js"));
-// const VLineCanvas = defineAsyncComponent(() => import("../internals/VLineCanvas.js"));
-// const VLineThree = defineAsyncComponent(() => import("../internals/VLineThree.js"));
+// const VLineCanvas = defineAsyncComponent(() =>
+//   import("../internals/VLineCanvas.js")
+// );
+// const VLineThree = defineAsyncComponent(() =>
+//   import("../internals/VLineThree.js")
+// );
 // const VLinePdf = defineAsyncComponent(() => import("../internals/VLinePdf.js"));
 
 import { lineProps, stylingProps, transformTwoProps } from "../internals.js";

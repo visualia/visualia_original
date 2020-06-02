@@ -72,6 +72,7 @@ export default {
     onMounted(() => {
       el.value.append(renderer.domElement);
       renderer.render(scene, camera);
+      console.log("mount");
     });
 
     onBeforeUpdate(() => {

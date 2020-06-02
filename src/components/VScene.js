@@ -8,8 +8,8 @@ import {
 
 // import VSceneSvg from "../internals/VSceneSvg.js";
 // import VSceneCanvas from "../internals/VSceneCanvas.js";
-// import VSceneThree from "../internals/VSceneThree.js";
-// import VScenePdf from "../internals/VScenePdf.js";
+// import VSceneThree from "./internals/VSceneThree.js";
+// import VScenePdf from "./internals/VScenePdf.js";
 
 const VSceneSvg = defineAsyncComponent(() =>
   import("../internals/VSceneSvg.js")
