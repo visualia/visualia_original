@@ -35,17 +35,17 @@ const processContent = (content) =>
 
 const compileContent = (content) => {
   let c = () => null;
-  // while (true) {
-  try {
-    c = compile(marked(processContent(content), { renderer, breaks: true }), {
-      onError: utils.onCompilerError,
-    });
-    return c;
-  } catch (error) {
-    utils.onCompilerError(error);
-    // break;
+  while (true) {
+    try {
+      c = compile(marked(processContent(content), { renderer, breaks: true }), {
+        onError: utils.onCompilerError,
+      });
+      return c;
+    } catch (error) {
+      utils.onCompilerError(error);
+      break;
+    }
   }
-  // }
 };
 
 export const VCompiler = {
