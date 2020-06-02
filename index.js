@@ -24,11 +24,13 @@ const files = [
 ];
 
 const content = `
-<v-scene mode="svg">
+<v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
   <v-line points="10 10, 30 40" position="100 100" width="50" height="50" />
+  <v-rect r="50" position="100 100" width="50" height="50" />
+  <v-square r="50" position="100 100" width="50" height="50" />
 </v-scene>
 `;
 visualia({
-  files,
+  content,
   components: { PfiveExample, ObservableExample },
 });
