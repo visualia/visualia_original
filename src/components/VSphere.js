@@ -1,6 +1,6 @@
 import { h, inject } from "../deps/vue.js";
 
-import { VSphereThree } from "./VSphereThree.js";
+import { VSphereThree } from "../internals/VSphereThree.js";
 
 export const VSphere = (props, { slots }) => {
   const modes = {

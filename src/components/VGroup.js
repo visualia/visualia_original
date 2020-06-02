@@ -1,9 +1,9 @@
 import { h, inject, provide } from "../deps/vue.js";
 
-import { VGroupSvg } from "./VGroupSvg.js";
-import { VGroupCanvas } from "./VGroupCanvas.js";
-import { VGroupThree } from "./VGroupThree.js";
-import { VGroupPdf } from "./VGroupPdf.js";
+import { VGroupSvg } from "../internals/VGroupSvg.js";
+import { VGroupCanvas } from "../internals/VGroupCanvas.js";
+import { VGroupThree } from "../internals/VGroupThree.js";
+import { VGroupPdf } from "../internals/VGroupPdf.js";
 
 import {
   transformThreeProps,
