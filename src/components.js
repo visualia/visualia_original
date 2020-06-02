@@ -16,15 +16,15 @@ export * from "./components/VSphere.js";
 export * from "./components/VSquare.js";
 export * from "./components/VTable.js";
 
-export * from "./internals/VCompiler.js";
-export * from "./internals/VContent.js";
-export * from "./internals/VDocumentIcon.js";
-export * from "./internals/VMenuIcon.js";
-export * from "./internals/VProps.js";
-export * from "./internals/VSave.js";
-export * from "./internals/VSlideIcon.js";
-export * from "./internals/VTextarea.js";
-export * from "./internals/VMenu.js";
+// export * from "./internals/VCompiler.js";
+// export * from "./internals/VContent.js";
+// export * from "./internals/VDocumentIcon.js";
+// export * from "./internals/VMenuIcon.js";
+// export * from "./internals/VProps.js";
+// export * from "./internals/VSave.js";
+// export * from "./internals/VSlideIcon.js";
+// export * from "./internals/VTextarea.js";
+// export * from "./internals/VMenu.js";
 
 export const publicComponents = [
   "VAnimate",

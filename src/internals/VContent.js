@@ -6,11 +6,20 @@ import {
   ref,
   nextTick,
 } from "../deps/vue.js";
+
 import { flatten, slug, useSize } from "../utils.js";
-import { parseContent, slideGridStyle, formatHash } from "../internals.js";
+
+import {
+  VMenu,
+  VMenuIcon,
+  VCompiler,
+  parseContent,
+  slideGridStyle,
+  formatHash,
+} from "../internals.js";
 
 export const VContent = {
-  components: { Suspense },
+  components: { Suspense, VCompiler, VMenu, VMenuIcon },
   props: {
     content: {
       default: "",

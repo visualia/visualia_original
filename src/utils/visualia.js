@@ -1,10 +1,9 @@
 import { createApp, provide, computed, h, ref, watch } from "../deps/vue.js";
 
 import * as components from "../components.js";
-
 import { useFetch, componentCss, onError, onWarning } from "../utils.js";
 
-import { useRouter } from "../internals.js";
+import { useRouter, VContent } from "../internals.js";
 
 export const visualia = (options = {}) => {
   const customOptions = {
@@ -20,6 +19,7 @@ export const visualia = (options = {}) => {
   };
 
   const App = {
+    components: { VContent },
     setup() {
       const router = useRouter();
       provide("router", router);
