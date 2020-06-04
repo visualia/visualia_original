@@ -9,11 +9,16 @@ export const VTextarea = {
       () => props.content,
       (content) => {
         currentContent.value = content;
-      }
+      },
+      { immediate: true }
     );
-    watch(currentContent, (currentContent) => {
-      emit("input:content", currentContent);
-    });
+    watch(
+      currentContent,
+      (currentContent) => {
+        emit("input:content", currentContent);
+      },
+      { immediate: true }
+    );
     onMounted(() => {
       editor.value.onkeydown = function (e) {
         if (e.keyCode === 9) {

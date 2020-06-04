@@ -1,7 +1,26 @@
 import { computed } from "../deps/vue.js";
 import { useSvgStyling, useSvgTransform } from "../internals.js";
 
-export const VRectSvg = {
+import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
+
+export default {
+  props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
+    ...sizeProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const x = computed(() => props.x);
     const y = computed(() => props.y);

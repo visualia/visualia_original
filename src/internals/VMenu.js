@@ -1,4 +1,4 @@
-import { inject, onMounted, onUnmounted, watch } from "../deps/vue.js";
+import { inject, onMounted, onUnmounted } from "../deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
 export const VMenu = {

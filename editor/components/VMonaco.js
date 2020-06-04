@@ -113,7 +113,8 @@ export const VMonaco = {
               ]
             );
           }
-        }
+        },
+        { immediate: true }
       );
 
       receive("format", () =>

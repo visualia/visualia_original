@@ -8,7 +8,7 @@ import {
 
 import { sizeProps, useSize } from "../internals/size.js";
 
-export const VSceneCanvas = {
+export default {
   props: { ...sizeProps },
   setup(props) {
     const el = ref(null);
@@ -20,7 +20,7 @@ export const VSceneCanvas = {
     sceneContext.width = width;
     sceneContext.height = height;
     sceneContext.ctx = ctx;
-    sceneContext.clear = () => {
+    sceneContext.update = () => {
       sceneContext.ctx.value.save();
       sceneContext.ctx.value.resetTransform();
       sceneContext.ctx.value.clearRect(0, 0, width.value, height.value);
@@ -33,7 +33,7 @@ export const VSceneCanvas = {
       sceneContext.ctx.value = canvas.getContext("2d");
     });
     onBeforeUpdate(() => {
-      sceneContext.clear();
+      sceneContext.update();
     });
     return { el };
   },

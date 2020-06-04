@@ -1,11 +1,34 @@
-import { computed, h, provide } from "../deps/vue.js";
+import {
+  computed,
+  h,
+  provide,
+  defineAsyncComponent,
+  Suspense,
+} from "../deps/vue.js";
 
-import { VSceneSvg } from "./VSceneSvg.js";
-import { VSceneCanvas } from "./VSceneCanvas.js";
-import { VSceneThree } from "./VSceneThree.js";
-import { VScenePdf } from "./VScenePdf.js";
+import VSceneSvg from "../internals/VSceneSvg.js";
+import VSceneCanvas from "../internals/VSceneCanvas.js";
+import VSceneThree from "../internals/VSceneThree.js";
+import VScenePdf from "../internals/VScenePdf.js";
 
-import { sizeProps } from "../internals/size.js";
+// const VSceneSvg = defineAsyncComponent(() =>
+//   import("../internals/VSceneSvg.js")
+// );
+// const VSceneCanvas = defineAsyncComponent(() =>
+//   import("../internals/VSceneCanvas.js")
+// );
+// const VSceneThree = defineAsyncComponent(() =>
+//   import("../internals/VSceneThree.js")
+// );
+// const VScenePdf = defineAsyncComponent(() =>
+//   import("../internals/VScenePdf.js")
+// );
+
+import {
+  transformThreeProps,
+  getThreeTransform,
+  sizeProps,
+} from "../internals.js";
 
 export const VSceneThreeSvg = (props, context) =>
   h(VSceneThree, { ...props, renderer: "svg" }, context.slots);
@@ -25,13 +48,14 @@ export const VScene = {
         "Rendering mode, can be either " +
         modes.map((m) => `\`${m}\``).join(", "),
     },
-    ...sizeProps,
     isometric: {
       default: false,
       type: [Boolean, String],
       docs:
         "Use ortographic projection? Only applies to `three` and `webgl` render modes",
     },
+    ...sizeProps,
+    ...transformThreeProps,
   },
   setup(props, context) {
     const modes = {
@@ -42,7 +66,10 @@ export const VScene = {
       pdf: VScenePdf,
     };
     const mode = computed(() => props.mode);
-    provide("sceneContext", { mode });
+    const { position, rotation, scale } = getThreeTransform(props);
+    provide("sceneContext", { mode, transform: { position, rotation, scale } });
+    // return () =>
+    //   h(Suspense, null, h(modes[mode.value], { ...props }, context.slots));
     return () => h(modes[mode.value], { ...props }, context.slots);
   },
 };

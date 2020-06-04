@@ -1,1 +1,1 @@
-export * from "https://unpkg.com/vue@3.0.0-alpha.4/dist/vue.esm.js";
+export * from "https://unpkg.com/vue@3.0.0-beta.14/dist/vue.esm-browser.prod.js";

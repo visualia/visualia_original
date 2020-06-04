@@ -1,8 +1,24 @@
 import { inject } from "../deps/vue.js";
 import { toNumber } from "../utils.js";
-import { parseCoords, stylingPdf, combineTransforms } from "../internals.js";
+import {
+  stylingProps,
+  transformTwoProps,
+  parseCoords,
+  stylingPdf,
+  combineTransforms,
+} from "../internals.js";
 
-export const VCirclePdf = {
+export default {
+  props: {
+    r: {
+      default: 10,
+      suggest: "10",
+      type: [String, Number],
+      docs: "Square radius (half of the width)",
+    },
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
     const [x, y] = parseCoords(props.position)[0];

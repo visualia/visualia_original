@@ -35,7 +35,7 @@ const processContent = (content) =>
 
 const compileContent = (content) => {
   let c = () => null;
-  do {
+  while (true) {
     try {
       c = compile(marked(processContent(content), { renderer, breaks: true }), {
         onError: utils.onCompilerError,
@@ -45,7 +45,7 @@ const compileContent = (content) => {
       utils.onCompilerError(error);
       break;
     }
-  } while (true);
+  }
 };
 
 export const VCompiler = {

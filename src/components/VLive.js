@@ -1,6 +1,8 @@
 import { ref, watch } from "../deps/vue.js";
+import { VSave, VTextarea, VContent } from "../internals.js";
 
 export const VLive = {
+  components: { VSave, VTextarea, VContent },
   props: {
     content: {
       default: "",
@@ -15,7 +17,8 @@ export const VLive = {
     const currentContent = ref(props.content);
     watch(
       () => props.content,
-      (content) => (currentContent.value = content)
+      (content) => (currentContent.value = content),
+      { immediate: true }
     );
     const onLoad = (content) => (currentContent.value = content);
     return { currentContent, onLoad };

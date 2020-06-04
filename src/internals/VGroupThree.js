@@ -4,15 +4,16 @@ import { Group } from "../deps/three.js";
 
 import { transformThreeProps, useThreeTransform } from "../internals.js";
 
-export const VGroupThree = {
+export default {
   props: { ...transformThreeProps },
   setup(props, { slots }) {
     const sceneContext = inject("sceneContext");
     watch(
       () => slots.default(),
       (_) => {
-        sceneContext.clear();
-      }
+        sceneContext.update();
+      },
+      { immediate: true }
     );
     const group = new Group();
     useThreeTransform(props, group);

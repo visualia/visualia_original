@@ -12,9 +12,21 @@ import {
   Mesh,
 } from "../deps/three.js";
 
-import { parseCoords, useThreeTransform, useThreeFill } from "../internals.js";
+import {
+  lineProps,
+  stylingProps,
+  transformTwoProps,
+  parseCoords,
+  useThreeTransform,
+  useThreeFill,
+} from "../internals.js";
 
-export const VLineThree = {
+export default {
+  props: {
+    ...lineProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
@@ -49,6 +61,8 @@ export const VLineThree = {
     sceneContext.scene.add(group);
 
     useThreeTransform(props, group);
+
+    sceneContext.update();
 
     return () => null;
   },

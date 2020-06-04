@@ -39,13 +39,17 @@ export const VAnimate = {
       direction: props.alternate ? "alternate" : null,
       loop: props.loop,
     });
-    watch(progress, (progress) => {
-      const currentProgress = props.integer ? Math.floor(progress) : progress;
-      emit("value", currentProgress);
-      if (props.set) {
-        set(props.set, currentProgress);
-      }
-    });
+    watch(
+      () => progress,
+      (progress) => {
+        const currentProgress = props.integer ? Math.floor(progress) : progress;
+        emit("value", currentProgress);
+        if (props.set) {
+          set(props.set, currentProgress);
+        }
+      },
+      { immediate: true }
+    );
     return () => null;
   },
 };

@@ -8,3 +8,13 @@ export * from "./internals/router.js";
 export * from "./internals/size.js";
 export * from "./internals/styling.js";
 export * from "./internals/transform.js";
+
+export * from "./internals/VMenu.js";
+export * from "./internals/VMenuIcon.js";
+export * from "./internals/VCompiler.js";
+export * from "./internals/VContent.js";
+export * from "./internals/VDocumentIcon.js";
+export * from "./internals/VProps.js";
+export * from "./internals/VSave.js";
+export * from "./internals/VSlideIcon.js";
+export * from "./internals/VTextarea.js";

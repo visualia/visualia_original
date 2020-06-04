@@ -1,4 +1,4 @@
-import { computed, camelize, capitalize } from "../deps/vue.js";
+import { computed } from "../deps/vue.js";
 import * as components from "../components.js";
 
 import { flatten, kebabcase, typename } from "../utils.js";
@@ -8,8 +8,8 @@ export const VProps = {
     component: {
       required: true,
       type: String,
-      docs: "Component name in `PascalCase`"
-    }
+      docs: "Component name in `PascalCase`",
+    },
   },
   setup(props) {
     const componentProps = computed(() => {
@@ -25,9 +25,9 @@ export const VProps = {
               ? ""
               : `\`${details.default}\``,
           types: flatten(details.type === undefined ? [] : [details.type])
-            .map(t => typename(t()))
+            .map((t) => typename(t()))
             .join(", "),
-          docs: details.docs || ""
+          docs: details.docs || "",
         };
       });
     });
@@ -36,5 +36,5 @@ export const VProps = {
   template: `
   <h5>Props</h5>
   <v-table :rows="componentProps" />
-  `
+  `,
 };
