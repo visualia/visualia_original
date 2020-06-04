@@ -55,13 +55,17 @@ export const VGroup = {
       ...sceneContext,
       transform: { position, rotation, scale },
     });
+    // return () =>
+    //   modes[sceneContext.mode.value]
+    //     ? h(
+    //         Suspense,
+    //         null,
+    //         h(modes[sceneContext.mode.value], { ...props }, slots)
+    //       )
+    //     : null;
     return () =>
       modes[sceneContext.mode.value]
-        ? h(
-            Suspense,
-            null,
-            h(modes[sceneContext.mode.value], { ...props }, slots)
-          )
+        ? h(modes[sceneContext.mode.value], { ...props }, slots)
         : null;
   },
 };

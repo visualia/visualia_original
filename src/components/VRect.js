@@ -23,7 +23,10 @@ export const VRect = (props, { slots }) => {
     pdf: VRectPdf,
   };
   const sceneContext = inject("sceneContext");
+  // return modes[sceneContext.mode.value]
+  //   ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
+  //   : null;
   return modes[sceneContext.mode.value]
-    ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
+    ? h(modes[sceneContext.mode.value], props, slots)
     : null;
 };
