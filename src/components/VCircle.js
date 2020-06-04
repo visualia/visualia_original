@@ -1,22 +1,22 @@
 import { h, inject, defineAsyncComponent, Suspense } from "../deps/vue.js";
 
-import VCircleSvg from "../internals/VCircleSvg.js";
-import VCircleCanvas from "../internals/VCircleCanvas.js";
-import VCircleThree from "../internals/VCircleThree.js";
-import VCirclePdf from "../internals/VCirclePdf.js";
+// import VCircleSvg from "../internals/VCircleSvg.js";
+// import VCircleCanvas from "../internals/VCircleCanvas.js";
+// import VCircleThree from "../internals/VCircleThree.js";
+// import VCirclePdf from "../internals/VCirclePdf.js";
 
-// const VCircleSvg = defineAsyncComponent(() =>
-//   import("../internals/VCircleSvg.js")
-// );
-// const VCircleCanvas = defineAsyncComponent(() =>
-//   import("../internals/VCircleCanvas.js")
-// );
-// const VCircleThree = defineAsyncComponent(() =>
-//   import("../internals/VCircleThree.js")
-// );
-// const VCirclePdf = defineAsyncComponent(() =>
-//   import("../internals/VCirclePdf.js")
-// );
+const VCircleSvg = defineAsyncComponent(() =>
+  import("../internals/VCircleSvg.js")
+);
+const VCircleCanvas = defineAsyncComponent(() =>
+  import("../internals/VCircleCanvas.js")
+);
+const VCircleThree = defineAsyncComponent(() =>
+  import("../internals/VCircleThree.js")
+);
+const VCirclePdf = defineAsyncComponent(() =>
+  import("../internals/VCirclePdf.js")
+);
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 
