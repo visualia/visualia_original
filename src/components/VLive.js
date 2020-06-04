@@ -1,6 +1,8 @@
 import { ref, watch } from "../deps/vue.js";
+import { VSave, VTextarea, VContent } from "../internals.js";
 
 export const VLive = {
+  components: { VSave, VTextarea, VContent },
   props: {
     content: {
       default: "",
