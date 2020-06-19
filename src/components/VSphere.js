@@ -2,7 +2,7 @@ import { h, inject } from "../deps/vue.js";
 
 import { VSphereThree } from "../internals/VSphereThree.js";
 
-export const VSphere = (props, { slots }) => {
+export default (props, { slots }) => {
   const modes = {
     svg: () => null,
     canvas: () => null,

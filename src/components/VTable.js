@@ -1,23 +1,23 @@
 import { computed } from "../deps/vue.js";
 import { isArray } from "../utils.js";
 
-export const VTable = {
+export default {
   props: {
     rows: {
       default: [],
       type: Array,
-      docs: "Table rows a array of values or objects"
+      docs: "Table rows a array of values or objects",
     },
     cols: {
       default: [],
       type: Array,
-      docs: "Column header names as array of strings"
-    }
+      docs: "Column header names as array of strings",
+    },
   },
   setup(props) {
     const currentRows = computed(() => {
       if (isArray(props.rows[0])) {
-        return props.rows.map(row =>
+        return props.rows.map((row) =>
           row.reduce((acc, el, index) => {
             acc[`col ${index + 1}`] = el;
             return acc;
@@ -49,5 +49,5 @@ export const VTable = {
       </tr>
     </tbody>
   </table>
-`
+`,
 };

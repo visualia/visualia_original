@@ -1,6 +1,6 @@
-import { stylingProps, transformTwoProps } from "../internals.js"
+import { stylingProps, transformTwoProps } from "../internals.js";
 
-export const VSquare = {
+export default {
   props: {
     r: {
       default: 10,
@@ -24,4 +24,4 @@ export const VSquare = {
     :scale="scale"
   />
   `,
-}
+};

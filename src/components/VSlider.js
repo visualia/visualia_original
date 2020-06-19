@@ -1,22 +1,22 @@
 import { set as storeSet, toNumber } from "../utils.js";
 import { dynamicProps } from "../internals/dynamic.js";
 
-export const VSlider = {
+export default {
   props: {
     ...dynamicProps,
     value: {
       default: 0,
       type: [String, Number],
-      docs: "Initial slider value"
+      docs: "Initial slider value",
     },
     step: {
       default: "",
       type: [String, Number],
-      docs: "Slider step value"
-    }
+      docs: "Slider step value",
+    },
   },
   setup(props, { emit }) {
-    const onInput = e => {
+    const onInput = (e) => {
       const currentValue = toNumber(e.target.value);
       emit("value", currentValue);
       if (props.set) {
@@ -32,5 +32,5 @@ export const VSlider = {
     :min="from"
     :max="to"
     :step="integer ? 1 : step ? step : 0.0000001"
-  />`
+  />`,
 };

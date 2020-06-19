@@ -1,6 +1,6 @@
 import { lineProps, stylingProps, transformTwoProps } from "../internals.js";
 
-export const VPolygon = {
+export default {
   props: {
     ...lineProps,
     ...stylingProps,

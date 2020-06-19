@@ -1,6 +1,6 @@
-import { VContent } from "../../src/components.js";
 import { ref } from "../../src/deps/vue.js";
 
+import { VContent } from "../../src/internals.js";
 import { VSave } from "./VSave.js";
 import { VMonaco } from "./VMonaco.js";
 

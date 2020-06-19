@@ -1,6 +1,6 @@
 import { stylingProps, transformTwoProps } from "../internals.js";
 
-export const VPoint = {
+export default {
   props: {
     fill: {
       ...stylingProps.fill,
