@@ -4,7 +4,7 @@ import anime from "../deps/anime.js";
 import { set } from "../utils.js";
 import { dynamicProps } from "../internals.js";
 
-export const VAnimate = {
+export default {
   props: {
     ...dynamicProps,
     duration: {

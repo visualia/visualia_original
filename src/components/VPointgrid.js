@@ -17,7 +17,7 @@ const gridProps = {
   },
 };
 
-export const VPointgrid = {
+export default {
   props: {
     ...gridProps,
   },

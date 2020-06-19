@@ -14,7 +14,7 @@ import VRectPdf from "../internals/VRectPdf.js";
 // );
 // const VRectPdf = defineAsyncComponent(() => import("../internals/VRectPdf.js"));
 
-export const VRect = (props, { slots }) => {
+export default (props, { slots }) => {
   const modes = {
     svg: VRectSvg,
     canvas: VRectCanvas,

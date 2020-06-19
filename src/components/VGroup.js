@@ -30,7 +30,7 @@ import {
   combineTransforms,
 } from "../internals.js";
 
-export const VGroup = {
+export default {
   props: {
     ...transformThreeProps,
   },

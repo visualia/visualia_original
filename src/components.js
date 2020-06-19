@@ -1,46 +1,19 @@
-export * from "./components/VAnimate.js";
-export * from "./components/VCircle.js";
-export * from "./components/VGroup.js";
-export * from "./components/VHexagon.js";
-export * from "./components/VLine.js";
-export * from "./components/VLive.js";
-export * from "./components/VMath.js";
-export * from "./components/VPoint.js";
-export * from "./components/VPointgrid.js";
-export * from "./components/VPolygon.js";
-export * from "./components/VRect.js";
-export * from "./components/VRegularpolygon.js";
-export * from "./components/VScene.js";
-export * from "./components/VSlider.js";
-export * from "./components/VSphere.js";
-export * from "./components/VSquare.js";
-export * from "./components/VTable.js";
+export { default as VAnimate } from "./components/VAnimate.js";
+export { default as VCircle } from "./components/VCircle.js";
+export { default as VGroup } from "./components/VGroup.js";
+export { default as VHexagon } from "./components/VHexagon.js";
+export { default as VLine } from "./components/VLine.js";
+export { default as VLive } from "./components/VLive.js";
+export { default as VMath } from "./components/VMath.js";
+export { default as VPoint } from "./components/VPoint.js";
+export { default as VPointgrid } from "./components/VPointgrid.js";
+export { default as VPolygon } from "./components/VPolygon.js";
+export { default as VRect } from "./components/VRect.js";
+export { default as VRegularpolygon } from "./components/VRegularpolygon.js";
+export { default as VScene } from "./components/VScene.js";
+export { default as VSlider } from "./components/VSlider.js";
+export { default as VSphere } from "./components/VSphere.js";
+export { default as VSquare } from "./components/VSquare.js";
+export { default as VTable } from "./components/VTable.js";
 
-// export * from "./internals/VCompiler.js";
-// export * from "./internals/VContent.js";
-// export * from "./internals/VDocumentIcon.js";
-// export * from "./internals/VMenuIcon.js";
-// export * from "./internals/VProps.js";
-// export * from "./internals/VSave.js";
-// export * from "./internals/VSlideIcon.js";
-// export * from "./internals/VTextarea.js";
-// export * from "./internals/VMenu.js";
-
-export const publicComponents = [
-  "VAnimate",
-  "VCircle",
-  "VGroup",
-  "VHexagon",
-  "VLine",
-  "VPoint",
-  "VPointgrid",
-  "VPolygon",
-  "VRect",
-  "VRegularpolygon",
-  "VSlider",
-  "VSphere",
-  "VSquare",
-  "VTable",
-];
-
-export const publicComponentsWithChildren = ["VMath", "VScene", "VGroup"];
+export const componentsWithChildren = ["VMath", "VScene", "VGroup"];

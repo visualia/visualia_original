@@ -2,7 +2,7 @@ import { computed } from "../deps/vue.js";
 import { circlepoints } from "../utils.js";
 import { regularProps, stylingProps, transformTwoProps } from "../internals.js";
 
-export const VRegularpolygon = {
+export default {
   props: {
     ...regularProps,
     ...stylingProps,

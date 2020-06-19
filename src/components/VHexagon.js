@@ -1,6 +1,6 @@
 import { regularProps, stylingProps, transformTwoProps } from "../internals.js";
 
-export const VHexagon = {
+export default {
   props: {
     r: regularProps.r,
     ...stylingProps,

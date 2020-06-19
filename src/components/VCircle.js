@@ -20,7 +20,7 @@ import VCirclePdf from "../internals/VCirclePdf.js";
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 
-export const VCircle = (props, { slots }) => {
+export default (props, { slots }) => {
   const modes = {
     svg: VCircleSvg,
     canvas: VCircleCanvas,

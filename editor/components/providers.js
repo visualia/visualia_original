@@ -1,26 +1,21 @@
 import {
   components as rawComponents,
   kebabcase,
-  publicComponents,
-  publicComponentsWithChildren,
+  componentsWithChildren,
   flatten,
   isArray,
 } from "../../dist/visualia.js";
 
 import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
 
-const components = Object.entries({ ...rawComponents })
-  .filter(([key]) =>
-    [...publicComponents, ...publicComponentsWithChildren].includes(key)
-  )
-  .map(([key, value]) => {
-    return {
-      pascalName: key,
-      kebabName: kebabcase(key),
-      about: value.docs ? value.docs.trim().split(/\n/)[0] : "",
-      ...value,
-    };
-  });
+const components = Object.entries({ ...rawComponents }).map(([key, value]) => {
+  return {
+    pascalName: key,
+    kebabName: kebabcase(key),
+    about: value.docs ? value.docs.trim().split(/\n/)[0] : "",
+    ...value,
+  };
+});
 
 const formatType = (typename) => {
   if (!Array.isArray(typename)) {
@@ -76,7 +71,7 @@ const tagSuggestions = (range) => {
       suggestions.join(" ").length > 80
         ? `\n  ${suggestions.join("\n  ")}\n`
         : suggestions.join(" ");
-    if (publicComponentsWithChildren.includes(c.pascalName)) {
+    if (componentsWithChildren.includes(c.pascalName)) {
       text = `<${c.kebabName}${suggestions.length ? " " : ""}${suggestions.join(
         " "
       )}>\n  $0\n</${c.kebabName}>`;
