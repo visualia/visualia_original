@@ -6,7 +6,7 @@ import {
   isArray,
 } from "../../dist/visualia.js";
 
-import * as monaco from "https://visualia.github.io/editor/dist/editor.js";
+import * as monaco from "../../src/deps/monaco/monaco.js";
 
 const components = Object.entries({ ...rawComponents }).map(([key, value]) => {
   return {

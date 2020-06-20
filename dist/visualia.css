@@ -1,4 +1,4 @@
-@import url("https://unpkg.com/katex@0.11.1/dist/katex.min.css");
+@import url("./katex.min.css");
 
 /* Variables */
 
@@ -134,7 +134,7 @@ h5:hover a {
 }
 p {
   font-size: calc(var(--base) * 2);
-  line-height: 1.5em;
+  line-height: 1.6em;
   margin: 0 0 var(--base2) 0;
   color: var(--primary);
 }

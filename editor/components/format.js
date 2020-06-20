@@ -1,8 +1,4 @@
-import {
-  prettier,
-  html,
-  markdown,
-} from "https://visualia.github.io/prettier/dist/prettier.js";
+import { prettier, html, markdown } from "../../src/deps/prettier.js";
 
 const formatHtml = (str) =>
   prettier.format(str, {
