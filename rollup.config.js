@@ -1,14 +1,37 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
+import replace from "@rollup/plugin-replace";
 
-const deps = ["anime", "d3-color", "d3-shape", "katex"];
+const deps = [
+  // "anime",
+  // "d3-color",
+  // "d3-shape",
+  // "katex",
+  "marked",
+  // "pdf-lib",
+  // "prettier",
+  // "svgrenderer",
+  // "three",
+  //"vue",
+];
 
-export default deps.map((dep) => ({
-  input: `./deps/${dep}.js`,
-  output: {
-    file: `./src/deps/${dep}.js`,
-    format: "es",
-  },
-  plugins: [resolve(), commonjs(), terser()],
-}));
+export default [
+  ...deps.map((dep) => ({
+    input: `./deps/${dep}.js`,
+    output: {
+      file: `./src/deps/${dep}.js`,
+      format: "es",
+    },
+    plugins: [
+      resolve(),
+      commonjs(),
+      json(),
+      terser(),
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("production"),
+      }),
+    ],
+  })),
+];

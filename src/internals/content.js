@@ -1,11 +1,11 @@
 import { inject } from "../deps/vue.js";
-import marked from "../deps/marked.js";
+import { parse, Renderer } from "../deps/marked.js";
 import { array2object, slug } from "../utils.js";
 import { formatHash } from "../internals.js";
 
 const generateMenu = (content) => {
   const router = inject("router");
-  const renderer = new marked.Renderer();
+  const renderer = new Renderer();
   let menu = [];
   renderer.heading = function (text, level, raw) {
     const anchor = slug(raw);
@@ -15,7 +15,7 @@ const generateMenu = (content) => {
       text: text,
     });
   };
-  marked(content, { renderer });
+  parse(content, { renderer });
   return menu;
 };
 

@@ -1,8 +1,8 @@
 import { computed, h, compile, onErrorCaptured, inject } from "../deps/vue.js";
-import marked from "../deps/marked.js";
+import { parse, Renderer } from "../deps/marked.js";
 import * as utils from "../utils.js";
 
-const renderer = new marked.Renderer();
+const renderer = new Renderer();
 
 renderer.code = (code, info) => {
   const i = info.split(/\s+/);
@@ -31,7 +31,7 @@ const compileContent = (content) => {
   let c = () => null;
   while (true) {
     try {
-      c = compile(marked(processContent(content), { renderer, breaks: true }), {
+      c = compile(parse(processContent(content), { renderer, breaks: true }), {
         onError: utils.onCompilerError,
       });
       return c;
