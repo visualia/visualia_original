@@ -5,6 +5,7 @@ import {
   inject,
   ref,
   nextTick,
+  provide,
 } from "../deps/vue.js";
 
 import { flatten, slug, useSize } from "../utils.js";
@@ -14,12 +15,54 @@ import {
   VMenuIcon,
   VCompiler,
   parseContent,
-  slideGridStyle,
+  sectionGridStyle,
   formatHash,
 } from "../internals.js";
 
+const VSection = {
+  components: { Suspense, VCompiler },
+  props: ["section"],
+  setup(props) {
+    const title = computed(() => props.section.title);
+    provide("sectionContext", { title });
+    const id = computed(() => slug(props.section.title));
+    return { id, sectionGridStyle };
+  },
+  template: `
+  <div
+    :style="{
+      padding: 'var(--base6) var(--base4)',
+      display: 'grid',
+      ...sectionGridStyle(section)
+    }"
+    :id="id"
+  >
+    <div v-for="cell in section.content">
+      <suspense>
+      <template #default>
+        <v-compiler :content="cell" />
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+      </suspense>
+    </div>
+  </div>
+  `,
+};
+
+const setSectionTitle = (section, i) => {
+  if (!section.title) {
+    section.title =
+      section.menu && section.menu[0]
+        ? section.menu[0].text
+        : `Section ${i + 1}`;
+  }
+  return section;
+};
+
 export const VContent = {
-  components: { Suspense, VCompiler, VMenu, VMenuIcon },
+  components: { VSection, VMenu, VMenuIcon },
   props: {
     content: {
       default: "",
@@ -33,40 +76,45 @@ export const VContent = {
     },
   },
   setup(props) {
+    const router = inject("router");
+
     const { el, width } = useSize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
-    const router = inject("router");
 
     const parsedContent = computed(() =>
-      parseContent(props.content).map((slide) => {
-        if (slide.title) {
-          slide.anchor = formatHash([router.value[0], slug(slide.title)]);
-        }
-        return slide;
-      })
+      parseContent(props.content).map(setSectionTitle)
     );
 
     const contentMenu = computed(() =>
       flatten(
-        parsedContent.value.map((slide) =>
-          slide.anchor
-            ? [
-                {
-                  anchor: slide.anchor,
-                  level: 1,
-                  text: slide.title,
-                },
-                slide.menu,
-              ]
-            : slide.menu
-        )
+        parsedContent.value.map((section, i) => {
+          section.menu = section.menu.map((item) => {
+            item.anchor = formatHash([slug(section.title), item.anchor]);
+            return item;
+          });
+          return [
+            {
+              anchor: slug(section.title),
+              level: 1,
+              text: section.title,
+            },
+            section.menu.filter((item) => item.level !== 1),
+          ];
+        })
       )
     );
+
+    const activeParsedContent = computed(() =>
+      parsedContent.value.filter((section) => {
+        return router.value[0] ? router.value[0] === slug(section.title) : true;
+      })
+    );
+
     return {
-      parsedContent,
+      activeParsedContent,
       contentMenu,
-      slideGridStyle,
+      sectionGridStyle,
       el,
       showMenu,
       isMobile,
@@ -102,7 +150,7 @@ export const VContent = {
       bottom: 0;
       left: 0;
       width: 250px;
-      overflow: scroll;
+      overflow: auto;
       background: white;
     ">
       <v-menu :menu="contentMenu" />
@@ -124,26 +172,7 @@ export const VContent = {
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <div
-          v-for="(slide,i) in parsedContent"
-          :style="{
-            padding: 'var(--base6) var(--base4)',
-            display: 'grid',
-            ...slideGridStyle(slide)
-          }"
-          :id="slide.anchor || ''"
-        >
-          <div v-for="cell in slide.content">
-            <suspense>
-            <template #default>
-              <v-compiler :content="cell" />
-            </template>
-            <template #fallback>
-              <div>Loading...</div>
-            </template>
-            </suspense>
-          </div>
-        </div>
+        <v-section v-for="(section,i) in activeParsedContent" :key="i" :section="section">
       </div>
     </div>
   </div>

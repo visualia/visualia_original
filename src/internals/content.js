@@ -8,7 +8,7 @@ const generateMenu = (content) => {
   const renderer = new marked.Renderer();
   let menu = [];
   renderer.heading = function (text, level, raw) {
-    const anchor = formatHash([router.value[0], slug(raw)]);
+    const anchor = slug(raw);
     menu.push({
       anchor: anchor,
       level: level,
@@ -84,17 +84,17 @@ export const parseContent = (document) => {
   return document.split(/\r?\n---\r?\n/).map(parsePage);
 };
 
-export const slideGridStyle = (slide) => {
+export const sectionGridStyle = (section) => {
   return {
-    gridTemplateColumns: slide.cols
-      ? slide.cols
-      : "repeat(" + slide.colCount + ", 1fr)",
-    gridTemplateRows: slide.rows
-      ? slide.rows
-      : slide.rowCount > 1
-      ? "repeat(" + (slide.rowCount - 1) + ", auto) 1fr"
+    gridTemplateColumns: section.cols
+      ? section.cols
+      : "repeat(" + section.colCount + ", 1fr)",
+    gridTemplateRows: section.rows
+      ? section.rows
+      : section.rowCount > 1
+      ? "repeat(" + (section.rowCount - 1) + ", auto) 1fr"
       : "1fr",
-    gridTemplateAreas: slide.areas,
-    gridGap: slide.gap ? slide.gap : "var(--base3)",
+    gridTemplateAreas: section.areas,
+    gridGap: section.gap ? section.gap : "var(--base3)",
   };
 };
