@@ -5,14 +5,14 @@ import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 
 const deps = [
-  "anime",
-  "d3-color",
-  "d3-shape",
-  "katex",
-  "marked",
-  "pdf-lib",
-  "prettier",
-  "three",
+  // "anime",
+  // "d3-color",
+  // "d3-shape",
+  // "katex",
+  // "marked",
+  // "pdf-lib",
+  // "prettier",
+  // "three",
   "vue",
 ];
 
