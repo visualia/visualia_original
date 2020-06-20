@@ -2,7 +2,6 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
-import replace from "@rollup/plugin-replace";
 
 const deps = [
   // "anime",
@@ -13,7 +12,7 @@ const deps = [
   // "pdf-lib",
   // "prettier",
   // "three",
-  "vue",
+  //"vue",
 ];
 
 export default [
@@ -23,14 +22,15 @@ export default [
       file: `./src/deps/${dep}.js`,
       format: "es",
     },
-    plugins: [
-      resolve(),
-      commonjs(),
-      json(),
-      terser(),
-      replace({
-        "process.env.NODE_ENV": JSON.stringify("production"),
-      }),
-    ],
+    plugins: [resolve(), commonjs(), json(), terser()],
   })),
+  {
+    input: `./dist/visualia.js`,
+    output: {
+      file: `./dist/visualia.min.js`,
+      format: "es",
+    },
+    inlineDynamicImports: true,
+    plugins: [resolve(), commonjs(), json(), terser()],
+  },
 ];
