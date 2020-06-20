@@ -1,4 +1,4 @@
-import { get } from "../dist/visualia.js";
+import { get } from "../dist/visualia.min.js";
 import { ref, onMounted } from "../src/deps/vue.js";
 import { p5 } from "https://visualia.github.io/p5/dist/p5.js";
 

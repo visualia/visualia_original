@@ -1,4 +1,4 @@
-import { get, set } from "../dist/visualia.js";
+import { get, set } from "../dist/visualia.min.js";
 import { ref, onMounted, watch } from "../src/deps/vue.js";
 import {
   Runtime,
