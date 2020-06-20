@@ -3,12 +3,14 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-porter";
+//import url from "@rollup/plugin-url";
+import copy from "rollup-plugin-copy";
 
 const deps = [
   // "anime",
   // "d3-color",
   // "d3-shape",
-  // "katex",
+  "katex",
   // "marked",
   // "pdf-lib",
   // "prettier",
@@ -23,7 +25,18 @@ export default [
       file: `./src/deps/${dep}.js`,
       format: "es",
     },
-    plugins: [resolve(), commonjs(), json(), terser()],
+    plugins: [
+      resolve(),
+      commonjs(),
+      json(),
+      css({ dest: "./dist/katex.css", raw: false }),
+      copy({
+        targets: [
+          { src: "node_modules/katex/dist/fonts/*", dest: "dist/fonts" },
+        ],
+      }),
+      terser(),
+    ],
   })),
   {
     input: "./deps/monaco.js",
@@ -33,7 +46,16 @@ export default [
       chunkFileNames: "[name].js",
     },
     plugins: [
-      css({ dest: "./dist/monaco.css" }),
+      css({ dest: "./dist/monaco.css", raw: false }),
+      copy({
+        targets: [
+          {
+            src:
+              "node_modules/monaco-editor/esm/vs/base/browser/ui/codiconLabel/codicon/codicon.ttf",
+            dest: "dist",
+          },
+        ],
+      }),
       resolve(),
       commonjs(),
       terser(),

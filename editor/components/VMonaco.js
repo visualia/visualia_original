@@ -12,10 +12,13 @@ import { formatVisualia } from "./format.js";
 
 window.MonacoEnvironment = {
   getWorkerUrl: function (workerId, label) {
-    return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-      importScripts('../../src/deps/monaco/editor.worker.js');`)}`;
+    return "../../src/deps/monaco/editor.worker.js";
+    // return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+    //   importScripts('../../src/deps/monaco/editor.worker.js');`)}`;
   },
 };
+
+//import { a } from "../../src/deps/monaco/editor.worker.js";
 
 export const VMonaco = {
   props: { content: { default: "" } },
