@@ -1,5 +1,5 @@
 import { ref, watch } from "../deps/vue.js";
-import { katex } from "../deps/katex.js";
+import { renderToString } from "../deps/katex.js";
 
 export default {
   setup(_, { slots }) {
@@ -8,7 +8,7 @@ export default {
       () => slots.default(),
       (nodes) => {
         const node = nodes[0].children;
-        math.value = katex.renderToString(String.raw`${node}`, {
+        math.value = renderToString(String.raw`${node}`, {
           throwOnError: true,
         });
       },

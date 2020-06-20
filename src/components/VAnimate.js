@@ -1,5 +1,5 @@
 import { ref, watch } from "../deps/vue.js";
-import anime from "../deps/anime.js";
+import { anime } from "../deps/anime.js";
 
 import { set } from "../utils.js";
 import { dynamicProps } from "../internals.js";
