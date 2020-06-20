@@ -117,12 +117,12 @@ componentCss(components);
 
 By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as using the framework offline.
 
-For this reason, we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.bundle.js`.
+For this reason, we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.min.js`.
 
 To generate the bundle, use the following command:
 
 ```
-deno bundle.js dist/visualia.js > dist/visualia.bundle.js
+deno bundle dist/visualia.js > tmp && npx terser tmp > dist/visualia.min.js && rm tmp
 ```
 
 ### Testing
