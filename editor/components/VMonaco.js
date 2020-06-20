@@ -1,7 +1,7 @@
 import { receive } from "../../src/utils.js";
 import { watch, ref, onMounted } from "../../src/deps/vue.js";
 
-import * as monaco from "../../src/deps/monaco/monaco.js";
+import * as monaco from "../../dist/deps/monaco/monaco.js";
 
 import {
   provideComponentsCompletion,
@@ -12,9 +12,7 @@ import { formatVisualia } from "./format.js";
 
 window.MonacoEnvironment = {
   getWorkerUrl: function (workerId, label) {
-    return "../../src/deps/monaco/editor.worker.js";
-    // return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-    //   importScripts('../../src/deps/monaco/editor.worker.js');`)}`;
+    return "../../dist/deps/monaco/editor.worker.js";
   },
 };
 

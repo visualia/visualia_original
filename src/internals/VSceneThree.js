@@ -58,7 +58,6 @@ export default {
 
     const renderer =
       props.renderer == "webgl" ? new WebGLRenderer() : new SVGRenderer();
-    console.log(camera instanceof Camera);
     renderer.setSize(width.value, height.value);
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
