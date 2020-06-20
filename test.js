@@ -5,11 +5,11 @@ import * as internals from "./src/internals.js";
 const tests = Object.entries({
   ...components,
   ...utils,
-  ...internals
+  ...internals,
 }).filter(([key]) => key.startsWith("test_"));
 
 const exitCode = utils.test(tests);
 
-if (window.Deno !== undefined) {
-  Deno.exit(exitCode);
+if (typeof process === "object") {
+  process.exit(exitCode);
 }
