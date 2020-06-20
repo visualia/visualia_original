@@ -117,17 +117,18 @@ componentCss(components);
 
 By default, external dependencies are fetched from https://unpkg.com on each page load. This frees us to have a complicated build step but makes certain use cases harder, such as using the framework offline.
 
-For this reason, we ship also provide a command to create a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./visualia.min.js`.
+For this reason, we also ship a bundled version of the framework that includes both external dependencies and framework code itself. It is located at `./dist/visualia.min.js`.
 
-To generate the bundle, use the following command:
+To update the bundle, use the following command:
 
 ```
-deno bundle dist/visualia.js > tmp && npx terser tmp > dist/visualia.min.js && rm tmp
+npm install
+npm run build
 ```
 
 ### Testing
 
-Visualia relies on a suite of unit tests that verify that framework's utility and internal functions work right.
+Visualia relies on a suite of unit tests what verify framework's utility and internal functions work right.
 
 #### Writing tests
 
@@ -150,14 +151,11 @@ Open [/test.html](/test.html) file in local server and open Developer Tools pane
 
 #### Run command line tests
 
-First, you will need to install [Deno](https://deno.land/std/manual.md) and run the following commands on MacOS:
+It is assumed you have NodeJS installed. The run
 
 ```js
-brew install deno
-deno test.js
+node test.js
 ```
-
-For Windows support, see [these Deno installation instructions](https://deno.land/std/manual.md#download-and-install).
 
 #### Run CI tests
 

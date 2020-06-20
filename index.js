@@ -1,4 +1,4 @@
-import { visualia } from "./dist/visualia.js";
+import { visualia } from "./dist/visualia.min.js";
 
 const files = [
   "./README.md",
