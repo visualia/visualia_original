@@ -1,7 +1,6 @@
 import { computed, h, compile, onErrorCaptured, inject } from "../deps/vue.js";
 import marked from "../deps/marked.js";
 import * as utils from "../utils.js";
-import { formatHash } from "../internals.js";
 
 const renderer = new marked.Renderer();
 
@@ -22,9 +21,6 @@ renderer.code = (code, info) => {
 };
 
 renderer.heading = function (text, level, raw) {
-  //const router = inject("router");
-  //const anchor = formatHash([router.value[0], utils.slug(raw)]);
-  //return `<h${level} id="${anchor}" style="margin-left: -0.8em;"><a href="#${anchor}">#</a> ${text}</h${level}>\n`;
   return `<v-heading text="${text}" level="${level}" raw="${raw}" />`;
 };
 
