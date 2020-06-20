@@ -1,4 +1,4 @@
-import { inject, watchEffect } from "../deps/vue.js";
+import { inject, computed } from "../deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
 export const VMenu = {
@@ -11,6 +11,12 @@ export const VMenu = {
   },
   setup(props) {
     const router = inject("router");
+    const currentMenu = computed(() =>
+      props.menu.filter((item) => {
+        const parsedHash = parseHash(item.anchor);
+        return item.level === 1 || parsedHash[0] === router.value[0];
+      })
+    );
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
       if (router.value[1]) {
@@ -19,12 +25,12 @@ export const VMenu = {
       return false;
     };
 
-    return { isAnchorActive };
+    return { isAnchorActive, currentMenu };
   },
   template: `
   <div style="padding: var(--base6) var(--base4);">
       <div
-        v-for="link in menu"
+        v-for="link in currentMenu"
         :style="{ 
           opacity: 0.75,
           fontSize: link.level == 1 ? '1em' : '0.8em',
