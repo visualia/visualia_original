@@ -6,6 +6,7 @@ import {
   ref,
   nextTick,
   provide,
+  watch,
 } from "../deps/vue.js";
 
 import { flatten, slug, useSize } from "../utils.js";
@@ -80,7 +81,20 @@ export const VContent = {
 
     const { el, width } = useSize();
     const isMobile = computed(() => width.value < 800);
-    const showMenu = ref(true);
+
+    const showMenu = ref(false);
+    const unwatch = watch(
+      () => width.value,
+      () => {
+        if (width.value !== null) {
+          showMenu.value = !isMobile.value;
+          if (unwatch) {
+            unwatch();
+          }
+        }
+      },
+      { immediate: true }
+    );
 
     const parsedContent = computed(() =>
       parseContent(props.content).map(setSectionTitle)
