@@ -25,7 +25,8 @@ const VSection = {
   setup(props) {
     const title = computed(() => props.section.title);
     provide("sectionContext", { title });
-    return { sectionGridStyle };
+    const id = computed(() => slug(props.section.title));
+    return { id, sectionGridStyle };
   },
   template: `
   <div
@@ -34,7 +35,7 @@ const VSection = {
       display: 'grid',
       ...sectionGridStyle(section)
     }"
-    :id="section.anchor || ''"
+    :id="id"
   >
     <div v-for="cell in section.content">
       <suspense>
@@ -75,6 +76,8 @@ export const VContent = {
     },
   },
   setup(props) {
+    const router = inject("router");
+
     const { el, width } = useSize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
@@ -102,8 +105,14 @@ export const VContent = {
       )
     );
 
+    const activeParsedContent = computed(() =>
+      parsedContent.value.filter((section) => {
+        return router.value[0] ? router.value[0] === slug(section.title) : true;
+      })
+    );
+
     return {
-      parsedContent,
+      activeParsedContent,
       contentMenu,
       sectionGridStyle,
       el,
@@ -141,7 +150,7 @@ export const VContent = {
       bottom: 0;
       left: 0;
       width: 250px;
-      overflow: scroll;
+      overflow: auto;
       background: white;
     ">
       <v-menu :menu="contentMenu" />
@@ -163,7 +172,7 @@ export const VContent = {
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <v-section v-for="(section,i) in parsedContent" :key="i" :section="section" >
+        <v-section v-for="(section,i) in activeParsedContent" :key="i" :section="section">
       </div>
     </div>
   </div>
