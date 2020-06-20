@@ -8,7 +8,7 @@ const generateMenu = (content) => {
   const renderer = new marked.Renderer();
   let menu = [];
   renderer.heading = function (text, level, raw) {
-    const anchor = formatHash([router.value[0], slug(raw)]);
+    const anchor = slug(raw);
     menu.push({
       anchor: anchor,
       level: level,

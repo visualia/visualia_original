@@ -16,6 +16,7 @@ import {
   VCompiler,
   parseContent,
   sectionGridStyle,
+  formatHash,
 } from "../internals.js";
 
 const VSection = {
@@ -72,27 +73,20 @@ export const VContent = {
     const parsedContent = computed(() =>
       parseContent(props.content).map((section, i) => {
         if (!section.title) {
-          //section.title = `Section ${i + 1}`;
-          //console.log(section.menu);
           section.title = section.menu.length
-            ? "X" + section.menu[0].text
+            ? section.menu[0].text
             : `Section ${i + 1}`;
         }
         return section;
-        // if (section.title) {
-        //   section.anchor = formatHash([router.value[0], slug(section.title)]);
-        // }
-        //console.log(section);
-        //return section;
       })
     );
 
     const contentMenu = computed(() =>
       flatten(
         parsedContent.value.map((section, i) => {
-          //if (section.title) {
           section.menu = section.menu.map((item) => {
-            item.anchor = slug(section.title) + item.anchor;
+            console.log(item);
+            item.anchor = formatHash([slug(section.title), item.anchor]);
             return item;
           });
           return [
@@ -103,8 +97,6 @@ export const VContent = {
             },
             section.menu,
           ];
-          //}
-          //return section.menu;
         })
       )
     );
