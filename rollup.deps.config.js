@@ -7,15 +7,15 @@ import css from "rollup-plugin-css-porter";
 import copy from "rollup-plugin-copy";
 
 const deps = [
-  // "anime",
-  // "d3-color",
-  // "d3-shape",
+  "anime",
+  "d3-color",
+  "d3-shape",
   "katex",
-  // "marked",
-  // "pdf-lib",
-  // "prettier",
-  // "three",
-  // "vue",
+  "marked",
+  "pdf-lib",
+  "prettier",
+  "three",
+  "vue",
 ];
 
 export default [
