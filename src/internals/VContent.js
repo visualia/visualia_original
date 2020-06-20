@@ -50,6 +50,16 @@ const VSection = {
   `,
 };
 
+const setSectionTitle = (section, i) => {
+  if (!section.title) {
+    section.title =
+      section.menu && section.menu[0]
+        ? section.menu[0].text
+        : `Section ${i + 1}`;
+  }
+  return section;
+};
+
 export const VContent = {
   components: { VSection, VMenu, VMenuIcon },
   props: {
@@ -68,24 +78,15 @@ export const VContent = {
     const { el, width } = useSize();
     const isMobile = computed(() => width.value < 800);
     const showMenu = ref(true);
-    const router = inject("router");
 
     const parsedContent = computed(() =>
-      parseContent(props.content).map((section, i) => {
-        if (!section.title) {
-          section.title = section.menu.length
-            ? section.menu[0].text
-            : `Section ${i + 1}`;
-        }
-        return section;
-      })
+      parseContent(props.content).map(setSectionTitle)
     );
 
     const contentMenu = computed(() =>
       flatten(
         parsedContent.value.map((section, i) => {
           section.menu = section.menu.map((item) => {
-            console.log(item);
             item.anchor = formatHash([slug(section.title), item.anchor]);
             return item;
           });
@@ -95,7 +96,7 @@ export const VContent = {
               level: 1,
               text: section.title,
             },
-            section.menu,
+            section.menu.filter((item) => item.level !== 1),
           ];
         })
       )
