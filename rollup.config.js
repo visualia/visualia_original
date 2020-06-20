@@ -4,15 +4,15 @@ import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
 
 const deps = [
-  // "anime",
-  // "d3-color",
-  // "d3-shape",
-  // "katex",
-  // "marked",
-  // "pdf-lib",
-  // "prettier",
-  // "three",
-  //"vue",
+  "anime",
+  "d3-color",
+  "d3-shape",
+  "katex",
+  "marked",
+  "pdf-lib",
+  "prettier",
+  "three",
+  "vue",
 ];
 
 export default [

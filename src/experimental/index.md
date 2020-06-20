@@ -1,8 +1,5 @@
 <v-math>a = b</v-math>
 
-<v-animate set="x" />
-{{ get('x') }}
-
 ---
 
 <v-slider set="a" to="100" />{{ get('a') }}

@@ -11,8 +11,6 @@ import {
   SVGRenderer,
 } from "../deps/three.js";
 
-//import { SVGRenderer } from "../deps/svgrenderer.js";
-
 import { sizeProps, useSize } from "../internals/size.js";
 
 export default {
