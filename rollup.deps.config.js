@@ -24,13 +24,4 @@ export default [
     },
     plugins: [resolve(), commonjs(), json(), terser()],
   })),
-  {
-    input: `./dist/visualia.js`,
-    output: {
-      file: `./dist/visualia.min.js`,
-      format: "es",
-    },
-    inlineDynamicImports: true,
-    plugins: [resolve(), commonjs(), json(), terser()],
-  },
 ];

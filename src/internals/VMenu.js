@@ -33,7 +33,7 @@ export const VMenu = {
         v-for="link in currentMenu"
         :style="{ 
           opacity: 0.75,
-          fontSize: link.level == 1 ? '1em' : '0.8em',
+          fontSize: link.level == 1 ? '1.1em' : '0.9em',
           marginBottom: 'calc(var(--base) * 1.5)', 
           marginLeft: ((link.level - 1) * 6) + 'px'
         }"

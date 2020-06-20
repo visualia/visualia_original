@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Inter:400,400i,700,700i|Cousine:400,400i,700,700i|IBM+Plex+Serif:400,400i,500,500i");
 @import url("https://unpkg.com/katex@0.11.1/dist/katex.min.css");
 
 /* Variables */
 
 :root {
-  --font-sansserif: Inter, sans-serif;
-  --font-mono: Cousine, monospace;
+  --font-sansserif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   --font-mono-size: 15px;
   --font-mono-lineheight: 22px;
 
@@ -96,7 +97,6 @@ h5 {
 h1 {
   font-size: calc(var(--base) * 8);
   line-height: 1em;
-  letter-spacing: -0.025em;
 }
 h2 {
   font-size: calc(var(--base) * 4);
