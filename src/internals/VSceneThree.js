@@ -2,14 +2,16 @@ import { inject, ref, onMounted, onBeforeUpdate } from "../deps/vue.js";
 
 import {
   Scene,
+  Camera,
   PerspectiveCamera,
   OrthographicCamera,
   Color,
   DirectionalLight,
   WebGLRenderer,
+  SVGRenderer,
 } from "../deps/three.js";
 
-import { SVGRenderer } from "../deps/svgrenderer.js";
+//import { SVGRenderer } from "../deps/svgrenderer.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
@@ -55,8 +57,10 @@ export default {
       );
       camera.position.z = width.value / 2.5;
     }
+
     const renderer =
       props.renderer == "webgl" ? new WebGLRenderer() : new SVGRenderer();
+    console.log(camera instanceof Camera);
     renderer.setSize(width.value, height.value);
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
