@@ -1,6 +1,4 @@
-| title: a
-
-# One
+# What
 
 ## Two
 
@@ -29,6 +27,6 @@ Hello
 
 ---
 
-| title: b
+| title: a
 
 ### world

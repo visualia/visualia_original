@@ -5,6 +5,7 @@ import {
   inject,
   ref,
   nextTick,
+  provide,
 } from "../deps/vue.js";
 
 import { flatten, slug, useSize } from "../utils.js";
@@ -15,11 +16,41 @@ import {
   VCompiler,
   parseContent,
   sectionGridStyle,
-  formatHash,
 } from "../internals.js";
 
+const VSection = {
+  components: { Suspense, VCompiler },
+  props: ["section"],
+  setup(props) {
+    const title = computed(() => props.section.title);
+    provide("sectionContext", { title });
+    return { sectionGridStyle };
+  },
+  template: `
+  <div
+    :style="{
+      padding: 'var(--base6) var(--base4)',
+      display: 'grid',
+      ...sectionGridStyle(section)
+    }"
+    :id="section.anchor || ''"
+  >
+    <div v-for="cell in section.content">
+      <suspense>
+      <template #default>
+        <v-compiler :content="cell" />
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+      </suspense>
+    </div>
+  </div>
+  `,
+};
+
 export const VContent = {
-  components: { Suspense, VCompiler, VMenu, VMenuIcon },
+  components: { VSection, VMenu, VMenuIcon },
   props: {
     content: {
       default: "",
@@ -39,34 +70,41 @@ export const VContent = {
     const router = inject("router");
 
     const parsedContent = computed(() =>
-      parseContent(props.content).map((section) => {
+      parseContent(props.content).map((section, i) => {
+        if (!section.title) {
+          //section.title = `Section ${i + 1}`;
+          //console.log(section.menu);
+          section.title = section.menu.length
+            ? "X" + section.menu[0].text
+            : `Section ${i + 1}`;
+        }
+        return section;
         // if (section.title) {
         //   section.anchor = formatHash([router.value[0], slug(section.title)]);
         // }
         //console.log(section);
-        return section;
+        //return section;
       })
     );
 
     const contentMenu = computed(() =>
       flatten(
         parsedContent.value.map((section, i) => {
-          if (section.title) {
-            section.menu = section.menu.map((item) => {
-              item.anchor = slug(section.title) + item.anchor;
-              return item;
-            });
-            console.log(section.menu);
-            return [
-              {
-                anchor: slug(section.title),
-                level: 1,
-                text: section.title,
-              },
-              section.menu,
-            ];
-          }
-          return section.menu;
+          //if (section.title) {
+          section.menu = section.menu.map((item) => {
+            item.anchor = slug(section.title) + item.anchor;
+            return item;
+          });
+          return [
+            {
+              anchor: slug(section.title),
+              level: 1,
+              text: section.title,
+            },
+            section.menu,
+          ];
+          //}
+          //return section.menu;
         })
       )
     );
@@ -132,26 +170,7 @@ export const VContent = {
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <div
-          v-for="(section,i) in parsedContent"
-          :style="{
-            padding: 'var(--base6) var(--base4)',
-            display: 'grid',
-            ...sectionGridStyle(section)
-          }"
-          :id="section.anchor || ''"
-        >
-          <div v-for="cell in section.content">
-            <suspense>
-            <template #default>
-              <v-compiler :content="cell" />
-            </template>
-            <template #fallback>
-              <div>Loading...</div>
-            </template>
-            </suspense>
-          </div>
-        </div>
+        <v-section v-for="(section,i) in parsedContent" :key="i" :section="section" >
       </div>
     </div>
   </div>
