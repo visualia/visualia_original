@@ -21,6 +21,7 @@
     "rollup-plugin-terser": "^6.1.0"
   },
   "scripts": {
-    "build": "rollup -c"
+    "build:deps": "rollup -c rollup.deps.config.js",
+    "build:lib": "rollup -c rollup.lib.config.js"
   }
 }
