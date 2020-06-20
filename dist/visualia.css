@@ -4,7 +4,7 @@
 /* Variables */
 
 :root {
-  --font-sansserif: Inter;
+  --font-sansserif: Inter, sans-serif;
   --font-mono: Cousine, monospace;
   --font-mono-size: 15px;
   --font-mono-lineheight: 22px;

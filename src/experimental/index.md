@@ -1,3 +1,7 @@
+<v-math>a = b</v-math>
+
+---
+
 <v-slider set="a" to="100" />{{ get('a') }}
 
 <v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
