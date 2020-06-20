@@ -14,7 +14,7 @@ import {
   VMenuIcon,
   VCompiler,
   parseContent,
-  slideGridStyle,
+  sectionGridStyle,
   formatHash,
 } from "../internals.js";
 
@@ -39,34 +39,42 @@ export const VContent = {
     const router = inject("router");
 
     const parsedContent = computed(() =>
-      parseContent(props.content).map((slide) => {
-        if (slide.title) {
-          slide.anchor = formatHash([router.value[0], slug(slide.title)]);
-        }
-        return slide;
+      parseContent(props.content).map((section) => {
+        // if (section.title) {
+        //   section.anchor = formatHash([router.value[0], slug(section.title)]);
+        // }
+        //console.log(section);
+        return section;
       })
     );
 
     const contentMenu = computed(() =>
       flatten(
-        parsedContent.value.map((slide) =>
-          slide.anchor
-            ? [
-                {
-                  anchor: slide.anchor,
-                  level: 1,
-                  text: slide.title,
-                },
-                slide.menu,
-              ]
-            : slide.menu
-        )
+        parsedContent.value.map((section, i) => {
+          if (section.title) {
+            section.menu = section.menu.map((item) => {
+              item.anchor = slug(section.title) + item.anchor;
+              return item;
+            });
+            console.log(section.menu);
+            return [
+              {
+                anchor: slug(section.title),
+                level: 1,
+                text: section.title,
+              },
+              section.menu,
+            ];
+          }
+          return section.menu;
+        })
       )
     );
+
     return {
       parsedContent,
       contentMenu,
-      slideGridStyle,
+      sectionGridStyle,
       el,
       showMenu,
       isMobile,
@@ -125,15 +133,15 @@ export const VContent = {
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
         <div
-          v-for="(slide,i) in parsedContent"
+          v-for="(section,i) in parsedContent"
           :style="{
             padding: 'var(--base6) var(--base4)',
             display: 'grid',
-            ...slideGridStyle(slide)
+            ...sectionGridStyle(section)
           }"
-          :id="slide.anchor || ''"
+          :id="section.anchor || ''"
         >
-          <div v-for="cell in slide.content">
+          <div v-for="cell in section.content">
             <suspense>
             <template #default>
               <v-compiler :content="cell" />

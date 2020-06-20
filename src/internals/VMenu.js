@@ -1,4 +1,4 @@
-import { inject, onMounted, onUnmounted } from "../deps/vue.js";
+import { inject, watchEffect } from "../deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
 export const VMenu = {
@@ -11,7 +11,6 @@ export const VMenu = {
   },
   setup(props) {
     const router = inject("router");
-
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
       if (router.value[1]) {

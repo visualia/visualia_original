@@ -22,12 +22,10 @@ renderer.code = (code, info) => {
 };
 
 renderer.heading = function (text, level, raw) {
-  const router = inject("router");
-  const anchor = formatHash([
-    router.value[0],
-    raw.toLowerCase().replace(/[^\w]+/g, "-"),
-  ]);
-  return `<h${level} id="${anchor}" style="margin-left: -0.8em;"><a href="#${anchor}">#</a> ${text}</h${level}>\n`;
+  //const router = inject("router");
+  //const anchor = formatHash([router.value[0], utils.slug(raw)]);
+  //return `<h${level} id="${anchor}" style="margin-left: -0.8em;"><a href="#${anchor}">#</a> ${text}</h${level}>\n`;
+  return `<v-heading text="${text}" level="${level}" raw="${raw}" />`;
 };
 
 const processContent = (content) =>

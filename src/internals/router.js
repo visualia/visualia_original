@@ -24,6 +24,7 @@ export const useRouter = () => {
       if (e.target.tagName === "A" && e.target.hash) {
         e.preventDefault();
         router.value = parseHash(e.target.hash);
+        console.log(router.value);
         if (router.value[0]) {
           location.hash = formatHash(router.value, true);
         } else {
