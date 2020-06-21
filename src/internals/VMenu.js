@@ -1,7 +1,7 @@
 import { inject, computed } from "../deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
-export const VMenu = {
+export default {
   props: {
     menu: {
       default: [],

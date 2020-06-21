@@ -3,7 +3,7 @@ import * as components from "../components.js";
 
 import { flatten, kebabcase, typename } from "../utils.js";
 
-export const VProps = {
+export default {
   props: {
     component: {
       required: true,

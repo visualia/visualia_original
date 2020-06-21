@@ -2,20 +2,20 @@ import { computed } from "../deps/vue.js";
 
 import { useLocalstore } from "../utils.js";
 
-export const VSave = {
+export default {
   props: {
     content: {
       default: "",
-      type: String
+      type: String,
     },
     currentContent: {
       default: "",
-      type: String
+      type: String,
     },
     saveid: {
       required: true,
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props, { emit }) {
     const storedContent = useLocalstore(null, props.saveid);
@@ -71,5 +71,5 @@ export const VSave = {
       opacity: 0.5;
       padding: 0;
     }
-  `
+  `,
 };

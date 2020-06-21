@@ -62,7 +62,7 @@ const setSectionTitle = (section, i) => {
   return section;
 };
 
-export const VContent = {
+export default {
   components: { VSection, VMenu, VMenuIcon },
   props: {
     content: {
