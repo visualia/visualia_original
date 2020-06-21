@@ -80,7 +80,11 @@ export const visualia = (options = {}) => {
     Object.entries(internals).filter(([key, value]) => isObject(value))
   );
 
-  componentCss({ ...components, ...internalComponents });
+  componentCss({
+    ...components,
+    ...internalComponents,
+    ...customOptions.components,
+  });
 
   // app.config.errorHandler = onError;
   // app.config.warnHandler = onWarning;

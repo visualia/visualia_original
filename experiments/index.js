@@ -1,6 +1,5 @@
-import { visualia, isObject, toObject } from "../dist/visualia.js";
-import * as internals from "../src/internals.js";
-const c = toObject(
-  Object.entries(internals).filter(([key, value]) => isObject(value))
-);
-console.log(c);
+import { visualia } from "../dist/visualia.js";
+const c = {
+  css: `body { background: red }`,
+};
+visualia({ components: { c } });
