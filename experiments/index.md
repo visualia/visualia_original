@@ -16,6 +16,8 @@
   <v-hexagon r="50" position="100 100" width="50" height="50" />
   <v-square r="50" position="100 100" width="50" height="50" />
   <v-circle r="50" position="100 100" width="50" height="50" />
+  <v-circle r="10" position="95 100" width="50" height="50" fill="yellow" opacity="0.5" />
+  <v-circle r="10" position="105 100" width="50" height="50" fill="blue" opacity="0.5" />
   <v-sphere r="10" position="150 150" width="50" height="50" />
 </v-scene>
 
