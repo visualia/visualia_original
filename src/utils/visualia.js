@@ -56,6 +56,7 @@ export const visualia = (options = {}) => {
         });
         return { routes, content };
       } else {
+        // TODO: Fix file loading in /editor
         fetch(customOptions.file)
           .then((res) => res.text())
           .then((file) => (content.value = file));
