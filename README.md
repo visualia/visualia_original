@@ -221,7 +221,7 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ---
 
-## Math
+# Math
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
@@ -329,7 +329,7 @@ We recommend to use Visual Studio Code with [vscode-live-server](https://github.
 
 Visualia uses ES6 string literals (not `.vue` files) for templating to make the framework work in the browser without bundling.
 
-```js
+````js
 export default { template: `<div>Hello world</div>` };
 
 It's recomended to install [vscode-vue-inline-template](https://github.com/faisalhakim47/vscode-vue-inline-template) plugin to VS Code to highlight the `template:` section in the Vue component.
@@ -349,7 +349,7 @@ const VExample = {
     }
   `,
 };
-```
+````
 
 To highlight the CSS in components, it's recommended to install [es6-string-css](https://github.com/bashmish/es6-string-css) plugin.
 
