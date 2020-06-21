@@ -181,6 +181,7 @@ export default {
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
+      @touchstart="showMenu = !showMenu"
     >
       <v-menu-icon />
     </div>
