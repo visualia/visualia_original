@@ -1,5 +1,5 @@
-import { computed } from "../deps/vue.js";
-import { line } from "../deps/d3-shape.js";
+import { computed } from "../../dist/deps/vue.js";
+import { line } from "../../dist/deps/d3-shape.js";
 
 import {
   lineProps,

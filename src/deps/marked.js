@@ -1,2 +1,1 @@
-export * from "../../dist/deps/anime.js";
-export * from "../../dist/deps/marked.js";
+export { parse, Renderer } from "marked";

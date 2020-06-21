@@ -1,1 +1,1 @@
-export * from "../../dist/deps/anime.js";
+export { default as anime } from "animejs";

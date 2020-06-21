@@ -1,4 +1,4 @@
-import { inject } from "../deps/vue.js";
+import { inject } from "../../dist/deps/vue.js";
 import { toNumber } from "../utils.js";
 import {
   stylingProps,

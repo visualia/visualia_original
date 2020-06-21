@@ -1,1 +1,1 @@
-export * from "../../dist/deps/d3-shape.js";
+export * from "d3-shape";

@@ -1,4 +1,4 @@
-import { ref, watch, onMounted } from "../deps/vue.js";
+import { ref, watch, onMounted } from "../../dist/deps/vue.js";
 
 export default {
   props: { content: { default: "", type: String } },

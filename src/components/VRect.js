@@ -1,4 +1,9 @@
-import { h, inject, Suspense, defineAsyncComponent } from "../deps/vue.js";
+import {
+  h,
+  inject,
+  Suspense,
+  defineAsyncComponent,
+} from "../../dist/deps/vue.js";
 
 import VRectSvg from "../internals/VRectSvg.js";
 import VRectCanvas from "../internals/VRectCanvas.js";

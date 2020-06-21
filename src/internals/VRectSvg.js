@@ -1,4 +1,4 @@
-import { computed } from "../deps/vue.js";
+import { computed } from "../../dist/deps/vue.js";
 import { useSvgStyling, useSvgTransform } from "../internals.js";
 
 import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";

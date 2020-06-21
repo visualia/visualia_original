@@ -1,1 +1,1 @@
-export * from "../../dist/deps/pdf-lib.js";
+export * from "pdf-lib";

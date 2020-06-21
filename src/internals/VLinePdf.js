@@ -1,4 +1,4 @@
-import { inject } from "../deps/vue.js";
+import { inject } from "../../dist/deps/vue.js";
 import {
   lineProps,
   stylingProps,
@@ -8,7 +8,7 @@ import {
   combineTransforms,
 } from "../internals.js";
 
-import { line } from "../deps/d3-shape.js";
+import { line } from "../../dist/deps/d3-shape.js";
 
 export default {
   props: {

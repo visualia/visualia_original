@@ -1,4 +1,4 @@
-import { computed } from "../deps/vue.js";
+import { computed } from "../../dist/deps/vue.js";
 import * as components from "../components.js";
 
 import { flatten, kebabcase, typename } from "../utils.js";

@@ -1,5 +1,5 @@
-import { ref, watch } from "../deps/vue.js";
-import { renderToString } from "../deps/katex.js";
+import { ref, watch } from "../../dist/deps/vue.js";
+import { renderToString } from "../../dist/deps/katex.js";
 
 export default {
   setup(_, { slots }) {

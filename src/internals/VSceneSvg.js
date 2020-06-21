@@ -1,4 +1,4 @@
-import { ref, inject, computed } from "../deps/vue.js";
+import { ref, inject, computed } from "../../dist/deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 

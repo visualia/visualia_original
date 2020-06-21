@@ -1,4 +1,4 @@
-import { inject, computed } from "../deps/vue.js";
+import { inject, computed } from "../../dist/deps/vue.js";
 import { parseHash, formatHash } from "../internals.js";
 
 export default {

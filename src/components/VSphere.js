@@ -1,4 +1,4 @@
-import { h, inject } from "../deps/vue.js";
+import { h, inject } from "../../dist/deps/vue.js";
 
 import { VSphereThree } from "../internals/VSphereThree.js";
 

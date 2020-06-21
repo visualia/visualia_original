@@ -1,4 +1,4 @@
-import { ref } from "../deps/vue.js";
+import { ref } from "../../dist/deps/vue.js";
 
 const state = ref({});
 

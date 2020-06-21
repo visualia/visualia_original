@@ -19,7 +19,7 @@ const deps = [
 
 export default [
   ...deps.map((dep) => ({
-    input: `./deps/${dep}.js`,
+    input: `./src/deps/${dep}.js`,
     output: {
       file: `./dist/deps/${dep}.js`,
       format: "es",
@@ -38,7 +38,7 @@ export default [
     ],
   })),
   {
-    input: "./deps/monaco.js",
+    input: "./src/deps/monaco.js",
     output: {
       dir: "./dist/deps/monaco",
       format: "es",

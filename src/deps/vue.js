@@ -1,1 +1,1 @@
-export * from "../../dist/deps/vue.js";
+export * from "vue/dist/vue.esm-browser.prod.js";

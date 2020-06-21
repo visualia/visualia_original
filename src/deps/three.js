@@ -1,1 +1,2 @@
-export * from "../../dist/deps/three.js";
+export * from "three";
+export { SVGRenderer } from "three/examples/jsm/renderers/SVGRenderer";

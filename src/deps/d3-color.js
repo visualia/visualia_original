@@ -1,1 +1,1 @@
-export * from "../../dist/deps/d3-color.js";
+export * from "d3-color";

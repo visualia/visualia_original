@@ -1,4 +1,4 @@
-import { prettier, html, markdown } from "../../src/deps/prettier.js";
+import { prettier, html, markdown } from "../../dist/deps/prettier.js";
 
 const formatHtml = (str) =>
   prettier.format(str, {
