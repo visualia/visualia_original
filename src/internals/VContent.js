@@ -62,7 +62,7 @@ const setSectionTitle = (section, i) => {
   return section;
 };
 
-export const VContent = {
+export default {
   components: { VSection, VMenu, VMenuIcon },
   props: {
     content: {
@@ -181,6 +181,7 @@ export const VContent = {
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
+      @touchstart="showMenu = !showMenu"
     >
       <v-menu-icon />
     </div>

@@ -42,7 +42,7 @@ const compileContent = (content) => {
   }
 };
 
-export const VCompiler = {
+export default {
   props: {
     content: {
       default: "",
