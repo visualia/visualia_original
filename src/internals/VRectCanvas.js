@@ -1,4 +1,4 @@
-import { inject, watch } from "../deps/vue.js";
+import { inject, watch } from "../../dist/deps/vue.js";
 
 import {
   stylingProps,

@@ -1,5 +1,11 @@
-import { computed, h, compile, onErrorCaptured, inject } from "../deps/vue.js";
-import { parse, Renderer } from "../deps/marked.js";
+import {
+  computed,
+  h,
+  compile,
+  onErrorCaptured,
+  inject,
+} from "../../dist/deps/vue.js";
+import { parse, Renderer } from "../../dist/deps/marked.js";
 import * as utils from "../utils.js";
 
 const renderer = new Renderer();

@@ -1,4 +1,4 @@
-import { ref, computed } from "../deps/vue.js";
+import { ref, computed } from "../../dist/deps/vue.js";
 
 export const useLocalstore = (initialValue = null, key = null) => {
   const value = ref(initialValue);
@@ -15,12 +15,12 @@ export const useLocalstore = (initialValue = null, key = null) => {
         }
         return value.value;
       },
-      set: val => {
+      set: (val) => {
         value.value = val;
         if (key) {
           window.localStorage.setItem(key, JSON.stringify(val));
         }
-      }
+      },
     });
     return localValue;
   }

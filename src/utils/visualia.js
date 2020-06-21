@@ -1,4 +1,11 @@
-import { createApp, provide, computed, h, ref, watch } from "../deps/vue.js";
+import {
+  createApp,
+  provide,
+  computed,
+  h,
+  ref,
+  watch,
+} from "../../dist/deps/vue.js";
 
 import * as components from "../components.js";
 import { useFetch, componentCss, onError, onWarning } from "../utils.js";

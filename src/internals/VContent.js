@@ -7,7 +7,7 @@ import {
   nextTick,
   provide,
   watch,
-} from "../deps/vue.js";
+} from "../../dist/deps/vue.js";
 
 import { flatten, slug, useSize } from "../utils.js";
 

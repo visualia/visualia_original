@@ -1,4 +1,4 @@
-import { ref, onMounted } from "../deps/vue.js";
+import { ref, onMounted } from "../../dist/deps/vue.js";
 
 export const useResize = () => {
   const el = ref(null);

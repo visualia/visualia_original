@@ -1,11 +1,11 @@
-import { ref } from "../deps/vue.js";
+import { ref } from "../../dist/deps/vue.js";
 
-export const useFetch = src => {
+export const useFetch = (src) => {
   const content = ref("");
   if (src) {
     fetch(src)
-      .then(res => res.text())
-      .then(res => {
+      .then((res) => res.text())
+      .then((res) => {
         content.value = res;
       });
   }

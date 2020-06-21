@@ -1,4 +1,4 @@
-import { inject, onBeforeUpdate } from "../deps/vue.js";
+import { inject, onBeforeUpdate } from "../../dist/deps/vue.js";
 
 import {
   transformThreeProps,

@@ -4,7 +4,7 @@ import {
   provide,
   defineAsyncComponent,
   Suspense,
-} from "../deps/vue.js";
+} from "../../dist/deps/vue.js";
 
 import VGroupSvg from "../internals/VGroupSvg.js";
 import VGroupCanvas from "../internals/VGroupCanvas.js";
