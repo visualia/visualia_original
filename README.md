@@ -68,7 +68,7 @@ It's recomended to install [vscode-vue-inline-template](https://github.com/faisa
 
 #### CSS and styling
 
-Global CSS resides in `/visualia.css` file and relies heavily on CSS variables.
+Global CSS resides in `/dist/visualia.css` file and relies heavily on CSS variables.
 
 Component CSS can be stored as a `css` property on each component. On framework initialization all components CSS will be merged into a single CSS string and injected into HTML `<style>` tag.
 
@@ -129,11 +129,11 @@ Experimental live editor based on Monaco editor (that also powers VS Code).
 
 Various coding experiments.
 
-#### Project source files
+#### Source code
 
 [/src](/src)
 
-Project source files
+Project source code
 
 [/src/components](/src/components)
 
@@ -194,7 +194,7 @@ export const test_add = {
 }
 ```
 
-Test functions are picked up by test runner `/test.js` that compares the `actual` and `expected` results. If they equal, the test passes. If they do not equal, the test fails.
+Test functions are invoked by test runner `/test.js` that compares the `actual` and `expected` results. If they equal, the test passes, otherwise the test fails.
 
 #### Run browser tests
 
@@ -210,4 +210,4 @@ node test.js
 
 #### Run CI tests
 
-Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions/test.yml](./.github/actions/test.yml).
+Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions](./.github/actions).
