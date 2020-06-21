@@ -8,7 +8,7 @@ Here are the key lessons we learned from Fachwerk:
 
 **It was too early for full-on ESM**
 
-2017-2019 was too early for fully embracing ECMAScript modules. Many of the project dependencies did not yet offer ESM module builds so custom Rollup-based build system was introduced for transpiling CommonJS modules to ESM (similar what [Snowpack](https://www.snowpack.dev/) does).
+2017-2019 was too early for fully embracing ECMAScript modules. Many of the project dependencies did not yet offer ESM module builds so custom Rollup-based build system was introduced for transpiling CommonJS modules to ESM. In 2020 it is still partially the case.
 
 **ThreeJS was not yet modular**
 
