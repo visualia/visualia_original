@@ -71,14 +71,29 @@ export const visualia = (options = {}) => {
 
   const app = createApp(App);
 
+  // Loading components
+
+  // We get all public and custom components and register them globally
+  // so they will be available in Markdown documents
+
   Object.entries({
     ...components,
     ...customOptions.components,
   }).forEach(([name, component]) => app.component(name, component));
 
+  // Loading CSS
+
+  // Imported internals contain both components and functions
+  // We filter out only components
+
   const internalComponents = toObject(
     Object.entries(internals).filter(([key, value]) => isObject(value))
   );
+
+  // We get all public, internal and custom components
+  // and pass them to componentCss() function
+  // that filters out all components that have { css: `` } property
+  // defined, concat all CSS, and inject it to HTML <head>
 
   componentCss({
     ...components,

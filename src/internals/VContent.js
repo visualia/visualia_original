@@ -126,6 +126,9 @@ export default {
     );
 
     return {
+      router,
+      slug,
+      parsedContent,
       activeParsedContent,
       contentMenu,
       sectionGridStyle,
@@ -187,7 +190,9 @@ export default {
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <v-section v-for="(section,i) in activeParsedContent" :key="i" :section="section">
+        <template v-for="(section,i) in parsedContent">
+          <v-section :key="i" :section="section" v-show="router[0] === slug(section.title)" />
+        </template>
       </div>
     </div>
   </div>
