@@ -10,7 +10,7 @@ https://github.com/visualia/visualia
 
 ---
 
-# Getting started
+## Getting started
 
 To get started you will need three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
 
@@ -52,7 +52,7 @@ visualia();
 
 ---
 
-# Graphics
+## Graphics
 
 Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
 
@@ -221,7 +221,7 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ---
 
-# Math
+## Math
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
@@ -239,7 +239,7 @@ The true power of the framework emerges when math functions are combined with li
 
 ---
 
-# Live variables
+## Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
 
@@ -293,7 +293,7 @@ b is {{ get("b") }}
 
 ---
 
-# Events
+## Events
 
 In addition to the live variables, Visualia also provides a way to send and receive global events.
 
@@ -317,7 +317,7 @@ To receive an event, use `receive()` function:
 
 ---
 
-# Development
+## Development
 
 ### Development environment
 
