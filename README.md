@@ -331,7 +331,6 @@ Visualia uses ES6 string literals (not `.vue` files) for templating to make the 
 
 ```js
 export default { template: `<div>Hello world</div>` };
-```
 
 It's recomended to install [vscode-vue-inline-template](https://github.com/faisalhakim47/vscode-vue-inline-template) plugin to VS Code to highlight the `template:` section in the Vue component.
 
