@@ -8,9 +8,17 @@ import {
 } from "../../dist/deps/vue.js";
 
 import * as components from "../components.js";
-import { useFetch, componentCss, onError, onWarning } from "../utils.js";
+import * as internals from "../internals.js";
 
 import { useRouter, VContent, VSave } from "../internals.js";
+import {
+  useFetch,
+  componentCss,
+  onError,
+  onWarning,
+  isObject,
+  toObject,
+} from "../utils.js";
 
 export const visualia = (options = {}) => {
   const customOptions = {
@@ -68,8 +76,11 @@ export const visualia = (options = {}) => {
     ...customOptions.components,
   }).forEach(([name, component]) => app.component(name, component));
 
-  // TODO: Remove this hack
-  componentCss({ ...components, VSave });
+  const internalComponents = toObject(
+    Object.entries(internals).filter(([key, value]) => isObject(value))
+  );
+
+  componentCss({ ...components, ...internalComponents });
 
   // app.config.errorHandler = onError;
   // app.config.warnHandler = onWarning;
