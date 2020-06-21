@@ -416,6 +416,10 @@ Internal components and utility functions.
 
 Public utility functions.
 
+#### /test
+
+See the testing section below.
+
 #### /index.html + /index.js
 
 Visualia homepage. It imports `./dist/visualia.js` and fetches and renders documentation.
@@ -423,10 +427,6 @@ Visualia homepage. It imports `./dist/visualia.js` and fetches and renders docum
 #### /rollup.deps.config.js + /rollup.lib.config.js
 
 Rollup config files for building external dependencies, used by the build scripts.
-
-#### /test.html + /test.js
-
-See the testing section below.
 
 ### Testing
 
@@ -449,14 +449,14 @@ Test functions are invoked by test runner `/test.js` that compares the `actual` 
 
 #### Run browser tests
 
-Open [/test.html](/test.html) file in local server and open Developer Tools panel.
+Open `/test` path in local server and open Developer Tools panel.
 
 #### Run command line tests
 
-It is assumed you have NodeJS installed. The run
+It is assumed you have NodeJS installed. The run:
 
 ```js
-node test.js
+node test
 ```
 
 #### Run CI tests
