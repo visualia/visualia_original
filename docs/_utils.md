@@ -30,14 +30,14 @@ To fill the array with values, you can use a Javacript `map` array method:
 
 `{{ array(3).map(_ => 100) }}`
 
-### array2object()
+### toObject()
 
 **Usage**
 
 ```
-{{ array2object([['hello','world'],['hola','mundo']]) }}
+{{ toObject([['hello','world'],['hola','mundo']]) }}
 ```
 
 gives the result
 
-`{{ array2object([['hello','world'],['hola','mundo']]) }}`
+`{{ toObject([['hello','world'],['hola','mundo']]) }}`

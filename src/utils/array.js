@@ -20,7 +20,7 @@ export const chunk = (arr, length) =>
     arr.slice(n * length, n * length + length)
   );
 
-export const array2object = (array) =>
+export const toObject = (array) =>
   array.reduce((acc, el) => {
     acc[el[0]] = el[1];
     return acc;

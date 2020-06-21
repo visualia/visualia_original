@@ -221,7 +221,7 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 
 ---
 
-## Math
+# Math
 
 `<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
 
