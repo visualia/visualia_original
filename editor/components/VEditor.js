@@ -1,4 +1,4 @@
-import { ref } from "../../src/deps/vue.js";
+import { ref } from "../../dist/deps/vue.js";
 
 import { VContent } from "../../src/internals.js";
 import { VSave } from "./VSave.js";

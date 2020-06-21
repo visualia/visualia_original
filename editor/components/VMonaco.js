@@ -1,5 +1,5 @@
 import { receive } from "../../src/utils.js";
-import { watch, ref, onMounted } from "../../src/deps/vue.js";
+import { watch, ref, onMounted } from "../../dist/deps/vue.js";
 
 import * as monaco from "../../dist/deps/monaco/monaco.js";
 
@@ -15,8 +15,6 @@ window.MonacoEnvironment = {
     return "../../dist/deps/monaco/editor.worker.js";
   },
 };
-
-//import { a } from "../../src/deps/monaco/editor.worker.js";
 
 export const VMonaco = {
   props: { content: { default: "" } },
