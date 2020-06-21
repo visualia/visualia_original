@@ -10,7 +10,7 @@ https://github.com/visualia/visualia
 
 ---
 
-# Getting started
+## Getting started
 
 To get started you will need three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
 
@@ -52,7 +52,7 @@ visualia();
 
 ---
 
-# Graphics
+## Graphics
 
 Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
 
@@ -239,7 +239,7 @@ The true power of the framework emerges when math functions are combined with li
 
 ---
 
-# Live variables
+## Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
 
@@ -293,7 +293,7 @@ b is {{ get("b") }}
 
 ---
 
-# Events
+## Events
 
 In addition to the live variables, Visualia also provides a way to send and receive global events.
 
@@ -317,7 +317,7 @@ To receive an event, use `receive()` function:
 
 ---
 
-# Development
+## Development
 
 ### Development environment
 
@@ -329,7 +329,7 @@ We recommend to use Visual Studio Code with [vscode-live-server](https://github.
 
 Visualia uses ES6 string literals (not `.vue` files) for templating to make the framework work in the browser without bundling.
 
-```js
+````js
 export default { template: `<div>Hello world</div>` };
 
 It's recomended to install [vscode-vue-inline-template](https://github.com/faisalhakim47/vscode-vue-inline-template) plugin to VS Code to highlight the `template:` section in the Vue component.
@@ -349,7 +349,7 @@ const VExample = {
     }
   `,
 };
-```
+````
 
 To highlight the CSS in components, it's recommended to install [es6-string-css](https://github.com/bashmish/es6-string-css) plugin.
 

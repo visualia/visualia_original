@@ -113,7 +113,9 @@ export default {
               level: 1,
               text: section.title,
             },
-            section.menu.filter((item) => item.level !== 1),
+            section.menu.filter(
+              (item, i) => i !== 0 || section.title !== item.text
+            ),
           ];
         })
       )
