@@ -30,12 +30,19 @@ export const useRouter = () => {
           removeHash();
           //location.hash = "";
         }
+        if (router.value[0] && !router.value[1]) {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        }
         if (router.value[1]) {
           const target = document.getElementById(formatHash(router.value));
           if (target) {
             window.scrollTo({
-              left: 0,
               top: target.offsetTop - 50,
+              left: 0,
               behavior: "smooth",
             });
           }

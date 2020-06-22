@@ -217,16 +217,6 @@ Displays a 3D sphere
 
 ---
 
-## Math
-
-`<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
-
-```live math
-<v-math>b = a^2</v-math>
-```
-
----
-
 ## Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
@@ -239,25 +229,12 @@ The simplest way to create a dynamic variable is to use `<v-slider>` component w
 
 ```live set
 <v-slider set="a" />
+
+a is {{ get("a") }}
+
 ```
 
 To display the live value, use the `get()` function. You can use `get()` anywhere in the document.
-
-The true power of the framework emerges when live variables are combined with other components:
-
-```live mathget
-<v-slider set="a" />
-
-<v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
-
-<v-scene>
-  <v-square
-    position="100 100"
-    r="50"
-    :rotation="get('a')"
-  />
-</v-scene>
-```
 
 <!--- <v-props component="VSlider" /> --->
 
@@ -305,6 +282,32 @@ To receive an event, use `receive()` function:
 {{ receive("click!", () => set("clicked", true)) }}
 
 {{ get('clicked') ? 'Clicked!' : 'Waiting for a click'}}
+```
+
+---
+
+## Math
+
+`<v-math>` allows to write math equations in classic [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) format. It uses a [KaTeX](https://github.com/Khan/KaTeX) library under the hood.
+
+```live math
+<v-math>b = a^2</v-math>
+```
+
+The true power of the framework emerges when math is combined with live variables and graphics components:
+
+```live mathget
+<v-slider set="a" />
+
+<v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
+
+<v-scene>
+  <v-square
+    position="100 100"
+    r="50"
+    :rotation="get('a')"
+  />
+</v-scene>
 ```
 
 ---
