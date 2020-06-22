@@ -58,15 +58,9 @@ Visualia offers a set of _graphics primitives_, a set of components to draw circ
 
 ### Scene
 
-`<v-scene>`
+`<v-scene></v-scene>`
 
 First you need to add a _scene_ to the document, an area where graphics components are placed.
-
-```
-<v-scene>
-
-</v-scene>
-```
 
 <!--- <v-props component="VScene" /> --->
 
@@ -83,7 +77,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 ### Point
 
-`<v-point>`
+`<v-point />`
 
 Displays a point.
 
@@ -97,7 +91,7 @@ Displays a point.
 
 ### Line
 
-`<v-line>`
+`<v-line />`
 
 Displays a line.
 
@@ -111,7 +105,7 @@ Displays a line.
 
 ### Polygon
 
-`<v-polygon>`
+`<v-polygon />`
 
 Displays a polygon.
 
@@ -125,7 +119,7 @@ Displays a polygon.
 
 ### Regular polygon
 
-`<v-regularpolygon>`
+`<v-regularpolygon />`
 
 Displays a regular polygon.
 
@@ -143,7 +137,7 @@ Displays a regular polygon.
 
 ### Hexagon
 
-`<v-hexagon>`
+`<v-hexagon />`
 
 Displays a hexagon.
 
@@ -160,7 +154,7 @@ Displays a hexagon.
 
 ### Rectangle
 
-`<v-rect>`
+`<v-rect />`
 
 Displays a 2D rectangle.
 
@@ -175,7 +169,7 @@ Displays a 2D rectangle.
 
 ### Square
 
-`<v-square>`
+`<v-square />`
 
 Displays a 2D square.
 
@@ -190,7 +184,7 @@ Displays a 2D square.
 
 ### Circle
 
-`<v-circle>`
+`<v-circle />`
 
 Displays a 2D circle.
 
@@ -204,7 +198,9 @@ Displays a 2D circle.
 
 ### Sphere
 
-Displays a 3D sphere. In 2D mode it will be displayed as a circle.
+`<v-sphere />`
+
+Displays a 3D sphere
 
 ```live sphere
 <v-scene mode="three" isometric>
@@ -229,14 +225,6 @@ Displays a 3D sphere. In 2D mode it will be displayed as a circle.
 <v-math>b = a^2</v-math>
 ```
 
-The true power of the framework emerges when math functions are combined with live variables:
-
-```live mathget
-<v-slider set="a" />
-
-<v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
-```
-
 ---
 
 ## Live variables
@@ -253,10 +241,14 @@ The simplest way to create a dynamic variable is to use `<v-slider>` component w
 <v-slider set="a" />
 ```
 
-To display the live value, use the `get()` function. You can use `get()` anywhere in the document, including _inside components_:
+To display the live value, use the `get()` function. You can use `get()` anywhere in the document.
 
-```live get
-a is {{ get("a") }}
+The true power of the framework emerges when live variables are combined with other components:
+
+```live mathget
+<v-slider set="a" />
+
+<v-math>b = {{ get('a',0) }}^2 = {{ get('a',0) ** 2 }}</v-math>
 
 <v-scene>
   <v-square
@@ -271,9 +263,9 @@ a is {{ get("a") }}
 
 ### Animate
 
-`<v-animate>`
+`<v-animate />`
 
-Another way of generating live variables is to use `<v-animate>` component that interpolates the value between `start` and `end` values given the during the certain `duration`.
+Another way of generating live variables is to use `<v-animate />` component that interpolates the value between `start` and `end` values given the during the certain `duration`.
 
 ```live animate
 <v-animate set="b" />
