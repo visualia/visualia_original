@@ -15,52 +15,11 @@ import {
   VMenu,
   VMenuIcon,
   VCompiler,
+  VSection,
   parseContent,
   sectionGridStyle,
   formatHash,
 } from "../internals.js";
-
-const VSection = {
-  components: { Suspense, VCompiler },
-  props: ["section"],
-  setup(props) {
-    const title = computed(() => props.section.title);
-    provide("sectionContext", { title });
-    const id = computed(() => slug(props.section.title));
-    return { id, sectionGridStyle };
-  },
-  template: `
-  <div
-    :style="{
-      padding: 'var(--base6) var(--base4)',
-      display: 'grid',
-      ...sectionGridStyle(section)
-    }"
-    :id="id"
-  >
-    <div v-for="cell in section.content">
-      <suspense>
-      <template #default>
-        <v-compiler :content="cell" />
-      </template>
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
-      </suspense>
-    </div>
-  </div>
-  `,
-};
-
-const setSectionTitle = (section, i) => {
-  if (!section.title) {
-    section.title =
-      section.menu && section.menu[0]
-        ? section.menu[0].text
-        : `Section ${i + 1}`;
-  }
-  return section;
-};
 
 export default {
   components: { VSection, VMenu, VMenuIcon },
@@ -96,9 +55,26 @@ export default {
       { immediate: true }
     );
 
+    const setSectionTitle = (section, i) => {
+      if (!section.title) {
+        section.title =
+          section.menu && section.menu[0]
+            ? section.menu[0].text
+            : `Section ${i + 1}`;
+      }
+      return section;
+    };
+
     const parsedContent = computed(() =>
       parseContent(props.content).map(setSectionTitle)
     );
+
+    const visibleContent = computed(() => {
+      return parsedContent.value.map((section) => {
+        section.visible = router.value[0] === slug(section.title);
+        return section;
+      });
+    });
 
     const contentMenu = computed(() =>
       flatten(
@@ -120,21 +96,6 @@ export default {
         })
       )
     );
-
-    // const isSectionVisible = (section) =>
-    //   computed(() => {
-    //     // if (!router.value[0]) {
-    //     //   return true;
-    //     // }
-    //     return router.value[0] === slug(section.title);
-    //   });
-
-    const visibleContent = computed(() => {
-      return parsedContent.value.map((section) => {
-        section.visible = router.value[0] === slug(section.title);
-        return section;
-      });
-    });
 
     return {
       visibleContent,
