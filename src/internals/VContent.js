@@ -121,28 +121,28 @@ export default {
       )
     );
 
-    const isSectionVisible = (section) => {
-      // console.log(
-      //   router.value[0],
-      //   slug(section.title),
-      //   router.value[0] === slug(section.title)
-      // );
-      if (!router.value[0]) {
-        return true;
-      }
-      return router.value[0] === slug(section.title);
-    };
+    // const isSectionVisible = (section) =>
+    //   computed(() => {
+    //     // if (!router.value[0]) {
+    //     //   return true;
+    //     // }
+    //     return router.value[0] === slug(section.title);
+    //   });
+
+    const visibleContent = computed(() => {
+      return parsedContent.value.filter((section) => {
+        return router.value[0] === slug(section.title);
+      });
+    });
 
     return {
-      router,
-      slug,
+      visibleContent,
       parsedContent,
       contentMenu,
       sectionGridStyle,
       el,
       showMenu,
       isMobile,
-      isSectionVisible,
     };
   },
   template: `
@@ -198,8 +198,8 @@ export default {
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
-        <template v-for="(section,i) in parsedContent">
-          <v-section :key="i" :section="section" v-show="isSectionVisible(section)" />
+        <template v-for="(section,i) in visibleContent">
+          <v-section :key="i" :section="section" />
         </template>
       </div>
     </div>
