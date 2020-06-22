@@ -70,9 +70,8 @@ export default {
     );
 
     const visibleContent = computed(() => {
-      return parsedContent.value.map((section) => {
-        section.visible = router.value[0] === slug(section.title);
-        return section;
+      return parsedContent.value.filter((section) => {
+        return router.value[0] === slug(section.title);
       });
     });
 

@@ -15,9 +15,12 @@ export default {
   components: { Suspense, VCompiler },
   props: ["section"],
   setup(props) {
-    const title = computed(() => props.section.title);
+    // TODO: Clean this up
+    const title = computed(() => props.section.title || "");
     provide("sectionContext", { title });
-    const id = computed(() => slug(props.section.title));
+    const id = computed(() =>
+      props.section.title ? slug(props.section.title) : ""
+    );
     return { id, sectionGridStyle };
   },
   template: `
