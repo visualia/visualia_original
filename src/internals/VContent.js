@@ -130,8 +130,9 @@ export default {
     //   });
 
     const visibleContent = computed(() => {
-      return parsedContent.value.filter((section) => {
-        return router.value[0] === slug(section.title);
+      return parsedContent.value.map((section) => {
+        section.visible = router.value[0] === slug(section.title);
+        return section;
       });
     });
 
@@ -199,6 +200,7 @@ export default {
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
       <div  style="max-width: 900px; width: 100%;">
         <template v-for="(section,i) in visibleContent">
+          {{ section.visible }}
           <v-section :key="i" :section="section" />
         </template>
       </div>

@@ -1,5 +1,7 @@
 # Visualia
 
+## About
+
 Visualia is a web framework for creating interactive documents. It uses [Markdown](https://guides.github.com/features/mastering-markdown/) text format and [Vue 3](https://github.com/vuejs/vue-next) templates for content creation.
 
 Visualia supports a wide range of use cases, from interactive learning materials and live notebooks to generative design and data visualization.
@@ -7,8 +9,6 @@ Visualia supports a wide range of use cases, from interactive learning materials
 https://github.com/visualia/visualia
 
 ![](https://github.com/visualia/visualia/workflows/Test/badge.svg)
-
----
 
 ## Getting started
 
@@ -54,7 +54,7 @@ visualia();
 
 ## Graphics
 
-Visualia offers a set of _graphics primitives_, a set of components to draw circles, rectangles etc.
+Visualia offers a number of graphics primitives, a set of components to draw 2D and 3D graphics.
 
 ### Scene
 
@@ -64,14 +64,14 @@ First you need to add a _scene_ to the document, an area where graphics componen
 
 <!--- <v-props component="VScene" /> --->
 
-`mode` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different render modes, their dimensions, and underlying implementation:
+`mode` prop allows you to choose different rendering technologies -- whenever you need a 2d and 3d rendering or vector or bitmap output. Here are different render modes and underlying implementation:
 
-| Mode                      | Type      | Tech                   |
-| ------------------------- | --------- | ---------------------- |
-| `<v-scene mode="svg">`    | 2D vector | `<svg>`, default mode  |
-| `<v-scene mode="canvas">` | 2D bitmap | `<canvas>`             |
-| `<v-scene mode="three">`  | 3D vector | ThreeJS SVG renderer   |
-| `<v-scene mode="webgl">`  | 3D bitmap | ThreeJS WebGL renderer |
+| Mode                                 | Type      | Tech                   |
+| ------------------------------------ | --------- | ---------------------- |
+| `<v-scene mode="svg">`, default mode | 2D vector | `<svg>`                |
+| `<v-scene mode="canvas">`            | 2D bitmap | `<canvas>`             |
+| `<v-scene mode="three">`             | 3D vector | ThreeJS SVG renderer   |
+| `<v-scene mode="webgl">`             | 3D bitmap | ThreeJS WebGL renderer |
 
 <br />
 
