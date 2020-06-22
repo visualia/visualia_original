@@ -13,6 +13,7 @@ const deps = [
   "marked",
   "pdf-lib",
   "prettier",
+  "resize-observer-polyfill"
   "three",
   "vue",
 ];
