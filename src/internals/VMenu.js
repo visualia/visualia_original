@@ -19,8 +19,15 @@ export default {
     );
     const isAnchorActive = (hash) => {
       const parsedHash = parseHash(hash);
-      if (router.value[1]) {
+      if (router.value[1] && parsedHash[1]) {
         return parsedHash[1] === router.value[1];
+      } else if (
+        router.value[0] &&
+        parsedHash[0] &&
+        !router.value[1] &&
+        !parsedHash[1]
+      ) {
+        return parsedHash[0] === router.value[0];
       }
       return false;
     };

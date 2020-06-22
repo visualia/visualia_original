@@ -1,8 +1,14 @@
-import { ref, watch } from "../../dist/deps/vue.js";
-import { VSave, VTextarea, VContent } from "../internals.js";
+import { ref, watch, computed } from "../../dist/deps/vue.js";
+import {
+  VSection,
+  VSave,
+  VTextarea,
+  VContent,
+  parseContent,
+} from "../internals.js";
 
 export default {
-  components: { VSave, VTextarea, VContent },
+  components: { VSection, VSave, VTextarea, VContent },
   props: {
     content: {
       default: "",
@@ -15,13 +21,18 @@ export default {
   },
   setup(props) {
     const currentContent = ref(props.content);
+
     watch(
       () => props.content,
       (content) => (currentContent.value = content),
       { immediate: true }
     );
+
     const onLoad = (content) => (currentContent.value = content);
-    return { currentContent, onLoad };
+
+    const parsedContent = computed(() => parseContent(currentContent.value));
+
+    return { currentContent, parsedContent, onLoad };
   },
   template: `
   <div class="v-live">
@@ -39,10 +50,11 @@ export default {
         @input:content="content => currentContent = content"
       />
     </div>
-    <v-content
-      style="overflow: auto; height: 350px;"
-      :content="currentContent"
-    />
+    <div style="overflow: auto; height: 350px;">
+      <template v-for="(section,i) in parsedContent">
+        <v-section :key="i" :section="section" />
+      </template> 
+    </div>
   </div>
   `,
   css: `
