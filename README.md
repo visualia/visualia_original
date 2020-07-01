@@ -322,7 +322,7 @@ We recommend to use Visual Studio Code with [vscode-live-server](https://github.
 
 #### Templates
 
-For templating, Visualia uses ES6 string literals (not `.vue` files) to make the framework run in the browser without bundling.
+For templating, Visualia uses ES6 string literals (not `.vue` files) to make the framework run in the browser without compilation step.
 
 ```js
 export default { template: `<div>Hello world</div>` };
@@ -367,11 +367,11 @@ External dependencies bundled into ES6 modules. These modules are used both in d
 
 **/dist/visualia.css**
 
-The main CSS file to import into your custom Visualia application.
+CSS file to import into your custom Visualia application.
 
 **/dist/visualia.js**
 
-The main library entrypoint as ES6 module, this is _the_ file to import into your custom Visualia application.
+Javascript file to import into your custom Visualia application.
 
 <!--
 
@@ -395,7 +395,7 @@ Various coding experiments.
 
 Project source code
 
-**/src/components + /src/components.js**
+**/src/components**
 
 Project public components.
 
@@ -403,11 +403,11 @@ Project public components.
 
 External dependencies, imported as CommonJS modules. This directory is needed for the `npm run build:deps` build script that packages dependencies to `/dist/deps` as ES6 modules.
 
-**/src/internals + /src/internals.js**
+**/src/internalss**
 
 Internal components and utility functions.
 
-**/src/utils + /src/utils.js**
+**/src/utils**
 
 Public utility functions.
 
@@ -415,11 +415,11 @@ Public utility functions.
 
 See the testing section below.
 
-**/index.html + /index.js**
+**/index.html**
 
 Visualia homepage. It imports `./dist/visualia.js` and fetches and renders documentation.
 
-**/rollup.deps.config.js + /rollup.lib.config.js**
+**/rollup.\*.config.js**
 
 Rollup config files for building external dependencies, used by the build scripts.
 
