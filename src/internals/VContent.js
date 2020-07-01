@@ -104,7 +104,6 @@ export default {
     );
 
     return {
-      router,
       visibleContent,
       parsedContent,
       contentMenu,
