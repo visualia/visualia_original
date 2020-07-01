@@ -117,21 +117,6 @@ h4:first-child,
 h5:first-child {
   margin-top: 0;
 }
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a {
-  opacity: 0;
-  border-bottom: none;
-}
-h1:hover a,
-h2:hover a,
-h3:hover a,
-h4:hover a,
-h5:hover a {
-  opacity: 0.25;
-}
 p {
   font-size: calc(var(--base) * 2);
   line-height: 1.6em;

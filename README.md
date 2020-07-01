@@ -312,17 +312,240 @@ The true power of the framework emerges when math is combined with live variable
 
 ---
 
+## Integrations
+
+Visualia provides integration with several popular Javascript-based visualization frameworks.
+
+### Figma
+
+You can use Visualia to generate graphics in Figma.
+
+Due to the architecture of Figma plugins, you can not use Visualia `<v-...>` tags to generate graphics, but you can use Visualia functions to calculate the neccessary coordinates for the graphics and then use Figma drawing APIs to do the actual rendering.
+
+Here's the general workflow and neccessary files you will need to set up:
+
+**ui.html**
+
+```html
+<script type="module">
+  import { circlepoints } from "https://visualia.github.io/visualia/dist/visualia.js";
+  parent.postMessage(
+    {
+      pluginMessage: { message: "createCircles", points: circlepoints(6, 100) },
+    },
+    "*"
+  );
+</script>
+```
+
+**code.js**
+
+```js
+figma.showUI(__html__);
+figma.ui.hide();
+figma.ui.onmessage = ({ message, points }) => {
+  if (message === "createCircles") {
+    const nodes = [];
+    points.forEach(([x, y]) => {
+      const circle = figma.createEllipse();
+      circle.x = x;
+      circle.y = y;
+      circle.resize(200, 200);
+      circle.fills = [{ type: "SOLID", color: { r: 1, g: 0, b: 0 } }];
+      circle.opacity = 0.25;
+      figma.currentPage.appendChild(circle);
+      nodes.push(circle);
+    });
+    figma.currentPage.selection = nodes;
+    figma.viewport.scrollAndZoomIntoView(nodes);
+  }
+  figma.closePlugin();
+};
+```
+
+**manifest.json**
+
+```
+{
+  "main": "code.js",
+  "ui": "ui.html",
+  "id": "any-random-number-here",
+  "name": "visualia-in-figma",
+  "api": "0.0.1"
+}
+```
+
+### p5
+
+[p5](https://p5js.org/), a popular implementation of Processing framework in Javascript can easily integrated with Visualia and they can even share live values and events.
+
+To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
+
+**index.js**
+
+```js
+import {
+  visualia,
+  get,
+} from "http://visualia.github.io/visualia/dist/visualia.js";
+import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
+import { p5 } from "http://visualia.github.io/p5/dist/p5.js";
+
+// p5 sketch
+
+// Note that you need to wrap into the sketch function
+// and prefix all commands with s, otherwise it is regular p5 API
+
+// Note that we use get() function to use Visualia live variables
+
+const sketch = (s) => {
+  s.setup = () => {
+    s.createCanvas(200, 200);
+  };
+  s.draw = () => {
+    s.background(255);
+    s.stroke(0);
+    s.strokeWeight(2);
+    s.circle(100, 100, get("a") || 10);
+  };
+};
+
+// We are wrapping p5 sketch into a Visualia component
+
+export const PfiveExample = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      new p5(sketch, el.value);
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `,
+};
+
+// We initialize Visualia with our p5 component
+
+visualia({
+  components: { PfiveExample },
+});
+```
+
+**index.md**
+
+```md
+<v-slider set="a" from="10" to="200" />
+
+<pfive-example />
+```
+
+### Observable
+
+Observable is a Javascript-based interactive notebook for "exploring data and thinking with code". As Observable is built around the latest Javascript features, including ESM modules, the integration with Visualia is quite straightforward.
+
+#### Visualia in Observable
+
+Here is a sample Observable notebook that imports Visualia into Observable notebook and allows to share reactive data between the environments.
+
+https://observablehq.com/@kristjanjansen/visualia-in-observable
+
+#### Observable in Visualia
+
+As Observable allows [exporting notebooks as ESM modules](https://observablehq.com/@observablehq/downloading-and-embedding-notebooks), you can also import Observable notebook into Visualia.
+
+Here's the code how to import a sample notebook to Visualia and have a two-way data exchange between two reactive environments:
+
+**index.js**
+
+```js
+import { get, set } from "http://visualia.github.io/visualia/dist/visualia.js";
+import {
+  ref,
+  onMounted,
+  watch,
+} from "http://visualia.github.io/visualia/deps/vue.js";
+import {
+  Runtime,
+  Inspector,
+} from "https://unpkg.com/@observablehq/runtime/dist/runtime.js";
+
+// We are importing the notebook
+// https://observablehq.com/@kristjanjansen/using-observable-in-visualia
+// Note the "api" prefix and ".js?v=3" suffx to make the import work
+
+import notebook from "https://api.observablehq.com/@kristjanjansen/using-observable-in-visualia.js?v=3";
+
+// We are creating a wrapper component <observable-example />
+
+export const ObservableExample = {
+  setup() {
+    const el = ref(null);
+    onMounted(() => {
+      const observable = new Runtime().module(notebook, (name) => {
+        if (name == "c") {
+          // Getting data from Obsevable to Visualia:
+          // we loop over Obsevable notebook cells and if the one of them
+          // returns value "a", we set it as Visualia global variable "a"
+
+          return {
+            fulfilled(value) {
+              set("c", value);
+            },
+          };
+        } else {
+          // For all other cells we just render the Observable cell in Visualia
+          return new Inspector(
+            el.value.appendChild(document.createElement("p"))
+          );
+        }
+      });
+      // Sending data from Visualia to Observable:
+      // We are watching Visualia global value "b"
+      // and when it changes, we change the Observable
+      // cell value "b"
+      watch(
+        () => get("d"),
+        () => observable.redefine("d", get("d"))
+      );
+    });
+    return { el };
+  },
+  template: `
+    <div ref="el" />
+  `,
+};
+```
+
+**index.md**
+
+```md
+<observable-example />
+
+#### Visualia document
+
+c = {{ get('c') }}
+
+Visualia slider is setting Observable value `d` {{ get('d') }}
+
+<v-slider set="d" to="100" step="1" />
+```
+
+---
+
 ## Development
 
 ### Development environment
 
-We recommend to use Visual Studio Code with [vscode-live-server](https://github.com/ritwickdey/vscode-live-server) plugin
+We recommend to use Visual Studio Code with [vscode-live-server](https://github.com/ritwickdey/vscode-live-server) plugin.
+
+For code formatting we use standard Prettier rules. It is recommended to run `npm install` on project directory (to install local Prettier instance), install [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) plugin and enable "Format on save" setting in VS Code.
 
 ### Component authoring
 
 #### Templates
 
-For templating, Visualia uses ES6 string literals (not `.vue` files) to make the framework run in the browser without bundling.
+For templating, Visualia uses ES6 string literals (not `.vue` files) to make the framework run in the browser without compilation step.
 
 ```js
 export default { template: `<div>Hello world</div>` };
@@ -338,9 +561,9 @@ Component CSS can be stored as a `css` property on each component. On framework 
 
 ```js
 const VExample = {
-  template: `<div class="VExample">Hello world</div>`,
+  template: `<div class="v-example">Hello world</div>`,
   css: /* css */ `
-    .VExample {
+    .v-example {
       color: red;
     }
   `,
@@ -367,11 +590,11 @@ External dependencies bundled into ES6 modules. These modules are used both in d
 
 **/dist/visualia.css**
 
-The main CSS file to import into your custom Visualia application.
+CSS file to import into your custom Visualia application.
 
 **/dist/visualia.js**
 
-The main library entrypoint as ES6 module, this is _the_ file to import into your custom Visualia application.
+Javascript file to import into your custom Visualia application.
 
 <!--
 
@@ -395,7 +618,7 @@ Various coding experiments.
 
 Project source code
 
-**/src/components + /src/components.js**
+**/src/components**
 
 Project public components.
 
@@ -403,11 +626,11 @@ Project public components.
 
 External dependencies, imported as CommonJS modules. This directory is needed for the `npm run build:deps` build script that packages dependencies to `/dist/deps` as ES6 modules.
 
-**/src/internals + /src/internals.js**
+**/src/internalss**
 
 Internal components and utility functions.
 
-**/src/utils + /src/utils.js**
+**/src/utils**
 
 Public utility functions.
 
@@ -415,11 +638,11 @@ Public utility functions.
 
 See the testing section below.
 
-**/index.html + /index.js**
+**/index.html**
 
 Visualia homepage. It imports `./dist/visualia.js` and fetches and renders documentation.
 
-**/rollup.deps.config.js + /rollup.lib.config.js**
+**/rollup.\*.config.js**
 
 Rollup config files for building external dependencies, used by the build scripts.
 

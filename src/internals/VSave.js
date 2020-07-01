@@ -60,7 +60,7 @@ export default {
     >{{isSaved ? 'Saved' : 'Save'}}</button>
   </div>
   `,
-  css: `
+  css: /*css*/ `
     .v-content-store-button {
       outline: none;
       border: none;

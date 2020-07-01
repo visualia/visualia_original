@@ -57,7 +57,7 @@ export default {
     </div>
   </div>
   `,
-  css: `
+  css: /*css*/ `
     .v-live {
       grid-template-columns: 1fr 1fr;
       display: grid;
