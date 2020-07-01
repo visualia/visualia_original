@@ -70,8 +70,15 @@ export default {
     );
 
     const visibleContent = computed(() => {
-      return parsedContent.value.filter((section) => {
-        return router.value[0] === slug(section.title);
+      return parsedContent.value.filter((section, i) => {
+        // If there is an active route, we are looking up
+        // the section in the content that has the same title
+
+        // If there is no active route (frontpage in initial load)
+        // we return the first section in the content
+        return router.value[0]
+          ? router.value[0] === slug(section.title)
+          : i === 0;
       });
     });
 
@@ -153,6 +160,7 @@ export default {
         opacity: 0.75;
       "
       @click="showMenu = !showMenu"
+      @touchstart="showMenu = !showMenu"
     >
       <v-menu-icon />
     </div>
