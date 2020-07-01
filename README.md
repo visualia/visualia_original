@@ -260,21 +260,15 @@ b is {{ get("b") }}
 
 <!--- <v-props component="VAnimate" /> --->
 
----
-
-## Events
+### Events
 
 In addition to the live variables, Visualia also provides a way to send and receive global events.
-
-### Sending an event
 
 To send an event, use `send()` function:
 
 ```live send
 <button v-on:click="send('click!')">Click me</button>
 ```
-
-### Receiving an event
 
 To receive an event, use `receive()` function:
 
