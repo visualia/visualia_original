@@ -71,7 +71,7 @@ export const VSave = {
     </div>
   </div>
   `,
-  css: `
+  css: /*css*/ `
     .v-content-store-button {
       outline: none;
       border: none;
