@@ -561,9 +561,9 @@ Component CSS can be stored as a `css` property on each component. On framework 
 
 ```js
 const VExample = {
-  template: `<div class="VExample">Hello world</div>`,
+  template: `<div class="v-example">Hello world</div>`,
   css: /* css */ `
-    .VExample {
+    .v-example {
       color: red;
     }
   `,

@@ -15,9 +15,17 @@ export default {
       slug(props.text),
     ]);
     return () =>
-      h(`h${props.level}`, { id: anchor, style: { marginLeft: "-1em" } }, [
-        h("a", { href: `#${anchor}` }, "# "),
-        props.text,
+      h(`h${props.level}`, { id: anchor, class: "v-heading" }, [
+        h("a", { href: `#${anchor}` }, props.text, " #"),
       ]);
   },
+  css: /*css*/ `
+  .v-heading a {
+    border-bottom: none;
+    font-weight: bold;
+  }
+  .v-heading a:hover {
+    border-bottom: 0.1em solid var(--lightpaleblue);
+  }
+  `,
 };
