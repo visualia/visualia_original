@@ -1,14 +1,8 @@
-a
-
 <!-- <button v-on:click="toggle('a')">a</button> -->
 
-{{ get('a') }} /
+{{ get('x') }}
 
-{{ get('b') }}
-
-<v-animate set="a" />
-
-<v-slider set="b" smooth />
+<v-animate set="x" duration="100000" />
 
 ---
 
@@ -40,3 +34,5 @@ a
 ## Two
 
 ### Three
+
+-->

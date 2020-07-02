@@ -7,8 +7,4 @@ export const random = (from = 0, to = 1, integer = false) => {
   return integer ? Math.floor(r, 2) : r;
 };
 
-export const snap = (value, step = 1) => {
-  return value % step < step / 2
-    ? value - (value % step)
-    : value + step - (value % step);
-};
+export const nearest = (value, step) => Math.ceil(value / step) * step;
