@@ -31,7 +31,10 @@ renderer.heading = function (text, level, raw) {
 };
 
 const processContent = (content) =>
-  content.replace(/<!---\s+/g, "").replace(/\s+--->/g, "");
+  content
+    .replace(/<!---\s+/g, "")
+    .replace(/\s+--->/g, "")
+    .replace(/(@)(.*)(=)/g, "v-on:$2$3");
 
 const compileContent = (content) => {
   let c = () => null;
