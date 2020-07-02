@@ -267,7 +267,7 @@ In addition to the live variables, Visualia also provides a way to send and rece
 To send an event, use `send()` function:
 
 ```live send
-<button v-on:click="send('click!')">Click me</button>
+<button @click="send('click!')">Click me</button>
 ```
 
 To receive an event, use `receive()` function:

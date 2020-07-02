@@ -1,4 +1,4 @@
-<button v-on:click="toggle('x2')">a</button>
+<button @click="toggle('x2')">a</button>
 
 {{ get('x2') }}
 

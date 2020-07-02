@@ -50,11 +50,11 @@ export default {
         @input:content="content => currentContent = content"
       />
     </div>
-    <div style="overflow: auto; height: 350px;">
-      <template v-for="(section,i) in parsedContent">
-        <v-section :key="i" :section="section" />
-      </template> 
-    </div>
+      <div style="overflow: auto; min-height: 350px;">
+        <template v-for="(section,i) in parsedContent">
+          <v-section :key="i" :section="section" style="overflow: hidden" />
+        </template>
+      </div>
   </div>
   `,
   css: /*css*/ `
