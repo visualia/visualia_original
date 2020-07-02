@@ -50,11 +50,9 @@ export default {
         @input:content="content => currentContent = content"
       />
     </div>
-    <div style="overflow: auto; height: 350px;">
       <template v-for="(section,i) in parsedContent">
-        <v-section :key="i" :section="section" />
+        <v-section :key="i" :section="section" style="overflow: hidden" />
       </template> 
-    </div>
   </div>
   `,
   css: /*css*/ `
@@ -66,7 +64,7 @@ export default {
     @media (max-width: 600px) {
       .v-live {
         grid-template-columns: 1fr;
-        grid-template-rows: 80vw 80vw;
+        grid-template-rows: minmax(80vw, auto) minmax(80vw, auto);
       }
     }
   `,
