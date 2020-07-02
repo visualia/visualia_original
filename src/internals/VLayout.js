@@ -23,6 +23,13 @@ import {
 
 export default {
   components: { VMenuIcon },
+  props: {
+    menu: {
+      default: false,
+      type: [Boolean, String],
+      docs: "Show table of contents?",
+    },
+  },
   setup() {
     const { el, width } = useSize();
     const isMobile = computed(() => width.value < 800);
@@ -52,8 +59,8 @@ export default {
   style="display: flex; position: relative;"
   :style="{'--base': isMobile ? '7px' : '8px'}"
 >
-  <div v-if="!isMobile && showMenu" style="width: 250px; background: gray;"></div>
-  <div v-if="isMobile && showMenu"
+  <div v-if="menu && !isMobile && showMenu" style="width: 250px; background: gray;"></div>
+  <div v-if="menu && isMobile && showMenu"
     style="
       z-index: 1000;
       position: fixed;
@@ -65,7 +72,7 @@ export default {
     "
     @click="showMenu = !showMenu"
   />
-  <div v-if="showMenu"
+  <div v-if="menu && showMenu"
     :style="{
       boxShadow: isMobile ? '0 0 20px hsla(200, 19%, 28%, 0.5)' : ''
     }"
@@ -78,11 +85,11 @@ export default {
     width: 250px;
     overflow: auto;
     background: white;
-    border: 1px solid red;
   ">
     <slot name="menu" />
   </div>
   <div
+    v-if="menu"
     style="
       position: fixed;
       top: 0px;
@@ -97,7 +104,7 @@ export default {
     <v-menu-icon />
   </div>
   <div style="flex: 1; position: relative; display: flex; justify-content: center;">
-    <div  style="max-width: 900px; width: 100%; border: 1px solid blue;">
+    <div  style="max-width: 900px; width: 100%;">
       <slot name="content" />
     </div>
   </div>
