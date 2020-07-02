@@ -1,4 +1,6 @@
-<!-- <button v-on:click="toggle('a')">a</button> -->
+<button v-on:click="toggle('x2')">a</button>
+
+{{ get('x2') }}
 
 `{{ get('x') }}`
 

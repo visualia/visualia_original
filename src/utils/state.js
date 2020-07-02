@@ -21,7 +21,10 @@ export const toggle = (key) => {
   } else {
     if (!isNumber(state.value[key])) {
       state.value[key] = !!state.value[key] ? 1 : 0;
+    } else if ([0, 1].includes(state.value[key])) {
+      state.value[key] = state.value[key] = 1 - state.value[key];
+    } else {
+      state.value[key] = state.value[key] > 0 ? 0 : 1;
     }
-    state.value[key] = 1 - state.value[key];
   }
 };
