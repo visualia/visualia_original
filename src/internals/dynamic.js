@@ -12,8 +12,8 @@ export const dynamicProps = {
     docs: "Starting value",
   },
   to: {
-    default: 360,
-    suggest: "360",
+    default: 100,
+    suggest: "100",
     type: [String, Number],
     docs: "Ending value",
   },

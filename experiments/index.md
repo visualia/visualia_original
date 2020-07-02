@@ -1,8 +1,20 @@
 <!-- <button v-on:click="toggle('a')">a</button> -->
 
-{{ get('x') }}
+`{{ get('x') }}`
 
-<v-animate set="x" duration="100000" />
+`{{ get('y') }}`
+
+<v-animate set="x" duration="100000" smooth />
+
+<v-animate set="y" duration="100000" />
+
+`{{ get('x2') }}`
+
+`{{ get('y2') }}`
+
+<v-slider set="x2" duration="100000" smooth />
+
+<v-slider set="y2" duration="100000" />
 
 ---
 

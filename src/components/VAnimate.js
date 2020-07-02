@@ -1,7 +1,7 @@
 import { ref, watch, computed } from "../../dist/deps/vue.js";
 import { anime } from "../../dist/deps/anime.js";
 
-import { set, nearest } from "../utils.js";
+import { set, nearest, trunc } from "../utils.js";
 import { dynamicProps } from "../internals.js";
 
 export default {
@@ -46,8 +46,8 @@ export default {
           props.step
             ? nearest(progress.value, props.step)
             : props.smooth
-            ? progress.value
-            : nearest(progress.value, 1)
+            ? trunc(progress.value, 6)
+            : Math.floor(progress.value)
         );
         emit("value", currentProgress);
         if (props.set) {

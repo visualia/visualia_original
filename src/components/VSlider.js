@@ -11,7 +11,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const currentStep = props.step ? props.step : props.smooth ? 0.0000001 : 1;
+    const currentStep = props.step ? props.step : props.smooth ? 0.000001 : 1;
     const setValue = (value) => {
       emit("value", value);
       if (props.set) {

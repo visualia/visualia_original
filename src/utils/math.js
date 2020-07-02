@@ -8,3 +8,6 @@ export const random = (from = 0, to = 1, integer = false) => {
 };
 
 export const nearest = (value, step) => Math.ceil(value / step) * step;
+
+export const trunc = (value, decimals = 1) =>
+  Number(Math.round(value + "e" + decimals) + "e-" + decimals);
