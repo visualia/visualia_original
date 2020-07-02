@@ -6,3 +6,9 @@ export const random = (from = 0, to = 1, integer = false) => {
   const r = from + Math.random() * (to - from);
   return integer ? Math.floor(r, 2) : r;
 };
+
+export const snap = (value, step = 1) => {
+  return value % step < step / 2
+    ? value - (value % step)
+    : value + step - (value % step);
+};

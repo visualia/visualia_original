@@ -17,9 +17,14 @@ export const dynamicProps = {
     type: [String, Number],
     docs: "Ending value",
   },
-  integer: {
+  step: {
+    default: "",
+    type: [String, Number],
+    docs: "Step value",
+  },
+  smooth: {
     default: false,
     type: [Boolean, String],
-    docs: "Output an interger value (instead floating point)?",
+    docs: "Set a smooth step value (floating point)",
   },
 };

@@ -1,4 +1,14 @@
-<v-math>a = b</v-math>
+a
+
+<!-- <button v-on:click="toggle('a')">a</button> -->
+
+{{ get('a') }} /
+
+{{ get('b') }}
+
+<v-animate set="a" />
+
+<v-slider set="b" smooth />
 
 ---
 
