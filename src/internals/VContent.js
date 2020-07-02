@@ -164,9 +164,8 @@ export default {
       <v-menu-icon />
     </div>
     <div style="flex: 1; position: relative; display: flex; justify-content: center;">
-      <div  style="max-width: 900px; width: 100%;">
+      <div  style="max-width: 900px; width: 100%; padding-top: var(--base2)">
         <template v-for="(section,i) in visibleContent">
-          {{ section.visible }}
           <v-section :key="i" :section="section" />
         </template>
       </div>
