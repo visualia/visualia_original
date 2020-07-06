@@ -35,7 +35,7 @@ const SuspenseWithError = {
   },
   template: `
   <div>{{ error }}</div>
-  <slot v-if="error" name="error">{{ error }}</slot>
+  <slot v-if="error" name="error"><div /></slot>
   <Suspense v-else>
     <template #default>
       <slot name="default"></slot>
@@ -385,7 +385,6 @@ const VLife = {
     const contentErrors = computed(() => [
       ...contentErrors1.value,
       ...contentErrors2.value,
-      //...contentErrors3.value,
     ]);
 
     watch(
@@ -459,10 +458,7 @@ const VLife = {
         </div>
       </template>
       <template #fallback>
-        <span>Loading... Please wait.</span>
-      </template>
-      <template #error>
-        <p style="opacity: 0.5">Error in source</p>
+        <span>Loading...</span>
       </template>
     </SuspenseWithError>
     </div>
