@@ -47,65 +47,6 @@ const SuspenseWithError = {
   `,
 };
 
-// const SuspenseWithError = {
-//   setup() {
-//     const error = ref(null);
-
-//     onErrorCaptured((e) => {
-//       error.value = e;
-
-//       return true;
-//     });
-
-//     return { error };
-//   },
-//   template: `
-//   <slot v-if="error" name="error"></slot>
-//   <Suspense v-else>
-//     <template #default>
-//       <slot name="default"></slot>
-//     </template>
-//     <template #fallback>
-//       <slot name="fallback"></slot>
-//     </template>
-//   </Suspense>
-//   `,
-// };
-
-// const compileVnodes = (content) => {
-//   let c = () => null;
-//   while (true) {
-//     try {
-//       c = compile(parse(content, { breaks: true }), {
-//         onError: (e) => console.log(e),
-//       });
-//       return c;
-//     } catch (e) {
-//       console.log(e);
-//       break;
-//     }
-//   }
-// };
-
-//window.onerror((e) => console.log(e));
-
-window.addEventListener("error", (e) => console.log(e));
-
-// const compileVnodes = (content) => {
-//   let c = () => null;
-//   while (true) {
-//     try {
-//       c = compile(parse(content, { breaks: true }), {
-//         onError: (e) => console.log(e),
-//       });
-//       return c;
-//     } catch (e) {
-//       console.log(e);
-//       break;
-//     }
-//   }
-// };
-
 function compileCode(compiler, source) {
   const errors = [];
   let code = null;
@@ -122,184 +63,6 @@ function compileCode(compiler, source) {
   return { code, errors };
 }
 
-/*
-
-const VRender = {
-  components: { Suspense },
-  props: ["render"],
-  setup(props) {
-    const oldRendered = ref(null);
-    const rendered = ref(null);
-    const r = computed(() => props.render);
-    watch(
-      () => r.value,
-      (a, b) => {
-        oldRendered.value = b;
-        //rendered.value = a;
-        rendered.value = b;
-        // nextTick().then(() => {
-        //   rendered.value = b;
-        // });
-        //console.log(a, b);
-        // try {
-        //   //const a = r.value();
-        //   const a = h(r.value);
-        //   rendered.value = r.value;
-        //   nextTick(() => console.log(e.value));
-        // } catch (error) {
-        //   console.log(error);
-        // } finally {
-        //   //console.log("error");
-        // }
-        // nextTick().then(() => {
-        //   if (e.value && b) {
-        //     console.log("back");
-        //     rendered.value = b;
-        //   }
-        // });
-      },
-      { immediate: true }
-    );
-    onErrorCaptured((e) => {
-      console.log(e);
-      //nextTick(() => (rendered.value = oldRendered.value));
-    });
-
-    return () => (rendered.value ? h(rendered.value) : null);
-  },
-};
-
-*/
-
-// const VRender = {
-//   props: ["render"],
-//   setup(props) {
-//     const render = ref(null);
-//     // const oldRender = ref(props.render);
-//     // const newRender = ref(null);
-//     // const r = computed(() => props.render);
-//     // onErrorCaptured((e) => {
-//     //   console.log(e);
-//     //   nextTick().then(() => console.log("a"));
-//     // });
-//     watch(
-//       () => props.render,
-//       () => {
-//         // console.log(a.value);
-//         // console.log(b && b.value);
-//         newRender.value = props.render;
-//       }
-//       //{ immediate: true }
-//     );
-//     return () => (newRender.value ? h(newRender.value) : null);
-//   },
-// };
-
-// const VRender = {
-//   props: ["render"],
-//   setup(props) {
-//     onErrorCaptured((e) => {
-//       console.log(e);
-//     });
-//     const rendered = ref(null);
-//     watch(
-//       () => props.render,
-//       () => {
-//         rendered.value = props.render;
-//       },
-//       { immediate: true }
-//     );
-//     return () => (rendered.value ? h(rendered.value) : null);
-//   },
-// };
-
-// const VRender = {
-//   props: ["render"],
-//   setup(props) {
-//     const a = ref(null);
-//     watch(
-//       () => props.render,
-//       () => {
-//         try {
-//           a.value = { render: props.render };
-//         } catch (e) {
-//           console.log("mjak");
-//           a.value = { render: () => null };
-//         } finally {
-//           console.log("fak");
-//         }
-//       }
-//     );
-//     return () => a.value;
-//     //return () => (compiledContent.value ? h(compiledContent.value) : null);
-//   },
-// };
-
-/*
-const VRender = {
-  props: ["render"],
-  setup(props) {
-    onErrorCaptured((e) => {
-      console.log(e);
-    });
-    const compiledContent = computed(() => {
-      {
-        return {
-          render: props.render,
-        };
-      }
-    });
-    return () => (compiledContent.value ? h(compiledContent.value) : null);
-    // try {
-    //   const compiledContent = computed(() => {
-    //     try {
-    //       return {
-    //         render: props.render,
-    //       };
-    //     } catch (e) {
-    //       console.log(e);
-    //     }
-    //   });
-    //   return () => (compiledContent.value ? h(compiledContent.value) : null);
-    // } catch (e) {
-    //   console.log(e);
-    // }
-  },
-};
-*/
-// const VRender = {
-//   props: ["render"],
-//   setup(props) {
-//     const error = ref(false);
-//     // onErrorCaptured((e) => {
-//     //   console.log(e);
-//     //   error.value = true;
-//     // });
-//     const rendered = ref(null);
-//     watch(
-//       () => props.render,
-//       () => {
-//         if (!error.value) {
-//           rendered.value = props.render;
-//         }
-//         while (true) {
-//           try {
-//             // const a = h(props.render);
-//             // console.log(a);
-//             rendered.value = props.render;
-//             break;
-//           } catch (e) {
-//             console.log(e);
-//             break;
-//           }
-//         }
-//       },
-//       { immediate: true }
-//     );
-//     return () => (rendered.value && !error.value ? h(rendered.value) : null);
-//   },
-// };
-
 const VRender = {
   props: ["render"],
   setup(props) {
@@ -311,61 +74,6 @@ const VRender = {
     }
   },
 };
-
-// const VRender2 = {
-//   props: ["render"],
-//   setup(props) {
-//     const compiledContent = computed(() => ({
-//       render: props.render,
-//     }));
-//     return () => (compiledContent.value ? h(compiledContent.value) : null);
-//   },
-// };
-
-// function compileCode2(source) {
-//   const errors = [];
-//   let code = null;
-//   try {
-//     const compiledCode = compile(source, {
-//       onError: (err) => {
-//         errors.push(err);
-//       },
-//     });
-//     code = compiledCode;
-//   } catch (e) {
-//     console.log(e);
-//   }
-//   return { code, errors };
-// }
-
-/*
-const VRender = {
-  props: ["content"],
-  setup(props) {
-    onErrorCaptured((e) => console.log(e));
-    const compiledContent = ref(null);
-    // const compiledContent = computed(() => ({
-    //   render: compileVnodes(props.content),
-    // }));
-    watch(
-      () => props.content,
-      () => {
-        try {
-          return () =>
-            compiledContent.value ? h(compiledContent.value) : null;
-        } catch (e) {
-          //  return () => (compiledContent.value ? h(compiledContent.value) : null);
-        } finally {
-          console.log("f");
-          //      return () => null;
-        }
-      }
-    );
-
-    //return () => (compiledContent.value ? h(compiledContent.value) : null);
-  },
-};
-*/
 
 const VLife = {
   components: { VTextarea, VRender, VCompiler, Suspense, SuspenseWithError },
@@ -405,29 +113,13 @@ const VLife = {
         contentErrors2.value = errorsVnode;
         if (!contentErrors.value.length && !contentErrors2.value.length) {
           contentTemplate.value = codeVnode;
-          //contentTemplate.value = codeDom;
         }
       },
       { immediate: true }
     );
     const onError = (e) => {
-      console.log(e);
       contentErrors3.value = [e];
     };
-    // watch(
-    //   () => content.value,
-    //   () => {
-    //     const { code, errors } = compileCode(
-    //       parse(content.value, { breaks: true }),
-    //       compileVnode
-    //     );
-    //     contentErrors2.value = errors;
-    //     if (!contentErrors.value.length && !contentErrors2.value.length) {
-    //       contentTemplate.value = code;
-    //     }
-    //   },
-    //   { immediate: true }
-    // );
 
     return {
       content,
@@ -471,23 +163,9 @@ const VLife = {
     <div>
    
     </div>
-    <!-- <div :style="{ opacity: contentErrors.length || contentErrors2.length ? 0.5 : 1}" style="transition: opacity 1s linear; color: black;">
-      <suspense>
-        <v-render :render="contentTemplate" />
-      </suspense>
-    </div> -->
-    <!-- <v-compiler :content="content" /> -->
+   
     </div>
   `,
 };
 
 visualia({ components: { VTextarea, VLife }, template: "<v-life />" });
-
-/*
-
-## Hello!
-
-What the f is going on her?
-<div @click="">hello</div>
-
-*/
