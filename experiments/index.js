@@ -372,58 +372,58 @@ const VLife = {
 
 <div>a</div>`);
     const contentCode = ref("");
-    const contentErrors = ref([]);
+    const contentErrors1 = ref([]);
     const contentErrors2 = ref([]);
     const contentTemplate = ref(null);
     const e = ref(false);
     const prevContent = ref(null);
+    const contentErrors = computed(() => [
+      ...contentErrors1.value,
+      ...contentErrors2.value,
+    ]);
+    watch(
+      () => content.value,
+      () => {
+        const source = parse(content.value, { breaks: true });
+        const { code: codeDom, errors: errorsDom } = compileCode(
+          compileDom,
+          source
+        );
+        contentCode.value = codeDom.code;
+        contentErrors1.value = errorsDom;
+        const { code: codeVnode, errors: errorsVnode } = compileCode(
+          compileVnode,
+          source
+        );
+        contentErrors2.value = errorsVnode;
+        if (!contentErrors.value.length && !contentErrors2.value.length) {
+          contentTemplate.value = codeVnode;
+          //contentTemplate.value = codeDom;
+        }
+      },
+      { immediate: true }
+    );
 
-    try {
-      watch(
-        () => content.value,
-        () => {
-          const source = parse(content.value, { breaks: true });
-          const { code: codeDom, errors: errorsDom } = compileCode(
-            compileDom,
-            source
-          );
-          contentCode.value = codeDom.code;
-          contentErrors.value = errorsDom;
-          const { code: codeVnode, errors: errorsVnode } = compileCode(
-            compileVnode,
-            source
-          );
-          contentErrors2.value = errorsVnode;
-          if (!contentErrors.value.length && !contentErrors2.value.length) {
-            contentTemplate.value = codeVnode;
-            //contentTemplate.value = codeDom;
-          }
-        },
-        { immediate: true }
-      );
-
-      // watch(
-      //   () => content.value,
-      //   () => {
-      //     const { code, errors } = compileCode(
-      //       parse(content.value, { breaks: true }),
-      //       compileVnode
-      //     );
-      //     contentErrors2.value = errors;
-      //     if (!contentErrors.value.length && !contentErrors2.value.length) {
-      //       contentTemplate.value = code;
-      //     }
-      //   },
-      //   { immediate: true }
-      // );
-    } catch (error) {
-      console.log(error);
-    }
+    // watch(
+    //   () => content.value,
+    //   () => {
+    //     const { code, errors } = compileCode(
+    //       parse(content.value, { breaks: true }),
+    //       compileVnode
+    //     );
+    //     contentErrors2.value = errors;
+    //     if (!contentErrors.value.length && !contentErrors2.value.length) {
+    //       contentTemplate.value = code;
+    //     }
+    //   },
+    //   { immediate: true }
+    // );
 
     return {
       content,
       contentCode,
       contentErrors,
+      contentErrors1,
       contentErrors2,
       contentTemplate,
       prevContent,
@@ -438,7 +438,7 @@ const VLife = {
     <div>
     <SuspenseWithError>
       <template #default>
-        <div :style="{ opacity: contentErrors.length || contentErrors2.length ? 0.5 : 1}"
+        <div :style="{ opacity: contentErrors.length ? 0.5 : 1}"
           style="transition: opacity 0.2s linear;">
         <v-render
           :render="contentTemplate"
@@ -455,7 +455,8 @@ const VLife = {
     </div>
     <!-- <pre style="background: #ddd; color: black;">{{ contentCode }}</pre> -->
     <pre style="background: #fdd; color: black;">{{ contentErrors }}</pre>
-    <pre style="background: #fdd; color: black;">{{ contentErrors2 }}</pre>
+    <pre style="background: #ffd; color: black;">{{ contentErrors1 }}</pre>
+    <pre style="background: #fdf; color: black;">{{ contentErrors2 }}</pre>
     <pre style="background: #eee; color: black;">{{ contentTemplate }}</pre>
     <div>
    
