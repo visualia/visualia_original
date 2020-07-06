@@ -16,16 +16,18 @@ import { parse } from "../dist/deps/marked.js";
 import { compile as compileDom } from "https://unpkg.com/@vue/compiler-dom@3.0.0-beta.14/dist/compiler-dom.esm-browser.js";
 
 const SuspenseWithError = {
-  setup(_, { slots }) {
+  setup(_, { slots, emit }) {
     const error = ref(null);
     watch(
       () => slots.default(),
       (s) => {
         error.value = null;
+        // emit("error", []);
       }
     );
     onErrorCaptured((e) => {
       error.value = e;
+      emit("error", e);
       return true;
     });
 
@@ -374,16 +376,22 @@ const VLife = {
     const contentCode = ref("");
     const contentErrors1 = ref([]);
     const contentErrors2 = ref([]);
+    const contentErrors3 = ref([]);
     const contentTemplate = ref(null);
+
     const e = ref(false);
     const prevContent = ref(null);
+
     const contentErrors = computed(() => [
       ...contentErrors1.value,
       ...contentErrors2.value,
+      //...contentErrors3.value,
     ]);
+
     watch(
       () => content.value,
       () => {
+        contentErrors3.value = [];
         const source = parse(content.value, { breaks: true });
         const { code: codeDom, errors: errorsDom } = compileCode(
           compileDom,
@@ -403,7 +411,10 @@ const VLife = {
       },
       { immediate: true }
     );
-
+    const onError = (e) => {
+      console.log(e);
+      contentErrors3.value = [e];
+    };
     // watch(
     //   () => content.value,
     //   () => {
@@ -425,8 +436,10 @@ const VLife = {
       contentErrors,
       contentErrors1,
       contentErrors2,
+      contentErrors3,
       contentTemplate,
       prevContent,
+      onError,
     };
   },
   template: `
@@ -436,7 +449,7 @@ const VLife = {
         @input:content="c => content = c"
       />
     <div>
-    <SuspenseWithError>
+    <SuspenseWithError @error="onError">
       <template #default>
         <div :style="{ opacity: contentErrors.length ? 0.5 : 1}"
           style="transition: opacity 0.2s linear;">
@@ -457,6 +470,7 @@ const VLife = {
     <pre style="background: #fdd; color: black;">{{ contentErrors }}</pre>
     <pre style="background: #ffd; color: black;">{{ contentErrors1 }}</pre>
     <pre style="background: #fdf; color: black;">{{ contentErrors2 }}</pre>
+    <pre style="background: #fdf; color: black;">{{ contentErrors3 }}</pre>
     <pre style="background: #eee; color: black;">{{ contentTemplate }}</pre>
     <div>
    
