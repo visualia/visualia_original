@@ -1,3 +1,4 @@
+export * from "./internals/compiler.js";
 export * from "./internals/content.js";
 export * from "./internals/coordinates.js";
 export * from "./internals/dynamic.js";

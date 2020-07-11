@@ -1,5 +1,6 @@
-import { receive } from "../../src/utils.js";
 import { watch, ref, onMounted } from "../../dist/deps/vue.js";
+import { receive } from "../../src/utils.js";
+import { compile } from "../../src/internals.js";
 
 import * as monaco from "../../dist/deps/monaco/monaco.js";
 
@@ -15,6 +16,19 @@ window.MonacoEnvironment = {
     return "../../dist/deps/monaco/editor.worker.js";
   },
 };
+
+function formatError(err) {
+  const loc = err.loc;
+  return {
+    severity: monaco.MarkerSeverity.Error,
+    startLineNumber: loc.start.line,
+    startColumn: loc.start.column,
+    endLineNumber: loc.end.line,
+    endColumn: loc.end.column,
+    message: `Template compilation error: ${err.message}`,
+    code: String(err.code),
+  };
+}
 
 export const VMonaco = {
   props: { content: { default: "" } },
@@ -90,6 +104,12 @@ export const VMonaco = {
       // works with v-model
 
       editor.onDidChangeModelContent((e) => {
+        const { errors } = compile(editor.getValue());
+        monaco.editor.setModelMarkers(
+          editor.getModel(),
+          `visualia`,
+          errors.filter((e) => e.loc).map(formatError)
+        );
         emit("input:content", editor.getValue());
       });
 

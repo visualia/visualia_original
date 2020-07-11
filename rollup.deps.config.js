@@ -6,15 +6,15 @@ import css from "rollup-plugin-css-porter";
 import copy from "rollup-plugin-copy";
 
 const deps = [
-  "anime",
-  "d3-color",
-  "d3-shape",
-  "katex",
-  "marked",
-  "pdf-lib",
-  "prettier",
-  "resize-observer-polyfill"
-  "three",
+  // "anime",
+  // "d3-color",
+  // "d3-shape",
+  // "katex",
+  // "marked",
+  // "pdf-lib",
+  // "prettier",
+  // "resize-observer-polyfill"
+  // "three",
   "vue",
 ];
 
@@ -38,36 +38,36 @@ export default [
       terser(),
     ],
   })),
-  {
-    input: "./src/deps/monaco.js",
-    output: {
-      dir: "./dist/deps/monaco",
-      format: "es",
-      chunkFileNames: "[name].js",
-    },
-    plugins: [
-      css({ dest: "./dist/deps/monaco/monaco.css", raw: false }),
-      copy({
-        targets: [
-          {
-            src:
-              "node_modules/monaco-editor/esm/vs/base/browser/ui/codiconLabel/codicon/codicon.ttf",
-            dest: "dist/deps/monaco",
-          },
-        ],
-      }),
-      resolve(),
-      commonjs(),
-      terser(),
-    ],
-  },
-  {
-    input: "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
-    output: {
-      file: "./dist/deps/monaco/editor.worker.js",
-      format: "umd",
-      name: "editor",
-    },
-    plugins: [resolve(), commonjs(), terser()],
-  },
+  //   {
+  //     input: "./src/deps/monaco.js",
+  //     output: {
+  //       dir: "./dist/deps/monaco",
+  //       format: "es",
+  //       chunkFileNames: "[name].js",
+  //     },
+  //     plugins: [
+  //       css({ dest: "./dist/deps/monaco/monaco.css", raw: false }),
+  //       copy({
+  //         targets: [
+  //           {
+  //             src:
+  //               "node_modules/monaco-editor/esm/vs/base/browser/ui/codiconLabel/codicon/codicon.ttf",
+  //             dest: "dist/deps/monaco",
+  //           },
+  //         ],
+  //       }),
+  //       resolve(),
+  //       commonjs(),
+  //       terser(),
+  //     ],
+  //   },
+  //   {
+  //     input: "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
+  //     output: {
+  //       file: "./dist/deps/monaco/editor.worker.js",
+  //       format: "umd",
+  //       name: "editor",
+  //     },
+  //     plugins: [resolve(), commonjs(), terser()],
+  //   },
 ];

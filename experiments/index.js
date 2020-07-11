@@ -15,6 +15,19 @@ import {
 import { parse } from "../dist/deps/marked.js";
 import { compile as compileDom } from "https://unpkg.com/@vue/compiler-dom@3.0.0-beta.14/dist/compiler-dom.esm-browser.js";
 
+function formatError(err) {
+  const loc = err.loc;
+  return {
+    //severity: monaco.MarkerSeverity.Error,
+    startLineNumber: loc.start.line,
+    startColumn: loc.start.column,
+    endLineNumber: loc.end.line,
+    endColumn: loc.end.column,
+    message: `Vue template compilation error: ${err.message}`,
+    code: String(err.code),
+  };
+}
+
 const SuspenseWithError = {
   setup(_, { slots, emit }) {
     const error = ref(null);
@@ -105,7 +118,7 @@ const VLife = {
           source
         );
         contentCode.value = codeDom.code;
-        contentErrors1.value = errorsDom;
+        contentErrors1.value = errorsDom.map(formatError);
         const { code: codeVnode, errors: errorsVnode } = compileCode(
           compileVnode,
           source
