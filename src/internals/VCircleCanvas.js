@@ -1,6 +1,7 @@
 import { inject, watchEffect, watch } from "../../dist/deps/vue.js";
 
 import {
+  circleProps,
   stylingProps,
   stylingCanvas,
   transformTwoProps,
@@ -10,12 +11,7 @@ import {
 
 export default {
   props: {
-    r: {
-      default: 10,
-      suggest: "10",
-      type: [String, Number],
-      docs: "Square radius (half of the width)",
-    },
+    ...circleProps,
     ...stylingProps,
     ...transformTwoProps,
   },

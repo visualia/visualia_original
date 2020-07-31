@@ -35,7 +35,7 @@ const formatProps = ({ props }) =>
       ([key, value]) => `\`${key}="${value.default}"\` ${
         value.type ? formatType(value.type) : ""
       }\n
-${value.description || ""}
+${value.docs || ""}
   `
     )
     .join("\n---\n");
@@ -63,6 +63,7 @@ const formatSuggestions = (c) => {
   }
   return formattedSuggestions;
 };
+
 const tagSuggestions = (range) => {
   return components.map((c) => {
     const suggestions = formatSuggestions(c);
