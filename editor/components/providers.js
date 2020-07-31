@@ -2,7 +2,6 @@ import {
   components as rawComponents,
   kebabcase,
   componentsWithChildren,
-  flatten,
   isArray,
 } from "../../dist/visualia.js";
 
