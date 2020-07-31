@@ -1,4 +1,4 @@
-import { get, set, toNumber } from "../utils.js";
+import { set as storeSet, toNumber } from "../utils.js";
 import { dynamicProps } from "../internals/dynamic.js";
 
 export default {
@@ -9,21 +9,21 @@ export default {
       type: [String, Number],
       docs: "Initial slider value",
     },
+    step: {
+      default: "",
+      type: [String, Number],
+      docs: "Slider step value",
+    },
   },
   setup(props, { emit }) {
-    const currentStep = props.step ? props.step : props.smooth ? 0.000001 : 1;
-    const setValue = (value) => {
-      emit("value", value);
-      if (props.set) {
-        set(props.set, value);
-      }
-    };
-    setValue(props.value);
     const onInput = (e) => {
       const currentValue = toNumber(e.target.value);
-      setValue(currentValue);
+      emit("value", currentValue);
+      if (props.set) {
+        storeSet(props.set, currentValue);
+      }
     };
-    return { currentStep, onInput };
+    return { onInput };
   },
   template: `<input
     type="range"
@@ -31,6 +31,6 @@ export default {
     @input="onInput"
     :min="from"
     :max="to"
-    :step="currentStep"
+    :step="integer ? 1 : step ? step : 0.0000001"
   />`,
 };

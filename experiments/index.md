@@ -1,22 +1,4 @@
-<button @click="toggle('x2')">a</button>
-
-{{ get('x2') }}
-
-`{{ get('x') }}`
-
-`{{ get('y') }}`
-
-<v-animate set="x" duration="100000" smooth />
-
-<v-animate set="y" duration="100000" />
-
-`{{ get('x2') }}`
-
-`{{ get('y2') }}`
-
-<v-slider set="x2" duration="100000" smooth />
-
-<v-slider set="y2" duration="100000" />
+<v-math>a = b</v-math>
 
 ---
 
@@ -48,5 +30,3 @@
 ## Two
 
 ### Three
-
--->

@@ -1,7 +1,7 @@
-import { ref, watch, computed } from "../../dist/deps/vue.js";
+import { ref, watch } from "../../dist/deps/vue.js";
 import { anime } from "../../dist/deps/anime.js";
 
-import { set, nearest, trunc } from "../utils.js";
+import { set } from "../utils.js";
 import { dynamicProps } from "../internals.js";
 
 export default {
@@ -30,7 +30,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const progress = ref(props.from);
+    const progress = ref(0);
     anime({
       targets: progress,
       value: [props.from, props.to],
@@ -42,13 +42,7 @@ export default {
     watch(
       () => progress,
       (progress) => {
-        const currentProgress = computed(() =>
-          props.step
-            ? nearest(progress.value, props.step)
-            : props.smooth
-            ? trunc(progress.value, 6)
-            : Math.floor(progress.value)
-        );
+        const currentProgress = props.integer ? Math.floor(progress) : progress;
         emit("value", currentProgress);
         if (props.set) {
           set(props.set, currentProgress);
