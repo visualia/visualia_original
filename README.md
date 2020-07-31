@@ -306,6 +306,12 @@ The true power of the framework emerges when math is combined with live variable
 
 ---
 
+## Helper functions
+
+<!--- <v-utils /> --->
+
+---
+
 ## Integrations
 
 Visualia provides integration with several popular Javascript-based visualization frameworks.
