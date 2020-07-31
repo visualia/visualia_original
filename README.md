@@ -379,6 +379,7 @@ figma.ui.onmessage = ({ message, points }) => {
 import {
   visualia,
   get,
+  set,
 } from "http://visualia.github.io/visualia/dist/visualia.js";
 import {
   ref,
@@ -402,7 +403,12 @@ const sketch = (s) => {
     s.background(255);
     s.stroke(0);
     s.strokeWeight(2);
+    // We are getting Visualia variable and passing to p5 sketch
     s.circle(100, 100, get("a") || 10);
+  };
+  // We are getting p5 event and setting a Visualia variable
+  s.mousePressed = () => {
+    set("a", 100);
   };
 };
 

@@ -1,5 +1,5 @@
-import { get } from "../../dist/visualia.js";
-import { ref, onMounted } from "../../dist/deps/vue.js";
+import { get, set } from "../dist/visualia.js";
+import { ref, onMounted } from "../dist/deps/vue.js";
 import p5 from "https://cdn.skypack.dev/pin/p5@v1.1.9-QZRc7UPZWx2v3Qaby8jl/min/p5.js";
 
 const sketch = (s) => {
@@ -11,6 +11,9 @@ const sketch = (s) => {
     s.stroke(0);
     s.strokeWeight(2);
     s.circle(100, 100, get("a") || 10);
+  };
+  s.mousePressed = () => {
+    set("a", 100);
   };
 };
 
