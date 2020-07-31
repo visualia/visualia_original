@@ -3,6 +3,7 @@ import { circlepoints } from "../utils.js";
 import { regularProps, stylingProps, transformTwoProps } from "../internals.js";
 
 export default {
+  docs: `Creates a equal-sided regular polygon`,
   props: {
     ...regularProps,
     ...stylingProps,

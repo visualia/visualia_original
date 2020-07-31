@@ -18,6 +18,7 @@ const gridProps = {
 };
 
 export default {
+  docs: `Creates a pointgrid`,
   props: {
     ...gridProps,
   },
@@ -27,7 +28,7 @@ export default {
   },
   template: `
     <v-point
-      v-for="point in gridpoints(10,10)"
+      v-for="point in points"
       r="0.5"
       fill="gray"
       :position="point"

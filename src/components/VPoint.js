@@ -1,6 +1,7 @@
 import { stylingProps, transformTwoProps } from "../internals.js";
 
 export default {
+  docs: `Creates a point`,
   props: {
     fill: {
       ...stylingProps.fill,

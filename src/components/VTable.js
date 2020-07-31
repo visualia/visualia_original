@@ -3,6 +3,7 @@ import { isArray } from "../utils.js";
 import { VCompiler } from "../internals.js";
 
 export default {
+  docs: `Creates a table`,
   components: { VCompiler },
   props: {
     rows: {
