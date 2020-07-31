@@ -521,7 +521,7 @@ export const ObservableExample = {
 
 **index.md**
 
-```md
+```live observable
 <observable-example />
 
 #### Visualia document
