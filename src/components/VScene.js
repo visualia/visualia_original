@@ -39,6 +39,7 @@ export const VSceneThreeWebgl = (props, context) =>
 const modes = ["svg", "canvas", "three", "webgl", "pdf"];
 
 export default {
+  docs: `Creates a graphics element`,
   props: {
     mode: {
       default: "svg",
