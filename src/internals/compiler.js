@@ -4,12 +4,17 @@ import {
 } from "../../dist/deps/vue.js";
 import { parse } from "../../dist/deps/marked.js";
 
-export const compile = (source, compilerType = "template") => {
+export const compile = (
+  source,
+  compilerType = "template",
+  compilerOptions = {}
+) => {
   const compiler =
     compilerType === "template" ? compileTemplate : compileRuntime;
+  const options = { breaks: true, ...compilerOptions };
   const errors = [];
   let code = null;
-  const markdown = parse(source, { breaks: true });
+  const markdown = parse(source, options);
   try {
     const compiledCode = compiler(markdown, {
       onError: (err) => {
