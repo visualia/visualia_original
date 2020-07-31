@@ -26,7 +26,7 @@ export default {
   template: `
   <div
     :style="{
-      padding: 'var(--base6) var(--base4)',
+      padding: 'var(--base4) var(--base4)',
       display: 'grid',
       ...sectionGridStyle(section)
     }"
