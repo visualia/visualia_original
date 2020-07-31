@@ -408,7 +408,7 @@ const sketch = (s) => {
 
 // We are wrapping p5 sketch into a Visualia component
 
-export const PfiveExample = {
+export const P5Example = {
   setup() {
     const el = ref(null);
     onMounted(() => {
@@ -424,7 +424,7 @@ export const PfiveExample = {
 // We initialize Visualia with our p5 component
 
 visualia({
-  components: { PfiveExample },
+  components: { P5Example },
 });
 ```
 
@@ -433,7 +433,7 @@ visualia({
 ```live p5
 <v-slider set="a" from="10" to="200" />
 
-<pfive-example />
+<p5-example />
 ```
 
 ### Observable

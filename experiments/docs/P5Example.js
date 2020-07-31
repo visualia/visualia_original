@@ -32,7 +32,6 @@ export default {
     return { el };
   },
   template: `
-    <div>aa</div>
     <div ref="el" />
   `,
 };
