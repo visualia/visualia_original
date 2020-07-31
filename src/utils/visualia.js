@@ -17,7 +17,6 @@ import {
   onError,
   onWarning,
   isObject,
-  toObject,
 } from "../utils.js";
 
 export const visualia = (options = {}) => {
@@ -88,7 +87,7 @@ export const visualia = (options = {}) => {
   // Imported internals contain both components and functions
   // We filter out only components
 
-  const internalComponents = toObject(
+  const internalComponents = Object.fromEntries(
     Object.entries(internals).filter(([key, value]) => isObject(value))
   );
 

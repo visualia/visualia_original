@@ -79,9 +79,3 @@ export const test_unique = () => {
 
 export const flatten = (list) =>
   list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
-
-export const toObject = (array) =>
-  array.reduce((acc, el) => {
-    acc[el[0]] = el[1];
-    return acc;
-  }, {});
