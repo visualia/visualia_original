@@ -1,4 +1,5 @@
-export const array = (length) => Array.from({ length });
+export const array = (length = 0, def = 0) =>
+  Array.from({ length }).map((_) => def);
 
 export const docs_array = `
 
@@ -9,13 +10,27 @@ Creates an empty array with the \`length\` of items.
 **Usage**
 
 \`\`\`live
+
 {{ array() }}
-{{ array(3) }}
+{{ array(1) }}
 {{ array(3, 10) }}
 {{ array(3, 'hey') }}
+
 \`\`\`
 
 `;
+
+export const test_array_empty = () => {
+  return [array(), []];
+};
+
+export const test_array_three = () => {
+  return [array(3), [0, 0, 0]];
+};
+
+export const test_array_three_string = () => {
+  return [array(3, "hey"), ["hey", "hey", "hey"]];
+};
 
 export const chunk = (arr, length) =>
   Array.from({ length: Math.ceil(arr.length / length) }).map((_, n) =>
