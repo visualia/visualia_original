@@ -25,19 +25,25 @@ import VCirclePdf from "../internals/VCirclePdf.js";
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 
-export default (props, { slots }) => {
-  const modes = {
-    svg: VCircleSvg,
-    canvas: VCircleCanvas,
-    three: VCircleThree,
-    webgl: VCircleThree,
-    pdf: VCirclePdf,
-  };
-  const sceneContext = inject("sceneContext");
-  // return modes[sceneContext.mode.value]
-  //   ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
-  //   : null;
-  return modes[sceneContext.mode.value]
-    ? h(modes[sceneContext.mode.value], props, slots)
-    : null;
+export default {
+  r: {
+    default: 10,
+    suggest: "10",
+    type: [String, Number],
+    docs: "Square radius (half of the width)",
+  },
+  setup(props, { slots }) {
+    const modes = {
+      svg: VCircleSvg,
+      canvas: VCircleCanvas,
+      three: VCircleThree,
+      webgl: VCircleThree,
+      pdf: VCirclePdf,
+    };
+    const sceneContext = inject("sceneContext");
+    return () =>
+      modes[sceneContext.mode.value]
+        ? h(modes[sceneContext.mode.value], props, slots)
+        : null;
+  },
 };
