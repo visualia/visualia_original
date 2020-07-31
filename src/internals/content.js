@@ -1,6 +1,6 @@
 import { inject } from "../../dist/deps/vue.js";
 import { parse, Renderer } from "../../dist/deps/marked.js";
-import { toObject, slug } from "../utils.js";
+import { slug } from "../utils.js";
 import { formatHash } from "../internals.js";
 
 const generateMenu = (content) => {
@@ -60,23 +60,25 @@ export const parsePage = (page) => {
       .map((c) => c.replace(pattern, ""));
     const menu = generateMenu(page);
 
-    return Object.assign(
-      { rowCount, colCount, areas, content, menu },
-      toObject(meta)
-    );
+    return {
+      rowCount,
+      colCount,
+      areas,
+      content,
+      menu,
+      ...Object.fromEntries(meta),
+    };
   } else {
     const content = page.split(/\r?\n-\r?\n/);
     const menu = generateMenu(page);
-    return Object.assign(
-      {
-        rowCount: 1,
-        colCount: content.length,
-        areas: `'${content.map((_, i) => `a${i + 1}`).join(" ")}'`,
-        content: content,
-        menu,
-      },
-      toObject(meta)
-    );
+    return {
+      rowCount: 1,
+      colCount: content.length,
+      areas: `'${content.map((_, i) => `a${i + 1}`).join(" ")}'`,
+      content,
+      menu,
+      ...Object.fromEntries(meta),
+    };
   }
 };
 
