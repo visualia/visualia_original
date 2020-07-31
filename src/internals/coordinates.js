@@ -6,27 +6,24 @@ import {
   isNumber,
   isBoolean,
   isNull,
+  padArrayRight
 } from "../utils.js";
 
-const padArrayRight = (arr, length, fill) => {
-  return [...arr, ...Array(length).fill(fill)].slice(0, length);
+export const normalizeDefault = arr => {
+  return padArrayRight(arr || [], 3, 0).map(value => toNumber(value));
 };
 
-export const normalizeDefault = (arr) => {
-  return padArrayRight(arr || [], 3, 0).map((value) => toNumber(value));
-};
-
-export const normalizeScale = (arr) => {
+export const normalizeScale = arr => {
   if (arr === null || arr.length === 0) {
     return [1, 1, 1];
   }
   if (arr.length == 1) {
     return [arr[0], arr[0], arr[0]];
   }
-  return padArrayRight(arr || [], 3, 1).map((value) => toNumber(value));
+  return padArrayRight(arr || [], 3, 1).map(value => toNumber(value));
 };
 
-export const normalizeThreeRotation = (arr) => {
+export const normalizeThreeRotation = arr => {
   if (arr === null) {
     return [[0, 0, 0]];
   }
@@ -45,12 +42,12 @@ export const coordsTextToArray = (text, normalizer) => {
   }
   return text
     .split(",")
-    .map((t) =>
+    .map(t =>
       t
         .trim()
         .replace(/\s+/g, " ")
         .split(" ")
-        .map((value) => toNumber(value))
+        .map(value => toNumber(value))
     )
     .map(normalizer);
 };
@@ -60,8 +57,8 @@ export const coordsNumberToArray = (number, normalizer) => {
 };
 
 export const coordsArrayToArray = (arr, normalizer) => {
-  const containsArrays = arr.length && arr.filter((a) => isArray(a)).length;
-  const coords = arr.map((a) => {
+  const containsArrays = arr.length && arr.filter(a => isArray(a)).length;
+  const coords = arr.map(a => {
     if (isArray(a)) {
       return normalizer(a);
     }
@@ -194,8 +191,8 @@ export const test_parseCoords_empty_array_2_array = () => {
     parseCoords([[], []]),
     [
       [0, 0, 0],
-      [0, 0, 0],
-    ],
+      [0, 0, 0]
+    ]
   ];
 };
 
@@ -208,8 +205,8 @@ export const test_parseCoords_empty_array_number_0_empty_array = () => {
     parseCoords([0, []]),
     [
       [0, 0, 0],
-      [0, 0, 0],
-    ],
+      [0, 0, 0]
+    ]
   ];
 };
 
@@ -234,8 +231,8 @@ export const test_parseCoords_array_object_object_empty = () => {
     parseCoords([{}, {}]),
     [
       [0, 0, 0],
-      [0, 0, 0],
-    ],
+      [0, 0, 0]
+    ]
   ];
 };
 
@@ -246,8 +243,8 @@ export const test_parseCoords_everything_empty = () => {
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
-      [0, 0, 0],
-    ],
+      [0, 0, 0]
+    ]
   ];
 };
 
@@ -290,8 +287,8 @@ export const test_parseCoords_string_1_and_1 = () => {
     parseCoords("1,1"),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -304,8 +301,8 @@ export const test_parseCoords_string_1_1_and_1_1_in_array = () => {
     parseCoords(["1 1", "1 1"]),
     [
       [1, 1, 0],
-      [1, 1, 0],
-    ],
+      [1, 1, 0]
+    ]
   ];
 };
 
@@ -314,8 +311,8 @@ export const test_parseCoords_string_1_and_1_spaced = () => {
     parseCoords("1 ,   1"),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -324,8 +321,8 @@ export const test_parseCoords_string_1_1_and_1_1 = () => {
     parseCoords("1 1, 1 1"),
     [
       [1, 1, 0],
-      [1, 1, 0],
-    ],
+      [1, 1, 0]
+    ]
   ];
 };
 
@@ -342,8 +339,8 @@ export const test_parseCoords_string_1_1_1_and_1_1_1 = () => {
     parseCoords("1 1 1, 1 1 1"),
     [
       [1, 1, 1],
-      [1, 1, 1],
-    ],
+      [1, 1, 1]
+    ]
   ];
 };
 
@@ -452,8 +449,8 @@ export const test_parseCoords_object_number_1_1_in_array = () => {
     parseCoords([{ x: 1 }, { x: 1 }]),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -463,8 +460,8 @@ export const test_parseCoords_object_number_1_1_1_in_array = () => {
     [
       [1, 0, 0],
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -475,8 +472,8 @@ export const test_parseCoords_object_number_1_1_1_1_in_array = () => {
       [1, 0, 0],
       [1, 0, 0],
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -484,12 +481,12 @@ export const test_parseCoords_object_everything_in_array = () => {
   return [
     parseCoords([
       { x: 1, y: "1", z: false },
-      { x: 1, y: 1, z: null, a: 1 },
+      { x: 1, y: 1, z: null, a: 1 }
     ]),
     [
       [1, 1, 0],
-      [1, 1, 0],
-    ],
+      [1, 1, 0]
+    ]
   ];
 };
 
@@ -508,8 +505,8 @@ export const test_parseCoords_array_1_sting_1 = () => {
     parseCoords([[1], "1"]),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -518,8 +515,8 @@ export const test_parseCoords_array_1_number_1 = () => {
     parseCoords([[1], 1]),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
 
@@ -528,7 +525,7 @@ export const test_parseCoords_array_1_object_1 = () => {
     parseCoords([[1], { x: 1 }]),
     [
       [1, 0, 0],
-      [1, 0, 0],
-    ],
+      [1, 0, 0]
+    ]
   ];
 };
