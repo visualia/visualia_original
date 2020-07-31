@@ -25,7 +25,7 @@ function formatError(err) {
     startColumn: loc.start.column,
     endLineNumber: loc.end.line,
     endColumn: loc.end.column,
-    message: `Template compilation error: ${err.message}`,
+    message: err.message,
     code: String(err.code),
   };
 }
