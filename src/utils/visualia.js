@@ -43,7 +43,7 @@ export const visualia = (options = {}) => {
       const content = ref("");
       const routes = customOptions.routes;
 
-      if (customOptions.content) {
+      if (customOptions.content || customOptions.template) {
         content.value = customOptions.content;
         return { routes, content };
       } else if (customOptions.files) {
@@ -56,7 +56,6 @@ export const visualia = (options = {}) => {
         });
         return { routes, content };
       } else {
-        // TODO: Fix file loading in /editor
         fetch(customOptions.file)
           .then((res) => res.text())
           .then((file) => (content.value = file));

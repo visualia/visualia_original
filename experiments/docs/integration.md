@@ -22,6 +22,7 @@ import { p5 } from "http://visualia.github.io/p5/dist/p5.js";
 
 // Note that you need to wrap into the sketch function
 // and prefix all commands with s, otherwise it is regular p5 API
+// See more at https://github.com/processing/p5.js/wiki/Global-and-instance-mode
 
 // Note that we use get() function to use Visualia live variables
 
