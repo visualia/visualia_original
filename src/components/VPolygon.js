@@ -1,6 +1,7 @@
 import { lineProps, stylingProps, transformTwoProps } from "../internals.js";
 
 export default {
+  docs: `Creates a closed polygon`,
   props: {
     ...lineProps,
     points: {

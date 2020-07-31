@@ -13,6 +13,7 @@ import VRectPdf from "../internals/VRectPdf.js";
 import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
 
 export default {
+  docs: `Creates a rectangle`,
   props: {
     x: {
       default: 0,
