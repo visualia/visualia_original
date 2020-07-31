@@ -76,6 +76,3 @@ export const unique = (arr) => [...new Set(arr)];
 export const test_unique = () => {
   return [unique([0, 0, 1, 2]), [0, 1, 2]];
 };
-
-export const flatten = (list) =>
-  list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
