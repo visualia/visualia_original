@@ -1,6 +1,6 @@
-import { get } from "../dist/visualia.min.js";
-import { ref, onMounted } from "../src/deps/vue.js";
-import { p5 } from "https://visualia.github.io/p5/dist/p5.js";
+import { get } from "../../dist/visualia.js";
+import { ref, onMounted } from "../../dist/deps/vue.js";
+import p5 from "https://cdn.skypack.dev/pin/p5@v1.1.9-QZRc7UPZWx2v3Qaby8jl/min/p5.js";
 
 // p5 sketch
 
@@ -24,7 +24,7 @@ const sketch = (s) => {
 // We are creating a wrapper component <pfive-example />
 
 export default {
-  setup() {
+  async setup() {
     const el = ref(null);
     onMounted(() => {
       new p5(sketch, el.value);
@@ -32,6 +32,7 @@ export default {
     return { el };
   },
   template: `
+    <div>aa</div>
     <div ref="el" />
   `,
 };

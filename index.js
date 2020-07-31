@@ -1,7 +1,11 @@
 import { visualia } from "./dist/visualia.js";
+import { defineAsyncComponent } from "./dist/deps/vue.js";
 
-const files = ["./README.md"];
+const PfiveExample = defineAsyncComponent(() =>
+  import("./experiments/docs/PfiveExample.js")
+);
 
 visualia({
-  files,
+  file: "./README.md",
+  components: { PfiveExample },
 });

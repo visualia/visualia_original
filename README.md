@@ -373,8 +373,6 @@ figma.ui.onmessage = ({ message, points }) => {
 
 [p5](https://p5js.org/), a popular implementation of Processing framework in Javascript can easily integrated with Visualia and they can even share live values and events.
 
-To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
-
 **index.js**
 
 ```js
@@ -382,13 +380,17 @@ import {
   visualia,
   get,
 } from "http://visualia.github.io/visualia/dist/visualia.js";
-import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
-import { p5 } from "http://visualia.github.io/p5/dist/p5.js";
+import {
+  ref,
+  onMounted,
+} from "http://visualia.github.io/visualia/dist/deps/vue.js";
+import p5 from "https://cdn.skypack.dev/p5";
 
 // p5 sketch
 
-// Note that you need to wrap into the sketch function
+// Note that we are using need to wrap into the sketch function
 // and prefix all commands with s, otherwise it is regular p5 API
+// See https://github.com/processing/p5.js/wiki/Global-and-instance-mode
 
 // Note that we use get() function to use Visualia live variables
 
@@ -428,7 +430,7 @@ visualia({
 
 **index.md**
 
-```md
+```live p5
 <v-slider set="a" from="10" to="200" />
 
 <pfive-example />

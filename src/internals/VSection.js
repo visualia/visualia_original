@@ -34,12 +34,12 @@ export default {
   >
     <div v-for="cell in section.content">
       <suspense>
-      <template #default>
-        <v-compiler :content="cell" />
-      </template>
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
+        <template #default>
+          <v-compiler :content="cell" />
+        </template>
+        <template #fallback>
+          <div>Loading...</div>
+        </template>
       </suspense>
     </div>
   </div>
