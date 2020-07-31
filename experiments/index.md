@@ -1,8 +1,8 @@
-<v-math>a = b</v-math>
-
----
+## Test
 
 <v-slider set="a" to="100" />{{ get('a') }}
+
+<v-math>a = b</v-math>
 
 <v-scene v-for="m in ['svg','canvas','three','webgl','pdf']" :mode="m">
   <v-group position="100 15">
@@ -23,9 +23,7 @@
 
 ---
 
-| title: test title
-
-# What
+# Test2
 
 ## Two
 
