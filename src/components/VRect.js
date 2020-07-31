@@ -10,28 +10,38 @@ import VRectCanvas from "../internals/VRectCanvas.js";
 import VRectThree from "../internals/VRectThree.js";
 import VRectPdf from "../internals/VRectPdf.js";
 
-// const VRectSvg = defineAsyncComponent(() => import("../internals/VRectSvg.js"));
-// const VRectCanvas = defineAsyncComponent(() =>
-//   import("../internals/VRectCanvas.js")
-// );
-// const VRectThree = defineAsyncComponent(() =>
-//   import("../internals/VRectThree.js")
-// );
-// const VRectPdf = defineAsyncComponent(() => import("../internals/VRectPdf.js"));
+import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
 
-export default (props, { slots }) => {
-  const modes = {
-    svg: VRectSvg,
-    canvas: VRectCanvas,
-    three: VRectThree,
-    webgl: VRectThree,
-    pdf: VRectPdf,
-  };
-  const sceneContext = inject("sceneContext");
-  // return modes[sceneContext.mode.value]
-  //   ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
-  //   : null;
-  return modes[sceneContext.mode.value]
-    ? h(modes[sceneContext.mode.value], props, slots)
-    : null;
+export default {
+  props: {
+    x: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner x coordinate",
+    },
+    y: {
+      default: 0,
+      suggest: "0",
+      type: [String, Number],
+      docs: "Rectangle top left corner y coordinate",
+    },
+    ...sizeProps,
+    ...stylingProps,
+    ...transformTwoProps,
+  },
+  setup(props, { slots }) {
+    const modes = {
+      svg: VRectSvg,
+      canvas: VRectCanvas,
+      three: VRectThree,
+      webgl: VRectThree,
+      pdf: VRectPdf,
+    };
+    const sceneContext = inject("sceneContext");
+    return () =>
+      modes[sceneContext.mode.value]
+        ? h(modes[sceneContext.mode.value], props, slots)
+        : null;
+  },
 };

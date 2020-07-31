@@ -3,6 +3,10 @@ import { lineProps, stylingProps, transformTwoProps } from "../internals.js";
 export default {
   props: {
     ...lineProps,
+    points: {
+      ...lineProps.points,
+      suggest: "0 0, 10 10, 0 10",
+    },
     ...stylingProps,
     ...transformTwoProps,
   },
