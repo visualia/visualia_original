@@ -48,4 +48,23 @@ export const VEditor = {
     />
   </div>
   `,
+  css: /* css */ `
+    .hover-row * {
+      color: white !important;
+    }
+    .hover-row code {
+      font-family: var(--font-mono) !important;
+      color: #569CD6 !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+    .hover-row em {
+      opacity: 0.25;
+      font-style: normal;
+    }
+    .hover-row a {
+      color: #9CDCFE !important;
+      font-weight: normal !important;
+    }
+  `,
 };

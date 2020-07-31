@@ -34,13 +34,13 @@ const formatProps = ({ props }) =>
       ([key, value]) => `\`${key}="${value.default}"\` ${
         value.type ? formatType(value.type) : ""
       }\n
-${value.description || ""}
+${value.docs || ""}
   `
     )
     .join("\n---\n");
 
 const formatDocs = (component) =>
-  `[Source](https://github.com/visualia/visualia/blob/master/src/components/${component.pascalName}.js)`;
+  `[View source →](https://github.com/visualia/visualia/blob/master/src/components/${component.pascalName}.js)`;
 
 const formatSuggestions = (c) => {
   let formattedSuggestions = [];
