@@ -30,6 +30,7 @@ export const visualia = (options = {}) => {
     utils: {},
     template: "",
     routes: null,
+    menu: true,
     ...options,
   };
 
@@ -42,10 +43,11 @@ export const visualia = (options = {}) => {
 
       const content = ref("");
       const routes = customOptions.routes;
+      const menu = customOptions.menu;
 
       if (customOptions.content || customOptions.template) {
         content.value = customOptions.content;
-        return { routes, content };
+        return { routes, content, menu };
       } else if (customOptions.files) {
         Promise.all(
           customOptions.files.map((file) =>
@@ -54,18 +56,18 @@ export const visualia = (options = {}) => {
         ).then((files) => {
           content.value = files.join("\n\n---\n\n");
         });
-        return { routes, content };
+        return { routes, content, menu };
       } else {
         fetch(customOptions.file)
           .then((res) => res.text())
           .then((file) => (content.value = file));
-        return { content, routes };
+        return { content, routes, menu };
       }
     },
     template:
       customOptions.template ||
       `
-      <v-content :content="content" :routes="routes" menu />
+      <v-content :content="content" :routes="routes" :menu="menu" />
     `,
   };
 
