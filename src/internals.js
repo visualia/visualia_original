@@ -7,13 +7,13 @@ export * from "./internals/regular.js";
 export * from "./internals/router.js";
 export * from "./internals/size.js";
 export * from "./internals/styling.js";
-export * from "./internals/circle.js";
 export * from "./internals/transform.js";
 
 export { default as VMenu } from "./internals/VMenu.js";
 export { default as VMenuIcon } from "./internals/VMenuIcon.js";
 export { default as VCompiler } from "./internals/VCompiler.js";
 
+export { default as VSuspense } from "./internals/VSuspense.js";
 export { default as VSection } from "./internals/VSection.js";
 export { default as VContent } from "./internals/VContent.js";
 export { default as VDocumentIcon } from "./internals/VDocumentIcon.js";

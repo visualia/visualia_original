@@ -48,10 +48,4 @@ export const VEditor = {
     />
   </div>
   `,
-  css: /* css */ `
-    .hover-row * {
-      color: white !important;
-      opacity: 0.9;
-    }
-  `,
 };

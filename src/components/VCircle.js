@@ -23,28 +23,21 @@ import VCirclePdf from "../internals/VCirclePdf.js";
 //   import("../internals/VCirclePdf.js")
 // );
 
-import { circleProps, stylingProps, transformTwoProps } from "../internals.js";
+import { stylingProps, transformTwoProps } from "../internals.js";
 
-export default {
-  props: {
-    ...circleProps,
-    ...stylingProps,
-    ...transformTwoProps,
-  },
-  setup(props, { slots }) {
-    const modes = {
-      svg: VCircleSvg,
-      canvas: VCircleCanvas,
-      three: VCircleThree,
-      webgl: VCircleThree,
-      pdf: VCirclePdf,
-    };
-    const sceneContext = inject("sceneContext");
-    // return modes[sceneContext.mode.value]
-    //   ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
-    //   : null;
-    return modes[sceneContext.mode.value]
-      ? h(modes[sceneContext.mode.value], props, slots)
-      : null;
-  },
+export default (props, { slots }) => {
+  const modes = {
+    svg: VCircleSvg,
+    canvas: VCircleCanvas,
+    three: VCircleThree,
+    webgl: VCircleThree,
+    pdf: VCirclePdf,
+  };
+  const sceneContext = inject("sceneContext");
+  // return modes[sceneContext.mode.value]
+  //   ? h(Suspense, null, h(modes[sceneContext.mode.value], props, slots))
+  //   : null;
+  return modes[sceneContext.mode.value]
+    ? h(modes[sceneContext.mode.value], props, slots)
+    : null;
 };
