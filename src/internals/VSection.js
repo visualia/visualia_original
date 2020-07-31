@@ -1,6 +1,7 @@
-import { Suspense, computed, provide } from "../../dist/deps/vue.js";
+import { computed, provide } from "../../dist/deps/vue.js";
 
 import { slug } from "../utils.js";
+import { VSuspense } from "../internals.js";
 
 import {
   VMenu,
@@ -12,7 +13,7 @@ import {
 } from "../internals.js";
 
 export default {
-  components: { Suspense, VCompiler },
+  components: { VSuspense, VCompiler },
   props: ["section"],
   setup(props) {
     // TODO: Clean this up
@@ -33,14 +34,14 @@ export default {
     :id="id"
   >
     <div v-for="cell in section.content">
-      <suspense>
-      <template #default>
-        <v-compiler :content="cell" />
-      </template>
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
-      </suspense>
+      <v-suspense>
+        <template #default>
+          <v-compiler :content="cell" />
+        </template>
+        <template #fallback>
+          <div>Loading...</div>
+        </template>
+      </v-suspense>
     </div>
   </div>
   `,

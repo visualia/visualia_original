@@ -14,6 +14,7 @@ export { default as VMenu } from "./internals/VMenu.js";
 export { default as VMenuIcon } from "./internals/VMenuIcon.js";
 export { default as VCompiler } from "./internals/VCompiler.js";
 
+export { default as VSuspense } from "./internals/VSuspense.js";
 export { default as VSection } from "./internals/VSection.js";
 export { default as VContent } from "./internals/VContent.js";
 export { default as VDocumentIcon } from "./internals/VDocumentIcon.js";
@@ -21,3 +22,4 @@ export { default as VProps } from "./internals/VProps.js";
 export { default as VSave } from "./internals/VSave.js";
 export { default as VSlideIcon } from "./internals/VSlideIcon.js";
 export { default as VTextarea } from "./internals/VTextarea.js";
+export { default as VUtils } from "./internals/VUtils.js";

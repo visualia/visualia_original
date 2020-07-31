@@ -17,7 +17,6 @@ import {
   onError,
   onWarning,
   isObject,
-  toObject,
 } from "../utils.js";
 
 export const visualia = (options = {}) => {
@@ -30,6 +29,7 @@ export const visualia = (options = {}) => {
     utils: {},
     template: "",
     routes: null,
+    menu: true,
     ...options,
   };
 
@@ -42,10 +42,11 @@ export const visualia = (options = {}) => {
 
       const content = ref("");
       const routes = customOptions.routes;
+      const menu = customOptions.menu;
 
-      if (customOptions.content) {
+      if (customOptions.content || customOptions.template) {
         content.value = customOptions.content;
-        return { routes, content };
+        return { routes, content, menu };
       } else if (customOptions.files) {
         Promise.all(
           customOptions.files.map((file) =>
@@ -54,19 +55,18 @@ export const visualia = (options = {}) => {
         ).then((files) => {
           content.value = files.join("\n\n---\n\n");
         });
-        return { routes, content };
+        return { routes, content, menu };
       } else {
-        // TODO: Fix file loading in /editor
         fetch(customOptions.file)
           .then((res) => res.text())
           .then((file) => (content.value = file));
-        return { content, routes };
+        return { content, routes, menu };
       }
     },
     template:
       customOptions.template ||
       `
-      <v-content :content="content" :routes="routes" menu />
+      <v-content :content="content" :routes="routes" :menu="menu" />
     `,
   };
 
@@ -87,7 +87,7 @@ export const visualia = (options = {}) => {
   // Imported internals contain both components and functions
   // We filter out only components
 
-  const internalComponents = toObject(
+  const internalComponents = Object.fromEntries(
     Object.entries(internals).filter(([key, value]) => isObject(value))
   );
 
