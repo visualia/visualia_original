@@ -21,3 +21,4 @@ export { default as VProps } from "./internals/VProps.js";
 export { default as VSave } from "./internals/VSave.js";
 export { default as VSlideIcon } from "./internals/VSlideIcon.js";
 export { default as VTextarea } from "./internals/VTextarea.js";
+export { default as VUtils } from "./internals/VUtils.js";
