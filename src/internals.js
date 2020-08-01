@@ -1,3 +1,4 @@
+export * from "./internals/compiler.js";
 export * from "./internals/content.js";
 export * from "./internals/coordinates.js";
 export * from "./internals/dynamic.js";
@@ -21,3 +22,4 @@ export { default as VProps } from "./internals/VProps.js";
 export { default as VSave } from "./internals/VSave.js";
 export { default as VSlideIcon } from "./internals/VSlideIcon.js";
 export { default as VTextarea } from "./internals/VTextarea.js";
+export { default as VUtils } from "./internals/VUtils.js";

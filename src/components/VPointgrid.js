@@ -18,6 +18,7 @@ const gridProps = {
 };
 
 export default {
+  docs: `Creates a pointgrid`,
   props: {
     ...gridProps,
   },

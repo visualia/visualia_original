@@ -1,7 +1,13 @@
 import { visualia } from "./dist/visualia.js";
+import { defineAsyncComponent } from "./dist/deps/vue.js";
+import { VProps, VUtils } from "./src/internals.js";
 
-const files = ["./README.md"];
+const P5Example = defineAsyncComponent(() => import("./docs/P5Example.js"));
+const ObservableExample = defineAsyncComponent(() =>
+  import("./docs/ObservableExample.js")
+);
 
 visualia({
-  files,
+  file: "./README.md",
+  components: { P5Example, ObservableExample, VProps, VUtils },
 });

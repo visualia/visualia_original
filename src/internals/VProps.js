@@ -1,7 +1,7 @@
 import { computed } from "../../dist/deps/vue.js";
 import * as components from "../components.js";
 
-import { flatten, kebabcase, typename } from "../utils.js";
+import { kebabcase, typename } from "../utils.js";
 
 export default {
   props: {
@@ -24,9 +24,13 @@ export default {
             details.default === undefined || details.default === ""
               ? ""
               : `\`${details.default}\``,
-          types: flatten(details.type === undefined ? [] : [details.type])
-            .map((t) => typename(t()))
-            .join(", "),
+          types:
+            details.type === undefined
+              ? []
+              : [details.type]
+                  .flat()
+                  .map((t) => typename(t()))
+                  .join(", "),
           docs: details.docs || "",
         };
       });

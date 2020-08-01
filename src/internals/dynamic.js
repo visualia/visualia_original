@@ -12,19 +12,14 @@ export const dynamicProps = {
     docs: "Starting value",
   },
   to: {
-    default: 100,
-    suggest: "100",
+    default: 360,
+    suggest: "360",
     type: [String, Number],
     docs: "Ending value",
   },
-  step: {
-    default: "",
-    type: [String, Number],
-    docs: "Step value",
-  },
-  smooth: {
+  integer: {
     default: false,
     type: [Boolean, String],
-    docs: "Set a smooth step value (floating point)",
+    docs: "Output an interger value (instead floating point)?",
   },
 };

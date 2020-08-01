@@ -9,7 +9,7 @@ import {
   watch,
 } from "../../dist/deps/vue.js";
 
-import { flatten, slug, useSize } from "../utils.js";
+import { slug, useSize } from "../utils.js";
 
 import {
   VMenu,
@@ -66,8 +66,8 @@ export default {
     });
 
     const contentMenu = computed(() =>
-      flatten(
-        parsedContent.value.map((section, i) => {
+      parsedContent.value
+        .map((section, i) => {
           section.menu = section.menu.map((item) => {
             item.anchor = formatHash([slug(section.title), item.anchor]);
             return item;
@@ -83,7 +83,7 @@ export default {
             ),
           ];
         })
-      )
+        .flat(Infinity)
     );
 
     return {
