@@ -26,7 +26,7 @@ export default {
   template: `
   <div
     :style="{
-      padding: 'var(--base6) var(--base4)',
+      padding: 'var(--base4) var(--base4)',
       display: 'grid',
       ...sectionGridStyle(section)
     }"
@@ -34,12 +34,12 @@ export default {
   >
     <div v-for="cell in section.content">
       <suspense>
-      <template #default>
-        <v-compiler :content="cell" />
-      </template>
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
+        <template #default>
+          <v-compiler :content="cell" />
+        </template>
+        <template #fallback>
+          <div>Loading...</div>
+        </template>
       </suspense>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { stylingProps, transformTwoProps } from "../internals.js";
 
 export default {
+  docs: `Creates a square`,
   props: {
     r: {
       default: 10,

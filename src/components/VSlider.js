@@ -2,6 +2,7 @@ import { get, set, toNumber } from "../utils.js";
 import { dynamicProps } from "../internals/dynamic.js";
 
 export default {
+  docs: `Creates a slider`,
   props: {
     ...dynamicProps,
     value: {

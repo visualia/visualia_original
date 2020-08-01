@@ -31,6 +31,7 @@ import {
 } from "../internals.js";
 
 export default {
+  docs: `Creates a group`,
   props: {
     ...transformThreeProps,
   },

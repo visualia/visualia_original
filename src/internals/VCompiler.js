@@ -1,12 +1,7 @@
-import {
-  computed,
-  h,
-  compile,
-  onErrorCaptured,
-  inject,
-} from "../../dist/deps/vue.js";
-import { parse, Renderer } from "../../dist/deps/marked.js";
+import { computed, h, onErrorCaptured, inject } from "../../dist/deps/vue.js";
+import { Renderer } from "../../dist/deps/marked.js";
 import * as utils from "../utils.js";
+import { compile } from "../internals.js";
 
 const renderer = new Renderer();
 
@@ -31,22 +26,10 @@ renderer.heading = function (text, level, raw) {
 };
 
 const processContent = (content) =>
-  content.replace(/<!---\s+/g, "").replace(/\s+--->/g, "");
-
-const compileContent = (content) => {
-  let c = () => null;
-  while (true) {
-    try {
-      c = compile(parse(processContent(content), { renderer, breaks: true }), {
-        onError: utils.onCompilerError,
-      });
-      return c;
-    } catch (error) {
-      utils.onCompilerError(error);
-      break;
-    }
-  }
-};
+  content
+    .replace(/<!---\s+/g, "")
+    .replace(/\s+--->/g, "")
+    .replace(/(@)(.*)(=)/g, "v-on:$2$3");
 
 export default {
   props: {
@@ -63,7 +46,9 @@ export default {
       setup() {
         return { ...utils, ...customUtils };
       },
-      render: compileContent(props.content),
+      render: compile(processContent(props.content), "runtime", {
+        renderer,
+      }).code,
     }));
 
     return () => (compiledContent.value ? h(compiledContent.value) : null);

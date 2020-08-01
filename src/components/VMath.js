@@ -2,6 +2,8 @@ import { ref, watch } from "../../dist/deps/vue.js";
 import { renderToString } from "../../dist/deps/katex.js";
 
 export default {
+  docs: `Creates a math equation in [LaTeX format](https://en.wikibooks.org/wiki/LaTeX/Mathematics)`,
+  props: {},
   setup(_, { slots }) {
     const math = ref("");
     if (slots.default) {
@@ -10,7 +12,7 @@ export default {
         (nodes) => {
           const node = nodes[0].children;
           math.value = renderToString(String.raw`${node}`, {
-            throwOnError: true,
+            throwOnError: false,
           });
         },
         { immediate: true }

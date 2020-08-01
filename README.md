@@ -260,21 +260,15 @@ b is {{ get("b") }}
 
 <!--- <v-props component="VAnimate" /> --->
 
----
-
-## Events
+### Events
 
 In addition to the live variables, Visualia also provides a way to send and receive global events.
-
-### Sending an event
 
 To send an event, use `send()` function:
 
 ```live send
-<button v-on:click="send('click!')">Click me</button>
+<button @click="send('click!')">Click me</button>
 ```
-
-### Receiving an event
 
 To receive an event, use `receive()` function:
 
@@ -309,6 +303,12 @@ The true power of the framework emerges when math is combined with live variable
   />
 </v-scene>
 ```
+
+---
+
+## Helper functions
+
+<!--- <v-utils  /> --->
 
 ---
 
@@ -379,22 +379,25 @@ figma.ui.onmessage = ({ message, points }) => {
 
 [p5](https://p5js.org/), a popular implementation of Processing framework in Javascript can easily integrated with Visualia and they can even share live values and events.
 
-To ease the p5 usage, Visualia maintains a ESM compatible built of p5 at https://github.com/visualia/p5
-
 **index.js**
 
 ```js
 import {
   visualia,
   get,
+  set,
 } from "http://visualia.github.io/visualia/dist/visualia.js";
-import { ref, onMounted } from "http://visualia.github.io/visualia/deps/vue.js";
-import { p5 } from "http://visualia.github.io/p5/dist/p5.js";
+import {
+  ref,
+  onMounted,
+} from "http://visualia.github.io/visualia/dist/deps/vue.js";
+import p5 from "https://cdn.skypack.dev/p5";
 
 // p5 sketch
 
-// Note that you need to wrap into the sketch function
+// Note that we are using need to wrap into the sketch function
 // and prefix all commands with s, otherwise it is regular p5 API
+// See https://github.com/processing/p5.js/wiki/Global-and-instance-mode
 
 // Note that we use get() function to use Visualia live variables
 
@@ -406,13 +409,18 @@ const sketch = (s) => {
     s.background(255);
     s.stroke(0);
     s.strokeWeight(2);
+    // We are getting Visualia variable and passing to p5 sketch
     s.circle(100, 100, get("a") || 10);
+  };
+  // We are getting p5 event and setting a Visualia variable
+  s.mousePressed = () => {
+    set("a", 100);
   };
 };
 
 // We are wrapping p5 sketch into a Visualia component
 
-export const PfiveExample = {
+export const P5Example = {
   setup() {
     const el = ref(null);
     onMounted(() => {
@@ -428,16 +436,16 @@ export const PfiveExample = {
 // We initialize Visualia with our p5 component
 
 visualia({
-  components: { PfiveExample },
+  components: { P5Example },
 });
 ```
 
 **index.md**
 
-```md
+```live p5
 <v-slider set="a" from="10" to="200" />
 
-<pfive-example />
+<p5-example />
 ```
 
 ### Observable
@@ -519,7 +527,7 @@ export const ObservableExample = {
 
 **index.md**
 
-```md
+```live observable
 <observable-example />
 
 #### Visualia document
