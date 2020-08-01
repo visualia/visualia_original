@@ -1,9 +1,9 @@
 import { h, inject } from "../../dist/deps/vue.js";
 
-import VCircleSvg from "../internals/VCircleSvg.js";
-import VCircleCanvas from "../internals/VCircleCanvas.js";
-import VCircleThree from "../internals/VCircleThree.js";
-import VCirclePdf from "../internals/VCirclePdf.js";
+import VCircleSvg from "./VCircleSvg.js";
+import VCircleCanvas from "./VCircleCanvas.js";
+import VCircleThree from "./VCircleThree.js";
+import VCirclePdf from "./VCirclePdf.js";
 
 import { stylingProps, transformTwoProps } from "../internals.js";
 

@@ -1,6 +1,6 @@
 import { h, inject } from "../../dist/deps/vue.js";
 
-import { VSphereThree } from "../internals/VSphereThree.js";
+import { VSphereThree } from "./VSphereThree.js";
 
 import { stylingProps, transformThreeProps } from "../internals.js";
 

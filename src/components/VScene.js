@@ -3,26 +3,12 @@ import {
   h,
   provide,
   defineAsyncComponent,
-  Suspense,
 } from "../../dist/deps/vue.js";
 
-import VSceneSvg from "../internals/VSceneSvg.js";
-import VSceneCanvas from "../internals/VSceneCanvas.js";
-import VSceneThree from "../internals/VSceneThree.js";
-import VScenePdf from "../internals/VScenePdf.js";
-
-// const VSceneSvg = defineAsyncComponent(() =>
-//   import("../internals/VSceneSvg.js")
-// );
-// const VSceneCanvas = defineAsyncComponent(() =>
-//   import("../internals/VSceneCanvas.js")
-// );
-// const VSceneThree = defineAsyncComponent(() =>
-//   import("../internals/VSceneThree.js")
-// );
-// const VScenePdf = defineAsyncComponent(() =>
-//   import("../internals/VScenePdf.js")
-// );
+import VSceneSvg from "./VSceneSvg.js";
+import VSceneCanvas from "./VSceneCanvas.js";
+import VSceneThree from "./VSceneThree.js";
+import VScenePdf from "./VScenePdf.js";
 
 import {
   transformThreeProps,
@@ -69,8 +55,7 @@ export default {
     const mode = computed(() => props.mode);
     const { position, rotation, scale } = getThreeTransform(props);
     provide("sceneContext", { mode, transform: { position, rotation, scale } });
-    // return () =>
-    //   h(Suspense, null, h(modes[mode.value], { ...props }, context.slots));
+
     return () => h(modes[mode.value], { ...props }, context.slots);
   },
 };

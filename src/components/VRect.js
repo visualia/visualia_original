@@ -5,10 +5,10 @@ import {
   defineAsyncComponent,
 } from "../../dist/deps/vue.js";
 
-import VRectSvg from "../internals/VRectSvg.js";
-import VRectCanvas from "../internals/VRectCanvas.js";
-import VRectThree from "../internals/VRectThree.js";
-import VRectPdf from "../internals/VRectPdf.js";
+import VRectSvg from "./VRectSvg.js";
+import VRectCanvas from "./VRectCanvas.js";
+import VRectThree from "./VRectThree.js";
+import VRectPdf from "./VRectPdf.js";
 
 import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
 

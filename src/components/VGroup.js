@@ -1,28 +1,9 @@
-import {
-  h,
-  inject,
-  provide,
-  defineAsyncComponent,
-  Suspense,
-} from "../../dist/deps/vue.js";
+import { h, inject, provide } from "../../dist/deps/vue.js";
 
-import VGroupSvg from "../internals/VGroupSvg.js";
-import VGroupCanvas from "../internals/VGroupCanvas.js";
-import VGroupThree from "../internals/VGroupThree.js";
-import VGroupPdf from "../internals/VGroupPdf.js";
-
-// const VGroupSvg = defineAsyncComponent(() =>
-//   import("../internals/VGroupSvg.js")
-// );
-// const VGroupCanvas = defineAsyncComponent(() =>
-//   import("../internals/VGroupCanvas.js")
-// );
-// const VGroupThree = defineAsyncComponent(() =>
-//   import("../internals/VGroupThree.js")
-// );
-// const VGroupPdf = defineAsyncComponent(() =>
-//   import("../internals/VGroupPdf.js")
-// );
+import VGroupSvg from "./VGroupSvg.js";
+import VGroupCanvas from "./VGroupCanvas.js";
+import VGroupThree from "./VGroupThree.js";
+import VGroupPdf from "./VGroupPdf.js";
 
 import {
   transformThreeProps,
@@ -56,14 +37,7 @@ export default {
       ...sceneContext,
       transform: { position, rotation, scale },
     });
-    // return () =>
-    //   modes[sceneContext.mode.value]
-    //     ? h(
-    //         Suspense,
-    //         null,
-    //         h(modes[sceneContext.mode.value], { ...props }, slots)
-    //       )
-    //     : null;
+
     return () =>
       modes[sceneContext.mode.value]
         ? h(modes[sceneContext.mode.value], { ...props }, slots)
