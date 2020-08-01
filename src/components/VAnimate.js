@@ -42,14 +42,13 @@ export default {
     watch(
       () => progress,
       (progress) => {
-        const currentProgress = computed(
-          () => Math.floor(progress.value)
-          // props.step
-          //   ? snap(progress.value, props.step)
-          //   : props.smooth
-          //   ? trunc(progress.value, 6)
-          //   : Math.floor(progress.value)
-        );
+        const currentProgress = computed(() => {
+          return props.step
+            ? snap(toNumber(progress.value), props.step)
+            : props.smooth
+            ? trunc(toNumber(progress.value), 6)
+            : Math.floor(progress.value);
+        });
         emit("value", currentProgress);
         if (props.set) {
           set(props.set, currentProgress);
