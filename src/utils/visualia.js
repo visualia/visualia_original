@@ -1,23 +1,10 @@
-import {
-  createApp,
-  provide,
-  computed,
-  h,
-  ref,
-  watch,
-} from "../../dist/deps/vue.js";
+import { createApp, provide, ref } from "../../dist/deps/vue.js";
 
 import * as components from "../components.js";
 import * as internals from "../internals.js";
 
-import { useRouter, VContent, VSave } from "../internals.js";
-import {
-  useFetch,
-  componentCss,
-  onError,
-  onWarning,
-  isObject,
-} from "../utils.js";
+import { useRouter, VApp } from "../internals.js";
+import { componentCss, onError, onWarning, isObject } from "../utils.js";
 
 export const visualia = (options = {}) => {
   const customOptions = {
@@ -34,7 +21,7 @@ export const visualia = (options = {}) => {
   };
 
   const App = {
-    components: { VContent },
+    components: { VApp },
     setup() {
       const router = useRouter();
       provide("router", router);
@@ -66,7 +53,7 @@ export const visualia = (options = {}) => {
     template:
       customOptions.template ||
       `
-      <v-content :content="content" :routes="routes" :menu="menu" />
+      <v-app :content="content" :routes="routes" :menu="menu" />
     `,
   };
 

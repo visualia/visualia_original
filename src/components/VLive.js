@@ -1,14 +1,8 @@
 import { ref, watch, computed } from "../../dist/deps/vue.js";
-import {
-  VSection,
-  VSave,
-  VTextarea,
-  VContent,
-  parseContent,
-} from "../internals.js";
+import { VSave, VTextarea, VContent, parseContent } from "../internals.js";
 
 export default {
-  components: { VSection, VSave, VTextarea, VContent },
+  components: { VSave, VTextarea, VContent },
   props: {
     content: {
       default: "",
@@ -51,8 +45,8 @@ export default {
       />
     </div>
       <div style="overflow: auto; min-height: 350px;">
-        <template v-for="(section,i) in parsedContent">
-          <v-section :key="i" :section="section" style="overflow: hidden" />
+        <template v-for="(content,i) in parsedContent">
+          <v-content :key="i" :content="content" style="overflow: hidden" />
         </template>
       </div>
   </div>

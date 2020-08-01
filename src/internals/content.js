@@ -86,7 +86,7 @@ export const parseContent = (document) => {
   return document.split(/\r?\n---\r?\n/).map(parsePage);
 };
 
-export const sectionGridStyle = (section) => {
+export const contentGridStyle = (section) => {
   return {
     gridTemplateColumns: section.cols
       ? section.cols

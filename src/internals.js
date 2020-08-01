@@ -15,8 +15,8 @@ export { default as VMenuIcon } from "./internals/VMenuIcon.js";
 export { default as VCompiler } from "./internals/VCompiler.js";
 
 export { default as VLayout } from "./internals/VLayout.js";
-export { default as VSection } from "./internals/VSection.js";
 export { default as VContent } from "./internals/VContent.js";
+export { default as VApp } from "./internals/VApp.js";
 export { default as VDocumentIcon } from "./internals/VDocumentIcon.js";
 export { default as VProps } from "./internals/VProps.js";
 export { default as VSave } from "./internals/VSave.js";
