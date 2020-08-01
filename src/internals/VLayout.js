@@ -9,7 +9,7 @@ import {
   watch,
 } from "../../dist/deps/vue.js";
 
-import { flatten, slug, useSize } from "../utils.js";
+import { slug, useSize } from "../utils.js";
 
 import {
   VMenu,
