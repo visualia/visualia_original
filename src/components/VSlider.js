@@ -1,4 +1,4 @@
-import { set as storeSet, toNumber } from "../utils.js";
+import { set, toNumber } from "../utils.js";
 import { dynamicProps } from "../internals/dynamic.js";
 
 export default {
@@ -10,21 +10,23 @@ export default {
       type: [String, Number],
       docs: "Initial slider value",
     },
-    step: {
-      default: "",
-      type: [String, Number],
-      docs: "Slider step value",
-    },
   },
   setup(props, { emit }) {
-    const onInput = (e) => {
-      const currentValue = toNumber(e.target.value);
-      emit("value", currentValue);
+    const currentStep = props.step ? props.step : props.smooth ? 0.000001 : 1;
+
+    const setValue = (value) => {
+      emit("value", value);
       if (props.set) {
-        storeSet(props.set, currentValue);
+        set(props.set, value);
       }
     };
-    return { onInput };
+    // TODO: Early update conflicts with VSceneCanvas, fix it
+    // setValue(props.value);
+    const onInput = (e) => {
+      const currentValue = toNumber(e.target.value);
+      setValue(currentValue);
+    };
+    return { onInput, currentStep };
   },
   template: `<input
     type="range"
@@ -32,6 +34,6 @@ export default {
     @input="onInput"
     :min="from"
     :max="to"
-    :step="integer ? 1 : step ? step : 0.0000001"
+    :step="currentStep"
   />`,
 };
