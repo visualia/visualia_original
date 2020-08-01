@@ -20,5 +20,5 @@ export default {
     }
     return { math };
   },
-  template: `<div style="margin-bottom: var(--base)" v-html="math" />`,
+  template: `<span style="margin-bottom: var(--base)" v-html="math" />`,
 };
