@@ -14,7 +14,8 @@ export const compile = (
   const options = { breaks: true, ...compilerOptions };
   const errors = [];
   let code = null;
-  const markdown = parse(source, options);
+  const markdown =
+    compilerType === "template" ? source : parse(source, options);
   try {
     const compiledCode = compiler(markdown, {
       onError: (err) => {

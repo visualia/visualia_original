@@ -25,11 +25,20 @@ renderer.heading = function (text, level, raw) {
   return `<v-heading text="${text}" level="${level}" raw="${raw}" />`;
 };
 
-const processContent = (content) =>
-  content
+const processContent = (content) => {
+  let processedContent = content;
+  const matches = content.matchAll(/(<([^>]+)>)/gi);
+  for (const match of matches) {
+    processedContent = processedContent.replace(
+      match[0],
+      match[0].replace(/\r?\n/g, " ").replace(/\s+/g, " ")
+    );
+  }
+  return processedContent
     .replace(/<!---\s+/g, "")
     .replace(/\s+--->/g, "")
     .replace(/(@)(.*)(=)/g, "v-on:$2$3");
+};
 
 export default {
   props: {
