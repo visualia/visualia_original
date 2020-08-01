@@ -57,8 +57,8 @@ There are several options that `visualia()` function accepts:
 | Option       | Default       | Description                                       |
 | ------------ | ------------- | ------------------------------------------------- |
 | `el`         | `"#app"`      | id of the HTML element the content is rendered to |
-| `file`       | `"index.md"`  | Markdown file to load                             |
-| `files`      |               | Array of Markdown files to load                   |
+| `file`       | `"index.md"`  | Markdown filename to load                         |
+| `files`      |               | Array of Markdown filenames to load               |
 | `content`    |               | Markdown content as a string                      |
 | `template`   | `"<v-app />"` | The main template string                          |
 | `components` | `{}`          | Object with custom components                     |
