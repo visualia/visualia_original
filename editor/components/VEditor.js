@@ -44,6 +44,7 @@ export const VEditor = {
     <v-app
       style="overflow: auto; height: 100vh;"
       :content="currentContent"
+      :menu="true"
     />
   </div>
   `,
