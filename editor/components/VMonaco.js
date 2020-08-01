@@ -110,7 +110,9 @@ export const VMonaco = {
           `visualia`,
           errors.filter((e) => e.loc).map(formatError)
         );
-        emit("input:content", editor.getValue());
+        if (errors.length === 0) {
+          emit("input:content", editor.getValue());
+        }
       });
 
       // We only change editor content

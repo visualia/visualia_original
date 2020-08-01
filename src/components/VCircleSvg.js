@@ -17,10 +17,9 @@ export default {
     ...transformTwoProps,
   },
   setup(props) {
-    const r = props.r;
     const styling = useSvgStyling(props);
     const transform = useSvgTransform(props);
-    return { r, transform, styling };
+    return { transform, styling };
   },
   template: `
     <circle 
