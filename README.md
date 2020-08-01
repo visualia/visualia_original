@@ -14,21 +14,6 @@ https://github.com/visualia/visualia
 
 To get started you will need three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
 
-**index.md**
-
-```live index
-# Hello
-
-Welcome to Visualia. Edit me!
-```
-
-**index.js.** Yes, two lines.
-
-```js
-import { visualia } from "https://visualia.github.io/visualia/dist/visualia.js";
-visualia();
-```
-
 **index.html**
 
 ```html
@@ -49,6 +34,36 @@ visualia();
   </body>
 </html>
 ```
+
+**index.js.** Yes, two lines.
+
+```js
+import { visualia } from "https://visualia.github.io/visualia/dist/visualia.js";
+visualia();
+```
+
+**index.md**
+
+```live index
+# Hello
+
+Welcome to Visualia. Edit me!
+```
+
+### Configuration options
+
+There are several options that `visualia()` function accepts:
+
+| Option       | Default       | Description                                       |
+| ------------ | ------------- | ------------------------------------------------- |
+| `el`         | `"#app"`      | id of the HTML element the content is rendered to |
+| `file`       | `"index.md"`  | Markdown filename to load                         |
+| `files`      |               | Array of Markdown filenames to load               |
+| `content`    |               | Markdown content as a string                      |
+| `template`   | `"<v-app />"` | The main template string                          |
+| `components` | `{}`          | Object with custom components                     |
+| `utils`      | `{}`          | Object with custom utilities                      |
+| `menu`       | `true`        | Show sidebar with a menu?                         |
 
 ---
 

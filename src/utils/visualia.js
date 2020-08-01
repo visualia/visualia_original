@@ -8,14 +8,13 @@ import { componentCss, onError, onWarning, isObject } from "../utils.js";
 
 export const visualia = (options = {}) => {
   const customOptions = {
-    content: "",
     el: "#app",
     file: "./index.md",
     files: null,
+    content: "",
+    template: "",
     components: {},
     utils: {},
-    template: "",
-    routes: null,
     menu: true,
     ...options,
   };
@@ -28,12 +27,11 @@ export const visualia = (options = {}) => {
       provide("customUtils", customOptions.utils);
 
       const content = ref("");
-      const routes = customOptions.routes;
       const menu = customOptions.menu;
 
       if (customOptions.content || customOptions.template) {
         content.value = customOptions.content;
-        return { routes, content, menu };
+        return { content, menu };
       } else if (customOptions.files) {
         Promise.all(
           customOptions.files.map((file) =>
@@ -42,19 +40,16 @@ export const visualia = (options = {}) => {
         ).then((files) => {
           content.value = files.join("\n\n---\n\n");
         });
-        return { routes, content, menu };
+        return { content, menu };
       } else {
         fetch(customOptions.file)
           .then((res) => res.text())
           .then((file) => (content.value = file));
-        return { content, routes, menu };
+        return { content, menu };
       }
     },
     template:
-      customOptions.template ||
-      `
-      <v-app :content="content" :routes="routes" :menu="menu" />
-    `,
+      customOptions.template || `<v-app :content="content" :menu="menu" />`,
   };
 
   const app = createApp(App);
