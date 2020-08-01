@@ -1,13 +1,4 @@
-import {
-  computed,
-  Suspense,
-  onMounted,
-  inject,
-  ref,
-  nextTick,
-  provide,
-  watch,
-} from "../../dist/deps/vue.js";
+import { computed, inject } from "../../dist/deps/vue.js";
 
 import { slug, useSize } from "../utils.js";
 
