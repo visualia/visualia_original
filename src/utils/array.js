@@ -9,14 +9,14 @@ Creates an empty array with the \`length\` of items.
 
 **Usage**
 
-\`\`\`live
+~~~live
 
 {{ array() }}
 {{ array(1) }}
 {{ array(3, 10) }}
 {{ array(3, 'hey') }}
 
-\`\`\`
+~~~
 
 `;
 

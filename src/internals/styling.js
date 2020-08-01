@@ -9,7 +9,7 @@ import {
 
 import { color } from "../../dist/deps/d3-color.js";
 
-import { toNumber, fit } from "../utils.js";
+import { toNumber, scale } from "../utils.js";
 
 export const stylingProps = {
   stroke: {
@@ -91,9 +91,9 @@ export const useThreeStroke = (props) =>
 const pdfColor = (c) => {
   const { r, g, b } = color(c);
   return {
-    red: fit(r, 0, 255, 0, 1),
-    green: fit(g, 0, 255, 0, 1),
-    blue: fit(b, 0, 255, 0, 1),
+    red: scale(r, 0, 255, 0, 1),
+    green: scale(g, 0, 255, 0, 1),
+    blue: scale(b, 0, 255, 0, 1),
     type: "RGB",
   };
 };
