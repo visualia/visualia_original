@@ -56,13 +56,13 @@ export const VSave = {
     >↩</button>
     <div v-if="!isSaved" />
     <div>
-      <!-- <button
+      <button
         class="v-content-store-button"
         style="margin-right: var(--base2);"
         @click="onFormat"
       >
         Format
-      </button> -->
+      </button>
       <button
         class="v-content-store-button"
         @click="onSave"

@@ -67,13 +67,13 @@ const tagSuggestions = (range) => {
     const suggestions = formatSuggestions(c);
     let text = "";
     const suggestionsString =
-      suggestions.join(" ").length > 80
+      suggestions.join(" ").length > 70
         ? `\n  ${suggestions.join("\n  ")}\n`
         : suggestions.join(" ");
     if (componentsWithChildren.includes(c.pascalName)) {
-      text = `<${c.kebabName}${suggestions.length ? " " : ""}${suggestions.join(
-        " "
-      )}>\n  $0\n</${c.kebabName}>`;
+      text = `<${c.kebabName}${
+        suggestions.length ? " " : ""
+      }\n  ${suggestions.join("\n  ")}\n>\n  $0\n</${c.kebabName}>`;
     } else {
       text = `<${c.kebabName} ${suggestionsString}/>$0`;
     }
