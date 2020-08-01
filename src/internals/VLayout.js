@@ -15,9 +15,7 @@ import {
   VMenu,
   VMenuIcon,
   VCompiler,
-  VSection,
   parseContent,
-  sectionGridStyle,
   formatHash,
 } from "../internals.js";
 

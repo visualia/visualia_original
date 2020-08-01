@@ -1,11 +1,11 @@
 import { ref } from "../../dist/deps/vue.js";
 
-import { VContent } from "../../src/internals.js";
+import { VApp } from "../../src/internals.js";
 import { VSave } from "./VSave.js";
 import { VMonaco } from "./VMonaco.js";
 
 export const VEditor = {
-  components: { VContent, VSave, VMonaco },
+  components: { VApp, VSave, VMonaco },
   props: {
     content: {
       default: "",
@@ -41,10 +41,9 @@ export const VEditor = {
         @input:content="content => currentContent = content"
       />
     </div>
-    <v-content
+    <v-app
       style="overflow: auto; height: 100vh;"
       :content="currentContent"
-      @input:content="content => currentContent = content"
     />
   </div>
   `,
