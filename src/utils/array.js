@@ -76,3 +76,54 @@ export const unique = (arr) => [...new Set(arr)];
 export const test_unique = () => {
   return [unique([0, 0, 1, 2]), [0, 1, 2]];
 };
+
+export const docs_shuffle = `
+
+\`shuffle(array)\`
+
+Sorts the array in random order.
+
+~~~live
+{{ shuffle([1,2,3]) }}
+~~~
+`;
+
+export const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+export const any = function (arr) {
+  return arr instanceof Array
+    ? shuffle(arr)[0]
+    : shuffle(Array.from(arguments))[0];
+};
+
+export const docs_any = `
+
+\`any(array)\` or \`any(argument, argument, argument...)\`
+
+Picks a random element from the array or function arguments.
+
+~~~live
+{{ any([0,1,2]) }}
+{{ any(0,1,2) }}
+~~~
+`;
+
+export const docs_intersection = `
+
+\`intersection(array1, array2)\`
+
+Returns the intersection of the two arrays
+
+~~~live
+
+{{ intersection([0,1,2],[1,2,3]) }}
+
+~~~
+`;
+
+export const intersection = (arr1, arr2) =>
+  arr1.filter((n) => arr2.includes(n));
+
+export const test_intersection = () => {
+  return [intersection([0, 1, 2], [1, 2, 3]), [1, 2]];
+};
