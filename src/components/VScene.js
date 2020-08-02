@@ -42,7 +42,18 @@ export default {
         "Use ortographic projection? Only applies to `three` and `webgl` render modes",
     },
     ...sizeProps,
-    ...transformThreeProps,
+    position: {
+      ...transformThreeProps.position,
+      suggest: "",
+    },
+    rotation: {
+      ...transformThreeProps.position,
+      suggest: "",
+    },
+    scale: {
+      ...transformThreeProps.position,
+      suggest: "",
+    },
   },
   setup(props, context) {
     const modes = {

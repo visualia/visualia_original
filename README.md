@@ -12,7 +12,9 @@ https://github.com/visualia/visualia
 
 ## Getting started
 
-To get started you will need three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
+> The quickest way to try out Visualia is play with experimental [Visualia editor](https://visualia.github.io/visualia/editor/). Just type <kbd>v</kbd> in the editor.
+
+To get started in your local machine, you will need to create three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
 
 **index.html**
 
