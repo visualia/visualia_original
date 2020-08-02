@@ -323,7 +323,21 @@ The true power of the framework emerges when math is combined with live variable
 
 ## Helper functions
 
-<!--- <v-utils  /> --->
+### Math
+
+<!--- <v-utils type="math" /> --->
+
+### Trigonometry
+
+<!--- <v-utils type="trig" /> --->
+
+### Array
+
+<!--- <v-utils type="array" /> --->
+
+### String
+
+<!--- <v-utils type="string" /> --->
 
 ---
 
