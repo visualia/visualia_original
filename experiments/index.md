@@ -25,7 +25,7 @@
 
 ## More tests
 
-<v-scene mode="svg" width="200" height="200" position="0 0" rotation="0 0">
+<v-scene mode="svg" width="200" height="200" position="20 20" rotation="0 0">
   <v-square 
     r="30"
     stroke="green"

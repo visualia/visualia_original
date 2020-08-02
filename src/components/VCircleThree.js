@@ -9,7 +9,7 @@ import {
 
 import {
   stylingProps,
-  transformTwoProps,
+  transformThreeProps,
   useThreeFill,
   useThreeStroke,
   useThreeTransform,
@@ -24,7 +24,7 @@ export default {
       docs: "Square radius (half of the width)",
     },
     ...stylingProps,
-    ...transformTwoProps,
+    ...transformThreeProps,
   },
   setup(props) {
     const sceneContext = inject("sceneContext");

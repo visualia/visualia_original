@@ -5,7 +5,12 @@ import VCircleCanvas from "./VCircleCanvas.js";
 import VCircleThree from "./VCircleThree.js";
 import VCirclePdf from "./VCirclePdf.js";
 
-import { stylingProps, transformTwoProps } from "../internals.js";
+import {
+  stylingProps,
+  transformTwoProps,
+  getThreeTransform,
+  combineTransforms,
+} from "../internals.js";
 
 export default {
   docs: `Creates a circle`,
@@ -28,9 +33,13 @@ export default {
       pdf: VCirclePdf,
     };
     const sceneContext = inject("sceneContext");
+    const transform = combineTransforms(
+      sceneContext.transform,
+      getThreeTransform(props)
+    );
     return () =>
       modes[sceneContext.mode.value]
-        ? h(modes[sceneContext.mode.value], props, slots)
+        ? h(modes[sceneContext.mode.value], { ...props, ...transform }, slots)
         : null;
   },
 };
