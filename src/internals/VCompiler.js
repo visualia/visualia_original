@@ -25,9 +25,22 @@ renderer.heading = function (text, level, raw) {
   return `<v-heading text="${text}" level="${level}" raw="${raw}" />`;
 };
 
+const matchAll = (pattern, haystack) => {
+  const regex = new RegExp(pattern, "g");
+  const matches = [];
+
+  const result = haystack.match(regex);
+
+  for (let index in result) {
+    var item = result[index];
+    matches[index] = item.match(new RegExp(pattern));
+  }
+  return matches;
+};
+
 const processContent = (content) => {
   let processedContent = content;
-  const matches = content.matchAll(/(<([^>]+)>)/gi);
+  const matches = matchAll(/(<([^>]+)>)/, content);
   for (const match of matches) {
     processedContent = processedContent.replace(
       match[0],
