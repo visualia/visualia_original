@@ -1,6 +1,6 @@
 import { watch, ref, onMounted } from "../../dist/deps/vue.js";
 import { receive } from "../../src/utils.js";
-import { compile } from "../../src/internals.js";
+import { compileSource } from "../../src/internals.js";
 
 import * as monaco from "../../dist/deps/monaco/monaco.js";
 
@@ -104,7 +104,7 @@ export const VMonaco = {
       // works with v-model
 
       editor.onDidChangeModelContent((e) => {
-        const { errors } = compile(editor.getValue());
+        const { errors } = compileSource(editor.getValue());
         monaco.editor.setModelMarkers(
           editor.getModel(),
           `visualia`,
