@@ -37,7 +37,6 @@ export const transformThreeProps = {
   },
   rotation: {
     default: [0, 0, 0],
-    suggest: "0 0",
     type: [String, Number, Array, Object],
     docs: "Object rotation angle in degrees, over X, Y and Z axis",
   },
