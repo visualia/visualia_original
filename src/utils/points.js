@@ -11,6 +11,12 @@ export const docs_circlepoints = `
 
 {{ circlepoints() }}
 
+<v-scene>
+  <v-group position="100 100">
+    <v-point v-for="p in circlepoints(6, 50)" :position="p" />
+  </v-group>
+</v-scene>
+
 ~~~
 
 `;
@@ -31,7 +37,9 @@ export const docs_gridpoints = `
 
 ~~~live
 
-{{ gridpoints() }}
+<v-scene>
+  <v-point v-for="p in gridpoints(20, 10)" :position="p" />
+</v-scene>
 
 ~~~
 
