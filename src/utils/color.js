@@ -16,8 +16,13 @@ Returns a color value. If \`name\` matches one of framework colors, framework co
 
 ~~~live
 
-{{ color('red') }}
-{{ color('rebeccapurple') }}
+{{ color('red') }} 
+{{ color('green') }} 
+{{ color('blue') }} 
+
+<span :style="{ color: 'red'}">⬤</span>
+<span :style="{ color: 'green'}">⬤</span>
+<span :style="{ color: 'blue'}">⬤</span>
 
 ~~~
 
@@ -133,7 +138,11 @@ export const docs_colorscale = `
 Generates a color scale between \`start\` and \`stop\` colors with \`count\` steps. Optionally an [interpolation mode](https://vis4.net/chromajs/#scale-mode) can be specified.
 
 ~~~live
+
 {{ colorscale('red','yellow') }}
+
+<span v-for="c in colorscale('red','yellow')" :style="{ color: c}">⬤</span>
+
 ~~~
 
 `;
@@ -163,6 +172,8 @@ Returns hue values for Adobe Illustrator color wheel, similar to [Johannes Itten
 
 {{ aihues() }}
 
+<span v-for="h in aihues()" :style="{ color: hsl(h)}">⬤</span>
+
 ~~~
 `;
 
@@ -175,6 +186,10 @@ Maps Adobe Illustrator color wheel hue value (RBY color system), to HSL hue valu
 ~~~live
 
 {{ ai2hue(180) }}
+
+<span v-for="h in aihues()" :style="{ color: hsl(h)}">⬤</span>
+
+<span v-for="h in aihues()" :style="{ color: hsl(ai2hue(h))}">⬤</span>
 
 ~~~
 
@@ -199,6 +214,10 @@ Maps HSL hue value to Adobe Illustrator color wheel hue value (RBY color system)
 ~~~live
 
 {{ hue2ai(180) }}
+
+<span v-for="h in range(0,360,360/12)" :style="{ color: hsl(h)}">⬤</span>
+
+<span v-for="h in range(0,360,360/12)" :style="{ color: hsl(hue2ai(h))}">⬤</span>
 
 ~~~
 
@@ -238,6 +257,8 @@ Return array of color names used in the framework.
 ~~~live
 
 {{ colors() }}
+
+<span v-for="c in colors()" :style="{ color: color(c)}">⬤</span>
 
 ~~~
 
