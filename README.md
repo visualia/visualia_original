@@ -325,6 +325,10 @@ The true power of the framework emerges when math is combined with live variable
 
 ## Media
 
+### Image
+
+`<v-image />`
+
 Displays an image.
 
 ```live
@@ -333,11 +337,19 @@ Displays an image.
 
 ```
 
-<!--- <v-image component="VImage" /> --->
+<!--- <v-props component="VImage" /> --->
 
-### Animate
+### Video
 
-`<v-animate />`
+`<v-video />`
+
+```live
+
+<v-video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+
+```
+
+<!--- <v-props component="VVideo" /> --->
 
 ---
 
