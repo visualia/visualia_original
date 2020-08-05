@@ -341,6 +341,10 @@ The true power of the framework emerges when math is combined with live variable
 
 <!--- <v-utils type="string" /> --->
 
+### Color
+
+<!--- <v-utils type="color" /> --->
+
 ---
 
 ## Integrations

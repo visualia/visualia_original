@@ -7,7 +7,9 @@ import copy from "rollup-plugin-copy";
 
 const deps = [
   "anime",
+  "chroma",
   "d3-color",
+  "d3-scale",
   "d3-shape",
   "katex",
   "marked",
