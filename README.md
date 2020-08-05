@@ -775,3 +775,138 @@ node test
 #### Run CI tests
 
 Command-line tests run on each commit to Github repository, there is a Github action in [/.github/actions](./.github/actions).
+
+### Migration
+
+If you are Fachwerk framework user (spiritual ancestor of the Visualia), here's the migration status of components and helper functions
+
+#### Components
+
+| Fachwerk component | Visualia component          |
+| ------------------ | --------------------------- |
+| f-image            | v-image                     |
+| f-video            | v-video                     |
+| f-table            | v-table                     |
+| f-sidebar          | -                           |
+| f-notes            | -                           |
+| f-embed            | -                           |
+| f-card             | -                           |
+| f-link             | -                           |
+| f-next-button      | -                           |
+| f-prev-button      | -                           |
+| f-scene            | v-scene + f-group           |
+| f-artboard         | v-scene                     |
+| f-grid             | -                           |
+| -                  | v-pointgrid                 |
+| f-polargrid        | -                           |
+| f-axis             | -                           |
+| f-point            | v-point                     |
+| f-line             | v-line                      |
+| f-circle           | v-circle                    |
+| f-arc              | -                           |
+| f-box              | v-square                    |
+| f-triangle         | -                           |
+| f-hexagon          | v-hexagon                   |
+| f-polygon          | v-polygon                   |
+| f-regularpolygon   | v-regularpolygon            |
+| f-roundedpolygon   | -                           |
+| f-group            | v-group                     |
+| f-text             | -                           |
+| f-rotation         | -                           |
+| f-\*-pattern       | -                           |
+| f-\*mirror         | -                           |
+| f-canvas           | v-scene type="canvas"       |
+| f-pixel            | v-rect width="1" height="1" |
+| f-pixels           | -                           |
+| f-scene3           | v-scene type="three,wegbl"  |
+| f-grid3            | -                           |
+| f-axis3            | -                           |
+| f-point3           | v-point                     |
+| f-triangle3        | -                           |
+| f-line3            | v-line                      |
+| f-circle3          | v-circle                    |
+| f-box3             | -                           |
+| f-polygon3         | v-polygon                   |
+| f-regularpolygon3  | v-regularpolygon            |
+| f-hedron3          | -                           |
+| f-polyhedron3      | -                           |
+| f-lathe3           | -                           |
+| f-extrude          | -                           |
+| f-group3           | v-group                     |
+| f-rotation3        | -                           |
+| f-\*-pattern3      | -                           |
+| f-value            | -                           |
+| f-slider           | v-slider                    |
+| f-animation        | v-animate                   |
+| f-toggle           | -                           |
+| f-buttons          | -                           |
+| f-keyboard         | -                           |
+| f-mouse            | -                           |
+| f-drag             | -                           |
+| f-math             | v-math                      |
+| f-array            | -                           |
+| f-buffer           | -                           |
+| f-fetch            | -                           |
+| f-sheet            | -                           |
+| f-websocket        | -                           |
+| f-aframe           | -                           |
+| f-aframe-button    | -                           |
+| f-\*-icon          | Only v-menu-icon            |
+
+<br />
+
+#### Helper functions
+
+| Fachwerk function | Visualia function             |
+| ----------------- | ----------------------------- |
+| a2hue()           | ✔                             |
+| aihues()          | ✔                             |
+| color()           | ✔                             |
+| colorblind()      | -                             |
+| colors()          | ✔                             |
+| colorscale()      | ✔                             |
+| contrast()        | -                             |
+| hsl2rgb()         | ✔                             |
+| hsl()             | ✔                             |
+| hue2ai()          | ✔                             |
+| rgb2hsl()         | ✔                             |
+| rgb()             | ✔                             |
+| distance()        | ✔                             |
+| linepoint()       | ✔ pointatline()               |
+| random()          | ✔, but outputs floating point |
+| range()           | ✔                             |
+| round()           | -                             |
+| scale()           | ✔                             |
+| trunc()           | ✔                             |
+| deg2rag()         | ✔                             |
+| polarpoints()     | ✔ circlepoints()              |
+| polarx()          | -                             |
+| polary()          | -                             |
+| polarxy()         | ✔ circlexy()                  |
+| rad2deg()         | ✔                             |
+| -                 | pi()                          |
+| camelcase()       | ✔                             |
+| join()            | ✔                             |
+| kebabcase()       | ✔                             |
+| shorten()         | ✔                             |
+| slug()            | ✔                             |
+| titlecase()       | ✔                             |
+| any()             | ✔                             |
+| array2object()    | -, use Object.fromEntries()   |
+| chunk()           | ✔                             |
+| flatten           | -, use Array.flat()           |
+| intersection()    | ✔                             |
+| isarray()         | ✔                             |
+| -                 | isobject()                    |
+| -                 | isnumber()                    |
+| -                 | isstring()                    |
+| -                 | isboolean()                   |
+| shuffle()         | ✔                             |
+| unique()          | ✔                             |
+| chord()           | -                             |
+| chords()          | -                             |
+| octave()          | -                             |
+| debounce()        | -                             |
+| isimageurl()      | -                             |
+| log()             | -                             |
+| randomid()        | -                             |
