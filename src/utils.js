@@ -1,4 +1,5 @@
 export * from "./utils/array.js";
+export * from "./utils/color.js";
 export * from "./utils/css.js";
 export * from "./utils/error.js";
 export * from "./utils/events.js";

@@ -5,8 +5,9 @@ import * as array from "../utils/array.js";
 import * as string from "../utils/string.js";
 import * as math from "../utils/math.js";
 import * as trig from "../utils/trig.js";
+import * as color from "../utils/color.js";
 
-const utils = { array, string, math, trig };
+const utils = { array, string, math, trig, color };
 
 export default {
   props: {
