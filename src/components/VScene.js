@@ -47,11 +47,11 @@ export default {
       suggest: "",
     },
     rotation: {
-      ...transformThreeProps.position,
+      ...transformThreeProps.rotation,
       suggest: "",
     },
     scale: {
-      ...transformThreeProps.position,
+      ...transformThreeProps.scale,
       suggest: "",
     },
   },
