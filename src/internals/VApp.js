@@ -31,9 +31,7 @@ export default {
     const setSectionTitle = (section, i) => {
       if (!section.title) {
         section.title =
-          section.menu && section.menu[0]
-            ? section.menu[0].text
-            : `Section ${i + 1}`;
+          section.menu && section.menu[0] ? section.menu[0].text : "";
       }
       return section;
     };

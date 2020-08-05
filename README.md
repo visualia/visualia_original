@@ -234,6 +234,24 @@ Displays a 3D sphere
 
 ---
 
+## Grids and patterns
+
+### Pointgrid
+
+`<v-pointgrid />`
+
+Displays a grid made of points.
+
+```live pointgrid
+<v-scene>
+  <v-pointgrid />
+</v-scene>
+```
+
+<!--- <v-props component="VPointgrid" /> --->
+
+---
+
 ## Live variables
 
 Visualia supports live variables to create dynamic experiences, you can `set` and `get` the variables anywhere inside the content.
@@ -374,6 +392,10 @@ Displays an image.
 ### Color
 
 <!--- <v-utils type="color" /> --->
+
+### Grids and patterns
+
+<!--- <v-utils type="points" /> --->
 
 ---
 

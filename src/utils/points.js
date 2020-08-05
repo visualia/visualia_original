@@ -3,6 +3,18 @@ import { circlexy, array } from "../utils.js";
 export const circlepoints = (count = 6, radius = 10) =>
   array(count).map((_, i) => [...circlexy((360 / count) * i, radius), 0]);
 
+export const docs_circlepoints = `
+
+\`circlepoints(count = 6, radius = 10)\`
+
+~~~live
+
+{{ circlepoints() }}
+
+~~~
+
+`;
+
 export const gridpoints = (count = 20, step = 10) => {
   let arr = [];
   for (let y = 0; y < count; y++) {
@@ -12,3 +24,15 @@ export const gridpoints = (count = 20, step = 10) => {
   }
   return arr;
 };
+
+export const docs_gridpoints = `
+
+\`gridpoints(count = 20, step = 10)\`
+
+~~~live
+
+{{ gridpoints() }}
+
+~~~
+
+`;
