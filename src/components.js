@@ -2,6 +2,7 @@ export { default as VAnimate } from "./components/VAnimate.js";
 export { default as VCircle } from "./components/VCircle.js";
 export { default as VGroup } from "./components/VGroup.js";
 export { default as VHexagon } from "./components/VHexagon.js";
+export { default as VImage } from "./components/VImage.js";
 export { default as VLine } from "./components/VLine.js";
 export { default as VLive } from "./components/VLive.js";
 export { default as VMath } from "./components/VMath.js";

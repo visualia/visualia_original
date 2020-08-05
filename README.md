@@ -323,6 +323,24 @@ The true power of the framework emerges when math is combined with live variable
 
 ---
 
+## Media
+
+Displays an image.
+
+```live
+
+<v-image src="https://www.nme.com/wp-content/uploads/2017/07/RICK_ROLL.jpg">
+
+```
+
+<!--- <v-image component="VImage" /> --->
+
+### Animate
+
+`<v-animate />`
+
+---
+
 ## Helper functions
 
 ### Math
