@@ -232,6 +232,20 @@ Displays a 3D sphere
 
 <!--- <v-props component="VSphere" /> --->
 
+### Text
+
+`<v-text />`
+
+Displays text
+
+```live text
+<v-scene>
+  <v-text position="100 100">Hello</v-text>
+</v-scene>
+```
+
+<!--- <v-props component="VText" /> --->
+
 ---
 
 ## Grids and patterns
