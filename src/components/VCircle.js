@@ -1,5 +1,6 @@
 import { h, inject } from "../../dist/deps/vue.js";
 
+import VScene from "./VScene.js";
 import VCircleSvg from "./VCircleSvg.js";
 import VCircleCanvas from "./VCircleCanvas.js";
 import VCircleThree from "./VCircleThree.js";
@@ -29,8 +30,8 @@ export default {
     };
     const sceneContext = inject("sceneContext");
     return () =>
-      modes[sceneContext.mode.value]
+      sceneContext
         ? h(modes[sceneContext.mode.value], props, slots)
-        : null;
+        : h(VScene, h(modes.svg, props, slots));
   },
 };
