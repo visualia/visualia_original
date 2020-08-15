@@ -5,6 +5,7 @@ import {
   Suspense,
 } from "../../dist/deps/vue.js";
 
+import VScene from "./VScene.js";
 import VLineSvg from "./VLineSvg.js";
 import VLineCanvas from "./VLineCanvas.js";
 import VLineThree from "./VLineThree.js";
@@ -28,6 +29,9 @@ export default {
       pdf: VLinePdf,
     };
     const sceneContext = inject("sceneContext");
-    return () => h(modes[sceneContext.mode.value], props, slots);
+    return () =>
+      sceneContext
+        ? h(modes[sceneContext.mode.value], props, slots)
+        : h(VScene, h(modes.svg, props, slots));
   },
 };

@@ -16,11 +16,11 @@ import {
   sizeProps,
 } from "../internals.js";
 
-export const VSceneThreeSvg = (props, context) =>
-  h(VSceneThree, { ...props, renderer: "svg" }, context.slots);
+export const VSceneThreeSvg = (props, { slots }) =>
+  h(VSceneThree, { ...props, renderer: "svg" }, slots);
 
-export const VSceneThreeWebgl = (props, context) =>
-  h(VSceneThree, { ...props, renderer: "webgl" }, context.slots);
+export const VSceneThreeWebgl = (props, { slots }) =>
+  h(VSceneThree, { ...props, renderer: "webgl" }, slots);
 
 const modes = ["svg", "canvas", "three", "webgl", "pdf"];
 
@@ -55,7 +55,7 @@ export default {
       suggest: "",
     },
   },
-  setup(props, context) {
+  setup(props, { slots }) {
     const modes = {
       svg: VSceneSvg,
       canvas: VSceneCanvas,
@@ -67,6 +67,6 @@ export default {
     const { position, rotation, scale } = getThreeTransform(props);
     provide("sceneContext", { mode, transform: { position, rotation, scale } });
 
-    return () => h(modes[mode.value], { ...props }, context.slots);
+    return () => h(modes[mode.value], props, slots);
   },
 };

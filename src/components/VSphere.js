@@ -1,5 +1,6 @@
 import { h, inject } from "../../dist/deps/vue.js";
 
+import VScene from "./VScene.js";
 import { VSphereThree } from "./VSphereThree.js";
 
 import { stylingProps, transformThreeProps } from "../internals.js";
@@ -31,8 +32,8 @@ export default {
     };
     const sceneContext = inject("sceneContext");
     return () =>
-      modes[sceneContext.mode.value]
+      sceneContext
         ? h(modes[sceneContext.mode.value], { ...props }, slots)
-        : null;
+        : h(VScene, { mode: "three" }, h(modes.three, props, slots));
   },
 };
