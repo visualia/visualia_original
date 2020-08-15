@@ -49,7 +49,11 @@ visualia();
 ```live index
 # Hello
 
-Welcome to Visualia. Edit me!
+<v-slider set="a" />
+
+r is {{ get('a') }}
+
+<v-circle :r="get('a')" />
 ```
 
 ### Configuration options
@@ -99,9 +103,7 @@ First you need to add a _scene_ to the document, an area where graphics componen
 Displays a point.
 
 ```live point
-<v-scene>
-  <v-point position="100 100" />
-</v-scene>
+<v-point position="100 100" />
 ```
 
 <!--- <v-props component="VPoint" /> --->
@@ -113,9 +115,7 @@ Displays a point.
 Displays a line.
 
 ```live line
-<v-scene>
-  <v-line points="50 50, 150 150, 150 50" />
-</v-scene>
+<v-line points="50 50, 150 150, 150 50" />
 ```
 
 <!--- <v-props component="VLine" /> --->
@@ -127,9 +127,7 @@ Displays a line.
 Displays a polygon.
 
 ```live polygon
-<v-scene>
-  <v-polygon points="50 50, 150 150, 150 50" />
-</v-scene>
+<v-polygon points="50 50, 150 150, 150 50" />
 ```
 
 <!--- <v-props component="VPolygon" /> --->
@@ -141,13 +139,11 @@ Displays a polygon.
 Displays a regular polygon.
 
 ```live regularpolygon
-<v-scene>
-  <v-regularpolygon
-    count="5"
-    r="50"
-    position="100 100"
-  />
-</v-scene>
+<v-regularpolygon
+  count="5"
+  r="50"
+  position="100 100"
+/>
 ```
 
 <!--- <v-props component="VRegularpolygon" /> --->
@@ -159,12 +155,10 @@ Displays a regular polygon.
 Displays a hexagon.
 
 ```live hexagon
-<v-scene>
-  <v-hexagon
-    r="50"
-    position="100 100"
-  />
-</v-scene>
+<v-hexagon
+  r="50"
+  position="100 100"
+/>
 ```
 
 <!--- <v-props component="VHexagon" /> --->
@@ -176,10 +170,8 @@ Displays a hexagon.
 Displays a 2D rectangle.
 
 ```live rect
-<v-scene>
-  <v-rect position="100 100" width="50" height="50" />
-  <v-point position="100 100" fill="red" />
-</v-scene>
+<v-rect position="100 100" width="50" height="50" />
+<v-point position="100 100" fill="red" />
 ```
 
 <!--- <v-props component="VRect" /> --->
@@ -191,10 +183,8 @@ Displays a 2D rectangle.
 Displays a 2D square.
 
 ```live square
-<v-scene>
-  <v-square position="100 100" r="25" />
-  <v-point position="100 100" fill="red" />
-</v-scene>
+<v-square position="100 100" r="25" />
+<v-point position="100 100" fill="red" />
 ```
 
 <!--- <v-props component="VSquare" /> --->
@@ -206,9 +196,7 @@ Displays a 2D square.
 Displays a 2D circle.
 
 ```live circle
-<v-scene>
-  <v-circle position="100 100" r="50" />
-</v-scene>
+<v-circle position="100 100" r="50" />
 ```
 
 <!--- <v-props component="VCircle" /> --->
@@ -220,14 +208,12 @@ Displays a 2D circle.
 Displays a 3D sphere
 
 ```live sphere
-<v-scene mode="three" isometric>
-  <v-sphere
-    r="50"
-    position="100 100"
-    rotation="60 0 0"
-    segments="32"
-  />
-</v-scene>
+<v-sphere
+  r="50"
+  position="100 100"
+  rotation="0 0 0"
+  segments="32"
+/>
 ```
 
 <!--- <v-props component="VSphere" /> --->
