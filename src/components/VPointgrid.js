@@ -27,11 +27,13 @@ export default {
     return { points };
   },
   template: `
+  <v-group>
     <v-point
       v-for="point in points"
       r="0.5"
       fill="gray"
       :position="point"
-  />
+    />
+  </v-group>
   `,
 };
