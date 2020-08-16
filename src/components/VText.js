@@ -4,7 +4,6 @@ import { stylingProps, transformTwoProps, textProps } from "../internals.js";
 
 import VScene from "./VScene.js";
 import VTextSvg from "./VTextSvg.js";
-import VTextCanvas from "./VTextCanvas.js";
 
 export default {
   docs: `Outputs texts`,
@@ -18,10 +17,9 @@ export default {
   setup(props, { slots }) {
     const modes = {
       svg: VTextSvg,
-      canvas: VTextCanvas,
+      canvas: null,
       three: null,
       webgl: null,
-      pdf: null,
       pdf: null,
     };
     const sceneContext = inject("sceneContext");
