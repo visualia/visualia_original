@@ -1,10 +1,12 @@
 import { visualia } from "../dist/visualia.js";
 
-visualia();
+//visualia();
 
-// const content = `
-// <v-scene mode="canvas">
-//   <v-text position="50 50">Hello world</v-text>
-// </v-scene>
-// `
-// visualia({ content });
+const content = `
+<v-scene v-for="m in ['svg','canvas']" :mode="m">
+  <v-point position="0 0" fill="red" r="3" />
+  <v-text position="10 10">Helloo</v-text>
+  <v-point position="10 10" />
+</v-scene>
+`;
+visualia({ content });

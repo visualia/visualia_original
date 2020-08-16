@@ -1,6 +1,8 @@
 import { h, inject } from "../../dist/deps/vue.js";
 
 import { stylingProps, transformTwoProps, textProps } from "../internals.js";
+
+import VScene from "./VScene.js";
 import VTextSvg from "./VTextSvg.js";
 import VTextCanvas from "./VTextCanvas.js";
 
@@ -20,11 +22,12 @@ export default {
       three: null,
       webgl: null,
       pdf: null,
+      pdf: null,
     };
     const sceneContext = inject("sceneContext");
     return () =>
-      modes[sceneContext.mode.value]
+      sceneContext
         ? h(modes[sceneContext.mode.value], props, slots)
-        : null;
+        : h(VScene, h(modes.svg, props, slots));
   },
 };
