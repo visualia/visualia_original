@@ -5,12 +5,17 @@ import {
   defineAsyncComponent,
 } from "../../dist/deps/vue.js";
 
+import VScene from "./VScene.js";
 import VRectSvg from "./VRectSvg.js";
 import VRectCanvas from "./VRectCanvas.js";
 import VRectThree from "./VRectThree.js";
 import VRectPdf from "./VRectPdf.js";
 
-import { stylingProps, sizeProps, transformTwoProps } from "../internals.js";
+import {
+  stylingProps,
+  rectSizeProps,
+  transformTwoProps,
+} from "../internals.js";
 
 export default {
   docs: `Creates a rectangle`,
@@ -27,7 +32,7 @@ export default {
       type: [String, Number],
       docs: "Rectangle top left corner y coordinate",
     },
-    ...sizeProps,
+    ...rectSizeProps,
     ...stylingProps,
     ...transformTwoProps,
   },
@@ -41,8 +46,8 @@ export default {
     };
     const sceneContext = inject("sceneContext");
     return () =>
-      modes[sceneContext.mode.value]
+      sceneContext
         ? h(modes[sceneContext.mode.value], props, slots)
-        : null;
+        : h(VScene, h(modes.svg, props, slots));
   },
 };
