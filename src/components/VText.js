@@ -2,6 +2,7 @@ import { h, inject } from "../../dist/deps/vue.js";
 
 import { stylingProps, transformTwoProps, textProps } from "../internals.js";
 import VTextSvg from "./VTextSvg.js";
+import VTextCanvas from "./VTextCanvas.js";
 
 export default {
   docs: `Outputs texts`,
@@ -15,7 +16,7 @@ export default {
   setup(props, { slots }) {
     const modes = {
       svg: VTextSvg,
-      canvas: null,
+      canvas: VTextCanvas,
       three: null,
       webgl: null,
       pdf: null,

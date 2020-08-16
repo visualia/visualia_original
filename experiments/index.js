@@ -1,8 +1,10 @@
 import { visualia } from "../dist/visualia.js";
-const content = `
 
-<v-scene>
-  <v-text position="100 100">Aa</v-text>
-</v-scene>
-`;
-visualia({ content });
+visualia();
+
+// const content = `
+// <v-scene mode="canvas">
+//   <v-text position="50 50">Hello world</v-text>
+// </v-scene>
+// `
+// visualia({ content });
