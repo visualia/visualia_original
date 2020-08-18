@@ -218,6 +218,18 @@ Displays a 3D sphere
 
 <!--- <v-props component="VSphere" /> --->
 
+### Text
+
+`<v-text />`
+
+Displays text
+
+```live text
+<v-text position="100 100">Hello</v-text>
+```
+
+<!--- <v-props component="VText" /> --->
+
 ---
 
 ## Grids and patterns
@@ -780,7 +792,7 @@ If you are Fachwerk framework user (spiritual ancestor of the Visualia), here's 
 | f-link             | -                           |
 | f-next-button      | -                           |
 | f-prev-button      | -                           |
-| f-scene            | v-scene + f-group           |
+| f-scene            | v-scene + v-group           |
 | f-artboard         | v-scene                     |
 | f-grid             | -                           |
 | -                  | v-pointgrid                 |
@@ -797,7 +809,7 @@ If you are Fachwerk framework user (spiritual ancestor of the Visualia), here's 
 | f-regularpolygon   | v-regularpolygon            |
 | f-roundedpolygon   | -                           |
 | f-group            | v-group                     |
-| f-text             | -                           |
+| f-text             | v-text, only svg mode       |
 | f-rotation         | -                           |
 | f-\*-pattern       | -                           |
 | f-\*mirror         | -                           |

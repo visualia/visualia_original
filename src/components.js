@@ -16,8 +16,9 @@ export { default as VSlider } from "./components/VSlider.js";
 export { default as VSphere } from "./components/VSphere.js";
 export { default as VSquare } from "./components/VSquare.js";
 export { default as VTable } from "./components/VTable.js";
+export { default as VText } from "./components/VText.js";
 export { default as VVideo } from "./components/VVideo.js";
 
 export { default as VHeading } from "./components/VHeading.js";
 
-export const componentsWithChildren = ["VMath", "VScene", "VGroup"];
+export const componentsWithChildren = ["VMath", "VScene", "VGroup", "VText"];

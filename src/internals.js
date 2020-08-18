@@ -9,6 +9,7 @@ export * from "./internals/regular.js";
 export * from "./internals/router.js";
 export * from "./internals/size.js";
 export * from "./internals/styling.js";
+export * from "./internals/text.js";
 export * from "./internals/transform.js";
 
 export { default as VMenu } from "./internals/VMenu.js";
