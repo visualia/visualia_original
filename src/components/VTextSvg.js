@@ -11,6 +11,7 @@ export default {
     fill: { ...stylingProps.fill, default: "black" },
     stroke: { ...stylingProps.stroke, default: "none" },
     strokeWidth: { ...stylingProps.strokeWidth, default: 0 },
+    // TODO: Aligning by baseline hides the text with default props
     ...transformTwoProps,
     ...textProps,
   },
