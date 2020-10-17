@@ -33,6 +33,6 @@
     "build:deps": "rollup -c rollup.deps.config.js",
     "build:lib": "rollup -c rollup.lib.config.js",
     "build": "npm run build:deps && npm run build:lib",
-    "release": "release-it"
+    "release": "release-it --dry-run"
   }
 }
