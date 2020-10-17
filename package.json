@@ -38,6 +38,7 @@
   },
   "release-it": {
     "git": {
+      "changelog": "",
       "push": false
     }
   }
