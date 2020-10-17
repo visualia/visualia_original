@@ -1,5 +1,5 @@
 {
-  "name": "@visualia/visualia",
+  "name": "visualia",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/visualia.js",
