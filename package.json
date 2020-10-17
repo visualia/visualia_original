@@ -33,7 +33,12 @@
     "build:deps": "rollup -c rollup.deps.config.js",
     "build:lib": "rollup -c rollup.lib.config.js",
     "build": "npm run build:deps && npm run build:lib",
-    "release:dry": "release-it --dry-run",
-    "release": "release-it"
+    "release:dry": "release-it --dry-run --disable-metrics",
+    "release": "release-it --disable-metrics"
+  },
+  "release-it": {
+    "git": {
+      "changelog": ""
+    }
   }
 }
