@@ -32,7 +32,13 @@ export default {
     }"
     :id="id"
   >
-    <div v-for="cell in content.content">
+    <div
+      v-for="(cell,i) in content.content"
+      :style="{
+        gridArea: 'a' + (i + 1), 
+        border: content.debug ? '1px solid red' : ''
+      }"
+    >
       <suspense>
         <template #default>
           <v-compiler :content="cell" />
