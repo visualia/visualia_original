@@ -10,9 +10,17 @@ https://github.com/visualia/visualia
 
 ![](https://github.com/visualia/visualia/workflows/Test/badge.svg)
 
-## Getting started
+## Quickstart
 
 > The quickest way to try out Visualia is play with experimental [Visualia editor](https://visualia.github.io/visualia/editor/). Just type <kbd>v</kbd> in the editor.
+
+> You can also try our [CodeSandbox starter](https://codesandbox.io/s/github/visualia/visualia_example_basic?file=/index.md)
+
+> There is also a [sample Github project](https://github.com/visualia/visualia_example_basic) that you can [clone](https://github.com/visualia/visualia_example_basic/generate) or [download](https://github.com/visualia/visualia_example_basic/archive/master.zip).
+
+## Manual startup
+
+### Setting up the files
 
 To get started in your local machine, you will need to create three files: `index.md` for Markdown, `index.js` for Javascript and `index.html` for HTML.
 
