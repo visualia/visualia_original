@@ -154,9 +154,9 @@ export const useThreeTransform = (props, object) => {
     () => props.position,
     () => {
       const { position } = getThreeTransform(props);
-      object.position.x += position[0];
-      object.position.y += position[1];
-      object.position.z += position[2];
+      object.position.x = position[0];
+      object.position.y = position[1];
+      object.position.z = position[2];
     },
     { immediate: true }
   );
@@ -165,9 +165,9 @@ export const useThreeTransform = (props, object) => {
     () => props.rotation,
     () => {
       const { rotation } = getThreeTransform(props);
-      object.rotation.x += deg2rad(rotation[0]);
-      object.rotation.y += deg2rad(rotation[1]);
-      object.rotation.z += deg2rad(rotation[2]);
+      object.rotation.x = deg2rad(rotation[0]);
+      object.rotation.y = deg2rad(rotation[1]);
+      object.rotation.z = deg2rad(rotation[2]);
     },
     { immediate: true }
   );
@@ -176,9 +176,9 @@ export const useThreeTransform = (props, object) => {
     () => props.scale,
     () => {
       const { scale } = getThreeTransform(props);
-      object.scale.x *= scale[0];
-      object.scale.y *= scale[1];
-      object.scale.z *= scale[2];
+      object.scale.x = scale[0];
+      object.scale.y = scale[1];
+      object.scale.z = scale[2];
     },
     { immediate: true }
   );

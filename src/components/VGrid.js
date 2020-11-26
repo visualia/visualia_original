@@ -17,18 +17,17 @@ export default {
         } else if (changedSlots[0].children) {
           colCount.value = changedSlots[0].children.length;
         }
-        console.log(changedSlots);
       },
       { immediate: true }
     );
     return { colCount };
   },
-  // TODO: rethink grid-auto-rows
   template: `
+  {{ colCount }}
   <div
     style="
       display: grid;
-      grid-auto-rows: max-content;
+      grid-gap: var(--base2);
     "
     :style="{
       gridTemplateColumns: 'repeat(' + colCount + ', 1fr)',
