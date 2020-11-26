@@ -55,11 +55,15 @@ export default {
       const strokeObject = new LineSegments(edges, stroke.value);
       group.add(strokeObject);
     }
-    group.position.x = props.width / 2 + props.x;
-    group.position.y = props.height / 2 + props.y;
-    sceneContext.scene.add(group);
 
-    useThreeTransform(props, group);
+    group.position.x = props.x + props.width / 2;
+    group.position.y = props.y + props.height / 2;
+
+    const outerGroup = new Group();
+    outerGroup.add(group);
+
+    sceneContext.scene.add(outerGroup);
+    useThreeTransform(props, outerGroup);
 
     return () => null;
   },
