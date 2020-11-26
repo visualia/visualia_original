@@ -23,7 +23,6 @@ export default {
     return { colCount };
   },
   template: `
-  {{ colCount }}
   <div
     style="
       display: grid;

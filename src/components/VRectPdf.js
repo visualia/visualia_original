@@ -3,7 +3,6 @@ import {
   stylingProps,
   sizeProps,
   transformTwoProps,
-  parseCoords,
   stylingPdf,
   combineTransforms,
 } from "../internals.js";
@@ -30,21 +29,22 @@ export default {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
-    const [posX, posY] = parseCoords(props.position)[0];
     const styles = stylingPdf(props);
 
     if (sceneContext.pdf.value) {
+      // Get the first and the only page of the PDF
       const page = sceneContext.pdf.value.getPages()[0];
       const { position } = combineTransforms(sceneContext.transform, props);
       page.drawRectangle({
         ...styles,
-        x: props.x + posX + position[0],
-        y: page.getHeight() - props.y - props.height - posY - position[1],
+        x: props.x + position[0],
+        y: page.getHeight() - props.y - props.height - position[1],
         width: toNumber(props.width),
         height: toNumber(props.height),
       });
       sceneContext.update();
     }
+
     return () => null;
   },
 };
