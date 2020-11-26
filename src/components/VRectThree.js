@@ -34,7 +34,7 @@ export default {
     },
     ...sizeProps,
     ...stylingProps,
-    ...transformTwoProps,
+    ...transformThreeProps,
   },
   setup(props) {
     const sceneContext = inject("sceneContext");

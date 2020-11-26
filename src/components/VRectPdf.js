@@ -2,7 +2,7 @@ import { inject } from "../../dist/deps/vue.js";
 import {
   stylingProps,
   sizeProps,
-  transformTwoProps,
+  transformThreeProps,
   stylingPdf,
   combineTransforms,
 } from "../internals.js";
@@ -24,7 +24,7 @@ export default {
     },
     ...sizeProps,
     ...stylingProps,
-    ...transformTwoProps,
+    ...transformThreeProps,
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -34,13 +34,17 @@ export default {
     if (sceneContext.pdf.value) {
       // Get the first and the only page of the PDF
       const page = sceneContext.pdf.value.getPages()[0];
-      const { position } = combineTransforms(sceneContext.transform, props);
+      const { position, rotation } = combineTransforms(
+        sceneContext.transform,
+        props
+      );
       page.drawRectangle({
         ...styles,
         x: props.x + position[0],
         y: page.getHeight() - props.y - props.height - position[1],
         width: toNumber(props.width),
         height: toNumber(props.height),
+        rotate: { type: "degrees", angle: rotation[0] },
       });
       sceneContext.update();
     }

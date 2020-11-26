@@ -1,4 +1,4 @@
-import { stylingProps, transformTwoProps } from "../internals.js";
+import { stylingProps, transformThreeProps } from "../internals.js";
 
 export default {
   docs: `Creates a square`,
@@ -10,7 +10,7 @@ export default {
       docs: "Square radius (half of the width)",
     },
     ...stylingProps,
-    ...transformTwoProps,
+    ...transformThreeProps,
   },
   template: `
   <v-rect
