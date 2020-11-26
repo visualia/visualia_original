@@ -6,7 +6,7 @@ import {
   stylingPdf,
   combineTransforms,
 } from "../internals.js";
-import { toNumber } from "../utils.js";
+import { toNumber, deg2rad } from "../utils.js";
 
 export default {
   props: {
@@ -39,13 +39,28 @@ export default {
         props
       );
       // https://github.com/Hopding/pdf-lib/issues/572
+      const width = toNumber(props.width);
+      const height = toNumber(props.height);
+      const centerX = props.x + position[0] + width / 2;
+      const centerY =
+        page.getHeight() - props.y - props.height - position[1] + height / 2;
+      const alpha = deg2rad(rotation[2]);
+      const x =
+        centerX -
+        (width / 2) * Math.cos(alpha) -
+        (height / 2) * Math.sin(alpha);
+      const y =
+        centerY -
+        (height / 2) * Math.cos(alpha) +
+        (width / 2) * Math.sin(alpha);
+
       page.drawRectangle({
-        ...styles,
-        x: props.x + position[0],
-        y: page.getHeight() - props.y - props.height - position[1],
-        width: toNumber(props.width),
-        height: toNumber(props.height),
+        x,
+        y,
+        width,
+        height,
         rotate: { type: "degrees", angle: 360 - rotation[2] },
+        ...styles,
       });
       sceneContext.update();
     }

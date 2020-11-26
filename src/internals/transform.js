@@ -68,9 +68,9 @@ export const getThreeTransform = (props) => {
 
 export const useSvgTransform = (props) => {
   return computed(() => {
-    const { position, rotation, scale } = getTwoTransform(props);
+    const { position, rotation, scale } = getThreeTransform(props);
     const positionStr = `translate(${position[0]} ${position[1]})`;
-    const rotationStr = `rotate(${rotation[0]})`;
+    const rotationStr = `rotate(${rotation[2]})`;
     const scaleStr = `scale(${scale[0]} ${scale[1]})`;
 
     return [positionStr, rotationStr, scaleStr].join(" ");
@@ -139,7 +139,7 @@ export const transformCanvas = (props, sceneContext) => {
     childTransform
   );
   sceneContext.ctx.value.translate(position[0], position[1]);
-  sceneContext.ctx.value.rotate(deg2rad(rotation[0]));
+  sceneContext.ctx.value.rotate(deg2rad(rotation[2]));
   sceneContext.ctx.value.scale(scale[0], scale[1]);
 };
 
