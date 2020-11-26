@@ -38,13 +38,14 @@ export default {
         sceneContext.transform,
         props
       );
+      // https://github.com/Hopding/pdf-lib/issues/572
       page.drawRectangle({
         ...styles,
         x: props.x + position[0],
         y: page.getHeight() - props.y - props.height - position[1],
         width: toNumber(props.width),
         height: toNumber(props.height),
-        rotate: { type: "degrees", angle: rotation[0] },
+        rotate: { type: "degrees", angle: 360 - rotation[2] },
       });
       sceneContext.update();
     }
