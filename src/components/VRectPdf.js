@@ -35,13 +35,14 @@ export default {
     if (sceneContext.pdf.value) {
       // Get the first and the only page of the PDF
       const page = sceneContext.pdf.value.getPages()[0];
-      const { position, rotation } = combineTransforms(
+      const { position, rotation, scale } = combineTransforms(
         sceneContext.transform,
         getThreeTransform(props)
       );
       // https://github.com/Hopding/pdf-lib/issues/572
-      const width = toNumber(props.width);
-      const height = toNumber(props.height);
+      // TODO: getSize[FromProps](props)
+      const width = toNumber(props.width) * scale[0];
+      const height = toNumber(props.height) * scale[1];
       const centerX = props.x + position[0] + width / 2;
       const centerY =
         page.getHeight() - props.y - props.height - position[1] + height / 2;
