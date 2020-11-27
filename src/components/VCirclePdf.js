@@ -5,6 +5,7 @@ import {
   transformTwoProps,
   stylingPdf,
   combineTransforms,
+  getThreeTransform,
 } from "../internals.js";
 
 export default {
@@ -23,7 +24,10 @@ export default {
     const styles = stylingPdf(props);
     if (sceneContext.pdf.value) {
       const page = sceneContext.pdf.value.getPages()[0];
-      const { position } = combineTransforms(sceneContext.transform, props);
+      const { position } = combineTransforms(
+        sceneContext.transform,
+        getThreeTransform(props)
+      );
       page.drawCircle({
         ...styles,
         x: position[0],
