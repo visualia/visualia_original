@@ -10,12 +10,14 @@ export default {
     // We are watching the changes on the component
     // children and adjust colCount value accordingly
     watch(
-      () => slots.default(),
+      () => slots.default && slots.default(),
       (changedSlots) => {
-        if (changedSlots.length > 1) {
-          colCount.value = changedSlots.length;
-        } else if (changedSlots[0].children) {
-          colCount.value = changedSlots[0].children.length;
+        if (changedSlots) {
+          if (changedSlots.length > 1) {
+            colCount.value = changedSlots.length;
+          } else if (changedSlots[0].children) {
+            colCount.value = changedSlots[0].children.length;
+          }
         }
       },
       { immediate: true }
@@ -23,7 +25,7 @@ export default {
     return { colCount };
   },
   template: `
-  <div
+    <div
     style="
       display: grid;
       grid-gap: var(--base2);

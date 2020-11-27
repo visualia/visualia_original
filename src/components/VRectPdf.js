@@ -3,6 +3,7 @@ import {
   stylingProps,
   sizeProps,
   transformThreeProps,
+  getThreeTransform,
   stylingPdf,
   combineTransforms,
 } from "../internals.js";
@@ -36,7 +37,7 @@ export default {
       const page = sceneContext.pdf.value.getPages()[0];
       const { position, rotation } = combineTransforms(
         sceneContext.transform,
-        props
+        getThreeTransform(props)
       );
       // https://github.com/Hopding/pdf-lib/issues/572
       const width = toNumber(props.width);
