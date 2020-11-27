@@ -133,7 +133,7 @@ export const combineTransforms = (t1, t2) => {
 
 export const transformCanvas = (props, sceneContext) => {
   const parentTransform = sceneContext.transform;
-  const childTransform = getTwoTransform(props);
+  const childTransform = getThreeTransform(props);
   const { position, rotation, scale } = combineTransforms(
     parentTransform,
     childTransform
