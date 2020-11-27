@@ -41,24 +41,27 @@ export default {
       );
       // https://github.com/Hopding/pdf-lib/issues/572
       // TODO: getSize[FromProps](props)
+      // See https://pdf-lib.js.org/docs/api/#const-rotateandskewtextdegreesandtranslate
+
       const width = toNumber(props.width) * scale[0];
       const height = toNumber(props.height) * scale[1];
-      const centerX = props.x + position[0] + width / 2;
-      const centerY =
-        page.getHeight() - props.y - props.height - position[1] + height / 2;
-      const alpha = deg2rad(rotation[2]);
-      const x =
-        centerX -
-        (width / 2) * Math.cos(alpha) -
-        (height / 2) * Math.sin(alpha);
-      const y =
-        centerY -
-        (height / 2) * Math.cos(alpha) +
-        (width / 2) * Math.sin(alpha);
+
+      // const centerX = props.x + position[0] + width / 2;
+      // const centerY =
+      //   page.getHeight() - props.y - props.height - position[1] + height / 2;
+      // const alpha = deg2rad(rotation[2]);
+      // const x =
+      //   centerX -
+      //   (width / 2) * Math.cos(alpha) -
+      //   (height / 2) * Math.sin(alpha);
+      // const y =
+      //   centerY -
+      //   (height / 2) * Math.cos(alpha) +
+      //   (width / 2) * Math.sin(alpha);
 
       page.drawRectangle({
-        x,
-        y,
+        x: props.x + position[0],
+        y: page.getHeight() - props.y - props.height - position[1],
         width,
         height,
         rotate: { type: "degrees", angle: 360 - rotation[2] },
