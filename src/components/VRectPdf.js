@@ -43,8 +43,8 @@ export default {
       // TODO: getSize[FromProps](props)
       // See https://pdf-lib.js.org/docs/api/#const-rotateandskewtextdegreesandtranslate
 
-      const width = toNumber(props.width) * scale[0];
-      const height = toNumber(props.height) * scale[1];
+      const width = toNumber(props.width); //* scale[0];
+      const height = toNumber(props.height); //* scale[1];
 
       // const centerX = props.x + position[0] + width / 2;
       // const centerY =
@@ -65,6 +65,7 @@ export default {
         width,
         height,
         rotate: { type: "degrees", angle: 360 - rotation[2] },
+        scale: scale[0],
         ...styles,
       });
       sceneContext.update();
