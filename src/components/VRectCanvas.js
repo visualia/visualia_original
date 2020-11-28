@@ -3,7 +3,7 @@ import { inject, watch } from "../../dist/deps/vue.js";
 import {
   stylingProps,
   sizeProps,
-  transformTwoProps,
+  transformThreeProps,
   stylingCanvas,
   transformCanvas,
   transformCanvasReset,
@@ -25,7 +25,7 @@ export default {
     },
     ...sizeProps,
     ...stylingProps,
-    ...transformTwoProps,
+    ...transformThreeProps,
   },
   setup(props) {
     const sceneContext = inject("sceneContext");

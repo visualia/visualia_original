@@ -53,7 +53,7 @@ export default {
         0.1,
         1000
       );
-      camera.position.z = width.value / 2.5;
+      camera.position.z = width.value / 2.38;
     }
 
     const renderer =
