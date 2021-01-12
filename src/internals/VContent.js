@@ -1,4 +1,4 @@
-import { Suspense, computed, provide } from "../../dist/deps/vue.js";
+import { Suspense, computed, provide } from "../../src/deps/vue.js";
 
 import { slug } from "../utils.js";
 

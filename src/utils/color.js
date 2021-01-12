@@ -1,5 +1,5 @@
-import { chroma } from "../../dist/deps/chroma.js";
-import { scaleLinear } from "../../dist/deps/d3-scale.js";
+import { chroma } from "../../src/deps/chroma.js";
+import { scaleLinear } from "../../src/deps/d3-scale.js";
 
 import { getCssVariable, range } from "../utils.js";
 

@@ -1,4 +1,4 @@
-import { inject } from "../../dist/deps/vue.js";
+import { inject } from "../../src/deps/vue.js";
 import { toNumber } from "../utils.js";
 import {
   Group,
@@ -6,7 +6,7 @@ import {
   Mesh,
   EdgesGeometry,
   LineSegments,
-} from "../../dist/deps/three.js";
+} from "../../src/deps/three.js";
 
 import {
   stylingProps,

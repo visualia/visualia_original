@@ -1,13 +1,13 @@
-import { computed, inject } from "../../dist/deps/vue.js";
+import { computed, inject } from "../../src/deps/vue.js";
 
 import {
   MeshPhongMaterial,
   MeshBasicMaterial,
   DoubleSide,
   LineBasicMaterial,
-} from "../../dist/deps/three.js";
+} from "../../src/deps/three.js";
 
-import { color } from "../../dist/deps/d3-color.js";
+import { color } from "../../src/deps/d3-color.js";
 
 import { toNumber, scale } from "../utils.js";
 

@@ -1,9 +1,6 @@
-import {
-  compileTemplate,
-  compile as compileRuntime,
-} from "../../dist/deps/vue.js";
+import { compileTemplate, compile as compileRuntime } from "../deps/vue.js";
 
-import { Renderer, parse } from "../../dist/deps/marked.js";
+import { Renderer, parse } from "../deps/marked.js";
 
 export const compileSource = (source) => {
   const errors = [];

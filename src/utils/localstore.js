@@ -1,4 +1,4 @@
-import { ref, computed } from "../../dist/deps/vue.js";
+import { ref, computed } from "../../src/deps/vue.js";
 
 export const useLocalstore = (initialValue = null, key = null) => {
   const value = ref(initialValue);

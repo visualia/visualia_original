@@ -1,4 +1,4 @@
-import { createApp, provide, ref } from "../../dist/deps/vue.js";
+import { createApp, provide, ref } from "../../src/deps/vue.js";
 
 import * as components from "../components.js";
 import * as internals from "../internals.js";

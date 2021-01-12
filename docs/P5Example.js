@@ -1,5 +1,5 @@
 import { get, set } from "../dist/visualia.js";
-import { ref, onMounted } from "../dist/deps/vue.js";
+import { ref, onMounted } from "../src/deps/vue.js";
 import p5 from "https://cdn.skypack.dev/pin/p5@v1.1.9-QZRc7UPZWx2v3Qaby8jl/min/p5.js";
 
 const sketch = (s) => {

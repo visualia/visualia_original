@@ -1,4 +1,4 @@
-import { ref, watch, computed } from "../../dist/deps/vue.js";
+import { ref, watch, computed } from "../../src/deps/vue.js";
 import { VSave, VTextarea, VContent, parseContent } from "../internals.js";
 
 export default {

@@ -1,5 +1,5 @@
 import { visualia } from "./dist/visualia.js";
-import { defineAsyncComponent } from "./dist/deps/vue.js";
+import { defineAsyncComponent } from "./src/deps/vue.js";
 import { VProps, VUtils } from "./src/internals.js";
 
 const P5Example = defineAsyncComponent(() => import("./docs/P5Example.js"));

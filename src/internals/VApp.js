@@ -1,4 +1,4 @@
-import { computed, inject } from "../../dist/deps/vue.js";
+import { computed, inject } from "../../src/deps/vue.js";
 
 import { slug, useSize } from "../utils.js";
 

@@ -1,5 +1,5 @@
-import { ref, onMounted } from "../../dist/deps/vue.js";
-import { ResizeObserver } from "../../dist/deps/resize-observer-polyfill.js";
+import { ref, onMounted } from "../../src/deps/vue.js";
+import { ResizeObserver } from "../../src/deps/resize-observer-polyfill.js";
 
 export const useSize = () => {
   const el = ref(null);

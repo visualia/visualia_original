@@ -3,7 +3,7 @@ import {
   h,
   provide,
   defineAsyncComponent,
-} from "../../dist/deps/vue.js";
+} from "../../src/deps/vue.js";
 
 import VSceneSvg from "./VSceneSvg.js";
 import VSceneCanvas from "./VSceneCanvas.js";

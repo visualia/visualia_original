@@ -1,2 +1,2 @@
-export { renderToString } from "katex";
-export * from "katex/dist/katex.min.css";
+export * from "katex";
+import "katex/dist/katex.css";

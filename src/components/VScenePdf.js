@@ -1,4 +1,4 @@
-import { inject, ref } from "../../dist/deps/vue.js";
+import { inject, ref } from "../../src/deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 
@@ -13,7 +13,7 @@ export default {
     const sceneContext = inject("sceneContext");
     sceneContext.pdf = pdf;
 
-    const { PDFDocument } = await import("../../dist/deps/pdf-lib.js");
+    const { PDFDocument } = await import("../../src/deps/pdf-lib.js");
 
     pdf.value = await PDFDocument.create();
     pdf.value.addPage([width.value, height.value]);

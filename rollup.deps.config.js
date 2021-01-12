@@ -24,14 +24,14 @@ export default [
   ...deps.map((dep) => ({
     input: `./src/deps/${dep}.js`,
     output: {
-      file: `./dist/deps/${dep}.js`,
+      file: `./src/deps/${dep}.js`,
       format: "es",
     },
     plugins: [
       resolve(),
       commonjs(),
       json(),
-      css({ dest: "./dist/deps/katex.css", raw: false }),
+      css({ dest: "./src/deps/katex.css", raw: false }),
       copy({
         targets: [
           { src: "node_modules/katex/dist/fonts/*", dest: "dist/deps/fonts" },
@@ -43,12 +43,12 @@ export default [
   {
     input: "./src/deps/monaco.js",
     output: {
-      dir: "./dist/deps/monaco",
+      dir: "./src/deps/monaco",
       format: "es",
       chunkFileNames: "[name].js",
     },
     plugins: [
-      css({ dest: "./dist/deps/monaco/monaco.css", raw: false }),
+      css({ dest: "./src/deps/monaco/monaco.css", raw: false }),
       copy({
         targets: [
           {
@@ -66,7 +66,7 @@ export default [
   {
     input: "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
     output: {
-      file: "./dist/deps/monaco/editor.worker.js",
+      file: "./src/deps/monaco/editor.worker.js",
       format: "umd",
       name: "editor",
     },

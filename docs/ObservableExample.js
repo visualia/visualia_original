@@ -1,5 +1,5 @@
 import { get, set } from "../dist/visualia.js";
-import { ref, onMounted, watch } from "../dist/deps/vue.js";
+import { ref, onMounted, watch } from "../src/deps/vue.js";
 import {
   Runtime,
   Inspector,

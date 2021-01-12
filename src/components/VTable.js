@@ -1,4 +1,4 @@
-import { computed } from "../../dist/deps/vue.js";
+import { computed } from "../../src/deps/vue.js";
 import { isArray } from "../utils.js";
 import { VCompiler } from "../internals.js";
 

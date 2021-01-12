@@ -1,11 +1,11 @@
-import { inject } from "../../dist/deps/vue.js";
+import { inject } from "../../src/deps/vue.js";
 import {
   Group,
   SphereGeometry,
   Mesh,
   EdgesGeometry,
   LineSegments,
-} from "../../dist/deps/three.js";
+} from "../../src/deps/three.js";
 
 import {
   stylingProps,

@@ -1,4 +1,4 @@
-import { inject, ref, onMounted, onBeforeUpdate } from "../../dist/deps/vue.js";
+import { inject, ref, onMounted, onBeforeUpdate } from "../../src/deps/vue.js";
 
 import {
   Scene,
@@ -9,7 +9,7 @@ import {
   DirectionalLight,
   WebGLRenderer,
   SVGRenderer,
-} from "../../dist/deps/three.js";
+} from "../../src/deps/three.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 

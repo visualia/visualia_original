@@ -1,4 +1,4 @@
-import { h, inject } from "../../dist/deps/vue.js";
+import { h, inject } from "../../src/deps/vue.js";
 
 import VScene from "./VScene.js";
 import VCircleSvg from "./VCircleSvg.js";

@@ -1,4 +1,4 @@
-import { ref, watch } from "../../dist/deps/vue.js";
+import { ref, watch } from "../../src/deps/vue.js";
 
 // TODO: Add cols and rows props
 // TODO: Consider to add the areas prop

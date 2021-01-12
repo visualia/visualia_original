@@ -1,4 +1,4 @@
-import { computed } from "../../dist/deps/vue.js";
+import { computed } from "../../src/deps/vue.js";
 import { circlepoints } from "../utils.js";
 import { regularProps, stylingProps, transformTwoProps } from "../internals.js";
 

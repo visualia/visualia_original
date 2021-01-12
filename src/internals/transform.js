@@ -1,4 +1,4 @@
-import { computed, watch } from "../../dist/deps/vue.js";
+import { computed, watch } from "../../src/deps/vue.js";
 import { toNumber } from "../utils.js";
 
 import {

@@ -1,4 +1,4 @@
-import { h } from "../../dist/deps/vue.js";
+import { h } from "../../src/deps/vue.js";
 import { VCompiler } from "../internals.js";
 
 import * as array from "../utils/array.js";

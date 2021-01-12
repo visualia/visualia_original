@@ -1,4 +1,4 @@
-import { computed } from "../../dist/deps/vue.js";
+import { computed } from "../../src/deps/vue.js";
 
 export default {
   docs: `Shows a Youtube video.`,

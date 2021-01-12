@@ -1,4 +1,4 @@
-import { inject } from "../../dist/deps/vue.js";
+import { inject } from "../../src/deps/vue.js";
 import {
   lineProps,
   stylingProps,
@@ -9,7 +9,7 @@ import {
   getThreeTransform,
 } from "../internals.js";
 
-import { line } from "../../dist/deps/d3-shape.js";
+import { line } from "../../src/deps/d3-shape.js";
 
 export default {
   props: {

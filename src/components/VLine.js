@@ -3,7 +3,7 @@ import {
   inject,
   defineAsyncComponent,
   Suspense,
-} from "../../dist/deps/vue.js";
+} from "../../src/deps/vue.js";
 
 import VScene from "./VScene.js";
 import VLineSvg from "./VLineSvg.js";

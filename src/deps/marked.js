@@ -1,1 +1,2 @@
-export { parse, Renderer } from "marked";
+import * as m from "marked/lib/marked.esm.js";
+console.log(m);

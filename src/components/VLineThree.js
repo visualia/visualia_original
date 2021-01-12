@@ -1,4 +1,4 @@
-import { inject } from "../../dist/deps/vue.js";
+import { inject } from "../../src/deps/vue.js";
 
 import {
   Group,
@@ -10,7 +10,7 @@ import {
   ShapeGeometry,
   Vector2,
   Mesh,
-} from "../../dist/deps/three.js";
+} from "../../src/deps/three.js";
 
 import {
   lineProps,

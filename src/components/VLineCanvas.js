@@ -1,5 +1,5 @@
-import { inject, watch } from "../../dist/deps/vue.js";
-import { line } from "../../dist/deps/d3-shape.js";
+import { inject, watch } from "../../src/deps/vue.js";
+import { line } from "../../src/deps/d3-shape.js";
 
 import {
   lineProps,

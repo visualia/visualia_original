@@ -1,4 +1,4 @@
-import { inject } from "../../dist/deps/vue.js";
+import { inject } from "../../src/deps/vue.js";
 import {
   stylingProps,
   sizeProps,

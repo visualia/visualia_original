@@ -1,4 +1,4 @@
-import { computed, h, onErrorCaptured, inject } from "../../dist/deps/vue.js";
+import { computed, h, onErrorCaptured, inject } from "../../src/deps/vue.js";
 import * as utils from "../utils.js";
 import { compileMarkdown } from "../internals.js";
 

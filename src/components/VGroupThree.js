@@ -1,6 +1,6 @@
-import { inject, watch, provide } from "../../dist/deps/vue.js";
+import { inject, watch, provide } from "../../src/deps/vue.js";
 
-import { Group } from "../../dist/deps/three.js";
+import { Group } from "../../src/deps/three.js";
 
 import { transformThreeProps, useThreeTransform } from "../internals.js";
 

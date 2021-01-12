@@ -1,5 +1,6 @@
-import { ref, watch } from "../../dist/deps/vue.js";
-import { renderToString } from "../../dist/deps/katex.js";
+import { ref, watch } from "../../src/deps/vue.js";
+import * as k from "../../src/deps/katex.js";
+console.log(k);
 
 export default {
   docs: `Creates a math equation in [LaTeX format](https://en.wikibooks.org/wiki/LaTeX/Mathematics)`,
@@ -11,9 +12,9 @@ export default {
         () => slots.default(),
         (nodes) => {
           const node = nodes[0].children;
-          math.value = renderToString(String.raw`${node}`, {
-            throwOnError: false,
-          });
+          // math.value = renderToString(String.raw`${node}`, {
+          //   throwOnError: false,
+          // });
         },
         { immediate: true }
       );

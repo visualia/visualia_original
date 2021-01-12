@@ -4,7 +4,7 @@ import {
   onMounted,
   onBeforeUpdate,
   onUpdated,
-} from "../../dist/deps/vue.js";
+} from "../../src/deps/vue.js";
 
 import { sizeProps, useSize } from "../internals/size.js";
 

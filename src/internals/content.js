@@ -1,5 +1,7 @@
-import { inject } from "../../dist/deps/vue.js";
-import { parse, Renderer } from "../../dist/deps/marked.js";
+import { inject } from "../deps/vue.js";
+
+import { parse, Renderer } from "../deps/marked.js";
+
 import { slug } from "../utils.js";
 import { formatHash } from "../internals.js";
 
