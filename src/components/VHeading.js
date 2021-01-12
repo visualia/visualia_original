@@ -5,7 +5,7 @@ import { formatHash } from "../internals.js";
 export default {
   props: {
     text: { type: String },
-    level: { type: Number },
+    level: { type: [Number, String] },
     raw: { type: String },
   },
   setup(props) {
