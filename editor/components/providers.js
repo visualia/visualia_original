@@ -3,9 +3,9 @@ import {
   kebabcase,
   componentsWithChildren,
   isArray,
-} from "../../dist/visualia.js";
+} from "../../src/visualia.js";
 
-import * as monaco from "../../src/deps/monaco/monaco.js";
+import * as monaco from "../../src/deps/monaco.js";
 
 const components = Object.entries({ ...rawComponents }).map(([key, value]) => {
   return {

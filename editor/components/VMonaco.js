@@ -1,8 +1,9 @@
 import { watch, ref, onMounted } from "../../src/deps/vue.js";
+import * as monaco from "../../src/deps/monaco.js";
+import MonacoWorker from "monaco-editor/esm/vs/editor/editor.worker.js?worker";
+
 import { receive } from "../../src/utils.js";
 import { compileSource } from "../../src/internals.js";
-
-import * as monaco from "../../src/deps/monaco/monaco.js";
 
 import {
   provideComponentsCompletion,
@@ -12,8 +13,8 @@ import {
 import { formatVisualia } from "./format.js";
 
 window.MonacoEnvironment = {
-  getWorkerUrl: function (workerId, label) {
-    return "../../src/deps/monaco/editor.worker.js";
+  getWorker: function (workerId, label) {
+    return new MonacoWorker();
   },
 };
 

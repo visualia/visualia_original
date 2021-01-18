@@ -1,4 +1,4 @@
-import { computed } from "../../src/deps//vue.js";
+import { computed } from "../../src/deps/vue.js";
 import { useLocalstore, send } from "../../src/utils.js";
 
 export const VSave = {

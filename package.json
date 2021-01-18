@@ -13,7 +13,9 @@
     "marked": "^1.1.0",
     "monaco-editor": "^0.20.0",
     "pdf-lib": "^1.8.0",
+    "prettier": "^2.2.1",
     "resize-observer-polyfill": "^1.5.1",
+    "rollup-plugin-copy": "^3.3.0",
     "three": "^0.117.1",
     "vue": "^3.0.0-beta.14"
   },
