@@ -15,7 +15,7 @@
     "monaco-editor": "^0.20.0",
     "pdf-lib": "^1.8.0",
     "resize-observer-polyfill": "^1.5.1",
-    "three": "^0.117.1",
+    "three": "^0.125.0",
     "vue": "^3.0.0-beta.14"
   },
   "devDependencies": {
